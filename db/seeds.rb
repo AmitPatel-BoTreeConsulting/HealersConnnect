@@ -15,7 +15,7 @@ roles = [ Role::SUPER_ADMIN_ROLE_TYPE, Role::CENTER_ADMIN_ROLE_TYPE, Role::TEACH
 
 roles.each { |role_name| find_or_create_instance Role, role_name }
 
-# ============== Seed CourceCategory
+# ============== Seed CourseCategory
 cource_categories = [ 'Healing & Protection', 'Prosperity & Abundance', 'Spirituality' ]
 
-cource_categories.each { |category_name| find_or_create_instance CourceCategory, category_name }
+cource_categories.each { |category_name| find_or_create_instance CourseCategory, category_name }
