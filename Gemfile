@@ -40,5 +40,12 @@ gem 'jquery-rails'
 gem 'ancestry'
 
 group :development do
-
+  # Routes helper.
+  gem 'sextant'
 end
+
+# Console improvement
+gem 'pry-rails'
+
+#Debugging Application
+gem 'better_errors'
