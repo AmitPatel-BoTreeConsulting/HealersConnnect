@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20140213161114) do
 
   create_table "affiliations", :force => true do |t|
     t.string   "name"
+    t.string   "alias"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "ancestry"
@@ -40,12 +41,14 @@ ActiveRecord::Schema.define(:version => 20140213161114) do
 
   create_table "course_categories", :force => true do |t|
     t.string   "name"
+    t.string   "alias"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
+    t.string   "alias"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
