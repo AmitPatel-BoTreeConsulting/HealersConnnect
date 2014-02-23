@@ -11,16 +11,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20140223074432) do
 
-  create_table "cource_categories", :force => true do |t|
+  create_table "affiliations", :force => true do |t|
     t.string   "name"
+    t.string   "alias"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "ancestry"
+  end
+
+  create_table "centers", :force => true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.float    "lat"
+    t.float    "long"
+    t.string   "address"
+    t.string   "phone1"
+    t.string   "phone2"
+    t.string   "mobile1"
+    t.string   "mobile2"
+    t.string   "email"
+    t.integer  "affiliation_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "centers", ["affiliation_id"], :name => "index_centers_on_affiliation_id"
+
+  create_table "course_categories", :force => true do |t|
+    t.string   "name"
+    t.string   "alias"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
+    t.string   "alias"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

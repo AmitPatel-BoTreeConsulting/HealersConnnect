@@ -1,15 +1,15 @@
 class Role < ActiveRecord::Base
-  SUPER_ADMIN_ROLE_TYPE = 'super_admin'
-  CENTER_ADMIN_ROLE_TYPE = 'center_admin'
-  TEACHER_ROLE_TYPE = 'teacher'
-  HEALER_ROLE_TYPE = 'healer'
+  SUPER_ADMIN = 'super_admin'
+  CENTER_ADMIN = 'center_admin'
+  TEACHER = 'teacher'
+  HEALER = 'healer'
 
-  attr_accessible :name
+  attr_accessible :name, :alias
 
   validates_presence_of :name
 
-  scope :super_admin, where(name: SUPER_ADMIN_ROLE_TYPE)
-  scope :center_admin, where(name: CENTER_ADMIN_ROLE_TYPE)
-  scope :teacher, where(name: TEACHER_ROLE_TYPE)
-  scope :healer, where(name: HEALER_ROLE_TYPE)
+  scope :super_admin, where(name: SUPER_ADMIN)
+  scope :center_admin, where(name: CENTER_ADMIN)
+  scope :teacher, where(name: TEACHER)
+  scope :healer, where(name: HEALER)
 end
