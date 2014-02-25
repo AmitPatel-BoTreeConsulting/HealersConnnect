@@ -1,13 +1,14 @@
 #navbar.navbar.navbar-default
   #navbar-container.navbar-container
     .navbar-header.pull-left
-      %a.navbar-brand{href: "#"}
-        %small
-          %i.icon-leaf
-          Healers Connect
+      = link_to(root_path, class: 'navbar-brand') do
+        %i.icon-leaf
+        Healers Connect
     .navbar-header.pull-right{role: "navigation"}
       %ul.nav.ace-nav
-        %li
-          %a{href: "#"}
-            %i.icon-off
-            Signin
+        - if current_user.present?
+          %li
+            = link_to "Sign Out", signout_path
+        - else
+          %li
+            = link_to "Sign In", signin_path
