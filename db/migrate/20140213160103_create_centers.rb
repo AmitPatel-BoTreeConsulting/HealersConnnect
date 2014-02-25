@@ -11,10 +11,10 @@ class CreateCenters < ActiveRecord::Migration
       t.string :mobile1
       t.string :mobile2
       t.string :email
-      t.references :affiliation
+      t.references :foundation
 
       t.timestamps
     end
-    add_index :centers, :affiliation_id
+    add_index :centers, :foundation_id
   end
 end

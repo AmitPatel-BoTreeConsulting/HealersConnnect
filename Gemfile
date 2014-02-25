@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.17'
 gem 'pg'
 gem 'haml'
 gem 'haml-rails'
+gem "rails_config", "~> 0.3.3"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -41,3 +42,5 @@ gem 'pry-rails'
 
 #Debugging Application
 gem 'better_errors'
+
+gem 'html5shiv-rails'

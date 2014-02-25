@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20140213161114) do
 
-  create_table "affiliations", :force => true do |t|
-    t.string   "name"
-    t.string   "alias"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "ancestry"
-  end
-
   create_table "centers", :force => true do |t|
     t.string   "name"
     t.string   "location"
@@ -32,18 +24,26 @@ ActiveRecord::Schema.define(:version => 20140213161114) do
     t.string   "mobile1"
     t.string   "mobile2"
     t.string   "email"
-    t.integer  "affiliation_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "foundation_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
-  add_index "centers", ["affiliation_id"], :name => "index_centers_on_affiliation_id"
+  add_index "centers", ["foundation_id"], :name => "index_centers_on_foundation_id"
 
   create_table "course_categories", :force => true do |t|
     t.string   "name"
     t.string   "alias"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "foundations", :force => true do |t|
+    t.string   "name"
+    t.string   "alias"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "ancestry"
   end
 
   create_table "roles", :force => true do |t|

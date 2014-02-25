@@ -40,3 +40,4 @@ course_categories = [ {name: 'Healing & Protection', alias: 'healing_protection'
 puts '--------Seeding CourseCategory-------'
 course_categories.each { |category| create_or_update_by_alias(CourseCategory, category)}
 puts '-------------------------------------'
+

@@ -1,6 +1,6 @@
-class CreateAffiliations < ActiveRecord::Migration
+class CreateFoundations < ActiveRecord::Migration
   def change
-    create_table :affiliations do |t|
+    create_table :foundations do |t|
       t.string :name
       t.string :alias
 
