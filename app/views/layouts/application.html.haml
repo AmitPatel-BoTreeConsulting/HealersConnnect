@@ -1,15 +1,26 @@
 !!!
 %html
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Healers Connect'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Integrity Matters'}"}
-    = stylesheet_link_tag "application", media: "all"
+    %title= content_for?(:title) ? yield(:title) : Settings.app_name
+    = stylesheet_link_tag    "application", :media => "all"
+    /[if IE 7]
+      = stylesheet_link_tag 'font-awesome-ie7.min', :media => 'all'
+    /[if lte IE 8]
+      = stylesheet_link_tag 'ace-ie.min.css', :media => 'all'
     = javascript_include_tag "application"
+    /[if lt IE 9]
+      = javascript_include_tag 'html5shiv'
+    /[if lte IE 8]
+      = javascript_include_tag 'excanvas.min'
     = csrf_meta_tags
-  %body
-    %header
-      = render 'layouts/navigation'
-    %main{:role => "main"}
-      = render 'layouts/messages'
-      = yield
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1"}
+  %body.skin-1
+    #wrap
+      = render partial: 'layouts/navigation'
+      #main-container.main-container
+        .main-container-inner
+          .main-content
+            .page-content
+              #message-container
+                = render partial: "shared/flash_messages"
+              = yield

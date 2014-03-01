@@ -1,4 +1,4 @@
-class Affiliation < ActiveRecord::Base
+class Foundation < ActiveRecord::Base
   attr_accessible :name, :parent
 
   has_ancestry

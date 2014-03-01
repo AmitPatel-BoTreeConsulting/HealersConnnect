@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.17'
 gem 'pg'
 gem 'haml'
 gem 'haml-rails'
@@ -44,3 +44,5 @@ gem 'pry-rails'
 
 #Debugging Application
 gem 'better_errors'
+
+gem 'html5shiv-rails'
