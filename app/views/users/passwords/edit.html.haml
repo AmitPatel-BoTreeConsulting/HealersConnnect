@@ -1,0 +1,28 @@
+%body.login-layout.skin-1
+  .main-container
+    .main-content
+      .row
+        .col-sm-10.col-sm-offset-1
+          .login-container
+            .center
+              %h1
+                %span.white= t('header.title')
+            .space-6
+            .position-relative
+              #login-box.login-box.visible.widget-box.no-border
+                .widget-body
+                  .widget-main
+                    %h4.header.blue.lighter.bigger
+                      = t('client.caption.change_password')
+                    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+                      = devise_error_messages!
+                      = f.hidden_field :reset_password_token
+                      %fieldset
+                        %label.block.clearfix
+                          %span.block.input-icon.input-icon-right
+                            = f.password_field :password, autofocus: true, placeholder: "New Password", class: "form-control"
+                        .space
+                        .clearfix
+                          %label.block.inline
+                            = f.password_field :password_confirmation, placeholder: "Confirm New Password", class: "form-control"
+                          = f.submit "Change my password",class: "btn btn-sm btn-primary no-radius pull-right"

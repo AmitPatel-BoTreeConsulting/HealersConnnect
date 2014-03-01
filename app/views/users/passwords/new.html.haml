@@ -1,0 +1,31 @@
+%body.login-layout.skin-1
+  .col-sm-10.col-sm-offset-1
+    .login-container
+      .center
+        %h1
+          %span.white= t('header.title')
+      .space-6
+      .position-relative
+        #forgot-box.forgot-box.widget-box.no-border.visible
+          .widget-body
+            .widget-main
+              %h4.header.red.lighter.bigger
+                %i.icon-key
+                = t('admin.captions.forgot_password')
+              .space-6
+              %fieldset
+                %label.block.clearfix
+                = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+                  = devise_error_messages!
+                  %fieldset
+                    %label.block.clearfix
+                      %span.block.input-icon.input-icon-right
+                        = f.text_field :email, autofocus: true, placeholder: "Email", class: "form-control"
+                        %i.icon-envelope
+                    .clearfix
+                      %label.inline
+                      = f.submit "Send Me", class: "width-35 pull-right btn btn-sm btn-danger"
+          .toolbar.center
+            = link_to(signin_path, class: 'back-to-login-link') do
+              = t('admin.captions.back_to_signin')
+              %i.icon-arrow-right

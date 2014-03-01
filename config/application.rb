@@ -64,5 +64,8 @@ module HealersConnnect
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # https://devcenter.heroku.com/articles/rails-asset-pipeline#failures-in-the-assets-precompile-task
+    config.assets.initialize_on_precompile = false
   end
 end

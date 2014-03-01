@@ -41,3 +41,28 @@ puts '--------Seeding CourseCategory-------'
 course_categories.each { |category| create_or_update_by_alias(CourseCategory, category)}
 puts '-------------------------------------'
 
+#================================================Create Default Users===================================================
+
+def admin_user_attrs
+  {
+      email: 'admin@healersconnect.com',
+      password: Settings.default_password,
+  }
+end
+
+def find_or_create_user(user_attrs)
+  email = user_attrs[:email]
+  user = User.find_by_email(email)
+
+  if user.nil?
+    user = User.create(user_attrs)
+    puts "Created user having email #{email}"
+  else
+    puts "User having email #{email} already exists, thus not created"
+  end
+  user
+end
+
+admin_user = find_or_create_user(admin_user_attrs)
+
+#=======================================================================================================================
