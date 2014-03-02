@@ -11,4 +11,5 @@ HealersConnnect::Application.routes.draw do
 
   resources :centers
 
+  get 'static/new_center' => 'static_pages#new_center'
 end
