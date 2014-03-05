@@ -8,8 +8,7 @@ class CreateCenters < ActiveRecord::Migration
       t.string :address
       t.string :phone1
       t.string :phone2
-      t.string :mobile1
-      t.string :mobile2
+      t.string :mobile
       t.string :email
       t.references :foundation
 

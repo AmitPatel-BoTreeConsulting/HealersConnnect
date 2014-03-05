@@ -15,7 +15,7 @@ def create_or_update_by_alias(class_name, row)
     class_name.create!(row)
     puts "#{row[:name]}  added."
   else
-    class_name.update_attributes(row)
+    instance.update_attributes(row)
     puts "#{row[:name]} updated."
   end
   instance
@@ -64,5 +64,32 @@ def find_or_create_user(user_attrs)
 end
 
 admin_user = find_or_create_user(admin_user_attrs)
+puts '-------------------------------------'
 
-#=======================================================================================================================
+#==================================================Create Foundations===================================================
+foundations = [
+    {name: 'Institute of Inner Studies Inc', alias: 'IISI'},
+    {name: 'WPH Foundation Inc, Philippines', alias: 'WPHFP', ancestry: 'IISI'},
+    {name: 'WPH Foundation India', alias: 'WPHFI', ancestry: 'WPHFP'},
+    {name: 'YVPHF of Maharashtra', alias: 'YVPHFH', ancestry: 'WPHFI'}
+]
+
+def find_or_create_foundation(foundation_attrs)
+  alias1 = foundation_attrs[:alias]
+  foundation_attrs.delete(:alias)
+  foundation_attrs.delete(:ancestry)
+  foundation = Foundation.find_by_alias(alias1)
+  parent = Foundation.find_by_alias(foundation_attrs[:ancestry])
+  foundation_attrs[:parent] = parent
+  if foundation.nil?
+    foundation = Foundation.create(foundation_attrs)
+    puts "Created foundation having alias #{alias1}"
+  else
+    foundation.update_attributes(foundation_attrs)
+    puts "Updating foundation having alias #{alias1}"
+  end
+  foundation
+end
+
+foundations.each { |foundation| find_or_create_foundation(foundation)}
+puts '-------------------------------------'

@@ -1,0 +1,53 @@
+.row
+  .col-xs-12
+    -#%form.form-horizontal{role: "form"}
+    = form_for @center, html: {class: 'form-horizontal', role: 'form'} do |f|
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right
+        .col-sm-9
+          = render partial: 'shared/error_messages', locals: { target: @center }
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Name
+        .col-sm-9
+          = f.text_field :name, class: 'col-xs-10 col-sm-5'
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Foundation
+        .col-sm-9
+          %select#form-field-select-1.col-xs-10.col-sm-5
+            %option{value: ""}  
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Location
+        .col-sm-9
+          = f.text_field :location, class: 'col-xs-10 col-sm-5'
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right{for: "form-input-readonly"} Address
+        .col-xs-10.col-sm-4
+          = f.text_area :address, rows: 4, class: 'form-control'
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Phone 1
+        .col-sm-9
+          = f.phone_field :phone1, class: 'col-xs-10 col-sm-5'
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Phone 2
+        .col-sm-9
+          = f.phone_field :phone2, class: 'col-xs-10 col-sm-5'
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Mobile
+        .col-sm-9
+          = f.phone_field :mobile, class: 'col-xs-10 col-sm-5'
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Email
+        .col-sm-9
+          = f.email_field :email, class: 'col-xs-10 col-sm-5'
+      .clearfix
+        .col-md-offset-3.col-md-9
+          = f.submit class: 'btn btn-info'
+          = f.submit 'Reset', type: 'reset', class: 'btn'
