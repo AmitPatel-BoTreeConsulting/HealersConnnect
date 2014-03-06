@@ -18,6 +18,7 @@ gem 'jquery-rails'
 gem 'devise'
 
 gem 'ancestry'
+gem "kaminari", "~> 0.14.1"
 
 group :development do
   # Routes helper.

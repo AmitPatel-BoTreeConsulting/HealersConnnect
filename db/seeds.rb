@@ -76,7 +76,6 @@ foundations = [
 
 def find_or_create_foundation(foundation_attrs)
   alias1 = foundation_attrs[:alias]
-  foundation_attrs.delete(:alias)
   foundation_attrs.delete(:ancestry)
   foundation = Foundation.find_by_alias(alias1)
   parent = Foundation.find_by_alias(foundation_attrs[:ancestry])

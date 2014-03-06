@@ -15,13 +15,14 @@
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Foundation
         .col-sm-9
-          %select#form-field-select-1.col-xs-10.col-sm-5
-            %option{value: ""}  
+          = f.collection_select :foundation_id, @foundations, :id, :name
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Location
         .col-sm-9
           = f.text_field :location, class: 'col-xs-10 col-sm-5'
+          = f.hidden_field :lat
+          = f.hidden_field :long
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: "form-input-readonly"} Address
@@ -51,3 +52,9 @@
         .col-md-offset-3.col-md-9
           = f.submit class: 'btn btn-info'
           = f.submit 'Reset', type: 'reset', class: 'btn'
+
+%script{:src => "//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places", :type => "text/javascript"}
+:javascript
+  $(function(){
+     initGoogleLocationSearchFields('center_location', 'center_long', 'center_lat', false);
+  });

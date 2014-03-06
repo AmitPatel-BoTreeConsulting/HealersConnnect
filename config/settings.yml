@@ -1,3 +1,6 @@
 app_name: "Healers Connect"
 
 default_password: 'india2014'
+
+pagination:
+  per_page: 10

@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require jquery-ui-1.10.3.full.min
+//= require common

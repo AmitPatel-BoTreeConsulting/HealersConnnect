@@ -1,4 +1,11 @@
 class CentersController < ApplicationController
+  before_filter :collect_foundations, only: [:new, :create, :edit, :update]
+  before_filter :find_center, only: [:edit, :update]
+
+  def index
+  @centers = Center.page(params[:page]).per(Settings.pagination.per_page)
+  end
+
   def new
     @center = Center.new
   end
@@ -11,4 +18,25 @@ class CentersController < ApplicationController
       render :new
     end
   end
+
+  def edit
+
+  end
+
+  def update
+    if @center.update_attributes(params[:center])
+      redirect_to centers_path
+    else
+      render :edit
+    end
+  end
+
+  private
+    def collect_foundations
+      @foundations = Foundation.where(alias: 'YVPHFH')
+    end
+
+    def find_center
+      @center = Center.find(params[:id])
+    end
 end
