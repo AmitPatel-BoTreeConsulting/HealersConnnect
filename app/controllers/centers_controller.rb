@@ -13,6 +13,7 @@ class CentersController < ApplicationController
   def create
     @center = Center.new(params[:center])
     if @center.save
+      flash[:notice] = t('center.message.success.center_created', center: @center.name)
       redirect_to centers_path
     else
       render :new
@@ -25,6 +26,7 @@ class CentersController < ApplicationController
 
   def update
     if @center.update_attributes(params[:center])
+      flash[:notice] = t('center.message.success.center_updated', center: @center.name)
       redirect_to centers_path
     else
       render :edit
