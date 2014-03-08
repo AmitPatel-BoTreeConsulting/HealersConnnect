@@ -1,0 +1,118 @@
+.page-content
+  .page-header
+    %h1
+      Registration
+      %small
+        %i.icon-double-angle-right
+        Hinduism Revealed
+  .row
+    .col-xs-12
+      %form.form-horizontal{role: "form"}
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Name
+          .col-sm-9
+            %input#form-field-4.col-xs-2.margin-right-10{placeholder: "First Name", type: "text"}/
+            %input#form-field-4.col-xs-2.margin-right-10{placeholder: "Middle Name", type: "text"}/
+            %input#form-field-4.col-xs-2{placeholder: "Surname", type: "text"}/
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Date of Birth
+          .col-sm-3
+            .input-group
+              %input#id-date-picker-1.form-control.date-picker{"data-date-format" => "dd-mm-yyyy", type: "text"}/
+              %span.input-group-addon
+                %i.icon-calendar.bigger-110
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Sex
+          .col-sm-9
+            .control-group
+              .radio
+                %label
+                  %input.ace{name: "form-field-radio", type: "radio"}/
+                  %span.lbl Male
+                %label
+                  %input.ace{name: "form-field-radio", type: "radio"}/
+                  %span.lbl Female
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Marrital Status
+          .col-sm-9
+            .control-group
+              .radio
+                %label
+                  %input.ace{name: "form-field-radio", type: "radio"}/
+                  %span.lbl Married
+                %label
+                  %input.ace{name: "form-field-radio", type: "radio"}/
+                  %span.lbl Unmarried
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Education
+          .col-sm-9
+            %input#form-field-1.col-xs-10.col-sm-5{placeholder: "", type: "text"}/
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Occupation
+          .col-sm-9
+            %input#form-field-1.col-xs-10.col-sm-5{placeholder: "", type: "text"}/
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-input-readonly"}
+            Residential Address
+          .col-sm-9
+            %textarea.col-xs-10.col-sm-5
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Mobile
+          .col-sm-9
+            %input#form-field-1.col-xs-10.col-sm-5{placeholder: "", type: "text"}/
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Telephone
+          .col-sm-9
+            %input#form-field-1.col-xs-10.col-sm-5{placeholder: "", type: "text"}/
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Email
+          .col-sm-9
+            %input#form-field-1.col-xs-10.col-sm-5{placeholder: "", type: "text"}/
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Payment By
+          .col-sm-9
+            %select#form-field-select-1
+              %option{value: "AL"} Cash
+              %option{value: "AK"} Cheque
+              %option{value: "AZ"} DD
+              %option{value: "AR"} Net Banking
+        .hr.hr-24
+        -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
+        %div{style: "text-align:justify"}
+          .col-xs-12
+            %p
+              I, hereby state that, having had the privilege of being accepted as a student in GRAND MASTER CHOA KOK
+              SUI’S above-named course, do solemnly swear to keep Secret and Confidential, all the sacred teachings taught
+              therein.
+            %p
+              On my Honour, I sincerely promise to preserve these sacred teachings in their purest form, and practice them in the
+              proper and correct manner, guided by the golden rules and the Five Arhatic Virtues taught by Grand Master Choa
+              Kok Sui. I also promise to prevent misuse or incorrect practice of these teachings by persons who have not been
+              adequately instructed.
+            %p
+              With the Lord God as my witness, and my Higher Self as my guide, I shall uphold this Vow of Secrecy and I will
+              not divulge to anybody, under any circumstances, verbally or through the reproduction of written material, or
+              through some other form, in whole or in part, any of the teachings, principles and techniques from the course.
+            %p
+              I make this solemn vow freely and voluntarily, with no mental reservation or purpose of evasion.
+
+            .checkbox
+              %label
+                %input{name: "case[accepted]", type: "hidden", value: "no"}/
+                %input#case_accepted{name: "case[accepted]", type: "checkbox", value: "yes"}/
+                I hereby accept VOW OF SECRECY
+            .space-10
+        .clearfix
+          .col-md-offset-3.col-md-9
+            %input.btn.btn-info{name: "commit", type: "submit", value: "Register"}/
+            %input.btn{name: "commit", type: "reset", value: "Reset"}/
