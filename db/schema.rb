@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140309065931) do
+ActiveRecord::Schema.define(:version => 20140310155133) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,37 @@ ActiveRecord::Schema.define(:version => 20140309065931) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "ancestry"
+  end
+
+  create_table "payment_types", :force => true do |t|
+    t.string   "name"
+    t.string   "alias"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "registrations", :force => true do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.date     "birth_date"
+    t.string   "gender"
+    t.boolean  "married"
+    t.string   "education"
+    t.string   "occupation"
+    t.text     "address"
+    t.string   "mobile"
+    t.string   "telephone"
+    t.string   "email"
+    t.string   "location"
+    t.float    "lat"
+    t.float    "long"
+    t.string   "workshop_place"
+    t.string   "workshop_dated"
+    t.string   "workshop_instructor"
+    t.integer  "payment_type_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "roles", :force => true do |t|

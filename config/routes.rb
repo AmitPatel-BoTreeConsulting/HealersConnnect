@@ -1,5 +1,5 @@
 HealersConnnect::Application.routes.draw do
-  devise_for :users
+    devise_for :users
 
   root :to => 'users#index'
   devise_scope :user do
@@ -10,6 +10,7 @@ HealersConnnect::Application.routes.draw do
   get '/dashboard' => 'users#dashboard', as: :dashboard
 
   resources :centers
+  resources :registrations
 
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
