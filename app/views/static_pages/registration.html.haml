@@ -86,6 +86,12 @@
               %option{value: "AK"} Cheque
               %option{value: "AZ"} DD
               %option{value: "AR"} Net Banking
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Basic Pranic Healing
+          .col-sm-9
+            %input#form-field-4.col-xs-2.margin-right-10{placeholder: "Place", type: "text"}/
+            %input#form-field-4.col-xs-2.margin-right-10{placeholder: "Date OR Year", type: "text"}/
+            %input#form-field-4.col-xs-2{placeholder: "Instructor", type: "text"}/
         .hr.hr-24
         -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
         %div{style: "text-align:justify"}
@@ -110,7 +116,7 @@
               %label
                 %input{name: "case[accepted]", type: "hidden", value: "no"}/
                 %input#case_accepted{name: "case[accepted]", type: "checkbox", value: "yes"}/
-                I hereby accept VOW OF SECRECY
+                I accept VOW OF SECRECY
             .space-10
         .clearfix
           .col-md-offset-3.col-md-9
