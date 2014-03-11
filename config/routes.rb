@@ -1,7 +1,8 @@
 HealersConnnect::Application.routes.draw do
   devise_for :users
 
-  root :to => 'users#index'
+  root :to => 'static_pages#home'
+
   devise_scope :user do
     get "/signin" => "devise/sessions#new"
     get "/signout" => "devise/sessions#destroy"
@@ -13,4 +14,5 @@ HealersConnnect::Application.routes.draw do
 
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
+  get 'static/home' => 'static_pages#home'
 end
