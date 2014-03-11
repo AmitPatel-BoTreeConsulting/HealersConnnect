@@ -6,6 +6,8 @@ class Registration < ActiveRecord::Base
   validates_presence_of :first_name, :middle_name, :last_name, :birth_date, :education, :occupation, :gender, :married,
                         :address, :workshop_place, :workshop_dated, :workshop_instructor
 
+  validates :email, presence: true, :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
+
   belongs_to :payment_type
 
   def name

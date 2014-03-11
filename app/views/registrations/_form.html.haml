@@ -16,12 +16,12 @@
         %label.col-sm-3.control-label.no-padding-right Date of Birth
         .col-sm-3
           .input-group
-            = f.text_field :birth_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', data: { 'date-format' => 'dd/mm/yyyy'}
+            = f.text_field :birth_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.birth_date.try(:strftime, "%d/%m/%Y")
             %span.input-group-addon
               %i.icon-calendar.bigger-110
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Sex
+        %label.col-sm-3.control-label.no-padding-right Gender
         .col-sm-9
           .control-group
             .radio
@@ -73,7 +73,7 @@
       .form-group
         %label.col-sm-3.control-label.no-padding-right Email
         .col-sm-9
-          = f.email_field :email, class: 'col-xs-10 col-sm-5'
+          = f.text_field :email, class: 'col-xs-10 col-sm-5'
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right Payment By
@@ -109,9 +109,10 @@
             %label
               = check_box_tag 'accept_vow', false, false, checked: false, id: 'accept_vow'
               I accept VOW OF SECRECY
+            .hc-red (You must accept to in order to proceed)
           .space-10
       .clearfix
         .col-md-offset-3.col-md-9
-          = f.submit registration_submit_button, type: 'submit', class: 'btn btn-info'
+          = f.submit registration_submit_button, type: 'submit', class: 'btn', id: 'vow_accept'
           = f.submit 'Reset', type: 'reset', class: 'btn'
           = f.submit 'Cancel', type: 'button', class: 'btn'
