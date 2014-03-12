@@ -92,3 +92,24 @@ end
 
 foundations.each { |foundation| find_or_create_foundation(foundation)}
 puts '-------------------------------------'
+
+#==================================================Create PaymentTypes===================================================
+payment_types = [
+    { name: 'Cash', alias: 'cash' }, { name: 'Cheque', alias: 'cheque' }, { name: 'DD', alias: 'dd' },
+    { name: 'Net Banking', alias: 'net_banking' }
+]
+
+def find_or_create_payment_type(payment_type_attrs)
+  alias1 = payment_type_attrs[:alias]
+  payment_type = PaymentType.find_by_alias(alias1)
+  if payment_type.nil?
+    payment_type = PaymentType.create(payment_type_attrs)
+    puts "Created payment_type having alias #{alias1}"
+  else
+    payment_type.update_attributes(payment_type_attrs)
+    puts "Updating payment_type having alias #{alias1}"
+  end
+  payment_type
+end
+
+payment_types.each { |payment_type| find_or_create_payment_type(payment_type)}
