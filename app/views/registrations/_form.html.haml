@@ -85,34 +85,35 @@
           = f.text_field :workshop_place, placeholder: 'Place', class: 'col-xs-2 margin-right-10'
           = f.text_field :workshop_dated, placeholder: 'Date OR Year', class: 'col-xs-2 margin-right-10'
           = f.text_field :workshop_instructor, placeholder: 'Instructor', class: 'col-xs-2'
-      .hr.hr-24
-      -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
-      %div{style: "text-align:justify"}
-        .col-xs-12
-          %p
-            I, hereby state that, having had the privilege of being accepted as a student in GRAND MASTER CHOA KOK
-            SUI’S above-named course, do solemnly swear to keep Secret and Confidential, all the sacred teachings taught
-            therein.
-          %p
-            On my Honour, I sincerely promise to preserve these sacred teachings in their purest form, and practice them in the
-            proper and correct manner, guided by the golden rules and the Five Arhatic Virtues taught by Grand Master Choa
-            Kok Sui. I also promise to prevent misuse or incorrect practice of these teachings by persons who have not been
-            adequately instructed.
-          %p
-            With the Lord God as my witness, and my Higher Self as my guide, I shall uphold this Vow of Secrecy and I will
-            not divulge to anybody, under any circumstances, verbally or through the reproduction of written material, or
-            through some other form, in whole or in part, any of the teachings, principles and techniques from the course.
-          %p
-            I make this solemn vow freely and voluntarily, with no mental reservation or purpose of evasion.
+      - if @registration.new_record?
+        .hr.hr-24
+        -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
+        %div{style: "text-align:justify"}
+          .col-xs-12
+            %p
+              I, hereby state that, having had the privilege of being accepted as a student in GRAND MASTER CHOA KOK
+              SUI’S above-named course, do solemnly swear to keep Secret and Confidential, all the sacred teachings taught
+              therein.
+            %p
+              On my Honour, I sincerely promise to preserve these sacred teachings in their purest form, and practice them in the
+              proper and correct manner, guided by the golden rules and the Five Arhatic Virtues taught by Grand Master Choa
+              Kok Sui. I also promise to prevent misuse or incorrect practice of these teachings by persons who have not been
+              adequately instructed.
+            %p
+              With the Lord God as my witness, and my Higher Self as my guide, I shall uphold this Vow of Secrecy and I will
+              not divulge to anybody, under any circumstances, verbally or through the reproduction of written material, or
+              through some other form, in whole or in part, any of the teachings, principles and techniques from the course.
+            %p
+              I make this solemn vow freely and voluntarily, with no mental reservation or purpose of evasion.
 
-          .checkbox
-            %label
-              = check_box_tag 'accept_vow', false, false, checked: false, id: 'accept_vow'
-              I accept VOW OF SECRECY
-            .hc-red (You must accept to in order to proceed)
-          .space-10
+            .checkbox
+              %label
+                = check_box_tag 'accept_vow', false, false, checked: false, id: 'accept_vow'
+                I accept VOW OF SECRECY
+              .hc-red (You must accept to in order to proceed)
+            .space-10
       .clearfix
         .col-md-offset-3.col-md-9
-          = f.submit registration_submit_button, type: 'submit', class: 'btn', id: 'vow_accept'
+          = f.submit registration_submit_button, type: 'submit', class: "#{registration_submit_button_class}", id: 'register'
           = f.submit 'Reset', type: 'reset', class: 'btn'
-          = f.submit 'Cancel', type: 'button', class: 'btn'
+          = link_to 'Cancel', registrations_path, class: 'btn'

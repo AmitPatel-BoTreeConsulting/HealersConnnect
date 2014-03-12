@@ -5,16 +5,16 @@ $( document ).ready(function() {
 
   $('#accept_vow').change(function() {
     if($(this).is(":checked")) {
-      $( "#vow_accept" ).removeClass( "" ).addClass( "btn-primary" );
-      $("#vow_accept").css('cursor', 'pointer');
+      $( "#register" ).addClass( "btn-primary" );
+//      $("#register").css('cursor', 'pointer');
     }
     else{
-      $( "#vow_accept" ).addClass( "" ).removeClass( "btn-primary" );
-      $("#vow_accept").css('cursor', 'default');
+      $( "#register" ).removeClass( "btn-primary" );
+//      $("#register").css('cursor', 'default');
     }
   });
 
-  $('#vow_accept').on('click', function() {
+  $('#register').on('click', function() {
     if($("#accept_vow").is(":checked")) {
       return true;
     }
