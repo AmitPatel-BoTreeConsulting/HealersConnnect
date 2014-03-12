@@ -2,11 +2,12 @@
   #navbar-container.navbar-container
     .navbar-header.pull-left
       = link_to(root_path, class: 'navbar-brand') do
-        %i.icon-leaf
-        Healers Connect
+        Pranic Healing
     .navbar-header.pull-right{role: "navigation"}
-      %ul.nav.ace-nav
+      %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
+          %li{class: controller.controller_name == 'registrations' ? 'active' : ''}
+            = link_to 'Registrations', registrations_path
           %li
             = link_to "Sign Out", signout_path
         - else

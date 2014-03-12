@@ -1,0 +1,30 @@
+.page-header
+  %h1 Registrations
+.row
+  .col-xs-12
+    .table-responsive
+      %table#sample-table-2.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '5%'} Sr No.
+            %th{width: '25%'} Name
+            %th{width: '10%'} Mobile
+            %th{width: '10%'} Payment Type
+            %th{width: '10%'} Gender
+            %th{width: '10%'} Marital Status
+            %th{width: '10%'} Registered On
+            %th.text-center Manage
+        %tbody
+          - @registrations.each_with_index do |registration, index|
+            %tr
+              %td= index + 1
+              %td= registration.name
+              %td= registration.mobile
+              %td= registration.payment_type.name
+              %td= registration.gender
+              %td= registration.marital_status
+              %td= registration.created_at.strftime('%d/%m/%Y')
+              %td.text-center<
+                .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
+                  = link_to(edit_registration_path(registration), class: 'green', title: 'Edit') do
+                    %i.icon-pencil.bigger-130
