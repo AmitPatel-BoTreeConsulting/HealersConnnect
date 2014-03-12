@@ -6,4 +6,8 @@ class StaticPagesController < ApplicationController
   def registration
 
   end
+
+  def home
+
+  end
 end
