@@ -14,6 +14,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(params[:registration])
     if @registration.save
+      flash[:notice] = t('registration.message.success.registration_success')
       if current_user
         redirect_to registrations_path
       else
@@ -29,6 +30,8 @@ class RegistrationsController < ApplicationController
 
   def update
     if @registration.update_attributes(params[:registration])
+      flash[:notice] = 
+        t('registration.message.success.registration_edit_success', name: @registration.name)
       redirect_to registrations_path
     else
       render :edit

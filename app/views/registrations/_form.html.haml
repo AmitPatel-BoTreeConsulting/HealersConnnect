@@ -114,6 +114,6 @@
             .space-10
       .clearfix
         .col-md-offset-3.col-md-9
-          = f.submit registration_submit_button, type: 'submit', class: "#{registration_submit_button_class}", id: 'register'
+          = f.submit registration_submit_button, class: "#{registration_submit_button_class}", id: 'register'
           = f.submit 'Reset', type: 'reset', class: 'btn'
           = link_to 'Cancel', registrations_path, class: 'btn'

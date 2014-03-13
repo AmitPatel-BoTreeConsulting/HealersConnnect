@@ -15,11 +15,13 @@ $( document ).ready(function() {
   });
 
   $('#register').on('click', function() {
-    if($("#accept_vow").is(":checked")) {
-      return true;
-    }
-    else{
-      return false;
-    }
+      if($("#accept_vow").length > 0){
+          if($("#accept_vow").is(":checked")) {
+              return true;
+          }
+          else{
+              return false;
+          }
+      }
   });
 });

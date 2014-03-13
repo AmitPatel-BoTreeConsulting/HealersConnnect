@@ -8,3 +8,9 @@ en:
       success:
         center_created: "Center '%{center}' created successfully."
         center_updated: "Center '%{center}' updated successfully."
+  registration:
+    caption:
+    message:
+      success:
+        registration_success: 'Registration complete. Thank you.'
+        registration_edit_success: "Registration of '%{name}' updated successfully."
