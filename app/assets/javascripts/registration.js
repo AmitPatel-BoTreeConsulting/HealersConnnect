@@ -24,4 +24,18 @@ $( document ).ready(function() {
           }
       }
   });
+
+  $('#registration_payment_type_id').change(function(){
+    var paymentType = $("option:selected", this).val();
+    if(paymentType == 2) {
+      $('#cheque_details').show();
+      $('#net_banking_details').hide();
+    } else if(paymentType == 4){
+      $('#cheque_details').hide();
+      $('#net_banking_details').show();
+    } else {
+      $('#cheque_details').hide();
+      $('#net_banking_details').hide();
+    }
+  });
 });

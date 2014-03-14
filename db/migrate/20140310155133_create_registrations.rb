@@ -19,6 +19,10 @@ class CreateRegistrations < ActiveRecord::Migration
       t.string :workshop_place
       t.string :workshop_dated
       t.string :workshop_instructor
+      t.boolean :fresher, default: true
+      t.string :cheque_no
+      t.string :bank_name
+      t.date :cheque_date
       t.references :payment_type
 
       t.timestamps

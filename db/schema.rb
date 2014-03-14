@@ -85,9 +85,13 @@ ActiveRecord::Schema.define(:version => 20140310155133) do
     t.string   "workshop_place"
     t.string   "workshop_dated"
     t.string   "workshop_instructor"
+    t.boolean  "fresher",             :default => true
+    t.string   "cheque_no"
+    t.string   "bank_name"
+    t.date     "cheque_date"
     t.integer  "payment_type_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "roles", :force => true do |t|

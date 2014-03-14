@@ -79,6 +79,46 @@
         %label.col-sm-3.control-label.no-padding-right Payment By
         .col-sm-9
           = f.collection_select :payment_type_id, @payment_types, :id, :name
+      %div#cheque_details{style: cheque_details_visibility}
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Cheque Details
+          .col-sm-9
+            = f.text_field :cheque_no, placeholder: 'Cheque no', class: 'col-xs-2 margin-right-10'
+            = f.text_field :bank_name, placeholder: 'Bank name', class: 'col-xs-2 margin-right-10'
+            .col-sm-2.no-padding-left
+              .input-group
+                = f.text_field :cheque_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.cheque_date.try(:strftime, "%d/%m/%Y")
+                %span.input-group-addon
+                  %i.icon-calendar.bigger-110
+            / = f.text_field :cheque_date, placeholder: 'Cheque dated', class: 'col-xs-2'
+      %div#net_banking_details{style: net_banking_details_visibility}
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Net Banking Details
+          .col-sm-9
+            %span.lbl Bank Name : Bank of Manarastra
+            %br/
+            %span.lbl Account Name : GMCKS Pranic Healing Center
+            %br/
+            %span.lbl Account : 60110394275
+            %br/
+            %span.lbl IFSC: MAHB0000971
+            %br/
+            %span.lbl Branch Ambavadi (Ahmedabad - Gujarat)
+            %br/
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right Course Attempt
+        .col-sm-9
+          .control-group
+            .radio
+              %label
+                = f.radio_button :fresher, true, class: 'ace'
+                %span.lbl Fresher
+              %label
+                = f.radio_button :fresher, false, class: 'ace'
+                %span.lbl Review
       .form-group
         %label.col-sm-3.control-label.no-padding-right Basic Pranic Healing
         .col-sm-9
