@@ -14,6 +14,7 @@
             %th{width: '25%'} Name
             %th{width: '10%'} Mobile
             %th{width: '10%'} Payment Type
+            %th{width: '10%'} Course Attempt
             %th{width: '10%'} Gender
             %th{width: '10%'} Marital Status
             %th{width: '10%'} Registered On
@@ -25,6 +26,7 @@
               %td= registration.name
               %td= registration.mobile
               %td= registration.payment_type.name
+              %td= registration.course_attempt
               %td= registration.gender
               %td= registration.marital_status
               %td= registration.created_at.strftime('%d/%m/%Y')

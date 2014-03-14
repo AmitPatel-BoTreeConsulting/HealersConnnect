@@ -18,4 +18,7 @@ class Registration < ActiveRecord::Base
     married? ? 'Married' : 'Unmarried'
   end
 
+  def course_attempt
+    fresher? ? 'Fresher' : 'Review'
+  end
 end
