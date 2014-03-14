@@ -4,3 +4,11 @@ default_password: 'india2014'
 
 pagination:
   per_page: 10
+
+payment:
+  net_banking:
+    bank_name: <%= ENV['BANK_NAME'] %>
+    branch_name: <%= ENV['BRANCH_NAME'] %>
+    account_name: <%= ENV['ACCOUNT_NAME'] %>
+    account_number: <%= ENV['ACCOUNT_NUMBER'] %>
+    ifsc: <%= ENV['IFSC'] %>

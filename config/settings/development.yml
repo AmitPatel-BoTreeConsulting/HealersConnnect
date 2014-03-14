@@ -1,0 +1,7 @@
+payment:
+  net_banking:
+    bank_name: 'Kotak Bank'
+    branch_name: 'Naran Pura (Ahmedabad)'
+    account_name: 'Pranic Feelings'
+    account_number: '1234567890'
+    ifsc: 'KTK00458'

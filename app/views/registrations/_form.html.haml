@@ -97,15 +97,15 @@
         .form-group
           %label.col-sm-3.control-label.no-padding-right Net Banking Details
           .col-sm-9
-            %span.lbl Bank Name : Bank of Manarastra
+            %span.lbl= "Bank Name : #{Settings.payment.net_banking.bank_name}"
             %br/
-            %span.lbl Account Name : GMCKS Pranic Healing Center
+            %span.lbl= "Account Name : #{Settings.payment.net_banking.account_name}"
             %br/
-            %span.lbl Account : 60110394275
+            %span.lbl= "Account : #{Settings.payment.net_banking.account_number}"
             %br/
-            %span.lbl IFSC: MAHB0000971
+            %span.lbl= "IFSC : #{Settings.payment.net_banking.ifsc}"
             %br/
-            %span.lbl Branch Ambavadi (Ahmedabad - Gujarat)
+            %span.lbl= "Branch : #{Settings.payment.net_banking.branch_name}"
             %br/
       .space-4
       .form-group
