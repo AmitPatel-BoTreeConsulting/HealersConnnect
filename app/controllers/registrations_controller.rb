@@ -4,7 +4,7 @@ class RegistrationsController < ApplicationController
   before_filter :find_registration, only: [:edit, :update]
 
   def index
-    @registrations = Registration.all
+    @registrations = Registration.order(:created_at)
   end
 
   def new
