@@ -14,3 +14,6 @@ en:
       success:
         registration_success: 'Registration complete. Thank you.'
         registration_edit_success: "Registration of '%{name}' updated successfully."
+        removed: "Registration of '%{name}' removed successfully."
+        activated: "Registration of '%{name}' activated successfully."
+        deactivated: "Registration of '%{name}' de-activated successfully."

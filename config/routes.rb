@@ -11,8 +11,10 @@ HealersConnnect::Application.routes.draw do
   get '/dashboard' => 'users#dashboard', as: :dashboard
 
   resources :centers
-  resources :registrations
-
+  resources :registrations do
+    put :deactivate
+    put :activate
+  end
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
   get 'static/home' => 'static_pages#home'

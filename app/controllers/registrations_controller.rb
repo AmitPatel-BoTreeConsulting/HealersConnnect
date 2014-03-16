@@ -30,12 +30,27 @@ class RegistrationsController < ApplicationController
 
   def update
     if @registration.update_attributes(params[:registration])
-      flash[:notice] = 
+      flash[:notice] =
         t('registration.message.success.registration_edit_success', name: @registration.name)
       redirect_to registrations_path
     else
       render :edit
     end
+  end
+
+  def destroy
+    @registration = Registration.find(params[:id])
+    @registration.destroy
+    flash[:notice] = t('registration.message.success.removed', name: @registration.name)
+    redirect_to registrations_path
+  end
+
+  def activate
+    update_registration_status_and_redirect(:activate, params[:registration_id])
+  end
+
+  def deactivate
+    update_registration_status_and_redirect(:deactivate, params[:registration_id])
   end
 
   private
@@ -45,5 +60,18 @@ class RegistrationsController < ApplicationController
 
     def find_registration
       @registration = Registration.find(params[:id])
+    end
+
+    def update_registration_status_and_redirect(action, id)
+      @registration = Registration.find(id)
+      name = @registration.name
+      status, message = case action
+                          when :activate
+                            [ true, t('registration.message.success.activated', name: name) ]
+                          when :deactivate
+                            [ false, t('registration.message.success.deactivated', name: name) ]
+                        end
+      @registration.update_attribute(:active, status)
+      redirect_to registrations_path, flash: { notice:  message }
     end
 end
