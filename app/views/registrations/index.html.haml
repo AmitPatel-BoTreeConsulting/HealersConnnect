@@ -1,8 +1,15 @@
 .page-header
   %h1 Registrations
 .row
-  .col-xs-12.text-right
-    = link_to 'New Registration', new_registration_path, class: 'btn btn-success'
+  .col-xs-12
+    %ul.nav.nav-pills#registrations_container
+      %li{class: active_pill('confirmed')}
+        = link_to 'Confirmed', registrations_path(status: 'confirmed')
+      %li{class: active_pill('cancelled')}
+        = link_to 'Cancelled', registrations_path(status: 'cancelled')
+      %li{class: active_pill}
+        = link_to 'All', registrations_path
+      = link_to 'New Registration', new_registration_path, class: 'btn btn-success pull-right'
     .space-6
 .row
   .col-xs-12

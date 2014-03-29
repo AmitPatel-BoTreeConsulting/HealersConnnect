@@ -4,7 +4,7 @@ class RegistrationsController < ApplicationController
   before_filter :find_registration, only: [:edit, :update]
 
   def index
-    @registrations = Registration.order(:registration_date)
+    @registrations = Registration.search(params)
   end
 
   def new
@@ -77,6 +77,7 @@ class RegistrationsController < ApplicationController
                             [ false, t('registration.message.success.deactivated', name: name) ]
                         end
       @registration.update_attribute(:active, status)
-      redirect_to registrations_path, flash: { notice:  message }
+      search_param = {status: status ? 'confirmed' : 'cancelled'}
+      redirect_to registrations_path(search_param), flash: { notice:  message }
     end
 end
