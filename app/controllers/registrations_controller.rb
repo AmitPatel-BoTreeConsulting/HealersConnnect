@@ -21,7 +21,7 @@ class RegistrationsController < ApplicationController
 
       flash[:notice] = t('registration.message.success.registration_success')
       if current_user
-        redirect_to registrations_path
+        redirect_to registrations_path(status: 'confirmed')
       else
         redirect_to root_path
       end
@@ -37,7 +37,7 @@ class RegistrationsController < ApplicationController
     if @registration.update_attributes(params[:registration])
       flash[:notice] =
         t('registration.message.success.registration_edit_success', name: @registration.name)
-      redirect_to registrations_path
+      redirect_to registrations_path(status_search_param)
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class RegistrationsController < ApplicationController
     @registration = Registration.find(params[:id])
     @registration.destroy
     flash[:notice] = t('registration.message.success.removed', name: @registration.name)
-    redirect_to registrations_path
+    redirect_to registrations_path(status_search_param)
   end
 
   def activate
@@ -77,7 +77,10 @@ class RegistrationsController < ApplicationController
                             [ false, t('registration.message.success.deactivated', name: name) ]
                         end
       @registration.update_attribute(:active, status)
-      search_param = {status: status ? 'confirmed' : 'cancelled'}
-      redirect_to registrations_path(search_param), flash: { notice:  message }
+      redirect_to registrations_path(status_search_param), flash: { notice:  message }
+    end
+
+    def status_search_param
+      search_param = {status: @registration.active ? 'confirmed' : 'cancelled'}
     end
 end
