@@ -29,7 +29,7 @@
               %td= registration.course_attempt
               %td= registration.gender
               %td= registration.marital_status
-              %td= registration.created_at.strftime('%d/%m/%Y')
+              %td= registration.registration_date.strftime('%d/%m/%Y')
               %td.text-center<
                 .action-buttons
                   = link_to(edit_registration_path(registration), class: 'green', title: 'Edit') do

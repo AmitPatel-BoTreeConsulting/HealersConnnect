@@ -4,16 +4,21 @@ class RegistrationsController < ApplicationController
   before_filter :find_registration, only: [:edit, :update]
 
   def index
-    @registrations = Registration.order(:created_at)
+    @registrations = Registration.order(:registration_date)
   end
 
   def new
-    @registration = Registration.new(gender: 'M', married: true)
+    @registration = Registration.new(gender: 'M', married: true, registration_date: Date.today)
   end
 
   def create
     @registration = Registration.new(params[:registration])
     if @registration.save
+      unless current_user.present?
+        @registration.registration_date = @registration.created_at
+        @registration.save
+      end
+
       flash[:notice] = t('registration.message.success.registration_success')
       if current_user
         redirect_to registrations_path

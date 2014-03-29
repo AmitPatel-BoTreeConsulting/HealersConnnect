@@ -125,6 +125,15 @@
           = f.text_field :workshop_place, placeholder: 'Place', class: 'col-xs-2 margin-right-10'
           = f.text_field :workshop_dated, placeholder: 'Date OR Year', class: 'col-xs-2 margin-right-10'
           = f.text_field :workshop_instructor, placeholder: 'Instructor', class: 'col-xs-2'
+      - if current_user
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Registered On
+          .col-sm-3
+            .input-group
+              = f.text_field :registration_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.registration_date.try(:strftime, "%d/%m/%Y")
+              %span.input-group-addon
+                %i.icon-calendar.bigger-110
       - if @registration.new_record?
         .hr.hr-24
         -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
