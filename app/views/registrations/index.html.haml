@@ -41,11 +41,11 @@
                 .action-buttons
                   = link_to(edit_registration_path(registration), class: 'green', title: 'Edit') do
                     %i.icon-pencil.bigger-130
-                  = link_to(registration_path(registration), method: :delete, :confirm=>'Are you sure, you want to remove this registration?', class: 'red', title: 'Delete')  do
-                    %i.icon-trash.bigger-130
                   - if registration.active
                     = link_to(registration_deactivate_path(registration), method: :put, data: { confirm: 'Are you sure?' }, title: 'De-activate') do
                       %i.icon-pause.bigger-130
                   - else
                     = link_to(registration_activate_path(registration), method: :put, data: { confirm: 'Are you sure?' }, title: 'Activate') do
                       %i.icon-play.bigger-130
+                  = link_to(registration_path(registration), method: :delete, :confirm=>'Are you sure, you want to remove this registration?', class: 'red', title: 'Delete')  do
+                    %i.icon-trash.bigger-130
