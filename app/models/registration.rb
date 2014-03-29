@@ -10,6 +10,8 @@ class Registration < ActiveRecord::Base
 
   belongs_to :payment_type
 
+  REGISTRATION_STATUSES = %w(confirmed cancelled)
+
   def name
     "#{first_name} #{middle_name} #{last_name}"
   end
@@ -20,5 +22,14 @@ class Registration < ActiveRecord::Base
 
   def course_attempt
     fresher? ? 'Fresher' : 'Review'
+  end
+
+  def self.search(params)
+    filter_status = params[:status]
+    if filter_status.present? && REGISTRATION_STATUSES.include?(filter_status)
+      where(active: filter_status == 'confirmed').order(:registration_date)
+    else
+      order(:registration_date)
+    end
   end
 end

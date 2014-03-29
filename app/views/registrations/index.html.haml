@@ -1,8 +1,15 @@
 .page-header
   %h1 Registrations
 .row
-  .col-xs-12.text-right
-    = link_to 'New Registration', new_registration_path, class: 'btn btn-success'
+  .col-xs-12
+    %ul.nav.nav-pills#registrations_container
+      %li{class: active_pill('confirmed')}
+        = link_to 'Confirmed', registrations_path(status: 'confirmed')
+      %li{class: active_pill('cancelled')}
+        = link_to 'Cancelled', registrations_path(status: 'cancelled')
+      %li{class: active_pill}
+        = link_to 'All', registrations_path
+      = link_to 'New Registration', new_registration_path, class: 'btn btn-success pull-right'
     .space-6
 .row
   .col-xs-12
@@ -31,6 +38,14 @@
               %td= registration.marital_status
               %td= registration.registration_date.strftime('%d/%m/%Y')
               %td.text-center<
-                .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
+                .action-buttons
                   = link_to(edit_registration_path(registration), class: 'green', title: 'Edit') do
                     %i.icon-pencil.bigger-130
+                  - if registration.active
+                    = link_to(deactivate_registration_path(registration), method: :put, data: { confirm: 'Are you sure?' }, title: 'De-activate') do
+                      %i.icon-pause.bigger-130
+                  - else
+                    = link_to(activate_registration_path(registration), method: :put, data: { confirm: 'Are you sure?' }, title: 'Activate') do
+                      %i.icon-play.bigger-130
+                  = link_to(registration_path(registration), method: :delete, :confirm=>'Are you sure, you want to remove this registration?', class: 'red', title: 'Delete')  do
+                    %i.icon-trash.bigger-130

@@ -1,10 +1,10 @@
 class RegistrationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :collect_payment_types
-  before_filter :find_registration, only: [:edit, :update]
+  before_filter :find_registration, only: [:edit, :update, :activate, :deactivate]
 
   def index
-    @registrations = Registration.order(:registration_date)
+    @registrations = Registration.search(params)
   end
 
   def new
@@ -21,7 +21,7 @@ class RegistrationsController < ApplicationController
 
       flash[:notice] = t('registration.message.success.registration_success')
       if current_user
-        redirect_to registrations_path
+        redirect_to registrations_path(status: 'confirmed')
       else
         redirect_to root_path
       end
@@ -35,12 +35,27 @@ class RegistrationsController < ApplicationController
 
   def update
     if @registration.update_attributes(params[:registration])
-      flash[:notice] = 
+      flash[:notice] =
         t('registration.message.success.registration_edit_success', name: @registration.name)
-      redirect_to registrations_path
+      redirect_to registrations_path(status_search_param)
     else
       render :edit
     end
+  end
+
+  def destroy
+    @registration = Registration.find(params[:id])
+    @registration.destroy
+    flash[:notice] = t('registration.message.success.removed', name: @registration.name)
+    redirect_to registrations_path(status_search_param)
+  end
+
+  def activate
+    update_registration_status_and_redirect(:activate)
+  end
+
+  def deactivate
+    update_registration_status_and_redirect(:deactivate)
   end
 
   private
@@ -50,5 +65,21 @@ class RegistrationsController < ApplicationController
 
     def find_registration
       @registration = Registration.find(params[:id])
+    end
+
+    def update_registration_status_and_redirect(action)
+      name = @registration.name
+      status, message = case action
+                          when :activate
+                            [ true, t('registration.message.success.activated', name: name) ]
+                          when :deactivate
+                            [ false, t('registration.message.success.deactivated', name: name) ]
+                        end
+      @registration.update_attribute(:active, status)
+      redirect_to registrations_path(status_search_param), flash: { notice:  message }
+    end
+
+    def status_search_param
+      search_param = {status: @registration.active ? 'confirmed' : 'cancelled'}
     end
 end
