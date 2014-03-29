@@ -1,7 +1,7 @@
 class RegistrationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :collect_payment_types
-  before_filter :find_registration, only: [:edit, :update]
+  before_filter :find_registration, only: [:edit, :update, :activate, :deactivate]
 
   def index
     @registrations = Registration.search(params)
@@ -51,11 +51,11 @@ class RegistrationsController < ApplicationController
   end
 
   def activate
-    update_registration_status_and_redirect(:activate, params[:registration_id])
+    update_registration_status_and_redirect(:activate)
   end
 
   def deactivate
-    update_registration_status_and_redirect(:deactivate, params[:registration_id])
+    update_registration_status_and_redirect(:deactivate)
   end
 
   private
@@ -67,8 +67,7 @@ class RegistrationsController < ApplicationController
       @registration = Registration.find(params[:id])
     end
 
-    def update_registration_status_and_redirect(action, id)
-      @registration = Registration.find(id)
+    def update_registration_status_and_redirect(action)
       name = @registration.name
       status, message = case action
                           when :activate
