@@ -47,5 +47,5 @@
                   - else
                     = link_to(activate_registration_path(registration), method: :put, data: { confirm: 'Are you sure you want to confirm the registration?' }, title: 'Confirm') do
                       %i.icon-play.bigger-130
-                  = link_to(registration_path(registration), method: :delete, :confirm=>'Are you sure, you want to remove this registration?', class: 'red', title: 'Delete')  do
+                  = link_to(registration_path(registration), method: :delete, :confirm=>'Are you sure you want to remove this registration?', class: 'red', title: 'Delete')  do
                     %i.icon-trash.bigger-130
