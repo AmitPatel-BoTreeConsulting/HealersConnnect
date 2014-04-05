@@ -32,4 +32,14 @@ class Registration < ActiveRecord::Base
       order(:registration_date)
     end
   end
+
+  # Export registration list
+  def self.export_registration(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |registration|
+        csv << registration.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

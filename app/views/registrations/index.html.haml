@@ -9,7 +9,9 @@
         = link_to 'Cancelled', registrations_path(status: 'cancelled')
       %li{class: active_pill}
         = link_to 'All', registrations_path
-      = link_to 'New Registration', new_registration_path, class: 'btn btn-success pull-right'
+    .btn-group.pull-right.btn_registration_new_margin
+      = link_to 'New Registration', new_registration_path, class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
+      = link_to('Export', export_path(format: "xls"), class: 'btn btn_list btn-sm btn-primary no-radius dialog-btn-margin')
     .space-6
 .row
   .col-xs-12
@@ -18,25 +20,25 @@
         %thead
           %tr
             %th{width: '5%'} Sr No.
-            %th{width: '25%'} Name
-            %th{width: '10%'} Mobile
-            %th{width: '10%'} Payment Type
-            %th{width: '10%'} Course Attempt
-            %th{width: '10%'} Gender
-            %th{width: '10%'} Marital Status
-            %th{width: '10%'} Registered On
-            %th.text-center Manage
+            %th{width: '27%'} Name
+            %th.text-center{width: '10%'} Mobile
+            %th.text-center{width: '10%'} Payment Type
+            %th.text-center{width: '10%'} Course Attempt
+            %th{width: '5%'} Gender
+            %th.text-center{width: '10%'} Marital Status
+            %th.text-center{width: '10%'} Registered On
+            %th.text-center{width: '10%'} Manage
         %tbody
           - @registrations.each_with_index do |registration, index|
             %tr
               %td= index + 1
               %td= registration.name
-              %td= registration.mobile
-              %td= registration.payment_type.name
-              %td= registration.course_attempt
-              %td= registration.gender
-              %td= registration.marital_status
-              %td= registration.registration_date.strftime('%d/%m/%Y')
+              %td.text-center= registration.mobile
+              %td.text-center= registration.payment_type.name
+              %td.text-center= registration.course_attempt
+              %td.text-center= registration.gender
+              %td.text-center= registration.marital_status
+              %td.text-center= registration.registration_date.strftime('%d/%m/%Y')
               %td.text-center<
                 .action-buttons
                   = link_to(edit_registration_path(registration), class: 'green', title: 'Edit') do

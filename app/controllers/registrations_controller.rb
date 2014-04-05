@@ -7,6 +7,16 @@ class RegistrationsController < ApplicationController
     @registrations = Registration.search(params)
   end
 
+  # Export registration list
+  def registration
+    @registrations = Registration.order(:first_name)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @registrations.export_registration }
+      format.xls
+    end
+  end
+
   def new
     @registration = Registration.new(gender: 'M', married: true, registration_date: Date.today)
   end
