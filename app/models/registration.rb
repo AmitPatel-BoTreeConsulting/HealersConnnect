@@ -34,10 +34,11 @@ class Registration < ActiveRecord::Base
   end
 
   # Export registration list
-  def self.export_registration(options = {})
+  def self.export_registration(params, options = {})
+    registrations = search(params)
     CSV.generate(options) do |csv|
       csv << column_names
-      all.each do |registration|
+      registrations.each do |registration|
         csv << registration.attributes.values_at(*column_names)
       end
     end

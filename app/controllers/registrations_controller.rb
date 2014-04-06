@@ -9,11 +9,9 @@ class RegistrationsController < ApplicationController
 
   # Export registration list
   def registration
-    @registrations = Registration.order(:first_name)
     respond_to do |format|
       format.html
-      format.csv { send_data @registrations.export_registration }
-      format.xls
+      format.xls { @registrations = Registration.search(params) }
     end
   end
 
