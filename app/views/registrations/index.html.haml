@@ -36,11 +36,13 @@
               %td= registration.course_attempt
               %td= registration.gender
               %td= registration.marital_status
-              %td= registration.registration_date.strftime('%d/%m/%Y')
+              %td= registration.registration_date.strftime(Settings.defaults.date_format_in_views)
               %td.text-center<
                 .action-buttons
                   = link_to(edit_registration_path(registration), class: 'green', title: 'Edit') do
                     %i.icon-pencil.bigger-130
+                  = link_to(export_registration_path(registration, format: :pdf), target: '_blank', title: 'Save as PDF') do
+                    %i.icon-print.bigger-130
                   - if registration.active
                     = link_to(deactivate_registration_path(registration), method: :put, data: { confirm: 'Are you sure you want to cancel the registration?' }, title: 'Cancel') do
                       %i.icon-pause.bigger-130

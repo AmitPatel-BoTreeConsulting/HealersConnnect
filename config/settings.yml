@@ -12,3 +12,6 @@ payment:
     account_name: <%= ENV['ACCOUNT_NAME'] %>
     account_number: <%= ENV['ACCOUNT_NUMBER'] %>
     ifsc: <%= ENV['IFSC'] %>
+
+defaults:
+  date_format_in_views: '%e %B %Y'

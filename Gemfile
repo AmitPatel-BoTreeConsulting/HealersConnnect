@@ -31,5 +31,6 @@ gem 'pry-rails'
 
 #Debugging Application
 gem 'better_errors'
-
 gem 'html5shiv-rails'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
