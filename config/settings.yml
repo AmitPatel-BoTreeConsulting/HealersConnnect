@@ -14,4 +14,4 @@ payment:
     ifsc: <%= ENV['IFSC'] %>
 
 defaults:
-  date_format_in_views: '%e %B %Y'
+  date_format_in_views: '%d/%m/%Y'

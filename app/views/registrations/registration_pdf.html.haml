@@ -15,140 +15,135 @@
           .main-container-inner
             .main-content
               .page-content
-                %h3.text-center
+                %h2.text-center
                   %b PRANIC HEALING GYAN PRACHAR KENDRA
-                .col-xs-3
-                .col-xs-6
-                  %h5 Proin scelerisque orci lorem, eu egestas velit auctor non. Pellentesque aliquam, nulla nec ornare ullamcorper, sem leo faucibus dui, ac cursus orci nisl nec quam. Aenean sed egestas eros. Nullam vitae molestie lectus, ac aliquam massa. Donec adipiscing condimentum nisl, a volutpat lacus dignissim pretium.
-                .col-xs-2
-                .spacer15
+                  %h4.text-center Flat 2, Sunny Side, Prof. U. U. Bhat Road, Matunga C. R.
+                  %h4.text-center Mumbai 400 019
+                  %h4.text-center Helpline: 93209 07358 Office Telephone: 24160008/24163137, 65084061 / 24160008
+                  %h4.text-center Email: pranicmaharashtra@gmail.com Website: www.pranicmaharashtra.com
+                .space-28
                 .row
                   .col-xs-12
-                    %label
+                    %h3
                       %b Name of Course:  ARCHIEVING ONENESS WITH THE HIGHER SOUL
-                .space-4
+                .space-28
                 .row
-                  .col-xs-6
+                  .col-xs-8
                     .form-group
-                      %label Name of Trainer:
-                      = @registration.workshop_instructor.capitalize
-                  .col-xs-6
-                    .form-group.pull-right
-                      %label Certificate No.:
+                      %label.h4
+                        %b Trainer:
+                      %label.h4= @registration.workshop_instructor.capitalize
+                  .col-xs-4
+                    .form-group.pull-left
+                      %label.h4
+                        %b Certificate No.:
+                        %u
                 .row
-                  .col-xs-12
+                  .col-xs-8
                     .form-group
-                      %label Name :
-                      = @registration.name.titleize
-                .row
+                      %label.h4
+                        %b Name :
+                      %label.h4= @registration.name.titleize
                   .col-xs-4
                     .form-group
-                      %label Date Of Birth :
-                      = @registration.birth_date.strftime(Settings.defaults.date_format_in_views)
+                      %label.h4
+                        %b Date Of Birth :
+                      %label.h4= @registration.birth_date.strftime(Settings.defaults.date_format_in_views)
+                .row
+                  .col-xs-8
+                    .form-group.text-left
+                      %label.h4
+                        %b Gender :
+                      %label.h4= gender
                   .col-xs-4
-                    .form-group.text-center
-                      %label Gender :
-                      = gender
+                    .form-group.pull-left
+                      %label.h4
+                        %b Marital Status :
+                      %label.h4= marital_status
+                .row
+                  .col-xs-8
+                    .form-group
+                      %label.h4
+                        %b Education Qualification:
+                      %label.h4= @registration.education
                   .col-xs-4
-                    .form-group.pull-right
-                      %label Occupation :
-                      = @registration.occupation
-                .row
-                  .col-xs-6
-                    .form-group
-                      %label Education Qualification:
-                      = @registration.education
-                  .col-xs-6
-                    .form-group.pull-right
-                      %label Marital Status :
-                      = marital_status
+                    .form-group.pull-left
+                      %label.h4
+                        %b Occupation :
+                      %label.h4= @registration.occupation
                 .row
                   .col-xs-12
                     .form-group
-                      %label Residential Address / Postal Address:
-                      = @registration.address
+                      %label.h4
+                        %b Residential Address / Postal Address:
+                      %br/
+                      %label.h4= simple_format(@registration.address)
                 .row
-                  .col-xs-6
+                  .col-xs-8
                     .form-group
-                      %label Mobile :
-                      = @registration.mobile
-                  .col-xs-6
-                    .form-group.pull-right
-                      %label Res/Office Tel. :
-                      = @registration.telephone
+                      %label.h4
+                        %b Mobile :
+                      %label.h4= @registration.mobile
+                  .col-xs-4
+                    .form-group.pull-left
+                      %label.h4
+                        %b Res/Office Tel. :
+                      %label.h4= @registration.telephone
                 .row
                   .col-xs-12
                     .form-group
-                      %label E-mail :
-                      = @registration.email
+                      %label.h4
+                        %b E-mail :
+                      %label.h4= @registration.email
                 .row
                   .col-xs-12
                     .form-group
-                      %label Details of Pranic Healing Courses you have taken (as applicable):
-                  .col-xs-12
-                    %table#sample-table-2.table.table-striped.table-bordered.table-hover
-                      %thead
-                        %tr
-                          %th.text-center Course
-                          %th.text-center Plase Conducted
-                          %th.text-center Year & Date
-                          %th.text-center Name of Trainer
-                      %tbody
-                        %tr
-                          %td.text-center<
-                            Basic Pranic Healing
-                          %td.text-center<
-                            = @registration.workshop_place.capitalize
-                          %td.text-center<
-                            = @registration.workshop_dated
-                          %td.text-center<
-                            = @registration.workshop_instructor.capitalize
+                      %label.h4
+                        %b Details of Pranic Healing Courses you have taken (as applicable):
+                      %table{border: "1", style: 'width: 100%;'}
+                        %thead
+                          %tr{style: 'height: 30px;'}
+                            %th.h4.text-center
+                              %b Course
+                            %th.h4.text-center
+                              %b Plase Conducted
+                            %th.h4.text-center
+                              %b Year & Date
+                            %th.h4.text-center
+                              %b Name of Trainer
+                        %tbody
+                          %tr{style: 'height: 30px;'}
+                            %td.h4.text-center<
+                              Basic Pranic Healing
+                            %td.h4.text-center<
+                              = @registration.workshop_place.capitalize
+                            %td.h4.text-center<
+                              = @registration.workshop_dated
+                            %td.h4.text-center<
+                              = @registration.workshop_instructor.capitalize
                 .row
                   .col-xs-12
-                    %h4.text-center
-                      %u DECLARATION
+                    %h3.text-center
+                      %u
+                        %b DECLARATION
                 .row
                   .col-xs-12
-                    %p I am participating in this Pranic Healing Seminar at my own risk and my own will. I take full responsibility for participating in this program.
-                    %p I release all instructors, organizers ans assistants of this seminar and Pranic Healing Gyan Prachar Kendra and World Pranic Healing Foundation and from all damages whatsoever and waive all rights to compensation on care of injury.
-                    %p I declare that i am physically, emotionally and mentally able to participate in this seminar and will keep confidential the proceedings. I alse confirm that the information contained in this may be made available to World Pranic Healing Foundation.
+                    %p{style: 'font-size: 19px;'} I am participating in this Pranic Healing Seminar at my own risk and my own will. I take full responsibility for participating in this program.
+                    %p{style: 'font-size: 19px;'} I release all instructors, organizers ans assistants of this seminar and Pranic Healing Gyan Prachar Kendra and World Pranic Healing Foundation and from all damages whatsoever and waive all rights to compensation on care of injury.
+                    %p{style: 'font-size: 19px;'} I declare that i am physically, emotionally and mentally able to participate in this seminar and will keep confidential the proceedings. I alse confirm that the information contained in this may be made available to World Pranic Healing Foundation.
                 .space-20
                 .row
                   .col-xs-8
                     .form-group
-                      %label Date:
-                  .col-xs-4
-                    .form-group
-                      %label Signature:
+                      %label.h4
+                        %b Date:
                 .row
                   .col-xs-8
                     .form-group
-                      %label Vanue:
-                      Ahmedabad
+                      %label.h4
+                        %b Vanue:
+                        Ahmedabad
                   .col-xs-4
                     .form-group
-                      %label Name:
-                / .row
-                /   .col-xs-12
-                /     .form-group
-                /       %label.col-sm-3.control-label.no-padding-right Payment By :
-                /       = @registration.payment_type.name
-                / .row
-                /   .col-xs-12
-                /     .form-group
-                /       %label.col-sm-3.control-label.no-padding-right Course Attempt :
-                / .row
-                /   .col-xs-12
-                /     .form-group
-                /       %label.col-sm-3.control-label.no-padding-right Basic Pranic Healing :
-                /       Place :
-                /       = @registration.workshop_place.capitalize
-                /       Date / Year :
-                /       = @registration.workshop_dated
-                /       Instructor :
-                /       = @registration.workshop_instructor.capitalize
-                / .row
-                /   .col-xs-12
-                /     .form-group
-                /       %label.col-sm-3.control-label.no-padding-right Registered On :
-                /       = @registration.registration_date.strftime('%d/%m/%Y')
+                      %label.h4
+                        %b Signature:
