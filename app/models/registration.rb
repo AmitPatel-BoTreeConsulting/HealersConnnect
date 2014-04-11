@@ -10,6 +10,8 @@ class Registration < ActiveRecord::Base
 
   belongs_to :payment_type
 
+  REGISTRATION_STATUSES = %w(confirmed cancelled)
+
   def name
     "#{first_name} #{middle_name} #{last_name}"
   end
@@ -20,5 +22,25 @@ class Registration < ActiveRecord::Base
 
   def course_attempt
     fresher? ? 'Fresher' : 'Review'
+  end
+
+  def self.search(params)
+    filter_status = params[:status]
+    if filter_status.present? && REGISTRATION_STATUSES.include?(filter_status)
+      where(active: filter_status == 'confirmed').order(:registration_date)
+    else
+      order(:registration_date)
+    end
+  end
+
+  # Export registration list
+  def self.export_registration(params, options = {})
+    registrations = search(params)
+    CSV.generate(options) do |csv|
+      csv << column_names
+      registrations.each do |registration|
+        csv << registration.attributes.values_at(*column_names)
+      end
+    end
   end
 end
