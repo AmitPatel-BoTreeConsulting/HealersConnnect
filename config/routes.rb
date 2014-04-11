@@ -21,4 +21,5 @@ HealersConnnect::Application.routes.draw do
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
   get 'static/home' => 'static_pages#home'
+  get 'registration' => 'registrations#registration', as: :export
 end

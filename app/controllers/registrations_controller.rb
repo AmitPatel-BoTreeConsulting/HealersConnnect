@@ -7,6 +7,14 @@ class RegistrationsController < ApplicationController
     @registrations = Registration.search(params)
   end
 
+  # Export registration list
+  def registration
+    respond_to do |format|
+      format.html
+      format.xls { @registrations = Registration.search(params) }
+    end
+  end
+
   def new
     @registration = Registration.new(gender: 'M', married: true, registration_date: Date.today)
   end
