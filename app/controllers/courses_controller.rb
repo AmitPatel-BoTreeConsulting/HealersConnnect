@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :course_from_params, only: [:show, :edit, :update,:destroy]
+  before_filter :course_from_params, only: [:show, :edit, :update,:destroy, :deactivate, :activate]
 
   def index
     @courses  = Course.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course_categories  = CourseCategory.all
+    @course_categories = CourseCategory.all
   end
 
   def update
@@ -34,10 +34,19 @@ class CoursesController < ApplicationController
       if @course.update_attributes(params[:course])
         format.html {redirect_to courses_path, notice: t('course.message.course_updated',course: @course.name)}
       else
-        @course_categories  = CourseCategory.all
+        @course_categories = CourseCategory.all
         format.html {render :edit}
       end
     end
+  end
+
+
+  def deactivate
+    update_course_status(:deactivate)
+  end
+
+  def activate
+    update_course_status(:activate)
   end
 
   def destroy
@@ -53,4 +62,18 @@ class CoursesController < ApplicationController
   def course_from_params
     @course = Course.find(params[:id])
   end
+
+  def update_course_status(action)
+    respond_to do |format|
+      status, message = case action
+                          when :activate
+                            [ true, t('course.message.course_activate',course: @course.name) ]
+                          when :deactivate
+                            [ false, t('course.message.course_deactivate',course: @course.name) ]
+                        end
+        @course.update_status(status)
+        format.html {redirect_to courses_path, notice: message}
+    end
+  end
+
 end
