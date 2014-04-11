@@ -1,0 +1,149 @@
+- gender =  @registration.gender == 'M' ? 'Male' : 'Female'
+- marital_status = @registration.marital_status == true ? 'Married' : 'Unmarried'
+!!!
+%html
+  %head
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
+    = wicked_pdf_stylesheet_link_tag "pdf/ace.min"
+    = wicked_pdf_stylesheet_link_tag "pdf/bootstrap"
+    = wicked_pdf_stylesheet_link_tag "pdf/custom"
+  %body
+    #wrap
+      %header
+      %main{:role => "main"}
+        .main-container
+          .main-container-inner
+            .main-content
+              .page-content
+                %h2.text-center
+                  %b PRANIC HEALING GYAN PRACHAR KENDRA
+                  %h4.text-center Flat 2, Sunny Side, Prof. U. U. Bhat Road, Matunga C. R.
+                  %h4.text-center Mumbai 400 019
+                  %h4.text-center Helpline: 93209 07358 Office Telephone: 24160008/24163137, 65084061 / 24160008
+                  %h4.text-center Email: pranicmaharashtra@gmail.com Website: www.pranicmaharashtra.com
+                .space-28
+                .row
+                  .col-xs-12
+                    %h3
+                      %b Name of Course:  ARCHIEVING ONENESS WITH THE HIGHER SOUL
+                .space-28
+                .row
+                  .col-xs-8
+                    .form-group
+                      %label.h4
+                        %b Trainer:
+                      %label.h4= @registration.workshop_instructor.capitalize
+                  .col-xs-4
+                    .form-group.pull-left
+                      %label.h4
+                        %b Certificate No.:
+                        %u
+                .row
+                  .col-xs-8
+                    .form-group
+                      %label.h4
+                        %b Name :
+                      %label.h4= @registration.name.titleize
+                  .col-xs-4
+                    .form-group
+                      %label.h4
+                        %b Date Of Birth :
+                      %label.h4= @registration.birth_date.strftime(Settings.defaults.date_format_in_views)
+                .row
+                  .col-xs-8
+                    .form-group.text-left
+                      %label.h4
+                        %b Gender :
+                      %label.h4= gender
+                  .col-xs-4
+                    .form-group.pull-left
+                      %label.h4
+                        %b Marital Status :
+                      %label.h4= marital_status
+                .row
+                  .col-xs-8
+                    .form-group
+                      %label.h4
+                        %b Education Qualification:
+                      %label.h4= @registration.education
+                  .col-xs-4
+                    .form-group.pull-left
+                      %label.h4
+                        %b Occupation :
+                      %label.h4= @registration.occupation
+                .row
+                  .col-xs-12
+                    .form-group
+                      %label.h4
+                        %b Residential Address / Postal Address:
+                      %br/
+                      %label.h4= simple_format(@registration.address)
+                .row
+                  .col-xs-8
+                    .form-group
+                      %label.h4
+                        %b Mobile :
+                      %label.h4= @registration.mobile
+                  .col-xs-4
+                    .form-group.pull-left
+                      %label.h4
+                        %b Res/Office Tel. :
+                      %label.h4= @registration.telephone
+                .row
+                  .col-xs-12
+                    .form-group
+                      %label.h4
+                        %b E-mail :
+                      %label.h4= @registration.email
+                .row
+                  .col-xs-12
+                    .form-group
+                      %label.h4
+                        %b Details of Pranic Healing Courses you have taken (as applicable):
+                      %table{border: "1", style: 'width: 100%;'}
+                        %thead
+                          %tr{style: 'height: 30px;'}
+                            %th.h4.text-center
+                              %b Course
+                            %th.h4.text-center
+                              %b Place Conducted
+                            %th.h4.text-center
+                              %b Year & Date
+                            %th.h4.text-center
+                              %b Name of Trainer
+                        %tbody
+                          %tr{style: 'height: 30px;'}
+                            %td.h4.text-center<
+                              Basic Pranic Healing
+                            %td.h4.text-center<
+                              = @registration.workshop_place.capitalize
+                            %td.h4.text-center<
+                              = @registration.workshop_dated
+                            %td.h4.text-center<
+                              = @registration.workshop_instructor.capitalize
+                .row
+                  .col-xs-12
+                    %h3.text-center
+                      %u
+                        %b DECLARATION
+                .row
+                  .col-xs-12
+                    %p{style: 'font-size: 19px;'} I am participating in this Pranic Healing Seminar at my own risk and my own will. I take full responsibility for participating in this program.
+                    %p{style: 'font-size: 19px;'} I release all instructors, organizers ans assistants of this seminar and Pranic Healing Gyan Prachar Kendra and World Pranic Healing Foundation and from all damages whatsoever and waive all rights to compensation on care of injury.
+                    %p{style: 'font-size: 19px;'} I declare that i am physically, emotionally and mentally able to participate in this seminar and will keep confidential the proceedings. I alse confirm that the information contained in this may be made available to World Pranic Healing Foundation.
+                .space-20
+                .row
+                  .col-xs-8
+                    .form-group
+                      %label.h4
+                        %b Date:
+                .row
+                  .col-xs-8
+                    .form-group
+                      %label.h4
+                        %b Vanue:
+                        Ahmedabad
+                  .col-xs-4
+                    .form-group
+                      %label.h4
+                        %b Signature:
