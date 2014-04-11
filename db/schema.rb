@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140330155140) do
+ActiveRecord::Schema.define(:version => 20140411083046) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -67,33 +67,15 @@ ActiveRecord::Schema.define(:version => 20140330155140) do
   end
 
   create_table "registrations", :force => true do |t|
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.date     "birth_date"
-    t.string   "gender"
-    t.boolean  "married"
-    t.string   "education"
-    t.string   "occupation"
-    t.text     "address"
-    t.string   "mobile"
-    t.string   "telephone"
-    t.string   "email"
-    t.string   "location"
-    t.float    "lat"
-    t.float    "long"
-    t.string   "workshop_place"
-    t.string   "workshop_dated"
-    t.string   "workshop_instructor"
-    t.boolean  "fresher",             :default => true
+    t.boolean  "fresher",           :default => true
     t.string   "cheque_no"
     t.string   "bank_name"
     t.date     "cheque_date"
     t.integer  "payment_type_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.date     "registration_date"
-    t.boolean  "active",              :default => true
+    t.boolean  "active",            :default => true
   end
 
   create_table "roles", :force => true do |t|
@@ -102,6 +84,31 @@ ActiveRecord::Schema.define(:version => 20140330155140) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "user_profiles", :force => true do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.date     "birth_date"
+    t.string   "education"
+    t.string   "occupation"
+    t.string   "gender"
+    t.boolean  "married"
+    t.text     "address"
+    t.string   "mobile"
+    t.string   "telephone"
+    t.string   "email"
+    t.string   "location"
+    t.float    "long"
+    t.float    "lat"
+    t.integer  "registration_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "user_profiles", ["registration_id"], :name => "index_user_profiles_on_registration_id"
+  add_index "user_profiles", ["user_id"], :name => "index_user_profiles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -120,5 +127,18 @@ ActiveRecord::Schema.define(:version => 20140330155140) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "workshops", :force => true do |t|
+    t.string   "workshop_place"
+    t.string   "workshop_dated"
+    t.string   "workshop_instructor"
+    t.integer  "registration_id"
+    t.integer  "user_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "workshops", ["registration_id"], :name => "index_workshops_on_registration_id"
+  add_index "workshops", ["user_id"], :name => "index_workshops_on_user_id"
 
 end
