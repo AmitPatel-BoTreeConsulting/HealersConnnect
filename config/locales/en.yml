@@ -16,7 +16,7 @@ en:
         registration_edit_success: "Registration of '%{name}' updated successfully."
         removed: "Registration of '%{name}' removed successfully."
         activated: "Registration of '%{name}' activated successfully."
-        deactivated: "Registration of '%{name}' de-activated successfully."
+        deactivated: "Registration of '%{name}' deactivated successfully."
   course:
     caption:
       courses: 'Courses'
@@ -29,6 +29,8 @@ en:
       course_created: "Course '%{course}' created successfully."
       course_updated: "Course '%{course}' updated successfully."
       course_destroy: "Course '%{course}' deleted successfully."
+      course_deactivate: "Course '%{course}' deactivated successfully."
+      course_activate: "Course '%{course}' activated successfully."
       no_courses_found: 'No Courses Found'
   common:
     caption:
@@ -36,3 +38,6 @@ en:
       name: 'Name'
       manage: 'Manage'
       delete: 'Delete'
+      deactivate: 'Deactivate'
+      activate: 'Activate'
+      confirm_message: 'Are you sure?'

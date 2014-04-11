@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140411094212) do
+ActiveRecord::Schema.define(:version => 20140411103355) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -45,12 +45,13 @@ ActiveRecord::Schema.define(:version => 20140411094212) do
     t.integer  "course_category_id"
     t.integer  "donation"
     t.integer  "review_donation"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "status",              :default => true
   end
 
   add_index "courses", ["course_category_id"], :name => "index_courses_on_course_category_id"
