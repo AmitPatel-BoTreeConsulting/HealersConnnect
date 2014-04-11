@@ -1,0 +1,17 @@
+%tr.info
+  %td<
+    = course_counter + 1
+  %td<
+    = link_to course.name, edit_course_path(course)
+  %td<
+    = course.course_category.name if course.course_category.present?
+  %td.text-center<
+    = course.donation
+  %td.text-center<
+    = course.review_donation
+  %td.text-center<
+    .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
+      = link_to(edit_course_path(course), class: 'green') do
+        %i.icon-pencil.bigger-130
+      = link_to(course_path(course), method: :delete, :confirm=>'Are you sure you want to remove this course?', class: 'red', title: t('common.caption.delete'))  do
+        %i.icon-trash.bigger-130

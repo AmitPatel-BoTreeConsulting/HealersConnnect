@@ -18,6 +18,7 @@ HealersConnnect::Application.routes.draw do
       get :export
     end
   end
+  resources :courses
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
   get 'static/home' => 'static_pages#home'

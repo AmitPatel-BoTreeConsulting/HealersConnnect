@@ -17,3 +17,22 @@ en:
         removed: "Registration of '%{name}' removed successfully."
         activated: "Registration of '%{name}' activated successfully."
         deactivated: "Registration of '%{name}' de-activated successfully."
+  course:
+    caption:
+      courses: 'Courses'
+      new_course: 'New Course'
+      edit_course: 'Edit Course'
+      donation: 'Donation'
+      review_donation: 'Review Donation'
+      course_category: 'Course Category'
+    message:
+      course_created: "Course '%{course}' created successfully."
+      course_updated: "Course '%{course}' updated successfully."
+      course_destroy: "Course '%{course}' deleted successfully."
+      no_courses_found: 'No Courses Found'
+  common:
+    caption:
+      serial_number: 'Sr No.'
+      name: 'Name'
+      manage: 'Manage'
+      delete: 'Delete'
