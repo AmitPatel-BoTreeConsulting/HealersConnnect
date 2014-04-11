@@ -36,8 +36,10 @@ en:
     caption:
       serial_number: 'Sr No.'
       name: 'Name'
+      description: 'Description'
       manage: 'Manage'
       delete: 'Delete'
       deactivate: 'Deactivate'
       activate: 'Activate'
       confirm_message: 'Are you sure?'
+      image: 'Image'
