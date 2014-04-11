@@ -9,6 +9,9 @@ class Course < ActiveRecord::Base
   validates_presence_of :name, :course_category_id
   validates_uniqueness_of :name
 
+  has_many :course_instructors
+  has_many :instructors, through: :course_instructors
+
   def update_status(status)
     self.update_attribute(:status, status)
   end

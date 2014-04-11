@@ -19,6 +19,11 @@
         %label.col-sm-3.control-label.no-padding-right Mobile
         .col-sm-9
           = f.telephone_field :mobile, class: 'col-xs-10 col-sm-5'
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right Eligibilities
+        .col-sm-9
+          = f.collection_select :course_ids, Course.all, :id, :name, {}, multiple: true, prompt: false, id: 'form-field-select-4', class: 'instructor-chosen-select tag-input-style', data: { placeholder: ' ' }
       .clearfix
         .col-md-offset-3.col-md-9
           = f.submit instructor_submit_button, class: 'btn btn-primary'

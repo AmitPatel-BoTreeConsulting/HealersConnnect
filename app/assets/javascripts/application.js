@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require bootstrap-datepicker.min
+//= require chosen.jquery.min
 //= require common
 //= require ace-elements.min
 //= require registration
+//= require instructors

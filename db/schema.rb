@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140411103355) do
+ActiveRecord::Schema.define(:version => 20140411114346) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(:version => 20140411103355) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "course_instructors", :force => true do |t|
+    t.integer  "instructor_id"
+    t.integer  "course_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "course_instructors", ["course_id"], :name => "index_course_instructors_on_course_id"
+  add_index "course_instructors", ["instructor_id", "course_id"], :name => "index_course_instructors_on_instructor_id_and_course_id", :unique => true
+  add_index "course_instructors", ["instructor_id"], :name => "index_course_instructors_on_instructor_id"
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -115,6 +126,19 @@ ActiveRecord::Schema.define(:version => 20140411103355) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "user_roles", :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
+    t.integer  "center_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_roles", ["center_id"], :name => "index_user_roles_on_center_id"
+  add_index "user_roles", ["role_id", "user_id", "center_id"], :name => "index_user_roles_on_role_id_and_user_id_and_center_id", :unique => true
+  add_index "user_roles", ["role_id"], :name => "index_user_roles_on_role_id"
+  add_index "user_roles", ["user_id"], :name => "index_user_roles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
