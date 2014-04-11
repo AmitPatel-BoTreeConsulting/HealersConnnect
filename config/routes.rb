@@ -10,6 +10,7 @@ HealersConnnect::Application.routes.draw do
 
   get '/dashboard' => 'users#dashboard', as: :dashboard
 
+  resources :instructors
   resources :centers
   resources :registrations do
     member do

@@ -8,6 +8,8 @@
         - if current_user.present?
           %li{class: controller.controller_name == 'registrations' ? 'active' : ''}
             = link_to 'Registrations', registrations_path(status: 'confirmed')
+          %li{class: controller.controller_name == 'instructors' ? 'active' : ''}
+            = link_to 'Instructors', instructors_path  
           %li
             = link_to "Sign Out", signout_path
         - else

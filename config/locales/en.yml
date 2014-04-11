@@ -17,3 +17,22 @@ en:
         removed: "Registration of '%{name}' removed successfully."
         activated: "Registration of '%{name}' activated successfully."
         deactivated: "Registration of '%{name}' de-activated successfully."
+  instructor:
+    caption:
+      button:
+        edit: 'Edit'
+        save: 'Save'
+        update: 'Update'
+        reset: 'Reset'
+        cancel: 'Cancel'
+        new : 'New Instructor'
+    message:
+      success:
+        created: 'Instructor created successfully.'
+        updated: "Instructor updated successfully."
+        removed: "Instructor removed successfully."
+    page_content:
+      header:
+        index: 'Instructors'
+        new: 'New Instructor'
+        edit: 'Edit Instructor'      
