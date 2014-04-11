@@ -30,14 +30,15 @@
             %th.text-center{width: '10%'} Manage
         %tbody
           - @registrations.each_with_index do |registration, index|
+            - user_profile = registration.user_profile || registration.user.user_profile
             %tr
               %td= index + 1
-              %td= registration.name
-              %td.text-center= registration.mobile
+              %td= user_profile.name
+              %td.text-center= user_profile.mobile
               %td.text-center= registration.payment_type.name
               %td.text-center= registration.course_attempt
-              %td.text-center= registration.gender
-              %td.text-center= registration.marital_status
+              %td.text-center= user_profile.gender
+              %td.text-center= user_profile.marital_status
               %td.text-center= registration.registration_date.strftime('%d/%m/%Y')
               %td.text-center<
                 .action-buttons

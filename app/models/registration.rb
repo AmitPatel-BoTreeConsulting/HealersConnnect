@@ -9,14 +9,6 @@ class Registration < ActiveRecord::Base
 
   attr_accessible :payment_type_id, :fresher, :cheque_no, :bank_name, :cheque_date, :registration_date
 
-  def name
-    "#{first_name} #{middle_name} #{last_name}"
-  end
-
-  def marital_status
-    married? ? 'Married' : 'Unmarried'
-  end
-
   def course_attempt
     fresher? ? 'Fresher' : 'Review'
   end
