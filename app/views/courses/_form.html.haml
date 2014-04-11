@@ -34,6 +34,16 @@
         %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} #{t('common.caption.image')}
         .col-sm-9
           = f.file_field :avatar, class: 'col-xs-10 col-sm-5'
+      - if @course.avatar.present?
+        .form-group#course_avatar_part
+          %label.col-sm-3.control-label.no-padding-right
+          .col-sm-9
+            = image_tag @course.avatar.url(:thumb)
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right
+        .col-sm-9
+          %img(src='' id='preview_course_avatar' style='display:none;')
+
       .clearfix
         .col-md-offset-3.col-md-9
           = f.submit class: 'btn btn-info'

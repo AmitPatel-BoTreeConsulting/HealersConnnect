@@ -17,3 +17,4 @@
 //= require common
 //= require ace-elements.min
 //= require registration
+//= require courses
