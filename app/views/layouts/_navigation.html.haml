@@ -10,6 +10,8 @@
             = link_to 'Registrations', registrations_path(status: 'confirmed')
           %li{class: controller.controller_name == 'instructors' ? 'active' : ''}
             = link_to 'Instructors', instructors_path  
+          %li{class: controller_name == 'courses' ? 'active' : ''}
+            = link_to 'Courses', courses_path(status: 'confirmed')
           %li
             = link_to "Sign Out", signout_path
         - else

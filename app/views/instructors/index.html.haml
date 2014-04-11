@@ -16,7 +16,8 @@
             %th.text-center{width: '10%'} Email
             %th.text-center{width: '10%'} Mobile
             %th.text-center{width: '10%'} Manage
-        %tbody
+        - if @instructors.present?
+          %tbody
           - @instructors.each_with_index do |instructor, index|
             %tr
               %td= index + 1
@@ -29,3 +30,9 @@
                     %i.icon-pencil.bigger-130
                   = link_to(instructor_path(instructor), method: :delete, :confirm=>'Are you sure you want to remove this instructor?', class: 'red', title: 'Delete')  do
                     %i.icon-trash.bigger-130
+        - else
+          %tr
+            %td{colspan: 6}
+              .text-center
+                %h3
+                  = t('course.message.no_instructor_found')   
