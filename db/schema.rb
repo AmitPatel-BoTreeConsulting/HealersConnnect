@@ -76,7 +76,10 @@ ActiveRecord::Schema.define(:version => 20140411083046) do
     t.datetime "updated_at",                          :null => false
     t.date     "registration_date"
     t.boolean  "active",            :default => true
+    t.integer  "user_id"
   end
+
+  add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

@@ -42,6 +42,10 @@ class RemoveFieldsFromRegistration < ActiveRecord::Migration
     end
     puts "------------------Completed migrating data to UserProfile and Workshop from Registration"
 
+    # creating FK for user table 
+    add_column :registrations, :user_id, :integer
+    add_index :registrations, :user_id
+
     remove_column :registrations, :first_name
     remove_column :registrations, :middle_name
     remove_column :registrations, :last_name
