@@ -1,7 +1,7 @@
 class RegistrationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :collect_payment_types
-  before_filter :find_registration, only: [:edit, :update, :activate, :deactivate]
+  before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export]
 
   def index
     @registrations = Registration.search(params)
@@ -64,6 +64,21 @@ class RegistrationsController < ApplicationController
 
   def deactivate
     update_registration_status_and_redirect(:deactivate)
+  end
+
+  def export
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: @registration.first_name,
+               template: 'registrations/registration_pdf.html.haml',
+               dpi: '96',
+               :show_as_html                   => params[:debug].present?,
+               disable_internal_links: true, disable_external_links: true,
+               :print_media_type => false, :no_background => false
+        return
+      end
+    end
   end
 
   private

@@ -15,6 +15,7 @@ HealersConnnect::Application.routes.draw do
     member do
       put :deactivate
       put :activate
+      get :export
     end
   end
   get 'static/new_center' => 'static_pages#new_center'
