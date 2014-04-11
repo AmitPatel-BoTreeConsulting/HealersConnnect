@@ -3,6 +3,8 @@ class Role < ActiveRecord::Base
   CENTER_ADMIN = 'center_admin'
   TEACHER = 'teacher'
   HEALER = 'healer'
+  ACCOUNTANT = 'accountant'
+  FOUNDATION_ADMIN = 'foundation_admin'
 
   attr_accessible :name, :alias
 

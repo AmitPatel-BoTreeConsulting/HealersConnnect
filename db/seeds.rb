@@ -26,7 +26,9 @@ end
 roles = [ {name: 'Super Admin', alias: Role::SUPER_ADMIN},
           {name: 'Center Admin', alias: Role::CENTER_ADMIN},
           {name: 'Teacher', alias: Role::TEACHER},
-          {name: 'Healer', alias: Role::HEALER} ]
+          {name: 'Healer', alias: Role::HEALER},
+          {name: 'Accountant', alias: Role::ACCOUNTANT},
+          {name: 'Foundation Admin', alias: Role::FOUNDATION_ADMIN} ]
 
 puts '------------Seeding Roles------------'
 roles.each { |role| create_or_update_by_alias(Role, role)}
