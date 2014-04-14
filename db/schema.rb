@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140411103355) do
+ActiveRecord::Schema.define(:version => 20140414103954) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -157,5 +157,28 @@ ActiveRecord::Schema.define(:version => 20140411103355) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "workshop_sessions", :force => true do |t|
+    t.integer  "workshop_id"
+    t.datetime "session_start"
+    t.datetime "session_end"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "workshops", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "instructor_id"
+    t.integer  "assistant_instructor_id"
+    t.integer  "center_id"
+    t.integer  "fees_on_session"
+    t.integer  "fees_before_session"
+    t.integer  "fees_after_session"
+    t.integer  "fees_on_rejoining"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
 
 end

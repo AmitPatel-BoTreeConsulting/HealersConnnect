@@ -19,6 +19,7 @@ class Course < ActiveRecord::Base
 
   has_many :course_instructors
   has_many :instructors, through: :course_instructors
+  has_many :workshops
 
   def update_status(status)
     self.update_attribute(:status, status)

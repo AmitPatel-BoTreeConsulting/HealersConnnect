@@ -1,5 +1,5 @@
 HealersConnnect::Application.routes.draw do
-    devise_for :users
+  devise_for :users
 
   root :to => 'static_pages#home'
 
@@ -25,6 +25,8 @@ HealersConnnect::Application.routes.draw do
       put :activate
     end
   end
+
+  resources :workshops
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
   get 'static/home' => 'static_pages#home'
