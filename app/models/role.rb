@@ -3,10 +3,15 @@ class Role < ActiveRecord::Base
   CENTER_ADMIN = 'center_admin'
   TEACHER = 'teacher'
   HEALER = 'healer'
+  ACCOUNTANT = 'accountant'
+  FOUNDATION_ADMIN = 'foundation_admin'
 
   attr_accessible :name, :alias
 
   validates_presence_of :name
+
+  has_many :user_roles
+  has_many :users, through: :user_roles
 
   scope :super_admin, where(name: SUPER_ADMIN)
   scope :center_admin, where(name: CENTER_ADMIN)

@@ -108,6 +108,19 @@ ActiveRecord::Schema.define(:version => 20140411103355) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "user_roles", :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
+    t.integer  "center_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_roles", ["center_id"], :name => "index_user_roles_on_center_id"
+  add_index "user_roles", ["role_id", "user_id", "center_id"], :name => "index_user_roles_on_role_id_and_user_id_and_center_id", :unique => true
+  add_index "user_roles", ["role_id"], :name => "index_user_roles_on_role_id"
+  add_index "user_roles", ["user_id"], :name => "index_user_roles_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
