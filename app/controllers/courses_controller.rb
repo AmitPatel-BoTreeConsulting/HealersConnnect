@@ -32,10 +32,10 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        format.html {redirect_to courses_path, notice: t('course.message.course_updated', course: @course.name)}
+        format.html { redirect_to courses_path, notice: t('course.message.course_updated', course: @course.name) }
       else
         @course_categories = CourseCategory.all
-        format.html {render :edit}
+        format.html { render :edit }
       end
     end
   end
@@ -52,7 +52,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       course_name = @course.name
       @course.destroy
-      format.html {redirect_to courses_path, notice: t('course.message.course_destroy', course: course_name)}
+      format.html { redirect_to courses_path, notice: t('course.message.course_destroy', course: course_name) }
     end
   end
 
@@ -71,7 +71,7 @@ class CoursesController < ApplicationController
                             [ false, t('course.message.course_deactivate',course: @course.name) ]
                         end
         @course.update_status(status)
-        format.html {redirect_to courses_path, notice: message}
+        format.html { redirect_to courses_path, notice: message }
     end
   end
 
