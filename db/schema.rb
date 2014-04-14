@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140411103355) do
+ActiveRecord::Schema.define(:version => 20140414075005) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"

@@ -73,9 +73,3 @@ en:
   mailer:
     send_donation_notification_to_donar:
       subject: 'Donation Notification'
-  admin:
-    captions:
-  button:
-    add: 'Add'
-    save: 'Save'
-    cancel: 'Cancel'
