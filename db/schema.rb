@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(:version => 20140411103355) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "course_instructors", :force => true do |t|
+    t.integer  "instructor_id"
+    t.integer  "course_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "course_instructors", ["course_id"], :name => "index_course_instructors_on_course_id"
+  add_index "course_instructors", ["instructor_id", "course_id"], :name => "index_course_instructors_on_instructor_id_and_course_id", :unique => true
+  add_index "course_instructors", ["instructor_id"], :name => "index_course_instructors_on_instructor_id"
+
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "alias"
@@ -62,6 +73,14 @@ ActiveRecord::Schema.define(:version => 20140411103355) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "ancestry"
+  end
+
+  create_table "instructors", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "mobile"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "payment_types", :force => true do |t|

@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  permissions:
+    foundation_admin_rights_required: "Foundation admin rights are required to access this page."
   center:
     caption:
     message:
@@ -43,3 +45,22 @@ en:
       activate: 'Activate'
       confirm_message: 'Are you sure?'
       image: 'Image'
+  instructor:
+    caption:
+      button:
+        save: 'Save'
+        update: 'Update'
+        reset: 'Reset'
+        cancel: 'Cancel'
+        new : 'New Instructor'
+    message:
+      success:
+        created: 'Instructor created successfully.'
+        updated: "Instructor updated successfully."
+        removed: "Instructor removed successfully."
+        no_instructor_found: 'No Instructor Found'
+    page_content:
+      header:
+        index: 'Instructors'
+        new: 'New Instructor'
+        edit: 'Edit Instructor'      
