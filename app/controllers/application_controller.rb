@@ -21,6 +21,11 @@ class ApplicationController < ActionController::Base
     access_denied_redirect(msg)
   end
 
+  def required_super_admin_or_accountant
+    msg = (current_user.is_super_admin_or_accountant? ? '' : t('permissions.foundation_admin_rights_required'))
+    access_denied_redirect(msg)
+  end
+
   def access_denied_redirect(msg)
     if msg.present?
       redirect_to root_path, flash: { error: msg }

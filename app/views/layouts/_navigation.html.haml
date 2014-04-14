@@ -6,13 +6,14 @@
     .navbar-header.pull-right{role: "navigation"}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
-          %li{class: controller_name == 'donations' ? 'active' : ''}
-            = link_to 'Donations', donations_path
+          - if current_user.is_super_admin_or_accountant?
+            %li{class: controller_name == 'donations' ? 'active' : ''}
+              = link_to 'Donations', donations_path
           %li{class: controller.controller_name == 'registrations' ? 'active' : ''}
             = link_to 'Registrations', registrations_path(status: 'confirmed')
-          - if current_user.is_foundation_admin?  
+          - if current_user.is_foundation_admin?
             %li{class: controller.controller_name == 'instructors' ? 'active' : ''}
-              = link_to 'Instructors', instructors_path  
+              = link_to 'Instructors', instructors_path
           %li{class: controller_name == 'courses' ? 'active' : ''}
             = link_to 'Courses', courses_path(status: 'confirmed')
           %li

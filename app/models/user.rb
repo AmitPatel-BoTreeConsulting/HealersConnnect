@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
     false
   end
 
+  def is_super_admin_or_accountant?
+    return true if( have_role?(Role::SUPER_ADMIN) || have_role?(Role::ACCOUNTANT) )
+    false
+  end
+
   def have_role?(role_type)
     return self.roles.pluck(:alias).include? role_type if self.roles
     false

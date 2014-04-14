@@ -1,6 +1,7 @@
 class DonationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :find_donation, only: [:show, :export]
+  before_filter :required_super_admin_or_accountant, only: [:index]
   def index
     @donations = Donation.all
   end
@@ -12,7 +13,7 @@ class DonationsController < ApplicationController
   def create
     @donation = Donation.new(params[:donation])
     if @donation.save
-      @donation.send_donation_notification_to_donar
+      @donation.send_donation_notification_to_donar(current_user)
       flash[:notice] = t('donation.message.success.donar_notification')
       redirect_to donations_path
     else

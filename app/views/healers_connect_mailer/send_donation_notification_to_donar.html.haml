@@ -11,7 +11,7 @@
     %p
       Thank you for the donation.
       %br/
-      Please find detail of your donation
+      Please find donation details are as below.
       %br/
     %p
       %b Receipt Number:
@@ -28,6 +28,9 @@
     %p
       %b Donation Type:
       #{donation_type}
+    %p
+      %b Received By:
+      #{@received_by}
     %p
     - if @donation.description.present?
       %b Description:
