@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  permissions:
+    foundation_admin_rights_required: "Foundation admin rights are required to access this page."
   center:
     caption:
     message:
@@ -16,4 +18,47 @@ en:
         registration_edit_success: "Registration of '%{name}' updated successfully."
         removed: "Registration of '%{name}' removed successfully."
         activated: "Registration of '%{name}' activated successfully."
-        deactivated: "Registration of '%{name}' de-activated successfully."
+        deactivated: "Registration of '%{name}' deactivated successfully."
+  course:
+    caption:
+      courses: 'Courses'
+      new_course: 'New Course'
+      edit_course: 'Edit Course'
+      donation: 'Donation'
+      review_donation: 'Review Donation'
+      course_category: 'Course Category'
+    message:
+      course_created: "Course '%{course}' created successfully."
+      course_updated: "Course '%{course}' updated successfully."
+      course_destroy: "Course '%{course}' deleted successfully."
+      course_deactivate: "Course '%{course}' deactivated successfully."
+      course_activate: "Course '%{course}' activated successfully."
+      no_courses_found: 'No Courses Found'
+  common:
+    caption:
+      serial_number: 'Sr No.'
+      name: 'Name'
+      manage: 'Manage'
+      delete: 'Delete'
+      deactivate: 'Deactivate'
+      activate: 'Activate'
+      confirm_message: 'Are you sure?'
+  instructor:
+    caption:
+      button:
+        save: 'Save'
+        update: 'Update'
+        reset: 'Reset'
+        cancel: 'Cancel'
+        new : 'New Instructor'
+    message:
+      success:
+        created: 'Instructor created successfully.'
+        updated: "Instructor updated successfully."
+        removed: "Instructor removed successfully."
+        no_instructor_found: 'No Instructor Found'
+    page_content:
+      header:
+        index: 'Instructors'
+        new: 'New Instructor'
+        edit: 'Edit Instructor'      
