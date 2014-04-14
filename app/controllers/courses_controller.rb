@@ -66,9 +66,9 @@ class CoursesController < ApplicationController
     respond_to do |format|
       status, message = case action
                           when :activate
-                            [ true, t('course.message.course_activate',course: @course.name) ]
+                            [true, t('course.message.course_activate', course: @course.name)]
                           when :deactivate
-                            [ false, t('course.message.course_deactivate',course: @course.name) ]
+                            [false, t('course.message.course_deactivate', course: @course.name)]
                         end
         @course.update_status(status)
         format.html { redirect_to courses_path, notice: message }
