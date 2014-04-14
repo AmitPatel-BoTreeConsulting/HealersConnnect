@@ -82,3 +82,8 @@ en:
       workshop_deactivate: "Workshop '%{workshop}' deactivated successfully."
       workshop_activate: "Workshop '%{workshop}' activated successfully."
       no_workshops_found: 'No Workshops Found'
+    page_content:
+      header:
+        index: 'Workshops'
+        new: 'New Workshop'
+        edit: 'Edit Workshop'  
