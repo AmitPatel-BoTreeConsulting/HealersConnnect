@@ -18,3 +18,5 @@
 //= require ace-elements.min
 //= require registration
 //= require courses
+//= require ckeditor-jquery
+//= require ckeditor/config

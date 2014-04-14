@@ -1,4 +1,6 @@
 $(document).ready ->
+  $(".ckeditor").ckeditor {}
+
   $("#course_avatar").change ->
     $('#course_avatar_part').hide();
     readURL $(this)[0], "#preview_course_avatar"

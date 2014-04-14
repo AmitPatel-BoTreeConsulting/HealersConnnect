@@ -35,3 +35,4 @@ gem 'html5shiv-rails'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem "paperclip", "~> 3.4.2"
+gem 'ckeditor_rails'
