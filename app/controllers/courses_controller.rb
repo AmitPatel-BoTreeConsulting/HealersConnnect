@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :course_from_params, only: [:show, :edit, :update,:destroy, :deactivate, :activate]
+  before_filter :course_from_params, only: [:show, :edit, :update, :destroy, :deactivate, :activate]
 
   def index
     @courses  = Course.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
@@ -39,7 +39,6 @@ class CoursesController < ApplicationController
       end
     end
   end
-
 
   def deactivate
     update_course_status(:deactivate)
