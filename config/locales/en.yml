@@ -34,6 +34,9 @@ en:
       course_deactivate: "Course '%{course}' deactivated successfully."
       course_activate: "Course '%{course}' activated successfully."
       no_courses_found: 'No Courses Found'
+      activate_confirm_message: 'Are you sure, You want to activate this course'
+      deactivate_confirm_message: 'Are you sure, You want to deactivate this course'
+
   common:
     caption:
       serial_number: 'Sr No.'
