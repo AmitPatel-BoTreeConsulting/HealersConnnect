@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
     @course_categories  = CourseCategory.all
     respond_to do |format|
       if @course.save
-        format.html { redirect_to courses_path, notice: t('course.message.course_created',course: @course.name) }
+        format.html { redirect_to courses_path, notice: t('course.message.course_created', course: @course.name) }
       else
         format.html { render :new }
       end
@@ -32,7 +32,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        format.html {redirect_to courses_path, notice: t('course.message.course_updated',course: @course.name)}
+        format.html {redirect_to courses_path, notice: t('course.message.course_updated', course: @course.name)}
       else
         @course_categories = CourseCategory.all
         format.html {render :edit}
@@ -52,7 +52,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       course_name = @course.name
       @course.destroy
-      format.html {redirect_to courses_path, notice: t('course.message.course_destroy',course: course_name)}
+      format.html {redirect_to courses_path, notice: t('course.message.course_destroy', course: course_name)}
     end
   end
 
