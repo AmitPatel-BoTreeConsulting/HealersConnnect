@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_foundation_admin
-    msg = (current_user.is_foundation_admin? ? '' : t('permissions.foundation_admin_rights_required'))
+    msg = (current_user.is_foundation_admin? ? '' : t('permissions.not_permitted'))
     access_denied_redirect(msg)
   end
 
   def required_super_admin_or_accountant
-    msg = (current_user.is_super_admin_or_accountant? ? '' : t('permissions.foundation_admin_rights_required'))
+    msg = (current_user.is_super_admin_or_accountant? ? '' : t('permissions.not_permitted'))
     access_denied_redirect(msg)
   end
 

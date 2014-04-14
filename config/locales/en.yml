@@ -3,7 +3,7 @@
 
 en:
   permissions:
-    foundation_admin_rights_required: "Foundation admin rights are required to access this page."
+    not_permitted: "You are not authorized to access this page."
   center:
     caption:
     message:

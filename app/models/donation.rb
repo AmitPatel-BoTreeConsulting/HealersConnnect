@@ -17,7 +17,7 @@ class Donation < ActiveRecord::Base
 
   def send_donation_notification_to_donar(user)
     begin
-      HealersConnectMailer.send_donation_notification_to_donar(self, user).deliver
+      HealersConnectMailer.delay.send_donation_notification_to_donar(self, user.email)
     rescue Exception => e
       Rails.logger.error "Failed to send email, email address: #{self.donar_email}"
       Rails.logger.error "#{e.backtrace.first}: #{e.message} (#{e.class})"
