@@ -22,7 +22,7 @@ class Course < ActiveRecord::Base
   has_many :workshops
 
   def update_status(status)
-    self.update_attribute(:status, status)
+    update_attribute(:status, status)
   end
 
 end
