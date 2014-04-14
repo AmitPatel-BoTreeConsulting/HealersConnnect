@@ -12,7 +12,7 @@ class Course < ActiveRecord::Base
   }
 
   has_attached_file :avatar, Paperclip::Attachment.default_options.merge(paperclip_options)
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :avatar, content_type:  /\Aimage\/.*\Z/
 
   validates_presence_of :name, :course_category_id
   validates_uniqueness_of :name
