@@ -16,6 +16,12 @@ payment:
 defaults:
   date_format_in_views: '%d/%m/%Y'
 
+paperclip:
+  style:
+    medium: '300x300'
+    thumb: '100x100'
+  image_path: '/system/:class/:avatars/:id/:style/:basename.:extension'
+
 mail:
   default_url_options:
     support_email: 'support@healersconnect.in'
