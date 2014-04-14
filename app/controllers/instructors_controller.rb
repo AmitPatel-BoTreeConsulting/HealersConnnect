@@ -8,7 +8,7 @@ class InstructorsController < ApplicationController
   end
 
   def new
-    @instructor = Instructor.new()
+    @instructor = Instructor.new
   end
 
   def create
