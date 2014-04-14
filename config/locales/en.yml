@@ -17,3 +17,18 @@ en:
         removed: "Registration of '%{name}' removed successfully."
         activated: "Registration of '%{name}' activated successfully."
         deactivated: "Registration of '%{name}' de-activated successfully."
+  donation:
+    captions:
+      add_donation_btn: "Add Donation"
+    message:
+      success:
+        donar_notification: 'Donation created successfully.'
+  mailer:
+    send_donation_notification_to_donar:
+      subject: 'Donation Notification'
+  admin:
+    captions:
+  button:
+    add: 'Add'
+    save: 'Save'
+    cancel: 'Cancel'

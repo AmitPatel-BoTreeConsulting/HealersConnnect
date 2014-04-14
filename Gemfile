@@ -34,3 +34,9 @@ gem 'better_errors'
 gem 'html5shiv-rails'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+
+gem 'delayed_job_active_record'
+gem 'whenever', :require => false
+
+# Generate Unique Donation Sequence Number
+gem 'sequenced'

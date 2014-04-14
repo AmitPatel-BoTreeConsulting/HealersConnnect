@@ -15,3 +15,7 @@ payment:
 
 defaults:
   date_format_in_views: '%d/%m/%Y'
+
+mail:
+  default_url_options:
+    support_email: 'support@healersconnect.in'

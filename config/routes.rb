@@ -15,11 +15,14 @@ HealersConnnect::Application.routes.draw do
     member do
       put :deactivate
       put :activate
-      get :export
     end
+  end
+
+  resources :donations do
   end
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
   get 'static/home' => 'static_pages#home'
   get 'registration' => 'registrations#registration', as: :export
+  get 'donation/:id' => 'donations#export', as: :export_donation_pdf
 end

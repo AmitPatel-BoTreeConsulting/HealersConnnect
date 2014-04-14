@@ -1,0 +1,41 @@
+- donation_type = @donation.donation_type == 1 ? 'For Center' : 'For Food for Hungry'
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h
+      Hi #{@donation.donar_name.capitalize},
+    %br/
+    %br/
+    %p
+      Thank you for the donation.
+      %br/
+      Please find detail of your donation
+      %br/
+    %p
+      %b Receipt Number:
+      #{@donation.receipt_number}
+    %p
+      %b Donar Name:
+      #{@donation.donar_name.capitalize}
+    %p
+      %b Donar Email:
+      #{@donation.donar_email}
+    %p
+      %b Amount (&#x20B9;):
+      #{@donation.amount}
+    %p
+      %b Donation Type:
+      #{donation_type}
+    %p
+    - if @donation.description.present?
+      %b Description:
+      #{@donation.description}
+    %br/
+    %br/
+    %br/
+    %p
+      Thank you,
+      %br/
+      Pranic Healing Team
