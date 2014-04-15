@@ -16,8 +16,38 @@ class User < ActiveRecord::Base
     false
   end
 
-  def is_super_admin_or_accountant?
-    return true if( have_role?(Role::SUPER_ADMIN) || have_role?(Role::ACCOUNTANT) )
+  def is_super_admin?
+    return true if have_role?(Role::SUPER_ADMIN)
+    false
+  end
+
+  def is_accountant?
+    return true if have_role?(Role::ACCOUNTANT)
+    false
+  end
+
+  def is_center_admin?
+    return true if have_role?(Role::CENTER_ADMIN)
+    false
+  end
+
+  def is_super_admin_or_foundation_admin_accountant?
+    return true if( have_role?(Role::SUPER_ADMIN) || have_role?(Role::FOUNDATION_ADMIN) || have_role?(Role::ACCOUNTANT) )
+    false
+  end
+
+  def is_super_admin_or_foundation_admin?
+    return true if( have_role?(Role::SUPER_ADMIN) || have_role?(Role::FOUNDATION_ADMIN) )
+    false
+  end
+
+  def is_super_admin_or_foundation_admin_or_center_admin?
+    return true if( have_role?(Role::SUPER_ADMIN) || have_role?(Role::FOUNDATION_ADMIN) || have_role?(Role::CENTER_ADMIN))
+    false
+  end
+
+  def is_super_admin_or_foundation_admin_or_center_admin_or_instructor?
+    return true if( have_role?(Role::SUPER_ADMIN) || have_role?(Role::FOUNDATION_ADMIN) || have_role?(Role::CENTER_ADMIN) || have_role?(Role::INSTRUCTOR))
     false
   end
 

@@ -1,6 +1,6 @@
 class InstructorsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_foundation_admin
+  before_filter :require_super_or_foundation_admin,  only: [:index, :new, :create, :edit, :update, :destroy]
   before_filter :find_instructor, only: [:edit, :update, :destroy]
 
   def index
