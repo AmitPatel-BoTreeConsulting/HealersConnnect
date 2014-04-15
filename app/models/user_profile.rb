@@ -8,7 +8,7 @@ class UserProfile < ActiveRecord::Base
 
   validates_presence_of :address, :birth_date, :education, :occupation
   validates_presence_of :first_name, :middle_name, :last_name
-  validates :email, presence: true, :format => { :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
+  validates :email, presence: true, format: { with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
 
   def name
     "#{ first_name } #{ middle_name } #{ last_name }"
