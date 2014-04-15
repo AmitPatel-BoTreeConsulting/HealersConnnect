@@ -16,6 +16,8 @@
  *= require ace.min
  *= require ace-rtl.min
  *= require ace-skins.min
+ *= require chosen.min
  *= require custom
+ *= require instructors
  *= require_self
  */

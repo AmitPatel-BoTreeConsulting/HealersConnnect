@@ -14,8 +14,8 @@
       = link_to(edit_course_path(course), class: 'green') do
         %i.icon-pencil.bigger-130
       - if course.status
-        = link_to(deactivate_course_path(course), method: :put, data: { confirm: t('common.caption.confirm_message') }, title: t('common.caption.deactivate')) do
+        = link_to(deactivate_course_path(course), method: :put, data: { confirm: t('course.message.deactivate_confirm_message') }, title: t('common.caption.deactivate')) do
           %i.icon-pause.bigger-130
       - else
-        = link_to(activate_course_path(course), method: :put, data: { confirm: t('common.caption.confirm_message') }, title: t('common.caption.activate')) do
+        = link_to(activate_course_path(course), method: :put, data: { confirm: t('course.message.activate_confirm_message') }, title: t('common.caption.activate')) do
           %i.icon-play.bigger-130

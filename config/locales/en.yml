@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  permissions:
+    foundation_admin_rights_required: "Foundation admin rights are required to access this page."
   center:
     caption:
     message:
@@ -32,6 +34,9 @@ en:
       course_deactivate: "Course '%{course}' deactivated successfully."
       course_activate: "Course '%{course}' activated successfully."
       no_courses_found: 'No Courses Found'
+      activate_confirm_message: 'Are you sure, You want to activate this course'
+      deactivate_confirm_message: 'Are you sure, You want to deactivate this course'
+
   common:
     caption:
       serial_number: 'Sr No.'
@@ -43,3 +48,37 @@ en:
       activate: 'Activate'
       confirm_message: 'Are you sure?'
       image: 'Image'
+      course: 'Course'
+      instructor: 'Instructor'
+      center: 'Center'
+      start_date: 'Start Date'
+      end_date: 'End Date'
+  instructor:
+    caption:
+      button:
+        save: 'Save'
+        update: 'Update'
+        reset: 'Reset'
+        cancel: 'Cancel'
+        new : 'New Instructor'
+    message:
+      success:
+        created: 'Instructor created successfully.'
+        updated: "Instructor updated successfully."
+        removed: "Instructor removed successfully."
+        no_instructor_found: 'No Instructor Found'
+    page_content:
+      header:
+        index: 'Instructors'
+        new: 'New Instructor'
+        edit: 'Edit Instructor'
+  workshop:
+    caption:
+      workshops: 'Workshops'
+    message:
+      workshop_created: "Workshop '%{workshop}' created successfully."
+      workshop_updated: "Workshop '%{workshop}' updated successfully."
+      workshop_destroy: "Workshop '%{workshop}' deleted successfully."
+      workshop_deactivate: "Workshop '%{workshop}' deactivated successfully."
+      workshop_activate: "Workshop '%{workshop}' activated successfully."
+      no_workshops_found: 'No Workshops Found'

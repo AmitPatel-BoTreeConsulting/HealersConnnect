@@ -15,4 +15,15 @@ class ApplicationController < ActionController::Base
       "application"
     end
   end
+
+  def require_foundation_admin
+    msg = (current_user.is_foundation_admin? ? '' : t('permissions.foundation_admin_rights_required'))
+    access_denied_redirect(msg)
+  end
+
+  def access_denied_redirect(msg)
+    if msg.present?
+      redirect_to root_path, flash: { error: msg }
+    end
+  end
 end

@@ -14,13 +14,17 @@ class Course < ActiveRecord::Base
   }
 
   has_attached_file :avatar, Paperclip::Attachment.default_options.merge(paperclip_options)
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :avatar, content_type:  /\Aimage\/.*\Z/
 
   validates_presence_of :name, :course_category_id
   validates_uniqueness_of :name
 
+  has_many :course_instructors
+  has_many :instructors, through: :course_instructors
+  has_many :workshops
+
   def update_status(status)
-    self.update_attribute(:status, status)
+    update_attribute(:status, status)
   end
 
 end

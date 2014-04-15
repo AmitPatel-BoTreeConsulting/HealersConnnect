@@ -10,4 +10,14 @@ class User < ActiveRecord::Base
 
   has_many :user_roles
   has_many :roles, through: :user_roles
+
+  def is_foundation_admin?
+    return true if have_role?(Role::FOUNDATION_ADMIN)
+    false
+  end
+
+  def have_role?(role_type)
+    return self.roles.pluck(:alias).include? role_type if self.roles
+    false
+  end
 end

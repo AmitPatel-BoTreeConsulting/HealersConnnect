@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :course_from_params, only: [:show, :edit, :update,:destroy, :deactivate, :activate]
+  before_filter :course_from_params, only: [:show, :edit, :update, :destroy, :deactivate, :activate]
 
   def index
     @courses  = Course.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
     @course_categories  = CourseCategory.all
     respond_to do |format|
       if @course.save
-        format.html { redirect_to courses_path, notice: t('course.message.course_created',course: @course.name) }
+        format.html { redirect_to courses_path, notice: t('course.message.course_created', course: @course.name) }
       else
         format.html { render :new }
       end
@@ -32,14 +32,13 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        format.html {redirect_to courses_path, notice: t('course.message.course_updated',course: @course.name)}
+        format.html { redirect_to courses_path, notice: t('course.message.course_updated', course: @course.name) }
       else
         @course_categories = CourseCategory.all
-        format.html {render :edit}
+        format.html { render :edit }
       end
     end
   end
-
 
   def deactivate
     update_course_status(:deactivate)
@@ -53,7 +52,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       course_name = @course.name
       @course.destroy
-      format.html {redirect_to courses_path, notice: t('course.message.course_destroy',course: course_name)}
+      format.html { redirect_to courses_path, notice: t('course.message.course_destroy', course: course_name) }
     end
   end
 
@@ -67,12 +66,12 @@ class CoursesController < ApplicationController
     respond_to do |format|
       status, message = case action
                           when :activate
-                            [ true, t('course.message.course_activate',course: @course.name) ]
+                            [true, t('course.message.course_activate', course: @course.name)]
                           when :deactivate
-                            [ false, t('course.message.course_deactivate',course: @course.name) ]
+                            [false, t('course.message.course_deactivate', course: @course.name)]
                         end
         @course.update_status(status)
-        format.html {redirect_to courses_path, notice: message}
+        format.html { redirect_to courses_path, notice: message }
     end
   end
 
