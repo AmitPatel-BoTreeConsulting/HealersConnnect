@@ -8,11 +8,12 @@
     %th Mariral Status
     %th Registered On
   - @registrations.each_with_index do |registration, index|
+    - profile = registration.get_user_profile
     %tr
       %td= index + 1
-      %td= registration.name
-      %td= registration.mobile
+      %td= profile.name
+      %td= profile.mobile
       %td= registration.payment_type.name
-      %td= registration.gender
-      %td= registration.marital_status
+      %td= profile.gender
+      %td= profile.marital_status
       %td= registration.registration_date.strftime('%d/%m/%Y')

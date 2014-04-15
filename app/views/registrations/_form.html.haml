@@ -1,3 +1,7 @@
+- # Initialize the nested attributes if they are not present
+- @registration.user_profile ||= UserProfile.new
+- @registration.workshop ||= Workshop.new
+
 = form_for @registration, html: { class: 'form-horizontal', role: 'form'} do |f|
   .row
     .col-xs-12.col-sm-12
@@ -5,76 +9,77 @@
         = render partial: "shared/error_messages", locals: { target: @registration }
   .row
     .col-xs-12
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Name
-        .col-sm-9
-          = f.text_field :first_name, placeholder: 'First Name', class: 'col-xs-2 margin-right-10'
-          = f.text_field :middle_name, placeholder: 'Middle Name', class: 'col-xs-2 margin-right-10'
-          = f.text_field :last_name, placeholder: 'Surname', class: 'col-xs-2'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Date of Birth
-        .col-sm-3
-          .input-group
-            = f.text_field :birth_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.birth_date.try(:strftime, "%d/%m/%Y")
-            %span.input-group-addon
-              %i.icon-calendar.bigger-110
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Gender
-        .col-sm-9
-          .control-group
-            .radio
-              %label
-                = f.radio_button :gender, 'M', class: 'ace'
-                %span.lbl Male
-              %label
-                = f.radio_button :gender, 'F', class: 'ace'
-                %span.lbl Female
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Marital Status
-        .col-sm-9
-          .control-group
-            .radio
-              %label
-                = f.radio_button :married, true, class: 'ace'
-                %span.lbl Married
-              %label
-                = f.radio_button :married, false, class: 'ace'
-                %span.lbl Unmarried
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Education
-        .col-sm-9
-          = f.text_field :education, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Occupation
-        .col-sm-9
-          = f.text_field :occupation, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-input-readonly"}
-          Residential Address
-        .col-sm-9
-          = f.text_area :address, class: 'col-xs-10 col-sm-5', rows: 4
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Mobile
-        .col-sm-9
-          = f.telephone_field :mobile, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Telephone
-        .col-sm-9
-          = f.telephone_field :telephone, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Email
-        .col-sm-9
-          = f.text_field :email, class: 'col-xs-10 col-sm-5'
-      .space-4
+      = f.fields_for :user_profile do |ff|
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Name
+          .col-sm-9
+            = ff.text_field :first_name, placeholder: 'First Name', class: 'col-xs-2 margin-right-10'
+            = ff.text_field :middle_name, placeholder: 'Middle Name', class: 'col-xs-2 margin-right-10'
+            = ff.text_field :last_name, placeholder: 'Surname', class: 'col-xs-2'
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Date of Birth
+          .col-sm-3
+            .input-group
+              = ff.text_field :birth_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', value: @registration.user_profile.birth_date.try(:strftime, "%d/%m/%Y")
+              %span.input-group-addon
+                %i.icon-calendar.bigger-110
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Gender
+          .col-sm-9
+            .control-group
+              .radio
+                %label
+                  = ff.radio_button :gender, 'M', class: 'ace'
+                  %span.lbl Male
+                %label
+                  = ff.radio_button :gender, 'F', class: 'ace'
+                  %span.lbl Female
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Marital Status
+          .col-sm-9
+            .control-group
+              .radio
+                %label
+                  = ff.radio_button :married, true, class: 'ace'
+                  %span.lbl Married
+                %label
+                  = ff.radio_button :married, false, class: 'ace'
+                  %span.lbl Unmarried
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Education
+          .col-sm-9
+            = ff.text_field :education, class: 'col-xs-10 col-sm-5'
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Occupation
+          .col-sm-9
+            = ff.text_field :occupation, class: 'col-xs-10 col-sm-5'
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: "form-input-readonly"}
+            Residential Address
+          .col-sm-9
+            = ff.text_area :address, class: 'col-xs-10 col-sm-5', rows: 4
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Mobile
+          .col-sm-9
+            = ff.telephone_field :mobile, class: 'col-xs-10 col-sm-5'
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Telephone
+          .col-sm-9
+            = ff.telephone_field :telephone, class: 'col-xs-10 col-sm-5'
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Email
+          .col-sm-9
+            = ff.text_field :email, class: 'col-xs-10 col-sm-5'
+        .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right Payment By
         .col-sm-9
@@ -119,12 +124,13 @@
               %label
                 = f.radio_button :fresher, false, class: 'ace'
                 %span.lbl Review
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right Basic Pranic Healing
-        .col-sm-9
-          = f.text_field :workshop_place, placeholder: 'Place', class: 'col-xs-2 margin-right-10'
-          = f.text_field :workshop_dated, placeholder: 'Date OR Year', class: 'col-xs-2 margin-right-10'
-          = f.text_field :workshop_instructor, placeholder: 'Instructor', class: 'col-xs-2'
+      = f.fields_for :workshop do |ff|
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right Basic Pranic Healing
+          .col-sm-9
+            = ff.text_field :workshop_place, placeholder: 'Place', class: 'col-xs-2 margin-right-10'
+            = ff.text_field :workshop_dated, placeholder: 'Date OR Year', class: 'col-xs-2 margin-right-10'
+            = ff.text_field :workshop_instructor, placeholder: 'Instructor', class: 'col-xs-2'
       - if current_user
         .space-4
         .form-group

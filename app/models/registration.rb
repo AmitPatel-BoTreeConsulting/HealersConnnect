@@ -3,7 +3,13 @@ class Registration < ActiveRecord::Base
   belongs_to :user
 
   has_one :user_profile
-  has_many :workshops
+  has_one :workshop
+
+  accepts_nested_attributes_for :workshop
+  attr_accessible :workshop_attributes
+
+  accepts_nested_attributes_for :user_profile
+  attr_accessible :user_profile_attributes
 
   REGISTRATION_STATUSES = %w(confirmed cancelled)
 
@@ -20,6 +26,10 @@ class Registration < ActiveRecord::Base
     else
       order(:registration_date)
     end
+  end
+
+  def get_user_profile
+    user_profile || user.user_profile
   end
 
   # Export registration list
