@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   belongs_to :course_category
   attr_accessible :alias, :description, :donation, :eligibility, :name, :review_donation,:course_category_id
 
