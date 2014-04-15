@@ -3,7 +3,7 @@
 
 en:
   permissions:
-    foundation_admin_rights_required: "Foundation admin rights are required to access this page."
+    not_permitted: "You are not authorized to access this page."
   center:
     caption:
     message:
@@ -63,4 +63,13 @@ en:
       header:
         index: 'Instructors'
         new: 'New Instructor'
-        edit: 'Edit Instructor'      
+        edit: 'Edit Instructor'
+  donation:
+    captions:
+      add_donation_btn: "Add Donation"
+    message:
+      success:
+        donar_notification: 'Donation created successfully.'
+  mailer:
+    send_donation_notification_to_donar:
+      subject: 'Donation Notification'

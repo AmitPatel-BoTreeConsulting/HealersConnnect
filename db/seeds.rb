@@ -25,7 +25,7 @@ end
 # Roles
 roles = [ {name: 'Super Admin', alias: Role::SUPER_ADMIN},
           {name: 'Center Admin', alias: Role::CENTER_ADMIN},
-          {name: 'Teacher', alias: Role::TEACHER},
+          {name: 'Instructor', alias: Role::INSTRUCTOR},
           {name: 'Healer', alias: Role::HEALER},
           {name: 'Accountant', alias: Role::ACCOUNTANT},
           {name: 'Foundation Admin', alias: Role::FOUNDATION_ADMIN} ]
@@ -45,13 +45,6 @@ puts '-------------------------------------'
 
 #================================================Create Default Users===================================================
 
-def admin_user_attrs
-  {
-      email: 'admin@healersconnect.com',
-      password: Settings.default_password,
-  }
-end
-
 def find_or_create_user(user_attrs)
   email = user_attrs[:email]
   user = User.find_by_email(email)
@@ -65,7 +58,10 @@ def find_or_create_user(user_attrs)
   user
 end
 
-admin_user = find_or_create_user(admin_user_attrs)
+admin_user = find_or_create_user({ email: 'admin@healersconnect.com', password: Settings.default_password })
+accountant = find_or_create_user({ email: 'accountant@healersconnect.com', password: Settings.default_password })
+foundation_admin = find_or_create_user({ email: 'foundation@healersconnect.com', password: Settings.default_password })
+center_admin = find_or_create_user({ email: 'center@healersconnect.com', password: Settings.default_password })
 puts '-------------------------------------'
 
 #==================================================Create Foundations===================================================
@@ -115,3 +111,28 @@ def find_or_create_payment_type(payment_type_attrs)
 end
 
 payment_types.each { |payment_type| find_or_create_payment_type(payment_type)}
+
+
+
+def find_or_create_user_role(user, roles)
+  if !user.roles.present?
+    user_role = {}
+    user_role[:role_id] = roles.id
+    user_role[:user_id] = user.id
+    user_role = UserRole.create(user_role)
+    puts "Created user roles for #{user.email}"
+  else
+    puts "User roles for #{user.email} already exists, thus not created"
+  end
+end
+
+# Set role for Super Admin, Accountant, Foundation Admin, Center Admin
+application_admin_role = Role.super_admin
+account_role = Role.accountant
+foundation_admin_role = Role.foundation_admin
+center_admin_role = Role.center_admin
+
+user_role_for_super_admin = find_or_create_user_role(admin_user, application_admin_role)
+user_role_for_accountant = find_or_create_user_role(accountant, account_role)
+user_role_for_foundation_admin = find_or_create_user_role(foundation_admin, foundation_admin_role)
+user_role_for_center_admin = find_or_create_user_role(center_admin, center_admin_role)

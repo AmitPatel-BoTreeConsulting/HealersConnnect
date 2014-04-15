@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :course_from_params, only: [:show, :edit, :update,:destroy, :deactivate, :activate]
+  before_filter :require_super_or_foundation_admin_or_center_admin_or_Instructor, only: [:index, :new, :create, :show, :edit, :update, :activate, :deactivate, :destroy]
 
   def index
     @courses  = Course.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')

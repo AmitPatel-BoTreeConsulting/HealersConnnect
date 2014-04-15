@@ -36,3 +36,9 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem "paperclip", "~> 3.4.2"
 gem 'ckeditor_rails'
+
+gem 'delayed_job_active_record'
+gem 'daemons'
+
+# Generate Unique Donation Sequence Number
+gem 'sequenced'
