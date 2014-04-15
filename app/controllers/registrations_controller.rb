@@ -16,8 +16,11 @@ class RegistrationsController < ApplicationController
   end
 
   def new
-    default_user_profile_values = { gender: 'M', married: true }
-    @registration = Registration.new(user_profile_attributes: default_user_profile_values, registration_date: Date.today)
+    default_profile_values = { gender: 'M', married: true }
+    @registration = Registration.new(
+      user_profile_attributes: default_profile_values,
+      registration_date: Date.today
+    )
   end
 
   def create
@@ -45,7 +48,8 @@ class RegistrationsController < ApplicationController
   def update
     if @registration.update_attributes(params[:registration])
       flash[:notice] =
-        t('registration.message.success.registration_edit_success', name: @registration.get_user_profile.name)
+        t('registration.message.success.registration_edit_success',
+          name: @registration.get_user_profile.name)
       redirect_to registrations_path(status_search_param)
     else
       render :edit

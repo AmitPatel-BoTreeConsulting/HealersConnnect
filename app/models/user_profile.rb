@@ -2,9 +2,12 @@ class UserProfile < ActiveRecord::Base
   belongs_to :registration
   belongs_to :user
 
-  attr_accessible :address, :birth_date, :education, :email, :first_name, :gender, :last_name, :lat, :location, :long, :married, :middle_name, :mobile, :occupation, :telephone
+  attr_accessible :address, :birth_date, :education, :email, :first_name
+  attr_accessible :gender, :last_name, :lat, :location, :long, :married
+  attr_accessible :middle_name, :mobile, :occupation, :telephone
 
-  validates_presence_of  :address, :birth_date, :education, :occupation, :first_name, :middle_name, :last_name
+  validates_presence_of :address, :birth_date, :education, :occupation
+  validates_presence_of :first_name, :middle_name, :last_name
   validates :email, presence: true, :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
 
   def name

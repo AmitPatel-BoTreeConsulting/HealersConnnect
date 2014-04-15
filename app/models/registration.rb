@@ -13,7 +13,8 @@ class Registration < ActiveRecord::Base
 
   REGISTRATION_STATUSES = %w(confirmed cancelled)
 
-  attr_accessible :payment_type_id, :fresher, :cheque_no, :bank_name, :cheque_date, :registration_date
+  attr_accessible :payment_type_id, :fresher, :cheque_no
+  attr_accessible :bank_name, :cheque_date, :registration_date
 
   def course_attempt
     fresher? ? 'Fresher' : 'Review'
