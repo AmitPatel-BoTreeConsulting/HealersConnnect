@@ -43,7 +43,6 @@
                         %b Received By:
                       %label.h4
                         = current_user.email
-
                 .row
                   .col-xs-12
                     .form-group.pull-left
@@ -51,6 +50,13 @@
                         %b Donar Type:
                       %label.h4
                         = donation_type
+                .row
+                  .col-xs-12
+                    .form-group.pull-left
+                      %label.h4
+                        %b Center:
+                      %label.h4
+                        = @donation.center.name
                 - if @donation.description.present?
                   .row
                     .col-xs-12

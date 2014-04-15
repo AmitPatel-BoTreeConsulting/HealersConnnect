@@ -6,7 +6,7 @@ class Donation < ActiveRecord::Base
   acts_as_sequenced scope: :receipt_number
   acts_as_sequenced start_at: 1
 
-  validates_presence_of :donar_name, :amount
+  validates_presence_of :donar_name, :amount, :center_id
   validates :donar_email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :amount, :numericality => true
 
@@ -17,7 +17,7 @@ class Donation < ActiveRecord::Base
 
   def send_donation_notification_to_donar(user)
     begin
-      HealersConnectMailer.delay.send_donation_notification_to_donar(self, user.email)
+      HealersConnectMailer.delay.send_donation_notification_to_donar(self, user.email, self.center.name)
     rescue Exception => e
       Rails.logger.error "Failed to send email, email address: #{self.donar_email}"
       Rails.logger.error "#{e.backtrace.first}: #{e.message} (#{e.class})"

@@ -28,6 +28,11 @@
               %label
                 = f.radio_button :donation_type, 2, class: 'ace'
                 %span.lbl For Food for Hungry
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right Center
+        .col-sm-9
+          = select_tag "center", options_from_collection_for_select(@centers, "id", "location"), class: 'dcol-xs-6 margin-right-10', name: "donation[center_id]",  prompt: "--Please select--"
       .form-group
         %label.col-sm-3.control-label.no-padding-right Amount (&#x20B9;)
         .col-sm-9

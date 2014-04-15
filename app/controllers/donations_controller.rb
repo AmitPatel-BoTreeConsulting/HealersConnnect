@@ -8,6 +8,7 @@ class DonationsController < ApplicationController
 
   def new
     @donation = Donation.new
+    @centers = Center.all
   end
 
   def create
@@ -17,6 +18,7 @@ class DonationsController < ApplicationController
       flash[:notice] = t('donation.message.success.donar_notification')
       redirect_to donations_path
     else
+      @centers = Center.all
       render :new
     end
   end
