@@ -5,8 +5,8 @@ class Registration < ActiveRecord::Base
   has_one :user_profile
   has_one :workshop
 
-  accepts_nested_attributes_for :workshop
-  attr_accessible :workshop_attributes
+  # accepts_nested_attributes_for :workshop
+  # attr_accessible :workshop_attributes
 
   accepts_nested_attributes_for :user_profile
   attr_accessible :user_profile_attributes

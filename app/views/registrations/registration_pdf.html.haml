@@ -1,6 +1,6 @@
 - gender =  @profile.gender == 'M' ? 'Male' : 'Female'
 - marital_status = @profile.marital_status == true ? 'Married' : 'Unmarried'
-- workshop = @registration.workshop
+- # workshop = @registration.workshop
 !!!
 %html
   %head
@@ -28,17 +28,19 @@
                     %h3
                       %b Name of Course:  ARCHIEVING ONENESS WITH THE HIGHER SOUL
                 .space-28
-                .row
-                  .col-xs-8
-                    .form-group
-                      %label.h4
-                        %b Trainer:
-                      %label.h4= workshop.workshop_instructor.capitalize
-                  .col-xs-4
-                    .form-group.pull-left
-                      %label.h4
-                        %b Certificate No.:
-                        %u
+                - # uncomment when enabling workshop
+                - if false
+                  .row
+                    .col-xs-8
+                      .form-group
+                        %label.h4
+                          %b Trainer:
+                        %label.h4= workshop.workshop_instructor.capitalize
+                    .col-xs-4
+                      .form-group.pull-left
+                        %label.h4
+                          %b Certificate No.:
+                          %u
                 .row
                   .col-xs-8
                     .form-group
@@ -96,32 +98,34 @@
                       %label.h4
                         %b E-mail :
                       %label.h4= @profile.email
-                .row
-                  .col-xs-12
-                    .form-group
-                      %label.h4
-                        %b Details of Pranic Healing Courses you have taken (as applicable):
-                      %table{border: "1", style: 'width: 100%;'}
-                        %thead
-                          %tr{style: 'height: 30px;'}
-                            %th.h4.text-center
-                              %b Course
-                            %th.h4.text-center
-                              %b Place Conducted
-                            %th.h4.text-center
-                              %b Year & Date
-                            %th.h4.text-center
-                              %b Name of Trainer
-                        %tbody
-                          %tr{style: 'height: 30px;'}
-                            %td.h4.text-center<
-                              Basic Pranic Healing
-                            %td.h4.text-center<
-                              = workshop.workshop_place.capitalize
-                            %td.h4.text-center<
-                              = workshop.workshop_dated
-                            %td.h4.text-center<
-                              = workshop.workshop_instructor.capitalize
+                - # uncomment when enabling Workshop
+                - if false
+                  .row
+                    .col-xs-12
+                      .form-group
+                        %label.h4
+                          %b Details of Pranic Healing Courses you have taken (as applicable):
+                        %table{border: "1", style: 'width: 100%;'}
+                          %thead
+                            %tr{style: 'height: 30px;'}
+                              %th.h4.text-center
+                                %b Course
+                              %th.h4.text-center
+                                %b Place Conducted
+                              %th.h4.text-center
+                                %b Year & Date
+                              %th.h4.text-center
+                                %b Name of Trainer
+                          %tbody
+                            %tr{style: 'height: 30px;'}
+                              %td.h4.text-center<
+                                Basic Pranic Healing
+                              %td.h4.text-center<
+                                = workshop.workshop_place.capitalize
+                              %td.h4.text-center<
+                                = workshop.workshop_dated
+                              %td.h4.text-center<
+                                = workshop.workshop_instructor.capitalize
                 .row
                   .col-xs-12
                     %h3.text-center
