@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
     t.integer  "donation_type",       :limit => 2
     t.text     "description"
     t.integer  "center_id"
-    t.integer  "user_id"
     t.integer  "received_by_user_id"
     t.float    "amount"
     t.datetime "created_at",                       :null => false
@@ -101,7 +100,6 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
   add_index "donations", ["center_id"], :name => "index_donations_on_center_id"
   add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
   add_index "donations", ["received_by_user_id"], :name => "index_donations_on_received_by_user_id"
-  add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
 
   create_table "foundations", :force => true do |t|
     t.string   "name"

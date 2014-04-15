@@ -7,7 +7,6 @@ class CreateDonations < ActiveRecord::Migration
       t.integer :donation_type, :limit => 1
       t.text :description
       t.references :center
-      t.references :user
       t.references :received_by_user
       t.float :amount
 
@@ -15,7 +14,6 @@ class CreateDonations < ActiveRecord::Migration
     end
     add_index :donations, :donation_type
     add_index :donations, :center_id
-    add_index :donations, :user_id
     add_index :donations, :received_by_user_id
   end
 end

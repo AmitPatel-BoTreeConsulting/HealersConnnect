@@ -1,8 +1,7 @@
 class Donation < ActiveRecord::Base
   FOR_CENTER = 1
   FOR_FOOD_FOR_HUNGRY = 2
-  attr_accessible :center_id, :description, :donation_type, :received_by_user_id, :user_id, :donar_name, :donar_email, :amount
-
+  attr_accessible :center_id, :description, :donation_type, :received_by_user_id, :donar_name, :donar_email, :amount
   acts_as_sequenced scope: :receipt_number
   acts_as_sequenced start_at: 1
 
