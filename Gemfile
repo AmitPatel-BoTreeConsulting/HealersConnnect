@@ -36,3 +36,4 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem "paperclip", "~> 3.4.2"
 gem 'ckeditor_rails'
+gem 'friendly_id', '~> 4.0.10'
