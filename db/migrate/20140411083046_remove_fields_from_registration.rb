@@ -1,7 +1,7 @@
 class RemoveFieldsFromRegistration < ActiveRecord::Migration
   # small hack to bypass the model based error
   # mostly validations and attr_accessible related
-  # http://guides.rubyonrails.org/migrations.html#using-models-in-your-migrations
+  # guides.rubyonrails.org/migrations.html#using-models-in-your-migrations
   class Registration < ActiveRecord::Base
   end
 
@@ -34,7 +34,7 @@ class RemoveFieldsFromRegistration < ActiveRecord::Migration
 
     # Used Transaction because we need to transfer the all records
     # or none in case of any error
-    puts "------------------Starting migration of data to UserProfile and Workshop from Registration"
+    puts "------------------Starting migration of data from Registration"
     ActiveRecord::Base.transaction do
       Registration.find_in_batches do |records_batch|
         records_batch.each do |registration|
@@ -42,14 +42,19 @@ class RemoveFieldsFromRegistration < ActiveRecord::Migration
           # registration_id will be the foreign key in UserProfile and Workshop
           registration_attr_map['registration_id'] = registration_attr_map['id']
 
-          # using create with bang because stop migration if any records fails to create
+          # using create with bang because to stop migration in case
+          # any records fails to create
           # to avoid data loss
-          UserProfile.create!(registration_attr_map.reject { |k, v| user_profile_attr.exclude?(k) })
-          Workshop.create!(registration_attr_map.reject { |k, v| workshop_attr.exclude?(k) })
+          UserProfile.create!(registration_attr_map.reject do |k, v|
+            user_profile_attr.exclude?(k)
+          end)
+          Workshop.create!(registration_attr_map.reject do |k, v|
+            workshop_attr.exclude?(k)
+          end)
         end
       end
     end
-    puts "------------------Completed migrating data to UserProfile and Workshop from Registration"
+    puts "------------------Completed migrating data to Registration"
 
     # creating FK for user table
     add_column :registrations, :user_id, :integer
