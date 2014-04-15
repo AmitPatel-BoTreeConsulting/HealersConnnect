@@ -16,7 +16,11 @@ class RegistrationsController < ApplicationController
   end
 
   def new
-    @registration = Registration.new(gender: 'M', married: true, registration_date: Date.today)
+    default_profile_values = { gender: 'M', married: true }
+    @registration = Registration.new(
+      user_profile_attributes: default_profile_values,
+      registration_date: Date.today
+    )
   end
 
   def create
@@ -44,7 +48,8 @@ class RegistrationsController < ApplicationController
   def update
     if @registration.update_attributes(params[:registration])
       flash[:notice] =
-        t('registration.message.success.registration_edit_success', name: @registration.name)
+        t('registration.message.success.registration_edit_success',
+          name: @registration.get_user_profile.name)
       redirect_to registrations_path(status_search_param)
     else
       render :edit
@@ -53,8 +58,9 @@ class RegistrationsController < ApplicationController
 
   def destroy
     @registration = Registration.find(params[:id])
+    name = @registration.get_user_profile.name
     @registration.destroy
-    flash[:notice] = t('registration.message.success.removed', name: @registration.name)
+    flash[:notice] = t('registration.message.success.removed', name: name)
     redirect_to registrations_path(status_search_param)
   end
 
@@ -67,10 +73,11 @@ class RegistrationsController < ApplicationController
   end
 
   def export
+    @profile = @registration.get_user_profile
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: @registration.first_name,
+        render pdf: @profile.first_name,
                template: 'registrations/registration_pdf.html.haml',
                dpi: '96',
                :show_as_html                   => params[:debug].present?,
@@ -91,7 +98,7 @@ class RegistrationsController < ApplicationController
     end
 
     def update_registration_status_and_redirect(action)
-      name = @registration.name
+      name = @registration.get_user_profile.name
       status, message = case action
                           when :activate
                             [ true, t('registration.message.success.activated', name: name) ]

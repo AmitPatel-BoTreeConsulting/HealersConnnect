@@ -3,11 +3,18 @@ class Registration < ActiveRecord::Base
   belongs_to :user
 
   has_one :user_profile
-  has_many :workshops
+  has_one :workshop
+
+  accepts_nested_attributes_for :workshop
+  attr_accessible :workshop_attributes
+
+  accepts_nested_attributes_for :user_profile
+  attr_accessible :user_profile_attributes
 
   REGISTRATION_STATUSES = %w(confirmed cancelled)
 
-  attr_accessible :payment_type_id, :fresher, :cheque_no, :bank_name, :cheque_date, :registration_date
+  attr_accessible :payment_type_id, :fresher, :cheque_no
+  attr_accessible :bank_name, :cheque_date, :registration_date
 
   def course_attempt
     fresher? ? 'Fresher' : 'Review'
@@ -20,6 +27,10 @@ class Registration < ActiveRecord::Base
     else
       order(:registration_date)
     end
+  end
+
+  def get_user_profile
+    user_profile || user.user_profile
   end
 
   # Export registration list

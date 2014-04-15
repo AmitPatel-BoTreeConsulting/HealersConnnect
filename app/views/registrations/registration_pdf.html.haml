@@ -1,5 +1,6 @@
-- gender =  @registration.gender == 'M' ? 'Male' : 'Female'
-- marital_status = @registration.marital_status == true ? 'Married' : 'Unmarried'
+- gender =  @profile.gender == 'M' ? 'Male' : 'Female'
+- marital_status = @profile.marital_status == true ? 'Married' : 'Unmarried'
+- workshop = @registration.workshop
 !!!
 %html
   %head
@@ -32,7 +33,7 @@
                     .form-group
                       %label.h4
                         %b Trainer:
-                      %label.h4= @registration.workshop_instructor.capitalize
+                      %label.h4= workshop.workshop_instructor.capitalize
                   .col-xs-4
                     .form-group.pull-left
                       %label.h4
@@ -43,12 +44,12 @@
                     .form-group
                       %label.h4
                         %b Name :
-                      %label.h4= @registration.name.titleize
+                      %label.h4= @profile.name.titleize
                   .col-xs-4
                     .form-group
                       %label.h4
                         %b Date Of Birth :
-                      %label.h4= @registration.birth_date.strftime(Settings.defaults.date_format_in_views)
+                      %label.h4= @profile.birth_date.strftime(Settings.defaults.date_format_in_views)
                 .row
                   .col-xs-8
                     .form-group.text-left
@@ -65,36 +66,36 @@
                     .form-group
                       %label.h4
                         %b Education Qualification:
-                      %label.h4= @registration.education
+                      %label.h4= @profile.education
                   .col-xs-4
                     .form-group.pull-left
                       %label.h4
                         %b Occupation :
-                      %label.h4= @registration.occupation
+                      %label.h4= @profile.occupation
                 .row
                   .col-xs-12
                     .form-group
                       %label.h4
                         %b Residential Address / Postal Address:
                       %br/
-                      %label.h4= simple_format(@registration.address)
+                      %label.h4= simple_format(@profile.address)
                 .row
                   .col-xs-8
                     .form-group
                       %label.h4
                         %b Mobile :
-                      %label.h4= @registration.mobile
+                      %label.h4= @profile.mobile
                   .col-xs-4
                     .form-group.pull-left
                       %label.h4
                         %b Res/Office Tel. :
-                      %label.h4= @registration.telephone
+                      %label.h4= @profile.telephone
                 .row
                   .col-xs-12
                     .form-group
                       %label.h4
                         %b E-mail :
-                      %label.h4= @registration.email
+                      %label.h4= @profile.email
                 .row
                   .col-xs-12
                     .form-group
@@ -116,11 +117,11 @@
                             %td.h4.text-center<
                               Basic Pranic Healing
                             %td.h4.text-center<
-                              = @registration.workshop_place.capitalize
+                              = workshop.workshop_place.capitalize
                             %td.h4.text-center<
-                              = @registration.workshop_dated
+                              = workshop.workshop_dated
                             %td.h4.text-center<
-                              = @registration.workshop_instructor.capitalize
+                              = workshop.workshop_instructor.capitalize
                 .row
                   .col-xs-12
                     %h3.text-center

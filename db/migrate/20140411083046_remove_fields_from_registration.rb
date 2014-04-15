@@ -1,11 +1,16 @@
 class RemoveFieldsFromRegistration < ActiveRecord::Migration
-  # small hack to bypass the model based error ( mostly validations and attr_accessible related )
+  # small hack to bypass the model based error
+  # mostly validations and attr_accessible related
   # http://guides.rubyonrails.org/migrations.html#using-models-in-your-migrations
   class Registration < ActiveRecord::Base
   end
+
   class UserProfile < ActiveRecord::Base
-    attr_accessible :address, :birth_date, :education, :email, :first_name, :gender, :last_name, :lat, :location, :long, :married, :middle_name, :mobile, :occupation, :telephone, :registration_id
+    attr_accessible :address, :birth_date, :education, :email, :first_name
+    attr_accessible :gender, :last_name, :location, :married, :registration_id
+    attr_accessible :middle_name, :mobile, :occupation, :telephone, :long, :lat
   end
+
   class Workshop < ActiveRecord::Base
     attr_accessible :workshop_dated, :workshop_instructor, :workshop_place, :registration_id
   end
