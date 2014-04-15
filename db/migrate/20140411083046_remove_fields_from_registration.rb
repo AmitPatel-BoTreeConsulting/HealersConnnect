@@ -34,7 +34,7 @@ class RemoveFieldsFromRegistration < ActiveRecord::Migration
 
     # Used Transaction because we need to transfer the all records
     # or none in case of any error
-    puts "------------------Starting migration of data from Registration"
+    puts '------------------Starting migration of data from Registration'
     ActiveRecord::Base.transaction do
       Registration.find_in_batches do |records_batch|
         records_batch.each do |registration|
@@ -54,7 +54,7 @@ class RemoveFieldsFromRegistration < ActiveRecord::Migration
         end
       end
     end
-    puts "------------------Completed migrating data to Registration"
+    puts '------------------Completed migrating data to Registration'
 
     # creating FK for user table
     add_column :registrations, :user_id, :integer
