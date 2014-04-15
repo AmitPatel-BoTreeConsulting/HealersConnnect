@@ -16,7 +16,6 @@
             %th{width: '15%'} Donar Type
             %th{width: '15%'} Received By
             %th Description
-            %th
         - if @donations.present?
           - @donations.each do |donation|
             - donation_type = donation.donation_type == 1 ? 'For Center' : 'For Food for Hungry'
@@ -40,6 +39,6 @@
                   %i.icon-print.bigger-130
         - else
           %tr
-            %td{colspan: 6}
+            %td{colspan: 7}
               .text-center
                 %h3 No Donations Found

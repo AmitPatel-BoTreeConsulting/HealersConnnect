@@ -1,7 +1,7 @@
 class DonationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :find_donation, only: [:show, :export]
-  before_filter :require_super_admin_or_accountant_or_foundation_admin, only: [:index, :new, :create, :export]
+  before_filter :required_access, only: [:index, :new, :create, :export]
   def index
     @donations = Donation.all
   end
@@ -42,4 +42,5 @@ class DonationsController < ApplicationController
     def find_donation
       @donation = Donation.find(params[:id])
     end
+
 end

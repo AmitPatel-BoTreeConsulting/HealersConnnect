@@ -45,6 +45,8 @@ en:
       activate: 'Activate'
       confirm_message: 'Are you sure?'
       image: 'Image'
+      sign_out: 'Sign Out'
+      sign_in: 'Sign In'
   instructor:
     caption:
       button:
@@ -73,3 +75,11 @@ en:
   mailer:
     send_donation_notification_to_donar:
       subject: 'Donation Notification'
+  navbar:
+   menu:
+    title:
+      donations: 'Donations'
+      registrations: 'Registrations'
+      courses: 'Courses'
+      instructors: 'Instructors'
+      centers: 'Centers'

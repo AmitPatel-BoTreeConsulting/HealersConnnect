@@ -23,21 +23,21 @@ end
 
 
 # Roles
-roles = [ {name: 'Super Admin', alias: Role::SUPER_ADMIN},
-          {name: 'Center Admin', alias: Role::CENTER_ADMIN},
-          {name: 'Instructor', alias: Role::INSTRUCTOR},
-          {name: 'Healer', alias: Role::HEALER},
-          {name: 'Accountant', alias: Role::ACCOUNTANT},
-          {name: 'Foundation Admin', alias: Role::FOUNDATION_ADMIN} ]
+roles = [ { name: 'Super Admin', alias: Role::SUPER_ADMIN },
+          { name: 'Center Admin', alias: Role::CENTER_ADMIN },
+          { name: 'Instructor', alias: Role::INSTRUCTOR },
+          { name: 'Healer', alias: Role::HEALER },
+          { name: 'Accountant', alias: Role::ACCOUNTANT },
+          { name: 'Foundation Admin', alias: Role::FOUNDATION_ADMIN } ]
 
 puts '------------Seeding Roles------------'
 roles.each { |role| create_or_update_by_alias(Role, role)}
 puts '-------------------------------------'
 
 # CourseCategory
-course_categories = [ {name: 'Healing & Protection', alias: 'healing_protection'},
-                      {name: 'Prosperity & Abundance', alias: 'prosperity_abundance'},
-                      {name: 'Spirituality', alias: 'spirituality'} ]
+course_categories = [ { name: 'Healing & Protection', alias: 'healing_protection' },
+                      { name: 'Prosperity & Abundance', alias: 'prosperity_abundance' },
+                      { name: 'Spirituality', alias: 'spirituality' } ]
 
 puts '--------Seeding CourseCategory-------'
 course_categories.each { |category| create_or_update_by_alias(CourseCategory, category)}
@@ -112,14 +112,9 @@ end
 
 payment_types.each { |payment_type| find_or_create_payment_type(payment_type)}
 
-
-
-def find_or_create_user_role(user, roles)
+def find_or_create_user_role(user, role)
   if !user.roles.present?
-    user_role = {}
-    user_role[:role_id] = roles.id
-    user_role[:user_id] = user.id
-    user_role = UserRole.create(user_role)
+    UserRole.create(role_id: role.id, user_id: user.id)
     puts "Created user roles for #{user.email}"
   else
     puts "User roles for #{user.email} already exists, thus not created"
