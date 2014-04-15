@@ -93,34 +93,19 @@ ActiveRecord::Schema.define(:version => 20140415065707) do
   end
 
   create_table "registrations", :force => true do |t|
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.date     "birth_date"
-    t.string   "gender"
-    t.boolean  "married"
-    t.string   "education"
-    t.string   "occupation"
-    t.text     "address"
-    t.string   "mobile"
-    t.string   "telephone"
-    t.string   "email"
-    t.string   "location"
-    t.float    "lat"
-    t.float    "long"
-    t.string   "workshop_place"
-    t.string   "workshop_dated"
-    t.string   "workshop_instructor"
-    t.boolean  "fresher",             :default => true
+    t.boolean  "fresher",           :default => true
     t.string   "cheque_no"
     t.string   "bank_name"
     t.date     "cheque_date"
     t.integer  "payment_type_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.date     "registration_date"
-    t.boolean  "active",              :default => true
+    t.boolean  "active",            :default => true
+    t.integer  "user_id"
   end
+
+  add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -128,6 +113,31 @@ ActiveRecord::Schema.define(:version => 20140415065707) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "user_profiles", :force => true do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.date     "birth_date"
+    t.string   "education"
+    t.string   "occupation"
+    t.string   "gender"
+    t.boolean  "married"
+    t.text     "address"
+    t.string   "mobile"
+    t.string   "telephone"
+    t.string   "email"
+    t.string   "location"
+    t.float    "long"
+    t.float    "lat"
+    t.integer  "registration_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "user_profiles", ["registration_id"], :name => "index_user_profiles_on_registration_id"
+  add_index "user_profiles", ["user_id"], :name => "index_user_profiles_on_user_id"
 
   create_table "user_roles", :force => true do |t|
     t.integer  "role_id"
