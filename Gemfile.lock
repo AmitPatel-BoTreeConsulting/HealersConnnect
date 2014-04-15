@@ -37,6 +37,12 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     builder (3.0.4)
+    ckeditor_rails (4.3.4)
+      railties (>= 3.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -79,6 +85,12 @@ GEM
     mime-types (1.25.1)
     multi_json (1.8.4)
     orm_adapter (0.5.0)
+    paperclip (3.4.2)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     pg (0.17.1)
     polyglot (0.3.4)
     pry (0.9.12.6)
@@ -151,6 +163,7 @@ PLATFORMS
 DEPENDENCIES
   ancestry
   better_errors
+  ckeditor_rails
   coffee-rails (~> 3.2.1)
   devise
   haml
@@ -158,6 +171,7 @@ DEPENDENCIES
   html5shiv-rails
   jquery-rails
   kaminari (~> 0.14.1)
+  paperclip (~> 3.4.2)
   pg
   pry-rails
   rails (= 3.2.17)

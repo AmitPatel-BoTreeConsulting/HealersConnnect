@@ -10,6 +10,9 @@ class Role < ActiveRecord::Base
 
   validates_presence_of :name
 
+  has_many :user_roles
+  has_many :users, through: :user_roles
+
   scope :super_admin, where(name: SUPER_ADMIN)
   scope :center_admin, where(name: CENTER_ADMIN)
   scope :teacher, where(name: TEACHER)

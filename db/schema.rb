@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140411083046) do
+ActiveRecord::Schema.define(:version => 20140411114346) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(:version => 20140411083046) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "course_instructors", :force => true do |t|
+    t.integer  "instructor_id"
+    t.integer  "course_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "course_instructors", ["course_id"], :name => "index_course_instructors_on_course_id"
+  add_index "course_instructors", ["instructor_id", "course_id"], :name => "index_course_instructors_on_instructor_id_and_course_id", :unique => true
+  add_index "course_instructors", ["instructor_id"], :name => "index_course_instructors_on_instructor_id"
+
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "alias"
@@ -45,8 +56,13 @@ ActiveRecord::Schema.define(:version => 20140411083046) do
     t.integer  "course_category_id"
     t.integer  "donation"
     t.integer  "review_donation"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.boolean  "status",              :default => true
   end
 
   add_index "courses", ["course_category_id"], :name => "index_courses_on_course_category_id"
@@ -57,6 +73,14 @@ ActiveRecord::Schema.define(:version => 20140411083046) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "ancestry"
+  end
+
+  create_table "instructors", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "mobile"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "payment_types", :force => true do |t|
@@ -112,6 +136,19 @@ ActiveRecord::Schema.define(:version => 20140411083046) do
 
   add_index "user_profiles", ["registration_id"], :name => "index_user_profiles_on_registration_id"
   add_index "user_profiles", ["user_id"], :name => "index_user_profiles_on_user_id"
+
+  create_table "user_roles", :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
+    t.integer  "center_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "user_roles", ["center_id"], :name => "index_user_roles_on_center_id"
+  add_index "user_roles", ["role_id", "user_id", "center_id"], :name => "index_user_roles_on_role_id_and_user_id_and_center_id", :unique => true
+  add_index "user_roles", ["role_id"], :name => "index_user_roles_on_role_id"
+  add_index "user_roles", ["user_id"], :name => "index_user_roles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
