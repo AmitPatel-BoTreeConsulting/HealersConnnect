@@ -1,3 +1,4 @@
+- options = [:donations, :registrations, :centers, :instructors, :courses]
 #navbar.navbar.navbar-default
   #navbar-container.navbar-container
     .navbar-header.pull-left
@@ -6,11 +7,8 @@
     .navbar-header.pull-right{role: 'navigation'}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
-          = show_menu_option(:donations)
-          = show_menu_option(:registrations)
-          = show_menu_option(:centers)
-          = show_menu_option(:instructors)
-          = show_menu_option(:courses)
+          - options.each do |option|
+            = render_navigation_menu_option(option)
           %li
             = link_to t('common.caption.sign_out'), signout_path
         - else

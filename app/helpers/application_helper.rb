@@ -38,27 +38,31 @@ module ApplicationHelper
     end
   end
 
-  def show_menu_option(option)
+  def render_navigation_menu_option(option)
     case option
     when :donations
-      content_tag(:li,
-                  link_to(t('navbar.menu.title.donations'), donations_path),
-                  class: active_menu(:donations)) if current_user.has_permission?(:donations)
+      url = donations_path
+      link_title = t('navbar.menu.title.donations')
+
     when :registrations
-      content_tag(:li,
-                  link_to(t('navbar.menu.title.registrations'), registrations_path(status: 'confirmed')),
-                  class: active_menu(:registrations)) if current_user.has_permission?(:registrations)
+      url = registrations_path(status: 'confirmed')
+      link_title = t('navbar.menu.title.registrations')
+
     when :centers
-      content_tag(:li, link_to(t('navbar.menu.title.centers'), centers_path),
-                  class: active_menu(:centers)) if current_user.has_permission?(:centers)
+      url = centers_path
+      link_title = t('navbar.menu.title.centers')
+
     when :instructors
-        content_tag(:li, link_to(t('navbar.menu.title.instructors'), instructors_path),
-                    class: active_menu(:instructors)) if current_user.has_permission?(:instructors)
+      url = instructors_path
+      link_title = t('navbar.menu.title.instructors')
+
     when :courses
-      content_tag(:li, link_to(t('navbar.menu.title.courses'), courses_path),
-                  class: active_menu(:courses)) if current_user.has_permission?(:courses)
+      url = courses_path
+      link_title = t('navbar.menu.title.courses')
     else
     end
+    content_tag(:li, link_to(link_title, url),
+                class: active_menu(option)) if current_user.has_permission?(option)
 
   end
 
