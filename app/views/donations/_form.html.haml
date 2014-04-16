@@ -1,5 +1,5 @@
 = form_for @donation, html: { class: 'form-horizontal', role: 'form'} do |f|
-  = hidden_field_tag 'donation[received_by_user_id]', current_user.id
+  = hidden_field_tag 'donation[user_id]', current_user.id
   .row
     .col-xs-12.col-sm-12
       .form-group

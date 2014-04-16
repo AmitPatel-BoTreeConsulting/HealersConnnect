@@ -66,6 +66,7 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    google_visualr (2.2.0)
     haml (4.0.5)
       tilt
     haml-rails (0.4)
@@ -181,6 +182,7 @@ DEPENDENCIES
   daemons
   delayed_job_active_record
   devise
+  google_visualr (>= 2.1)
   haml
   haml-rails
   html5shiv-rails

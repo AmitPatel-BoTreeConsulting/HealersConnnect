@@ -40,6 +40,7 @@ gem 'ckeditor_rails'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'whenever', :require => false
+gem "google_visualr", ">= 2.1"
 
 # Generate Unique Donation Sequence Number
 gem 'sequenced'

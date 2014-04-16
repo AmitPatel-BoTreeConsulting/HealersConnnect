@@ -22,3 +22,4 @@
 //= require ckeditor-jquery
 //= require ckeditor/config
 //= require instructors
+//= require jsapi

@@ -1,21 +1,62 @@
+- @donation_params ||= Donation.new
 .page-header
   %h1
     Donations
+= form_tag(search_donations_path, method: :post, class: 'form-horizontal', id: 'clientFormCaseMgrs', multipart: true) do
+  = hidden_field_tag 'timeline', @timeline
+  .row
+    .col-xs-12
+      %ul.nav.nav-pills#registrations_container
+        %li{class: active_donation_pill('weekly')}
+          = link_to 'Weekly', donations_path(timeline: 'weekly')
+        %li{class: active_donation_pill('monthly')}
+          = link_to 'Monthly', donations_path(timeline: 'monthly')
+        %li{class: active_donation_pill('yearly')}
+          = link_to 'Yearly', donations_path(timeline: 'yearly')
+        %li{class: active_donation_pill}
+          = link_to 'All', donations_path
+      .btn-group.pull-right.btn_registration_new_margin
+        = link_to(t('donation.captions.add_donation_btn'), new_donation_path, class: 'btn btn-primary btn-sm')
+  - if @donation_chart
+    .row
+      .col-xs-12
+        #donation_chart
+          = render_chart(@donation_chart, 'donation_chart')
+    .space-20
+  - if @timeline.present?
+    .row
+      .col-xs-1
+      .col-xs-5
+        %label Donation Type
+        = select_tag("donation[donation_type][]", options_for_select([["For Center", '1'], ["For Food for Hungry", '2']],  @donation_params[:donation_type]), multiple: 'true', style: "display: none;", id: 'form-field-select-4', class: 'width-60 chosen-select')
+
+      .col-xs-5
+        %label Received By
+        = received_by_dropdown(Donation.all, @donation_params)
+      .col-xs-1
+        = submit_tag "Search", class: 'btn btn-sm btn-primary no-radius text-center', title: 'Filter Cases'
+
+= form_tag(donations_path(format: :pdf), method: :get, target: "_blank", class: 'form-horizontal', id: 'clientFormCaseMgrs') do
+  = hidden_field_tag 'timeline', @timeline
+  = hidden_field_tag 'interactive', false
+  = hidden_field_tag 'donation[donation_type][]', @donation_params[:donation_type]
+  = hidden_field_tag 'donation[user_id][]', @donation_params[:user_id]
+  .row
+    .col-xs-12
+      = button_to 'Export', nil, class: 'btn btn-primary btn-sm'
 .row
   .col-xs-12
-    = link_to(t('donation.captions.add_donation_btn'), new_donation_path, class: 'btn btn-primary btn-sm')
     .space-6
     .table-responsive
       %table.table.table-striped.table-bordered.table-hover
         %thead
           %tr
             %th{width: '12%'} Receipt Number
-            %th{width: '15%'} Donar
-            %th{width: '15%'} Center
+            %th{width: '20%'} Donar
+            %th{width: '25%'} Center
             %th{width: '10%'} Amount (&#x20B9;)
-            %th{width: '15%'} Donar Type
-            %th{width: '15%'} Received By
-            %th Description
+            %th{width: '15%'} Donation Type
+            %th{width: '5%'} Received By
             %th
         - if @donations.present?
           - @donations.each do |donation|
@@ -32,14 +73,21 @@
               %td
                 = donation_type
               %td
-                = current_user.email
-              %td
-                = donation.description if donation.description
+                = donation.user.email
               %td.text-center<
                 = link_to(export_donation_pdf_path(donation, format: :pdf), target: '_blank', title: 'Save as PDF') do
                   %i.icon-print.bigger-130
         - else
           %tr
-            %td{colspan: 6}
+            %td{colspan: 7}
               .text-center
                 %h3 No Donations Found
+
+:javascript
+   $(".chosen-select").chosen();
+    $('#chosen-multiple-style').on('click', function(e){
+            var target = $(e.target).find('input[type=radio]');
+            var which = parseInt(target.val());
+            if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+             else $('#form-field-select-4').removeClass('tag-input-style');
+    });

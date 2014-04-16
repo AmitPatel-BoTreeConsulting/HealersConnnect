@@ -9,6 +9,7 @@ HealersConnnect::Application.routes.draw do
   end
 
   get '/dashboard' => 'users#dashboard', as: :dashboard
+  post '/search' => 'donations#index', as: :search_donations
 
   resources :instructors
   resources :centers
