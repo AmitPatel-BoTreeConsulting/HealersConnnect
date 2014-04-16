@@ -6,7 +6,10 @@
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.course_category')}
         .col-sm-9
-          = f.collection_select :course_category_id, @course_categories, :id, :name, {prompt: 'Select a course category'}, {class: 'col-xs-10 col-sm-5'}
+          - @course_categories.each do |course_category|
+            .col-sm-3
+              = radio_button('course', 'course_category_id', course_category.id)
+              = course_category.name
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.name')}
         .col-sm-9
