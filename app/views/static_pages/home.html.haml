@@ -60,7 +60,7 @@
             = render :partial => 'workshops/workshop_registration_list', collection: @workshops, as: :workshop
           - else
             %tr
-              %td
+              %td{colspan: 7}
                 .text-center
                   %h3
                     = t('workshop.message.no_workshop_active')
