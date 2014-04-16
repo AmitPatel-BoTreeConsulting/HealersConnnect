@@ -10,35 +10,35 @@
           = render partial: 'shared/error_messages', locals: { target: @workshop }
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Course
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Course
         .col-sm-9
           = f.collection_select :course_id, Course.all, :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Instructor
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Instructor
         .col-sm-9
           = f.collection_select :instructor_id, Instructor.all, :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' } 
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Assistant instructor
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Assistant instructor
         .col-sm-9
           = f.collection_select :assistant_instructor_id, Instructor.all, :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Center
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Center
         .col-sm-9
           = f.collection_select :center_id, Center.all, :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Fees after session
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Fees after session
         .col-sm-9
           = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Fees before session
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Fees before session
         .col-sm-9
           = f.number_field :fees_before_session, class: 'col-xs-10 col-sm-5'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Fees on session
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Fees on session
         .col-sm-9
           = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} Fees on rejoining
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Fees on rejoining
         .col-sm-9
           = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5'             
 

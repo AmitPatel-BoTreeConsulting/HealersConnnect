@@ -1,20 +1,17 @@
+- options = [:donations, :centers, :instructors, :courses]
 #navbar.navbar.navbar-default
   #navbar-container.navbar-container
     .navbar-header.pull-left
       = link_to(root_path, class: 'navbar-brand') do
-        Pranic Healing
+        = Settings.brand_name
     .navbar-header.pull-right{role: "navigation"}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
-          / %li{class: controller.controller_name == 'registrations' ? 'active' : ''}
-          /   = link_to 'Registrations', registrations_path(status: 'confirmed')
-          - if current_user.is_foundation_admin?  
-            %li{class: controller.controller_name == 'instructors' ? 'active' : ''}
-              = link_to 'Instructors', instructors_path  
-          %li{class: controller_name == 'courses' ? 'active' : ''}
-            = link_to 'Courses', courses_path(status: 'confirmed')
+          - options.each do |option|
+            = render_navigation_menu_option(option)
           %li
             = link_to "Sign Out", signout_path
         - else
           %li
+            = link_to t('common.caption.sign_in'), signin_path
             = link_to "Sign In", signin_path

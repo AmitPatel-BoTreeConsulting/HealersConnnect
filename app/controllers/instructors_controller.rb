@@ -1,6 +1,6 @@
 class InstructorsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :require_foundation_admin
+  before_filter :required_access,  only: [:index, :new, :create, :edit, :update, :destroy]
   before_filter :find_instructor, only: [:edit, :update, :destroy]
 
   def index
@@ -43,4 +43,5 @@ class InstructorsController < ApplicationController
   def find_instructor
     @instructor = Instructor.find(params[:id])
   end
+
 end

@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :collect_payment_types
+  before_filter :required_access, only: [:index, :edit, :update, :destroy, :activate, :deactivate, :export]
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export]
   before_filter :find_workshop, except: [:registration]
 
@@ -105,17 +106,20 @@ class RegistrationsController < ApplicationController
 
     def update_registration_status_and_redirect(action)
       name = @registration.get_user_profile.name
-      status, message = case action
-                          when :activate
-                            [ true, t('registration.message.success.activated', name: name) ]
-                          when :deactivate
-                            [ false, t('registration.message.success.deactivated', name: name) ]
-                        end
+      status, message =
+          case action
+          when :activate
+            [ true, t('registration.message.success.activated', name: name) ]
+          when :deactivate
+            [ false, t('registration.message.success.deactivated', name: name) ]
+          else
+          end
       @registration.update_attribute(:active, status)
       redirect_to workshop_registrations_path(status_search_param), flash: { notice:  message }
     end
 
     def status_search_param
-      search_param = {status: @registration.active ? 'confirmed' : 'cancelled'}
+      {status: @registration.active ? 'confirmed' : 'cancelled'}
     end
+
 end
