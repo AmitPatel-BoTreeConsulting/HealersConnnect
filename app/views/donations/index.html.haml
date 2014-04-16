@@ -16,6 +16,7 @@
             %th{width: '15%'} Donor Type
             %th{width: '15%'} Received By
             %th Description
+            %th
         - if @donations.present?
           - @donations.each do |donation|
             - donation_type = donation.donation_type == 1 ? 'For Center' : 'For Food for Hungry'

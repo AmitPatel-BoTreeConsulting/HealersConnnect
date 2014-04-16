@@ -1,13 +1,9 @@
 - create_view = @workshop.new_record?
 - workshop_sessions = @workshop.workshop_sessions
+= render partial: 'shared/error_messages', locals: { target: @workshop }
 .row
   .col-xs-12
     = form_for @workshop,  html: {class: 'form-horizontal', role: 'form'} do |f|
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right
-        .col-sm-9
-          = render partial: 'shared/error_messages', locals: { target: @workshop }
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Course

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140415065707) do
+ActiveRecord::Schema.define(:version => 20140415115130) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -68,40 +68,6 @@ ActiveRecord::Schema.define(:version => 20140415065707) do
 
   add_index "courses", %w(course_category_id), name: 'index_courses_on_course_category_id'
   add_index "courses", %w(slug), name: 'index_courses_on_slug', unique: true
-
-  create_table 'delayed_jobs', force: true do |t|
-    t.integer  "priority",   :default => 0, :null => false
-    t.integer  "attempts",   :default => 0, :null => false
-    t.text     "handler",                   :null => false
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index 'delayed_jobs', %w(priority run_at), :name => "delayed_jobs_priority"
-
-  create_table "donations", :force => true do |t|
-    t.string   "donor_name"
-    t.string   "donor_email"
-    t.string   "receipt_number"
-    t.integer  "donation_type",       :limit => 2
-    t.text     "description"
-    t.integer  "center_id"
-    t.integer  "received_by_user_id"
-    t.float    "amount"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.integer  "sequential_id"
-  end
-
-  add_index "donations", %w(center_id), :name => "index_donations_on_center_id"
-  add_index "donations", %w(donation_type), :name => "index_donations_on_donation_type"
-  add_index "donations", %w(received_by_user_id), :name => "index_donations_on_received_by_user_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0, :null => false
