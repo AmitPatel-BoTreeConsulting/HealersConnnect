@@ -2,19 +2,27 @@
   #navbar-container.navbar-container
     .navbar-header.pull-left
       = link_to(root_path, class: 'navbar-brand') do
-        Pranic Healing
+        = Settings.brand_name
     .navbar-header.pull-right{role: "navigation"}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
-          %li{class: controller.controller_name == 'registrations' ? 'active' : ''}
-            = link_to 'Registrations', registrations_path(status: 'confirmed')
-          - if current_user.is_foundation_admin?  
-            %li{class: controller.controller_name == 'instructors' ? 'active' : ''}
-              = link_to 'Instructors', instructors_path  
-          %li{class: controller_name == 'courses' ? 'active' : ''}
-            = link_to 'Courses', courses_path(status: 'confirmed')
+          - if current_user.has_permission?(:donations)
+            %li{class: active_menu(:donations)}
+              = link_to t('navbar.menu.title.donations'), donations_path
+          - if current_user.has_permission?(:registrations)
+            %li{class: active_menu(:registrations)}
+              = link_to t('navbar.menu.title.registrations'), registrations_path(status: 'confirmed')
+          - if current_user.has_permission?(:centers)
+            %li{class: active_menu(:centers)}
+              = link_to t('navbar.menu.title.centers'), centers_path
+          - if current_user.has_permission?(:instructors)
+            %li{class: active_menu(:instructors)}
+              = link_to t('navbar.menu.title.instructors'), instructors_path
+          - if current_user.has_permission?(:courses)
+            %li{class: active_menu(:courses)}
+              = link_to t('navbar.menu.title.courses'), courses_path(status: 'confirmed')
           %li
-            = link_to "Sign Out", signout_path
+            = link_to t('common.caption.sign_out'), signout_path
         - else
           %li
-            = link_to "Sign In", signin_path
+            = link_to t('common.caption.sign_in'), signin_path

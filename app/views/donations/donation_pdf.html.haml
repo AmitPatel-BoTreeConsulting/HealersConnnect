@@ -1,0 +1,67 @@
+- donation_type = @donation.donation_type == 1 ? 'For Center' : 'For Food for Hungry'
+!!!
+%html
+  %head
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
+    = wicked_pdf_stylesheet_link_tag "pdf/ace.min"
+    = wicked_pdf_stylesheet_link_tag "pdf/bootstrap"
+    = wicked_pdf_stylesheet_link_tag "pdf/custom"
+  %body
+    #wrap
+      %header
+      %main{:role => "main"}
+        .main-container
+          .main-container-inner
+            .main-content
+              .page-content
+                %h2
+                  %b Donation Receipt
+                .space-16
+                .row
+                  .col-xs-12
+                    .form-group
+                      %label.h4
+                        %b Receipt Number :
+                      %label.h4= @donation.receipt_number
+                .row
+                  .col-xs-12
+                    .form-group
+                      %label.h4
+                        %b Name:
+                      %label.h4= @donation.donar_name.capitalize
+                .row
+                  .col-xs-12
+                    .form-group.pull-left
+                      %label.h4
+                        %b Amount (&#x20B9;):
+                      %label.h4
+                        = @donation.amount
+                .row
+                  .col-xs-12
+                    .form-group.pull-left
+                      %label.h4
+                        %b Received By:
+                      %label.h4
+                        = current_user.email
+                .row
+                  .col-xs-12
+                    .form-group.pull-left
+                      %label.h4
+                        %b Donar Type:
+                      %label.h4
+                        = donation_type
+                .row
+                  .col-xs-12
+                    .form-group.pull-left
+                      %label.h4
+                        %b Center:
+                      %label.h4
+                        = @donation.center.name
+                - if @donation.description.present?
+                  .row
+                    .col-xs-12
+                      .form-group.pull-left
+                        %label.h4
+                          %b Description:
+                        %label.h4
+                          = @donation.description

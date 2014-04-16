@@ -1,0 +1,44 @@
+.page-header
+  %h1
+    Donations
+.row
+  .col-xs-12
+    = link_to(t('donation.captions.add_donation_btn'), new_donation_path, class: 'btn btn-primary btn-sm')
+    .space-6
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '12%'} Receipt Number
+            %th{width: '15%'} Donar
+            %th{width: '15%'} Center
+            %th{width: '10%'} Amount (&#x20B9;)
+            %th{width: '15%'} Donar Type
+            %th{width: '15%'} Received By
+            %th Description
+        - if @donations.present?
+          - @donations.each do |donation|
+            - donation_type = donation.donation_type == 1 ? 'For Center' : 'For Food for Hungry'
+            %tr
+              %td
+                = donation.receipt_number
+              %td
+                = donation.donar_name
+              %td
+                = donation.center.name
+              %td
+                = donation.amount
+              %td
+                = donation_type
+              %td
+                = current_user.email
+              %td
+                = donation.description if donation.description
+              %td.text-center<
+                = link_to(export_donation_pdf_path(donation, format: :pdf), target: '_blank', title: 'Save as PDF') do
+                  %i.icon-print.bigger-130
+        - else
+          %tr
+            %td{colspan: 7}
+              .text-center
+                %h3 No Donations Found

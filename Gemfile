@@ -37,3 +37,6 @@ gem 'wicked_pdf'
 gem "paperclip", "~> 3.4.2"
 gem 'ckeditor_rails'
 gem 'friendly_id', '~> 4.0.10'
+gem 'delayed_job_active_record'
+gem 'daemons'
+gem 'sequenced'

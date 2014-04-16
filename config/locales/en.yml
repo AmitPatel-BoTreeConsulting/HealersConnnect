@@ -3,7 +3,7 @@
 
 en:
   permissions:
-    foundation_admin_rights_required: "Foundation admin rights are required to access this page."
+    not_permitted: "You are not authorized to access this page."
   center:
     caption:
     message:
@@ -49,8 +49,8 @@ en:
       confirm_message: 'Are you sure?'
       image: 'Image'
       course: 'Course'
-      instructor: 'Instructor'
-      center: 'Center'
+      sign_out: 'Sign Out'
+      sign_in: 'Sign In'
       start_date: 'Start Date'
       end_date: 'End Date'
   instructor:
@@ -72,18 +72,20 @@ en:
         index: 'Instructors'
         new: 'New Instructor'
         edit: 'Edit Instructor'
-  workshop:
-    caption:
-      workshops: 'Workshops'
+  donation:
+    captions:
+      add_donation_btn: "Add Donation"
     message:
-      workshop_created: "Workshop '%{workshop}' created successfully."
-      workshop_updated: "Workshop '%{workshop}' updated successfully."
-      workshop_destroy: "Workshop '%{workshop}' deleted successfully."
-      workshop_deactivate: "Workshop '%{workshop}' deactivated successfully."
-      workshop_activate: "Workshop '%{workshop}' activated successfully."
-      no_workshops_found: 'No Workshops Found'
-    page_content:
-      header:
-        index: 'Workshops'
-        new: 'New Workshop'
-        edit: 'Edit Workshop'  
+      success:
+        donar_notification: 'Donation created successfully.'
+  mailer:
+    send_donation_notification_to_donar:
+      subject: 'Donation Notification'
+  navbar:
+   menu:
+    title:
+      donations: 'Donations'
+      registrations: 'Registrations'
+      courses: 'Courses'
+      instructors: 'Instructors'
+      centers: 'Centers'

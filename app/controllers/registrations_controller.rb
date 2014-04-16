@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :collect_payment_types
+  before_filter :required_access, only: [:index, :new, :create, :edit, :update, :destroy, :activate, :deactivate, :export]
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export]
 
   def index
@@ -112,4 +113,5 @@ class RegistrationsController < ApplicationController
     def status_search_param
       search_param = {status: @registration.active ? 'confirmed' : 'cancelled'}
     end
+
 end

@@ -103,6 +103,40 @@ ActiveRecord::Schema.define(:version => 20140415065707) do
   add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
   add_index "donations", ["received_by_user_id"], :name => "index_donations_on_received_by_user_id"
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0, :null => false
+    t.integer  "attempts",   :default => 0, :null => false
+    t.text     "handler",                   :null => false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "donations", :force => true do |t|
+    t.string   "donar_name"
+    t.string   "donar_email"
+    t.string   "receipt_number"
+    t.integer  "donation_type",       :limit => 2
+    t.text     "description"
+    t.integer  "center_id"
+    t.integer  "received_by_user_id"
+    t.float    "amount"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "sequential_id"
+  end
+
+  add_index "donations", ["center_id"], :name => "index_donations_on_center_id"
+  add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
+  add_index "donations", ["received_by_user_id"], :name => "index_donations_on_received_by_user_id"
+
   create_table "foundations", :force => true do |t|
     t.string   "name"
     t.string   "alias"
