@@ -26,6 +26,13 @@ group :development do
   gem 'rails_layout'
 end
 
+group :development, :test do
+  # testing frameworks for application
+  gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl_rails'
+  gem 'faker', '~> 1.3.0'
+end
+
 # Console improvement
 gem 'pry-rails'
 
