@@ -1,9 +1,9 @@
 class Registration < ActiveRecord::Base
   belongs_to :payment_type
   belongs_to :user
+  belongs_to :workshop
 
   has_one :user_profile
-  has_one :workshop
 
   # accepts_nested_attributes_for :workshop
   # attr_accessible :workshop_attributes
@@ -13,7 +13,7 @@ class Registration < ActiveRecord::Base
 
   REGISTRATION_STATUSES = %w(confirmed cancelled)
 
-  attr_accessible :payment_type_id, :fresher, :cheque_no
+  attr_accessible :payment_type_id, :fresher, :cheque_no, :workshop_id
   attr_accessible :bank_name, :cheque_date, :registration_date
 
   def course_attempt
@@ -23,9 +23,9 @@ class Registration < ActiveRecord::Base
   def self.search(params)
     filter_status = params[:status]
     if filter_status.present? && REGISTRATION_STATUSES.include?(filter_status)
-      where(active: filter_status == 'confirmed').order(:registration_date)
+      where(active: filter_status == 'confirmed', workshop_id: params[:workshop_id]).order(:registration_date)
     else
-      order(:registration_date)
+      where(workshop_id: params[:workshop_id]).order(:registration_date)
     end
   end
 

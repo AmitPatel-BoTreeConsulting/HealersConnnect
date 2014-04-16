@@ -12,13 +12,6 @@ HealersConnnect::Application.routes.draw do
 
   resources :instructors
   resources :centers
-  resources :registrations do
-    member do
-      put :deactivate
-      put :activate
-      get :export
-    end
-  end
   resources :courses do
     member do
       put :deactivate
@@ -26,9 +19,17 @@ HealersConnnect::Application.routes.draw do
     end
   end
 
-  resources :workshops	
-  resources :donations do
+  # resources :registrations, only: [:index]
+  resources :workshops do
+    resources :registrations do
+      member do
+        put :deactivate
+        put :activate
+        get :export
+      end
+    end
   end
+  resources :donations
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
   get 'static/home' => 'static_pages#home'

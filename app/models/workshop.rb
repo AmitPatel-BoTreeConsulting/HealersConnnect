@@ -11,5 +11,5 @@ class Workshop < ActiveRecord::Base
   belongs_to :assistant_instructor, class_name: 'Instructor'
   belongs_to :center
   has_many :workshop_sessions
-
+  has_many :registrations
 end

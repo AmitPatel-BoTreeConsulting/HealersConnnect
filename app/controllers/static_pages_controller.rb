@@ -8,6 +8,6 @@ class StaticPagesController < ApplicationController
   end
 
   def home
-
+    @workshops = Workshop.all
   end
 end

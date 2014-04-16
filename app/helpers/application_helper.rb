@@ -44,10 +44,6 @@ module ApplicationHelper
       url = donations_path
       link_title = t('navbar.menu.title.donations')
 
-    when :registrations
-      url = registrations_path(status: 'confirmed')
-      link_title = t('navbar.menu.title.registrations')
-
     when :centers
       url = centers_path
       link_title = t('navbar.menu.title.centers')

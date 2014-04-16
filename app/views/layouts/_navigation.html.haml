@@ -1,16 +1,16 @@
-- options = [:donations, :registrations, :centers, :instructors, :courses]
+- options = [:donations, :centers, :instructors, :courses]
 #navbar.navbar.navbar-default
   #navbar-container.navbar-container
     .navbar-header.pull-left
       = link_to(root_path, class: 'navbar-brand') do
         = Settings.brand_name
-    .navbar-header.pull-right{role: 'navigation'}
+    .navbar-header.pull-right{role: "navigation"}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
           - options.each do |option|
             = render_navigation_menu_option(option)
           %li
-            = link_to t('common.caption.sign_out'), signout_path
+            = link_to "Sign Out", signout_path
         - else
           %li
             = link_to t('common.caption.sign_in'), signin_path

@@ -3,6 +3,7 @@ class RegistrationsController < ApplicationController
   before_filter :collect_payment_types
   before_filter :required_access, only: [:index, :edit, :update, :destroy, :activate, :deactivate, :export]
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export]
+  before_filter :find_workshop, except: [:registration]
 
   def index
     @registrations = Registration.search(params)
@@ -20,7 +21,8 @@ class RegistrationsController < ApplicationController
     default_profile_values = { gender: 'M', married: true }
     @registration = Registration.new(
       user_profile_attributes: default_profile_values,
-      registration_date: Date.today
+      registration_date: Date.today,
+      workshop_id: @workshop.id
     )
   end
 
@@ -34,7 +36,7 @@ class RegistrationsController < ApplicationController
 
       flash[:notice] = t('registration.message.success.registration_success')
       if current_user
-        redirect_to registrations_path(status: 'confirmed')
+        redirect_to workshop_registrations_path(status: 'confirmed')
       else
         redirect_to root_path
       end
@@ -51,7 +53,7 @@ class RegistrationsController < ApplicationController
       flash[:notice] =
         t('registration.message.success.registration_edit_success',
           name: @registration.get_user_profile.name)
-      redirect_to registrations_path(status_search_param)
+      redirect_to workshop_registrations_path(status_search_param)
     else
       render :edit
     end
@@ -62,7 +64,7 @@ class RegistrationsController < ApplicationController
     name = @registration.get_user_profile.name
     @registration.destroy
     flash[:notice] = t('registration.message.success.removed', name: name)
-    redirect_to registrations_path(status_search_param)
+    redirect_to workshop_registrations_path(status_search_param)
   end
 
   def activate
@@ -98,6 +100,10 @@ class RegistrationsController < ApplicationController
       @registration = Registration.find(params[:id])
     end
 
+    def find_workshop
+      @workshop = Workshop.find(params[:workshop_id])
+    end
+
     def update_registration_status_and_redirect(action)
       name = @registration.get_user_profile.name
       status, message =
@@ -109,7 +115,7 @@ class RegistrationsController < ApplicationController
           else
           end
       @registration.update_attribute(:active, status)
-      redirect_to registrations_path(status_search_param), flash: { notice:  message }
+      redirect_to workshop_registrations_path(status_search_param), flash: { notice:  message }
     end
 
     def status_search_param

@@ -4,14 +4,14 @@
   .col-xs-12
     %ul.nav.nav-pills#registrations_container
       %li{class: active_pill('confirmed')}
-        = link_to 'Confirmed', registrations_path(status: 'confirmed')
+        = link_to 'Confirmed', workshop_registrations_path(status: 'confirmed', workshop_id: @workshop)
       %li{class: active_pill('cancelled')}
-        = link_to 'Cancelled', registrations_path(status: 'cancelled')
+        = link_to 'Cancelled', workshop_registrations_path(status: 'cancelled', workshop_id: @workshop)
       %li{class: active_pill}
-        = link_to 'All', registrations_path
+        = link_to 'All', workshop_registrations_path(workshop_id: @workshop)
     .btn-group.pull-right.btn_registration_new_margin
-      = link_to 'New Registration', new_registration_path, class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
-      = link_to('Export', export_path(format: 'xls', status: params[:status]), class: 'btn btn_list btn-sm btn-primary no-radius dialog-btn-margin')
+      =# link_to 'New Registration', new_registration_path, class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
+      = link_to('Export', export_path(format: "xls", status: params[:status]), class: 'btn btn_list btn-sm btn-primary no-radius dialog-btn-margin')
     .space-6
 .row
   .col-xs-12
@@ -42,15 +42,15 @@
               %td.text-center= registration.registration_date.strftime('%d/%m/%Y')
               %td.text-center<
                 .action-buttons
-                  = link_to(edit_registration_path(registration), class: 'green', title: 'Edit') do
+                  = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', title: 'Edit') do
                     %i.icon-pencil.bigger-130
-                  = link_to(export_registration_path(registration, format: :pdf), target: '_blank', title: 'Save as PDF') do
+                  = link_to(export_workshop_registration_path(id: registration, workshop_id: @workshop, format: :pdf), target: '_blank', title: 'Save as PDF') do
                     %i.icon-print.bigger-130
                   - if registration.active
-                    = link_to(deactivate_registration_path(registration), method: :put, data: { confirm: 'Are you sure you want to cancel the registration?' }, title: 'Cancel') do
+                    = link_to(deactivate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: 'Are you sure you want to cancel the registration?' }, title: 'Cancel') do
                       %i.icon-pause.bigger-130
                   - else
-                    = link_to(activate_registration_path(registration), method: :put, data: { confirm: 'Are you sure you want to confirm the registration?' }, title: 'Confirm') do
+                    = link_to(activate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: 'Are you sure you want to confirm the registration?' }, title: 'Confirm') do
                       %i.icon-play.bigger-130
-                  = link_to(registration_path(registration), method: :delete, :confirm=>'Are you sure you want to remove this registration?', class: 'red', title: 'Delete')  do
+                  = link_to(workshop_registrations_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=>'Are you sure you want to remove this registration?', class: 'red', title: 'Delete')  do
                     %i.icon-trash.bigger-130
