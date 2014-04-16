@@ -1,9 +1,19 @@
 require 'spec_helper'
 require 'faker'
+include Devise::TestHelpers
 
 describe RegistrationsController do
+  # before do
+  #   @user = FactoryGirl.create(:center_admin_user)
+  #   sign_in @user
+  # end
+
   describe "GET #index" do
-    it "populates an array of registrations"
+    it "populates an array of registrations" # do
+    #   registration = FactoryGirl.create(:registration)
+    #   get :index, workshop_id: '1'
+    #   assigns(:registration).should eq([registration])
+    # end
     it "renders the :index view"
   end
 

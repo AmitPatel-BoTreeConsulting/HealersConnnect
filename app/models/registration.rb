@@ -16,8 +16,6 @@ class Registration < ActiveRecord::Base
   attr_accessible :payment_type_id, :fresher, :cheque_no, :workshop_id
   attr_accessible :bank_name, :cheque_date, :registration_date
 
-  validates_presence_of :workshop_id
-
   def course_attempt
     fresher? ? 'Fresher' : 'Review'
   end
