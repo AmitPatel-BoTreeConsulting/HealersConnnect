@@ -6,21 +6,11 @@
     .navbar-header.pull-right{role: 'navigation'}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
-          - if current_user.has_permission?(:donations)
-            %li{class: active_menu(:donations)}
-              = link_to t('navbar.menu.title.donations'), donations_path
-          - if current_user.has_permission?(:registrations)
-            %li{class: active_menu(:registrations)}
-              = link_to t('navbar.menu.title.registrations'), registrations_path(status: 'confirmed')
-          - if current_user.has_permission?(:centers)
-            %li{class: active_menu(:centers)}
-              = link_to t('navbar.menu.title.centers'), centers_path
-          - if current_user.has_permission?(:instructors)
-            %li{class: active_menu(:instructors)}
-              = link_to t('navbar.menu.title.instructors'), instructors_path
-          - if current_user.has_permission?(:courses)
-            %li{class: active_menu(:courses)}
-              = link_to t('navbar.menu.title.courses'), courses_path(status: 'confirmed')
+          = show_menu_option(:donations)
+          = show_menu_option(:registrations)
+          = show_menu_option(:centers)
+          = show_menu_option(:instructors)
+          = show_menu_option(:courses)
           %li
             = link_to t('common.caption.sign_out'), signout_path
         - else
