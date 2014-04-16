@@ -4,8 +4,8 @@ HealersConnnect::Application.routes.draw do
   root :to => 'static_pages#home'
 
   devise_scope :user do
-    get "/signin" => "devise/sessions#new"
-    get "/signout" => "devise/sessions#destroy"
+    get '/signin' => 'devise/sessions#new'
+    get '/signout' => 'devise/sessions#destroy'
   end
 
   get '/dashboard' => 'users#dashboard', as: :dashboard

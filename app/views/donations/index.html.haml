@@ -10,10 +10,10 @@
         %thead
           %tr
             %th{width: '12%'} Receipt Number
-            %th{width: '15%'} Donar
+            %th{width: '15%'} Donor
             %th{width: '15%'} Center
             %th{width: '10%'} Amount (&#x20B9;)
-            %th{width: '15%'} Donar Type
+            %th{width: '15%'} Donor Type
             %th{width: '15%'} Received By
             %th Description
         - if @donations.present?
@@ -23,7 +23,7 @@
               %td
                 = donation.receipt_number
               %td
-                = donation.donar_name
+                = donation.donor_name
               %td
                 = donation.center.name
               %td

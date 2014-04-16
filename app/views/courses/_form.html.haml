@@ -8,30 +8,30 @@
           = render partial: 'shared/error_messages', locals: { target: @course }
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} #{t('course.caption.course_category')}
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.course_category')}
         .col-sm-9
-          = f.collection_select :course_category_id, @course_categories, :id, :name, {prompt: "Select a course category"}, {class: 'col-xs-10 col-sm-5'}
+          = f.collection_select :course_category_id, @course_categories, :id, :name, {prompt: 'Select a course category'}, {class: 'col-xs-10 col-sm-5'}
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} #{t('common.caption.name')}
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.name')}
         .col-sm-9
           = f.text_field :name, class: 'col-xs-10 col-sm-5'
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-input-readonly"} #{t('common.caption.description')}
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-input-readonly'} #{t('common.caption.description')}
         .col-xs-10.col-sm-4
           = f.text_area :description, rows: 4, class: 'form-control', :class => 'ckeditor'
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} #{t('course.caption.donation')}
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.donation')}
         .col-sm-9
           = f.text_field :donation, class: 'col-xs-10 col-sm-5'
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} #{t('course.caption.review_donation')}
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.review_donation')}
         .col-sm-9
           = f.text_field :review_donation, class: 'col-xs-10 col-sm-5'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: "form-field-1"} #{t('common.caption.image')}
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.image')}
         .col-sm-9
           = f.file_field :avatar, class: 'col-xs-10 col-sm-5'
       - if @course.avatar.present?

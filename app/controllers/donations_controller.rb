@@ -14,8 +14,8 @@ class DonationsController < ApplicationController
   def create
     @donation = Donation.new(params[:donation])
     if @donation.save
-      @donation.send_donation_notification_to_donar(current_user)
-      flash[:notice] = t('donation.message.success.donar_notification')
+      @donation.send_donation_notification_to_donor(current_user)
+      flash[:notice] = t('donation.message.success.donor_notification')
       redirect_to donations_path
     else
       @centers = Center.all

@@ -1,17 +1,17 @@
 - gender =  @profile.gender == 'M' ? 'Male' : 'Female'
-- marital_status = @profile.marital_status == true ? 'Married' : 'Unmarried'
+- marital_status = @profile.marital_status ? 'Married' : 'Unmarried'
 - # workshop = @registration.workshop
 !!!
 %html
   %head
-    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
-    = wicked_pdf_stylesheet_link_tag "pdf/ace.min"
-    = wicked_pdf_stylesheet_link_tag "pdf/bootstrap"
-    = wicked_pdf_stylesheet_link_tag "pdf/custom"
+    %meta{'http-equiv' => 'Content-Type', content: 'text/html; charset=utf-8'}
+    = wicked_pdf_stylesheet_link_tag 'pdf/ace.min'
+    = wicked_pdf_stylesheet_link_tag 'pdf/bootstrap'
+    = wicked_pdf_stylesheet_link_tag 'pdf/custom'
   %body
     #wrap
       %header
-      %main{:role => "main"}
+      %main{role: 'main'}
         .main-container
           .main-container-inner
             .main-content
@@ -105,7 +105,7 @@
                       .form-group
                         %label.h4
                           %b Details of Pranic Healing Courses you have taken (as applicable):
-                        %table{border: "1", style: 'width: 100%;'}
+                        %table{border: '1', style: 'width: 100%;'}
                           %thead
                             %tr{style: 'height: 30px;'}
                               %th.h4.text-center

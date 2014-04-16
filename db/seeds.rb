@@ -113,7 +113,7 @@ end
 payment_types.each { |payment_type| find_or_create_payment_type(payment_type)}
 
 def find_or_create_user_role(user, role)
-  if !user.roles.present?
+  unless user.roles.present?
     UserRole.create(role_id: role.id, user_id: user.id)
     puts "Created user roles for #{user.email}"
   else

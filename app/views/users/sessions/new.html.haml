@@ -18,22 +18,22 @@
                 %fieldset
                   %label.block.clearfix
                     %span.block.input-icon.input-icon-right
-                      = f.text_field :email, autofocus: true, placeholder: "Username or Email", class: "form-control"
+                      = f.text_field :email, autofocus: true, placeholder: 'Username or Email', class: 'form-control'
                       %i.icon-user
                   %label.block.clearfix
                     %span.block.input-icon.input-icon-right
-                      = f.password_field :password, class: "form-control", placeholder: "Password"
+                      = f.password_field :password, class: 'form-control', placeholder: 'Password'
                       %i.icon-lock
                   .space
                   .clearfix
                     %label.inline
                       - if devise_mapping.rememberable?
-                        = f.check_box :remember_me, class: "ace"
+                        = f.check_box :remember_me, class: 'ace'
                         %span.lbl
                           Remember Me
-                    = button_tag(type: "submit", class: "width-35 btn btn-sm btn-primary no-radius pull-right") do
+                    = button_tag(type: 'submit', class: 'width-35 btn btn-sm btn-primary no-radius pull-right') do
                       Login
             / /widget-main
             .toolbar.clearfix
               %div
-                = render "users/shared/links"
+                = render 'users/shared/links'

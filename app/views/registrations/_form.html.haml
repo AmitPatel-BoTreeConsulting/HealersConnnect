@@ -6,7 +6,7 @@
   .row
     .col-xs-12.col-sm-12
       .center
-        = render partial: "shared/error_messages", locals: { target: @registration }
+        = render partial: 'shared/error_messages', locals: { target: @registration }
   .row
     .col-xs-12
       = f.fields_for :user_profile do |ff|
@@ -21,7 +21,7 @@
           %label.col-sm-3.control-label.no-padding-right Date of Birth
           .col-sm-3
             .input-group
-              = ff.text_field :birth_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', value: @registration.user_profile.birth_date.try(:strftime, "%d/%m/%Y")
+              = ff.text_field :birth_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', value: @registration.user_profile.birth_date.try(:strftime, '%d/%m/%Y')
               %span.input-group-addon
                 %i.icon-calendar.bigger-110
         .space-4
@@ -60,7 +60,7 @@
             = ff.text_field :occupation, class: 'col-xs-10 col-sm-5'
         .space-4
         .form-group
-          %label.col-sm-3.control-label.no-padding-right{ for: "form-input-readonly" }
+          %label.col-sm-3.control-label.no-padding-right{ for: 'form-input-readonly' }
             Residential Address
           .col-sm-9
             = ff.text_area :address, class: 'col-xs-10 col-sm-5', rows: 4
@@ -93,7 +93,7 @@
             = f.text_field :bank_name, placeholder: 'Bank name', class: 'col-xs-2 margin-right-10'
             .col-sm-2.no-padding-left
               .input-group
-                = f.text_field :cheque_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.cheque_date.try(:strftime, "%d/%m/%Y")
+                = f.text_field :cheque_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.cheque_date.try(:strftime, '%d/%m/%Y')
                 %span.input-group-addon
                   %i.icon-calendar.bigger-110
             / = f.text_field :cheque_date, placeholder: 'Cheque dated', class: 'col-xs-2'
@@ -140,13 +140,13 @@
           %label.col-sm-3.control-label.no-padding-right Registered On
           .col-sm-3
             .input-group
-              = f.text_field :registration_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.registration_date.try(:strftime, "%d/%m/%Y")
+              = f.text_field :registration_date, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.registration_date.try(:strftime, '%d/%m/%Y')
               %span.input-group-addon
                 %i.icon-calendar.bigger-110
       - if @registration.new_record?
         .hr.hr-24
         -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
-        %div{style: "text-align:justify"}
+        %div{style: 'text-align:justify'}
           .col-xs-12
             %p
               I, hereby state that, having had the privilege of being accepted as a student in GRAND MASTER CHOA KOK

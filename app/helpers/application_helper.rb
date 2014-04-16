@@ -1,5 +1,5 @@
 module ApplicationHelper
-  COMMON_CONTROLLER_ACTIONS = ['index', 'new' , 'create', 'edit', 'update', 'show']
+
   def display_style(show)
     "display:#{show ? 'block' : 'none'}"
   end
@@ -8,15 +8,17 @@ module ApplicationHelper
     active_menu =
       case menu
       when :donations
-        active_current_page?('donations', COMMON_CONTROLLER_ACTIONS)
+        active_current_page?('donations', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
       when :registrations
-        active_current_page?('registrations', COMMON_CONTROLLER_ACTIONS)
+        active_current_page?('registrations', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
       when :centers
-        active_current_page?('centers', COMMON_CONTROLLER_ACTIONS)
+        active_current_page?('centers', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
       when :courses
-        active_current_page?('courses', COMMON_CONTROLLER_ACTIONS)
+        active_current_page?('courses', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
       when :instructors
-        active_current_page?('instructors', COMMON_CONTROLLER_ACTIONS)
+        active_current_page?('instructors',HealersConnectConstant:: COMMON_CONTROLLER_ACTIONS)
+      else
+        false
       end
       'active' if active_menu
   end

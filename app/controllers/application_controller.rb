@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
   private
   def layout_for_signin
     if devise_controller?
-      "auth"
+      'auth'
     else
-      "application"
+      'application'
     end
   end
 

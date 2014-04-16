@@ -5,17 +5,17 @@
       .form-group
         %label.col-xs-3.col-sm-3.control-label.no-padding-right
         .col-sm-9
-          = render partial: "shared/error_messages", locals: { target: @donation }
+          = render partial: 'shared/error_messages', locals: { target: @donation }
   .row
     .col-xs-12
       .form-group
-        %label.col-xs-3.col-sm-3.control-label.no-padding-right Donar Name
+        %label.col-xs-3.col-sm-3.control-label.no-padding-right Donor Name
         .col-sm-9
-          = f.text_field :donar_name, class: 'col-xs-6 margin-right-10'
+          = f.text_field :donor_name, class: 'col-xs-6 margin-right-10'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Donar Email
+        %label.col-sm-3.control-label.no-padding-right Donor Email
         .col-sm-9
-          = f.text_field :donar_email, class: 'col-xs-6 margin-right-10'
+          = f.text_field :donor_email, class: 'col-xs-6 margin-right-10'
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right Donation Type
@@ -32,7 +32,7 @@
       .form-group
         %label.col-sm-3.control-label.no-padding-right Center
         .col-sm-9
-          = select_tag "center", options_from_collection_for_select(@centers, "id", "location"), class: 'dcol-xs-6 margin-right-10', name: "donation[center_id]",  prompt: "--Please select--"
+          = select_tag 'center', options_from_collection_for_select(@centers, :id, :location), class: 'dcol-xs-6 margin-right-10', name: 'donation[center_id]',  prompt: '--Please select--'
       .form-group
         %label.col-sm-3.control-label.no-padding-right Amount (&#x20B9;)
         .col-sm-9
@@ -44,5 +44,5 @@
       .form-group
         %label.col-xs-3.col-sm-3.control-label.no-padding-right
         .col-xs-8
-          = submit_tag t('instructor.caption.button.save'), class: "btn btn-primary btn-sm", title: t('instructor.caption.button.save')
+          = submit_tag t('instructor.caption.button.save'), class: 'btn btn-primary btn-sm', title: t('instructor.caption.button.save')
           = link_to('Cancel',donations_path , class: "btn btn-sm btn-grey btn-primary btn-primary", title: 'Cancel')
