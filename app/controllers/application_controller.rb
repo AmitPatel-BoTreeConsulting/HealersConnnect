@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     else
       root_path
     end
+  end
 
   private
   def layout_for_signin
