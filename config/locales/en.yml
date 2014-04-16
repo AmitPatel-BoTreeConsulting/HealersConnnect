@@ -53,6 +53,8 @@ en:
       center: 'Center'
       start_date: 'Start Date'
       end_date: 'End Date'
+      register: 'Register'
+      view_registrations: 'View Registrations'
   instructor:
     caption:
       button:
@@ -82,6 +84,7 @@ en:
       workshop_deactivate: "Workshop '%{workshop}' deactivated successfully."
       workshop_activate: "Workshop '%{workshop}' activated successfully."
       no_workshops_found: 'No Workshops Found'
+      no_workshop_active: 'No workshops scheduled, Please check again later'
     page_content:
       header:
         index: 'Workshops'

@@ -1,8 +1,10 @@
 - # Initialize the nested attributes if they are not present
 - @registration.user_profile ||= UserProfile.new
 - # @registration.workshop ||= Workshop.new
+- url = url_for_registration_form(@registration, @workshop)
 
-= form_for @registration, html: { class: 'form-horizontal', role: 'form'} do |f|
+= form_for @registration, url: url, html: { class: 'form-horizontal', role: 'form'} do |f|
+  = f.hidden_field :workshop_id
   .row
     .col-xs-12.col-sm-12
       .center
@@ -174,4 +176,4 @@
         .col-md-offset-3.col-md-9
           = f.submit registration_submit_button, class: "#{registration_submit_button_class}", id: 'register'
           = f.submit 'Reset', type: 'reset', class: 'btn'
-          = link_to 'Cancel', registrations_path, class: 'btn'
+          = link_to 'Cancel', workshop_registrations_path(@workshop), class: 'btn'

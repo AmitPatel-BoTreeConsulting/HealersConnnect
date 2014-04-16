@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def after_sign_in_path_for(resource)
-    registrations_path(status: 'confirmed')
+    workshops_path
   end
 
   private

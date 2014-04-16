@@ -6,8 +6,8 @@
     .navbar-header.pull-right{role: "navigation"}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
-          %li{class: controller.controller_name == 'registrations' ? 'active' : ''}
-            = link_to 'Registrations', registrations_path(status: 'confirmed')
+          / %li{class: controller.controller_name == 'registrations' ? 'active' : ''}
+          /   = link_to 'Registrations', registrations_path(status: 'confirmed')
           - if current_user.is_foundation_admin?  
             %li{class: controller.controller_name == 'instructors' ? 'active' : ''}
               = link_to 'Instructors', instructors_path  

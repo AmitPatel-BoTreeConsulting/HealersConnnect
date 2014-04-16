@@ -1,0 +1,16 @@
+%tr.info
+  %td<
+    = workshop_counter + 1
+  %td<
+    = workshop.course.name
+  %td<
+    = workshop.instructor.name
+  %td
+    = workshop.center.name
+  %td.text-center<
+    = workshop.start_date.strftime('%Y-%m-%d') rescue nil
+  %td
+    = workshop.end_date.strftime('%Y-%m-%d') rescue nil
+  %td.text-center<
+    = link_to(new_workshop_registration_path(workshop), class: 'green', title: 'Register') do
+      %i.icon-share.bigger-130

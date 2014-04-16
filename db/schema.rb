@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140415065707) do
+ActiveRecord::Schema.define(:version => 20140415115130) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -137,9 +137,11 @@ ActiveRecord::Schema.define(:version => 20140415065707) do
     t.date     "registration_date"
     t.boolean  "active",            :default => true
     t.integer  "user_id"
+    t.integer  "workshop_id"
   end
 
   add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
+  add_index "registrations", ["workshop_id"], :name => "index_registrations_on_workshop_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

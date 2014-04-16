@@ -11,3 +11,6 @@
     =# workshop.start_date.strftime('%Y-%m-%d')
   %td
     =# workshop.end_date.strftime('%Y-%m-%d')
+  %td.text-center<
+    = link_to(workshop_registrations_path(workshop), class: 'green', title: 'View Registrations')  do
+      %i.icon-eye-open.bigger-130
