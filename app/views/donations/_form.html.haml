@@ -1,11 +1,6 @@
 = form_for @donation, html: { class: 'form-horizontal', role: 'form'} do |f|
   = hidden_field_tag 'donation[received_by_user_id]', current_user.id
-  .row
-    .col-xs-12.col-sm-12
-      .form-group
-        %label.col-xs-3.col-sm-3.control-label.no-padding-right
-        .col-sm-9
-          = render partial: 'shared/error_messages', locals: { target: @donation }
+  = render partial: 'shared/error_messages', locals: { target: @donation }
   .row
     .col-xs-12
       .form-group

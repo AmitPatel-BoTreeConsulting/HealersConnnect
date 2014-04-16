@@ -1,12 +1,8 @@
+= render partial: 'shared/error_messages', locals: { target: @center }
 .row
   .col-xs-12
-    -#%form.form-horizontal{role: "form"}
     = form_for @center, html: {class: 'form-horizontal', role: 'form'} do |f|
       .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right
-        .col-sm-9
-          = render partial: 'shared/error_messages', locals: { target: @center }
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Name
         .col-sm-9

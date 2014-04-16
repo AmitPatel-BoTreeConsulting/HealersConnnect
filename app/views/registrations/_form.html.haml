@@ -3,10 +3,7 @@
 - # @registration.workshop ||= Workshop.new
 
 = form_for @registration, html: { class: 'form-horizontal', role: 'form'} do |f|
-  .row
-    .col-xs-12.col-sm-12
-      .center
-        = render partial: 'shared/error_messages', locals: { target: @registration }
+  = render partial: 'shared/error_messages', locals: { target: @registration }
   .row
     .col-xs-12
       = f.fields_for :user_profile do |ff|
