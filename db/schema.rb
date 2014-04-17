@@ -89,19 +89,18 @@ ActiveRecord::Schema.define(:version => 20140415115130) do
     t.string   "donor_name"
     t.string   "donor_email"
     t.string   "receipt_number"
-    t.integer  "donation_type",       :limit => 2
+    t.integer  "donation_type",  :limit => 2
     t.text     "description"
     t.integer  "center_id"
-    t.integer  "received_by_user_id"
+    t.integer  "user_id"
     t.float    "amount"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "sequential_id"
   end
 
   add_index "donations", %w(center_id), :name => "index_donations_on_center_id"
   add_index "donations", %w(donation_type), :name => "index_donations_on_donation_type"
-  add_index "donations", %w(received_by_user_id), :name => "index_donations_on_received_by_user_id"
 
   create_table "foundations", :force => true do |t|
     t.string   "name"
