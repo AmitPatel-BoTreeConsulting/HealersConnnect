@@ -4,16 +4,16 @@ class DonationsController < ApplicationController
   before_filter :required_super_admin_or_accountant, only: [:index]
 
   def index
-    if params[:timeline].present? && !params[:donation].present?
-      @donations = Donation.all
+    if params[:timeline].present?
       @timeline = params[:timeline]
-
-    elsif params[:timeline].present? && params[:donation].present?
-      @donation_params = params[:donation]
-      @timeline = params[:timeline]
-      @donations = Donation.search(@donation_params)
+      if params[:donation].present?
+        @donation_params = params[:donation]
+        @donations = Donation.search(@donation_params)
+      else
+        @donations = Donation.all
+      end
     else
-       @donations = Donation.all
+      @donations = Donation.all
     end
 
     if @timeline.present?

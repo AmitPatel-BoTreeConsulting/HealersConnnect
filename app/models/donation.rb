@@ -32,13 +32,22 @@ class Donation < ActiveRecord::Base
 
   # Search donations with Multiselectbox
   def self.search(params)
-    unless params.nil?
-      donations = Donation.where('donation_type in (?)', params[:donation_type]) if params[:donation_type].present?
-      donations = Donation.joins(:user).where(users: { id: params[:user_id] }) if params[:user_id].present?
-    else
-      donations = Donation.all
-    end
-    donations
+      donation_type = params[:donation_type].present? ? params[:donation_type].reject { |c| c.empty? } : []
+      user_id = params[:user_id].present? ? params[:user_id].reject { |c| c.empty? } : []
+      if donation_type.present? || user_id.present?
+        if donation_type.present? and donation_type.size < donation_type[0].split(' ').size
+          donation_type = donation_type[0].split(' ')
+        end
+        if user_id.present? and user_id.size < user_id[0].split(' ').size
+          user_id = user_id[0].split(' ')
+        end
+        with_donation_type_donations = Donation.where('donation_type in (?)', (donation_type.present? ? donation_type : []))
+        with_user_donations = Donation.joins(:user).where(users: { id: (user_id.present? ? user_id : []) })
+        donations = with_donation_type_donations + with_user_donations
+      else
+        donations = Donation.all
+      end
+      return donations
   end
 
   # Find donations by timline like weekly,monthly,yearly or by both for render chart
