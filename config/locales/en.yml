@@ -25,6 +25,50 @@ en:
         center_updated: "Center '%{center}' updated successfully."
   registration:
     caption:
+      date_of_birth: 'Date of Birth'
+      gender: 'Gender'
+      male: 'Male'
+      female: 'Female'
+      marital_status: 'Marital Status'
+      marital_status_married: 'Married'
+      marital_status_unmarried: 'Unmarried'
+      education: 'Education'
+      occupation: 'Occupation'
+      residential_address: 'Residential Address'
+      telephone: 'Telephone'
+      payment_by: 'Payment By'
+      cheque_details: 'Cheque Details'
+      course_attempt: 'Course Attempt'
+      course_attempt_fresher: 'Fresher'
+      course_attempt_review: 'Review'
+      basic_pranic_healing: 'Basic Pranic Healing'
+      net_banking_details: 'Net Banking Details'
+      registered_on: 'Registered On'
+      checkbox_accept_vow: 'accept_vow'
+      checkbox: 'I accept VOW OF SECRECY'
+      text:
+        text_paragraph_1: "I, hereby state that, having had the privilege of being accepted as a student in GRAND MASTER CHOA KOK SUI'S above-named course, do solemnly swear to keep Secret and Confidential, all the sacred teachings taught therein."
+        text_paragraph_2: 'On my Honour, I sincerely promise to preserve these sacred teachings in their purest form, and practice them in the proper and correct manner, guided by the golden rules and the Five Arhatic Virtues taught by Grand Master Choa Kok Sui. I also promise to prevent misuse or incorrect practice of these teachings by persons who have not been adequately instructed.'
+        text_paragraph_3: 'With the Lord God as my witness, and my Higher Self as my guide, I shall uphold this Vow of Secrecy and I will not divulge to anybody, under any circumstances, verbally or through the reproduction of written material, or through some other form, in whole or in part, any of the teachings, principles and techniques from the course.'
+        text_paragraph_4: 'I make this solemn vow freely and voluntarily, with no mental reservation or purpose of evasion.'
+      placeholder:
+        first_name: 'First Name'
+        middle_name: 'Middle Name'
+        surname: 'Surname'
+        date_of_birth_format: 'dd/mm/yyyy'
+        cheque_no: 'Cheque no'
+        bank_name: 'Bank name'
+        instructor: 'Instructor'
+      button:
+        status_confirmed: 'confirmed'
+        status_cancelled: 'Cancelled'
+        status_all: 'All'
+    page_content:
+      header:
+        index: 'Registrations'
+        new: 'New Registration'
+        edit: 'Edit Registration'
+        breadcrumb: 'Hinduism Revealed'
     message:
       success:
         registration_success: 'Registration complete. Thank you.'
@@ -32,6 +76,7 @@ en:
         removed: "Registration of '%{name}' removed successfully."
         activated: "Registration of '%{name}' activated successfully."
         deactivated: "Registration of '%{name}' deactivated successfully."
+        accept_order_to_proceed: 'You must accept to in order to proceed'
   course:
     caption:
       courses: 'Courses'
@@ -184,7 +229,11 @@ en:
       password: 'Password'
   forgot_password:
     caption:
+      placeholder:
+        new: 'New Password'
+        confirm_new_password: 'Confirm New Password'
       button:
         send_me: Send Me
+        change_password: 'Change my password'
       link:
         back_to_signin: 'Back To Signin'
