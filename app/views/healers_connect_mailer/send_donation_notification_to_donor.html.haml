@@ -9,34 +9,36 @@
     %br/
     %br/
     %p
-      Thank you for the donation.
+      = t('donation.mailer.paragraph_1')
       %br/
-      Please find donation details are as below.
+      = t('donation.mailer.paragraph_2')
       %br/
     %p
-      %b Receipt Number:
+      %b= t('donation.caption.pdf.receipt_no')
       #{@donation.receipt_number}
     %p
-      %b Donor Name:
+      %b= t('donation.caption.pdf.name')
       #{@donation.donor_name.capitalize}
     %p
-      %b Donor Email:
+      %b= t('donation.caption.pdf.email')
       #{@donation.donor_email}
     %p
-      %b Center:
+      %b= t('donation.caption.pdf.center')
       #{@center_name}
     %p
-      %b Amount (&#x20B9;):
+      %b
+        = t('donation.caption.pdf.amount')
+        (&#x20B9;):
       #{@donation.amount}
     %p
-      %b Donation Type:
+      %b= t('donation.caption.pdf.donation_type')
       #{donation_type}
     %p
-      %b Received By:
+      %b= t('donation.caption.pdf.received_by')
       #{@received_by}
     %p
     - if @donation.description.present?
-      %b Description:
+      %b= t('donation.caption.pdf.description')
       #{@donation.description}
     %br/
     %br/

@@ -128,6 +128,7 @@ en:
       center_select_tag_prompt: '--Please select--'
       received_by: 'Received By'
       amount: 'Amount'
+      new_donation: 'New Donation'
       pdf:
         title: 'Donation Receipt'
         receipt_no: 'Receipt Number:'
@@ -137,6 +138,7 @@ en:
         donation_type: 'Donation Type:'
         center: 'Center:'
         description: 'Description:'
+        email: 'Email:'
       button:
         new: 'Create Donation'
       title:
@@ -145,6 +147,9 @@ en:
       no_donations_found: 'No donations found'
       success:
         donor_notification: 'Donation created successfully.'
+    mailer:
+      paragraph_1: 'Thank you for the donation.'
+      paragraph_2: 'Please find donation details are as below.'
   mailer:
     send_donation_notification_to_donor:
       subject: 'Donation Notification'

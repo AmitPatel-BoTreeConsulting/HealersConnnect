@@ -31,6 +31,12 @@
                       %label.h4= @donation.donor_name.capitalize
                 .row
                   .col-xs-12
+                    .form-group
+                      %label.h4
+                        %b= t('donation.caption.pdf.email')
+                      %label.h4= @donation.donor_email
+                .row
+                  .col-xs-12
                     .form-group.pull-left
                       %label.h4
                         %b
