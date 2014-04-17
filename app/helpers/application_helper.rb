@@ -62,7 +62,7 @@ module ApplicationHelper
 
   end
 
-  def render_css_class(name,class_is)
+  def render_css_class(name)
     css_class = ''
     msg_icon_class = ''
     case name
@@ -77,7 +77,6 @@ module ApplicationHelper
       msg_icon_class = 'icon-remove'
     else
     end
-    return css_class if class_is == :css_class
-    return msg_icon_class if class_is == :msg_icon
+    {css_class: css_class, msg_icon_class: msg_icon_class}
   end
 end
