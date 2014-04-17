@@ -10,7 +10,8 @@
         %li{class: active_donation_pill('weekly')}
           = link_to 'Weekly', donations_path(timeline: 'weekly')
         %li{class: active_donation_pill('monthly')}
-          = link_to 'Monthly', donations_path(timeline: 'monthly')
+          = link_to 'Monthly', 'javascript:void(0)'
+          -#donations_path(timeline: 'monthly')
         %li{class: active_donation_pill('yearly')}
           = link_to 'Yearly', donations_path(timeline: 'yearly')
         %li{class: active_donation_pill}

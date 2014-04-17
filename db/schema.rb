@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(:version => 20140415115130) do
 
   add_index "donations", %w(center_id), :name => "index_donations_on_center_id"
   add_index "donations", %w(donation_type), :name => "index_donations_on_donation_type"
-  add_index "donations", %w(received_by_user_id), :name => "index_donations_on_received_by_user_id"
 
   create_table "foundations", :force => true do |t|
     t.string   "name"
