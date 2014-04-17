@@ -1,4 +1,4 @@
-- donation_type = @donation.donation_type == 1 ? 'For Center' : 'For Food for Hungry'
+- donation_type = @donation.donation_type == 1 ? t('donation.caption.for_center_radio') : t('donation.caption.for_food_for_hungry_radio')
 !!!
 %html
   %head
@@ -15,46 +15,48 @@
             .main-content
               .page-content
                 %h2
-                  %b Donation Receipt
+                  %b= t('donation.caption.pdf.title')
                 .space-16
                 .row
                   .col-xs-12
                     .form-group
                       %label.h4
-                        %b Receipt Number :
+                        %b= t('donation.caption.pdf.receipt_no')
                       %label.h4= @donation.receipt_number
                 .row
                   .col-xs-12
                     .form-group
                       %label.h4
-                        %b Name:
+                        %b= t('donation.caption.pdf.name')
                       %label.h4= @donation.donor_name.capitalize
                 .row
                   .col-xs-12
                     .form-group.pull-left
                       %label.h4
-                        %b Amount (&#x20B9;):
+                        %b
+                          = t('donation.caption.pdf.amount')
+                          (&#x20B9;):
                       %label.h4
                         = @donation.amount
                 .row
                   .col-xs-12
                     .form-group.pull-left
                       %label.h4
-                        %b Received By:
+                        %b= t('donation.caption.pdf.received_by')
                       %label.h4
                         = current_user.email
                 .row
                   .col-xs-12
                     .form-group.pull-left
                       %label.h4
-                        %b Donor Type:
+                        %b= t('donation.caption.pdf.donation_type')
                       %label.h4
                         = donation_type
                 .row
                   .col-xs-12
                     .form-group.pull-left
                       %label.h4
-                        %b Center:
+                        %b= t('donation.caption.pdf.center')
                       %label.h4
                         = @donation.center.name
                 - if @donation.description.present?
@@ -62,6 +64,6 @@
                     .col-xs-12
                       .form-group.pull-left
                         %label.h4
-                          %b Description:
+                          %b= t('donation.caption.pdf.description')
                         %label.h4
                           = @donation.description

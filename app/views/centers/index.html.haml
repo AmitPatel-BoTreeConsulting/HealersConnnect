@@ -1,10 +1,10 @@
 .page-header
   %h1
-    Centers
+    = t('center.caption.centers')
 .row
   .col-xs-12
     .btn-group.pull-right
-      = link_to 'New Center', new_center_path, class: 'btn btn-sm btn-success'
+      = link_to t('center.caption.new_center'), new_center_path, class: 'btn btn-sm btn-success', title: t('center.caption.new_center')
 .row
   .space-6
   .col-xs-12
@@ -12,10 +12,10 @@
       %table.table.table-striped.table-bordered.table-hover
         %thead
           %tr
-            %th{width: '7%'} Sr No.
-            %th Name
-            %th{width: '25%'} Location
-            %th.text-center{width: '10%'} Manage
+            %th{width: '7%'} #{t('common.caption.serial_number')}
+            %th #{t('common.caption.name')}
+            %th{width: '25%'} #{t('center.caption.location')}
+            %th.text-center{width: '10%'} #{t('common.caption.manage')}
         - if @centers.present?
           - @centers.each_with_index do |center, index|
             %tr.info
@@ -27,7 +27,7 @@
                 = center.location
               %td.text-center<
                 .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
-                  = link_to(edit_center_path(center), class: 'green') do
+                  = link_to(edit_center_path(center), class: 'green', title: t('common.caption.title.edit')) do
                     %i.icon-pencil.bigger-130
         - else
           %tr

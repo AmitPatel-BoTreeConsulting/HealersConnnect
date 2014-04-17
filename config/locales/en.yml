@@ -6,6 +6,21 @@ en:
     not_permitted: "You are not authorized to access this page."
   center:
     caption:
+      centers: 'Centers'
+      foundation: 'Foundation'
+      location: 'Location'
+      address: 'Address'
+      phone_1: 'Phone 1'
+      phone_2: 'Phone 2'
+      mobile: 'Mobile'
+      email: 'Email'
+      new_center: 'New Center'
+      edit_center: 'Edit Center'
+      button:
+        update: 'Update Center'
+        new: 'Create Center'
+      placeholder:
+        location: 'Enter a Location'
     message:
       success:
         center_created: "Center '%{center}' created successfully."
@@ -27,6 +42,9 @@ en:
       donation: 'Donation'
       review_donation: 'Review Donation'
       course_category: 'Course Category'
+      button:
+        update: 'Update Course'
+        new: 'Create Course'
     message:
       course_created: "Course '%{course}' created successfully."
       course_updated: "Course '%{course}' updated successfully."
@@ -55,6 +73,11 @@ en:
       end_date: 'End Date'
       register: 'Register'
       view_registrations: 'View Registrations'
+      title:
+        edit: 'Edit'
+      button:
+        reset: 'Reset'
+        cancel: 'Cancel'
   instructor:
     caption:
       button:
@@ -89,11 +112,37 @@ en:
       header:
         index: 'Workshops'
         new: 'New Workshop'
-        edit: 'Edit Workshop' 
+        edit: 'Edit Workshop'
   donation:
-    captions:
+    caption:
+      receipt_no: 'Receipt No.:'
+      donations: 'Donations'
+      name: 'Donar Name'
+      email: 'Donar Email'
+      donation_type: 'Donation Type'
+      center: 'Center'
+      for_center_radio: 'For Center'
+      for_food_for_hungry_radio: 'For Food for Hungry'
       add_donation_btn: "Add Donation"
+      center_select_tag: 'center'
+      center_select_tag_prompt: '--Please select--'
+      received_by: 'Received By'
+      amount: 'Amount'
+      pdf:
+        title: 'Donation Receipt'
+        receipt_no: 'Receipt Number:'
+        name: 'Name:'
+        amount: 'Amount'
+        received_by: 'Received By:'
+        donation_type: 'Donation Type:'
+        center: 'Center:'
+        description: 'Description:'
+      button:
+        new: 'Create Donation'
+      title:
+        save_as_pdf: 'Save as PDF'
     message:
+      no_donations_found: 'No donations found'
       success:
         donor_notification: 'Donation created successfully.'
   mailer:
