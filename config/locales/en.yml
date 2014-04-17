@@ -196,7 +196,7 @@ en:
         description: 'Description:'
         email: 'Email:'
       button:
-        new: 'Create Donation'
+        new: 'New Donation'
       title:
         save_as_pdf: 'Save as PDF'
     message:
