@@ -31,4 +31,12 @@ module RegistrationsHelper
     end
     css_class
   end
+
+  def url_for_registration_form(registration, workshop)
+    if registration.new_record?
+      workshop_registrations_path(workshop)
+    else
+      workshop_registration_path(id: registration, workshop_id: workshop)
+    end
+  end
 end

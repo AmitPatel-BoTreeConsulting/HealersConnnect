@@ -4,15 +4,19 @@ class ApplicationController < ActionController::Base
 
   protected
   def after_sign_in_path_for(resource)
-    registrations_path(status: 'confirmed')
+    if current_user.has_permission?(:registrations)
+      workshops_path
+    else
+      root_path
+    end
   end
 
   private
   def layout_for_signin
     if devise_controller?
-      "auth"
+      'auth'
     else
-      "application"
+      'application'
     end
   end
 
@@ -21,9 +25,25 @@ class ApplicationController < ActionController::Base
     access_denied_redirect(msg)
   end
 
-  def required_super_admin_or_accountant
-    msg = (current_user.is_super_admin_or_accountant? ? '' : t('permissions.not_permitted'))
+  def require_super_admin
+    msg = (current_user.is_super_admin? ? '' : t('permissions.not_permitted'))
     access_denied_redirect(msg)
+  end
+
+  def require_center_admin
+    msg = (current_user.is_center_admin? ? '' : t('permissions.not_permitted'))
+    access_denied_redirect(msg)
+  end
+
+  def required_accountant
+    msg = (current_user.is_accountant? ? '' : t('permissions.not_permitted'))
+    access_denied_redirect(msg)
+  end
+
+  def required_access
+    unless current_user.has_permission?(params[:controller].to_sym)
+      access_denied_redirect(t('permissions.not_permitted'))
+    end
   end
 
   def access_denied_redirect(msg)
@@ -31,4 +51,5 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, flash: { error: msg }
     end
   end
+
 end

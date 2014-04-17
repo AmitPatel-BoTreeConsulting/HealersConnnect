@@ -1,10 +1,10 @@
 class CreateDonations < ActiveRecord::Migration
   def change
     create_table :donations do |t|
-      t.string :donar_name
-      t.string :donar_email
+      t.string :donor_name
+      t.string :donor_email
       t.string :receipt_number
-      t.integer :donation_type, :limit => 1
+      t.integer :donation_type, limit: 1
       t.text :description
       t.references :center
       t.references :user

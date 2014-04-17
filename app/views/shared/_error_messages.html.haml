@@ -1,5 +1,8 @@
 - unless target.nil?
   - if target.errors.any?
-    %h5.text-error= "#{pluralize(target.errors.count, 'error')} found:"
-    - target.errors.full_messages.each do |msg|
-      %p.text-error= msg
+    .row.flash_msg
+      - target.errors.full_messages.each do |msg|
+        .text-center.alert.alert-danger.margin-bottom-10
+          %button.close{'data-dismiss' => 'alert', type: 'button'} &times;
+          %i{ class: 'icon-remove' }
+          = msg

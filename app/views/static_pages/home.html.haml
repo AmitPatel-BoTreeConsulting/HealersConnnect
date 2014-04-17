@@ -5,11 +5,9 @@
       %small
         %i.icon-double-angle-right
         27 April, 2014 @ GMCKS Pranic Healing Center, Ahmedabad
-  .space-6
-  .row
-    .col-xs-12.align-center
-      = link_to 'Register', new_registration_path, class: 'btn btn-success'
-  .space-6
+  / .row
+  /   .col-xs-12.align-center
+  /     = link_to 'Register', new_registration_path, class: 'btn btn-success'
   -#.row
   -#  .col-xs-12.lead{style: 'text-align:justify'}
   -#    %p
@@ -41,10 +39,28 @@
   -#            Lakshmi Mantra - Manifesting Abundance & Prosperity
   -#    %p
   -#      = link_to 'Registration', new_registration_path, class: 'btn btn-success'
-  .row
-    .col-xs-12.align-center
-      = image_tag 'hinduism.jpg'
+  / .row
+  /   .col-xs-12.align-center
+  /     = image_tag 'hinduism.jpg'
   .space-6
   .row
-    .col-xs-12.align-center
-      = link_to 'Register', new_registration_path, class: 'btn btn-success'
+    .col-xs-12
+      .table-responsive
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th{width: '7%'} #{t('common.caption.serial_number')}
+              %th #{t('common.caption.course')}
+              %th #{t('common.caption.instructor')}
+              %th.text-center #{t('common.caption.center')}
+              %th.text-center #{t('common.caption.start_date')}
+              %th.text-center #{t('common.caption.end_date')}
+              %th.text-center #{t('common.caption.register')} 
+          - if @workshops.present?
+            = render :partial => 'workshops/workshop_registration_list', collection: @workshops, as: :workshop
+          - else
+            %tr
+              %td{colspan: 7}
+                .text-center
+                  %h3
+                    = t('workshop.message.no_workshop_active')

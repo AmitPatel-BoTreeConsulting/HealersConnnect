@@ -1,24 +1,20 @@
 class Registration < ActiveRecord::Base
-  attr_accessible :first_name, :middle_name, :last_name, :birth_date, :education, :occupation, :gender, :married,
-                  :address, :mobile,  :telephone, :email, :location, :long, :lat, :workshop_place, :workshop_dated,
-                  :workshop_instructor, :payment_type_id, :fresher, :cheque_no, :bank_name, :cheque_date, :registration_date
-
-  validates_presence_of :first_name, :middle_name, :last_name, :birth_date, :education, :occupation,
-                        :address, :workshop_place, :workshop_dated, :workshop_instructor
-
-  validates :email, presence: true, :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
-
   belongs_to :payment_type
+  belongs_to :user
+  belongs_to :workshop
+
+  has_one :user_profile
+
+  # accepts_nested_attributes_for :workshop
+  # attr_accessible :workshop_attributes
+
+  accepts_nested_attributes_for :user_profile
+  attr_accessible :user_profile_attributes
 
   REGISTRATION_STATUSES = %w(confirmed cancelled)
 
-  def name
-    "#{first_name} #{middle_name} #{last_name}"
-  end
-
-  def marital_status
-    married? ? 'Married' : 'Unmarried'
-  end
+  attr_accessible :payment_type_id, :fresher, :cheque_no, :workshop_id
+  attr_accessible :bank_name, :cheque_date, :registration_date
 
   def course_attempt
     fresher? ? 'Fresher' : 'Review'
@@ -27,10 +23,14 @@ class Registration < ActiveRecord::Base
   def self.search(params)
     filter_status = params[:status]
     if filter_status.present? && REGISTRATION_STATUSES.include?(filter_status)
-      where(active: filter_status == 'confirmed').order(:registration_date)
+      where(active: filter_status == 'confirmed', workshop_id: params[:workshop_id]).order(:registration_date)
     else
-      order(:registration_date)
+      where(workshop_id: params[:workshop_id]).order(:registration_date)
     end
+  end
+
+  def get_user_profile
+    user_profile || user.user_profile
   end
 
   # Export registration list

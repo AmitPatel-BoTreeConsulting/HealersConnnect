@@ -1,16 +1,17 @@
-- gender =  @registration.gender == 'M' ? 'Male' : 'Female'
-- marital_status = @registration.marital_status == true ? 'Married' : 'Unmarried'
+- gender =  @profile.gender == 'M' ? 'Male' : 'Female'
+- marital_status = @profile.marital_status ? 'Married' : 'Unmarried'
+- # workshop = @registration.workshop
 !!!
 %html
   %head
-    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
-    = wicked_pdf_stylesheet_link_tag "pdf/ace.min"
-    = wicked_pdf_stylesheet_link_tag "pdf/bootstrap"
-    = wicked_pdf_stylesheet_link_tag "pdf/custom"
+    %meta{'http-equiv' => 'Content-Type', content: 'text/html; charset=utf-8'}
+    = wicked_pdf_stylesheet_link_tag 'pdf/ace.min'
+    = wicked_pdf_stylesheet_link_tag 'pdf/bootstrap'
+    = wicked_pdf_stylesheet_link_tag 'pdf/custom'
   %body
     #wrap
       %header
-      %main{:role => "main"}
+      %main{role: 'main'}
         .main-container
           .main-container-inner
             .main-content
@@ -27,28 +28,30 @@
                     %h3
                       %b Name of Course:  ARCHIEVING ONENESS WITH THE HIGHER SOUL
                 .space-28
-                .row
-                  .col-xs-8
-                    .form-group
-                      %label.h4
-                        %b Trainer:
-                      %label.h4= @registration.workshop_instructor.capitalize
-                  .col-xs-4
-                    .form-group.pull-left
-                      %label.h4
-                        %b Certificate No.:
-                        %u
+                - # uncomment when enabling workshop
+                - if false
+                  .row
+                    .col-xs-8
+                      .form-group
+                        %label.h4
+                          %b Trainer:
+                        %label.h4= workshop.workshop_instructor.capitalize
+                    .col-xs-4
+                      .form-group.pull-left
+                        %label.h4
+                          %b Certificate No.:
+                          %u
                 .row
                   .col-xs-8
                     .form-group
                       %label.h4
                         %b Name :
-                      %label.h4= @registration.name.titleize
+                      %label.h4= @profile.name.titleize
                   .col-xs-4
                     .form-group
                       %label.h4
                         %b Date Of Birth :
-                      %label.h4= @registration.birth_date.strftime(Settings.defaults.date_format_in_views)
+                      %label.h4= @profile.birth_date.strftime(Settings.defaults.date_format_in_views)
                 .row
                   .col-xs-8
                     .form-group.text-left
@@ -65,62 +68,64 @@
                     .form-group
                       %label.h4
                         %b Education Qualification:
-                      %label.h4= @registration.education
+                      %label.h4= @profile.education
                   .col-xs-4
                     .form-group.pull-left
                       %label.h4
                         %b Occupation :
-                      %label.h4= @registration.occupation
+                      %label.h4= @profile.occupation
                 .row
                   .col-xs-12
                     .form-group
                       %label.h4
                         %b Residential Address / Postal Address:
                       %br/
-                      %label.h4= simple_format(@registration.address)
+                      %label.h4= simple_format(@profile.address)
                 .row
                   .col-xs-8
                     .form-group
                       %label.h4
                         %b Mobile :
-                      %label.h4= @registration.mobile
+                      %label.h4= @profile.mobile
                   .col-xs-4
                     .form-group.pull-left
                       %label.h4
                         %b Res/Office Tel. :
-                      %label.h4= @registration.telephone
+                      %label.h4= @profile.telephone
                 .row
                   .col-xs-12
                     .form-group
                       %label.h4
                         %b E-mail :
-                      %label.h4= @registration.email
-                .row
-                  .col-xs-12
-                    .form-group
-                      %label.h4
-                        %b Details of Pranic Healing Courses you have taken (as applicable):
-                      %table{border: "1", style: 'width: 100%;'}
-                        %thead
-                          %tr{style: 'height: 30px;'}
-                            %th.h4.text-center
-                              %b Course
-                            %th.h4.text-center
-                              %b Place Conducted
-                            %th.h4.text-center
-                              %b Year & Date
-                            %th.h4.text-center
-                              %b Name of Trainer
-                        %tbody
-                          %tr{style: 'height: 30px;'}
-                            %td.h4.text-center<
-                              Basic Pranic Healing
-                            %td.h4.text-center<
-                              = @registration.workshop_place.capitalize
-                            %td.h4.text-center<
-                              = @registration.workshop_dated
-                            %td.h4.text-center<
-                              = @registration.workshop_instructor.capitalize
+                      %label.h4= @profile.email
+                - # uncomment when enabling Workshop
+                - if false
+                  .row
+                    .col-xs-12
+                      .form-group
+                        %label.h4
+                          %b Details of Pranic Healing Courses you have taken (as applicable):
+                        %table{border: '1', style: 'width: 100%;'}
+                          %thead
+                            %tr{style: 'height: 30px;'}
+                              %th.h4.text-center
+                                %b Course
+                              %th.h4.text-center
+                                %b Place Conducted
+                              %th.h4.text-center
+                                %b Year & Date
+                              %th.h4.text-center
+                                %b Name of Trainer
+                          %tbody
+                            %tr{style: 'height: 30px;'}
+                              %td.h4.text-center<
+                                Basic Pranic Healing
+                              %td.h4.text-center<
+                                = workshop.workshop_place.capitalize
+                              %td.h4.text-center<
+                                = workshop.workshop_dated
+                              %td.h4.text-center<
+                                = workshop.workshop_instructor.capitalize
                 .row
                   .col-xs-12
                     %h3.text-center

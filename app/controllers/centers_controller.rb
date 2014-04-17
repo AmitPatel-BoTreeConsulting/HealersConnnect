@@ -1,6 +1,7 @@
 class CentersController < ApplicationController
   before_filter :collect_foundations, only: [:new, :create, :edit, :update]
   before_filter :find_center, only: [:edit, :update]
+  before_filter :required_access, only: [:index, :new, :create, :edit, :update]
 
   def index
   @centers = Center.page(params[:page]).per(Settings.pagination.per_page)

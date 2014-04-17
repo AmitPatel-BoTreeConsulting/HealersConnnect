@@ -2,10 +2,10 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
   %body
     %h
-      Hi #{@donation.donar_name.capitalize},
+      Hi #{@donation.donor_name.capitalize},
     %br/
     %br/
     %p
@@ -17,11 +17,11 @@
       %b Receipt Number:
       #{@donation.receipt_number}
     %p
-      %b Donar Name:
-      #{@donation.donar_name.capitalize}
+      %b Donor Name:
+      #{@donation.donor_name.capitalize}
     %p
-      %b Donar Email:
-      #{@donation.donar_email}
+      %b Donor Email:
+      #{@donation.donor_email}
     %p
       %b Center:
       #{@center_name}

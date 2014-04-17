@@ -1,7 +1,7 @@
 class Role < ActiveRecord::Base
   SUPER_ADMIN = 'super_admin'
   CENTER_ADMIN = 'center_admin'
-  TEACHER = 'teacher'
+  INSTRUCTOR = 'instructor'
   HEALER = 'healer'
   ACCOUNTANT = 'accountant'
   FOUNDATION_ADMIN = 'foundation_admin'
@@ -15,9 +15,10 @@ class Role < ActiveRecord::Base
 
   scope :super_admins, where(alias: SUPER_ADMIN)
   scope :center_admins, where(alias: CENTER_ADMIN)
-  scope :teachers, where(alias: TEACHER)
+  scope :instructors, where(alias: INSTRUCTOR)
   scope :healers, where(alias: HEALER)
   scope :accountants, where(alias: ACCOUNTANT)
+  scope :foundation_admins, where(alias: FOUNDATION_ADMIN)
 
   class << self
     def super_admin
@@ -30,6 +31,14 @@ class Role < ActiveRecord::Base
 
     def healer
       healers.first if healers
+    end
+
+    def foundation_admin
+      foundation_admins.first if foundation_admins
+    end
+
+    def center_admin
+      center_admins.first if center_admins
     end
 
   end

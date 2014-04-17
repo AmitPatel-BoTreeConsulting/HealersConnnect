@@ -26,6 +26,13 @@ group :development do
   gem 'rails_layout'
 end
 
+group :development, :test do
+  # testing frameworks for application
+  gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl_rails'
+  gem 'faker', '~> 1.3.0'
+end
+
 # Console improvement
 gem 'pry-rails'
 
@@ -36,11 +43,8 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem "paperclip", "~> 3.4.2"
 gem 'ckeditor_rails'
-
+gem 'friendly_id', '~> 4.0.10'
 gem 'delayed_job_active_record'
 gem 'daemons'
-gem 'whenever', :require => false
-gem "google_visualr", ">= 2.1"
-
-# Generate Unique Donation Sequence Number
 gem 'sequenced'
+gem "google_visualr", ">= 2.1"

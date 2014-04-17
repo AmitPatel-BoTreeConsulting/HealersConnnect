@@ -20,11 +20,11 @@
                   %fieldset
                     %label.block.clearfix
                       %span.block.input-icon.input-icon-right
-                        = f.text_field :email, autofocus: true, placeholder: "Email", class: "form-control"
+                        = f.text_field :email, autofocus: true, placeholder: 'Email', class: 'form-control'
                         %i.icon-envelope
                     .clearfix
                       %label.inline
-                      = f.submit "Send Me", class: "width-35 pull-right btn btn-sm btn-danger"
+                      = f.submit 'Send Me', class: 'width-35 pull-right btn btn-sm btn-danger'
           .toolbar.center
             = link_to(signin_path, class: 'back-to-login-link') do
               = t('admin.captions.back_to_signin')

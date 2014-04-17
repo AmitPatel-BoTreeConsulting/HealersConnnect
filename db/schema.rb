@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140414075005) do
+ActiveRecord::Schema.define(:version => 20140415115130) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "centers", ["foundation_id"], :name => "index_centers_on_foundation_id"
+  add_index "centers", %w(foundation_id), name: 'index_centers_on_foundation_id'
 
-  create_table "course_categories", :force => true do |t|
+  create_table 'course_categories', force: true do |t|
     t.string   "name"
     t.string   "alias"
     t.datetime "created_at", :null => false
@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "course_instructors", ["course_id"], :name => "index_course_instructors_on_course_id"
-  add_index "course_instructors", ["instructor_id", "course_id"], :name => "index_course_instructors_on_instructor_id_and_course_id", :unique => true
-  add_index "course_instructors", ["instructor_id"], :name => "index_course_instructors_on_instructor_id"
+  add_index "course_instructors", %w(course_id), name: 'index_course_instructors_on_course_id'
+  add_index "course_instructors", %w(instructor_id course_id), name: 'index_course_instructors_on_instructor_id_and_course_id', unique: true
+  add_index "course_instructors", %w(instructor_id), :name => "index_course_instructors_on_instructor_id"
 
-  create_table "courses", :force => true do |t|
+  create_table "courses", force: true do |t|
     t.string   "name"
     t.string   "alias"
     t.string   "eligibility"
@@ -63,9 +63,11 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "status",              :default => true
+    t.string   "slug"
   end
 
-  add_index "courses", ["course_category_id"], :name => "index_courses_on_course_category_id"
+  add_index "courses", %w(course_category_id), name: 'index_courses_on_course_category_id'
+  add_index "courses", %w(slug), name: 'index_courses_on_slug', unique: true
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0, :null => false
@@ -81,11 +83,11 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
     t.datetime "updated_at",                :null => false
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+  add_index "delayed_jobs", %w(priority run_at), :name => "delayed_jobs_priority"
 
   create_table "donations", :force => true do |t|
-    t.string   "donar_name"
-    t.string   "donar_email"
+    t.string   "donor_name"
+    t.string   "donor_email"
     t.string   "receipt_number"
     t.integer  "donation_type",  :limit => 2
     t.text     "description"
@@ -97,9 +99,9 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
     t.integer  "sequential_id"
   end
 
-  add_index "donations", ["center_id"], :name => "index_donations_on_center_id"
-  add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
-  add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
+  add_index "donations", %w(center_id), :name => "index_donations_on_center_id"
+  add_index "donations", %w(donation_type), :name => "index_donations_on_donation_type"
+  add_index "donations", %w(received_by_user_id), :name => "index_donations_on_received_by_user_id"
 
   create_table "foundations", :force => true do |t|
     t.string   "name"
@@ -125,34 +127,21 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
   end
 
   create_table "registrations", :force => true do |t|
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.date     "birth_date"
-    t.string   "gender"
-    t.boolean  "married"
-    t.string   "education"
-    t.string   "occupation"
-    t.text     "address"
-    t.string   "mobile"
-    t.string   "telephone"
-    t.string   "email"
-    t.string   "location"
-    t.float    "lat"
-    t.float    "long"
-    t.string   "workshop_place"
-    t.string   "workshop_dated"
-    t.string   "workshop_instructor"
-    t.boolean  "fresher",             :default => true
+    t.boolean  "fresher",           :default => true
     t.string   "cheque_no"
     t.string   "bank_name"
     t.date     "cheque_date"
     t.integer  "payment_type_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.date     "registration_date"
-    t.boolean  "active",              :default => true
+    t.boolean  "active",            :default => true
+    t.integer  "user_id"
+    t.integer  "workshop_id"
   end
+
+  add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
+  add_index "registrations", ["workshop_id"], :name => "index_registrations_on_workshop_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -160,6 +149,31 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "user_profiles", :force => true do |t|
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.date     "birth_date"
+    t.string   "education"
+    t.string   "occupation"
+    t.string   "gender"
+    t.boolean  "married"
+    t.text     "address"
+    t.string   "mobile"
+    t.string   "telephone"
+    t.string   "email"
+    t.string   "location"
+    t.float    "long"
+    t.float    "lat"
+    t.integer  "registration_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "user_profiles", %w(registration_id), :name => "index_user_profiles_on_registration_id"
+  add_index "user_profiles", %w(user_id), :name => "index_user_profiles_on_user_id"
 
   create_table "user_roles", :force => true do |t|
     t.integer  "role_id"
@@ -169,10 +183,10 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "user_roles", ["center_id"], :name => "index_user_roles_on_center_id"
-  add_index "user_roles", ["role_id", "user_id", "center_id"], :name => "index_user_roles_on_role_id_and_user_id_and_center_id", :unique => true
-  add_index "user_roles", ["role_id"], :name => "index_user_roles_on_role_id"
-  add_index "user_roles", ["user_id"], :name => "index_user_roles_on_user_id"
+  add_index "user_roles", %w(center_id), :name => "index_user_roles_on_center_id"
+  add_index "user_roles", %w(role_id user_id center_id), :name => "index_user_roles_on_role_id_and_user_id_and_center_id", :unique => true
+  add_index "user_roles", %w(role_id), :name => "index_user_roles_on_role_id"
+  add_index "user_roles", %w(user_id), :name => "index_user_roles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -189,7 +203,30 @@ ActiveRecord::Schema.define(:version => 20140414075005) do
     t.datetime "updated_at",                             :null => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", %w(email), :name => "index_users_on_email", :unique => true
+  add_index "users", %w(reset_password_token), :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "workshop_sessions", :force => true do |t|
+    t.integer  "workshop_id"
+    t.datetime "session_start"
+    t.datetime "session_end"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "workshops", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "instructor_id"
+    t.integer  "assistant_instructor_id"
+    t.integer  "center_id"
+    t.integer  "fees_on_session"
+    t.integer  "fees_before_session"
+    t.integer  "fees_after_session"
+    t.integer  "fees_on_rejoining"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
 
 end
