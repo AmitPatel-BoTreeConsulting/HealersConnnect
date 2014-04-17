@@ -170,3 +170,11 @@ en:
       courses: 'Courses'
       instructors: 'Instructors'
       centers: 'Centers'
+  sign_in:
+    caption:
+      remember_me: 'Remember Me'
+    button:
+      login: 'Login'
+    placeholder:
+      username_or_email: 'Username or Email'
+      password: 'Password'
