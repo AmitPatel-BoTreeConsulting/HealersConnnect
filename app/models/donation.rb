@@ -42,11 +42,11 @@ class Donation < ActiveRecord::Base
         if user_id.present? and user_id.size < user_id[0].split(' ').size
           user_id = user_id[0].split(' ')
         end
-        with_donation_type_donations = Donation.where('donation_type in (?)', (donation_type.present? ? donation_type : []))
-        with_user_donations = Donation.joins(:user).where(users: { id: (user_id.present? ? user_id : []) })
-        donations = with_donation_type_donations + with_user_donations
+        donations = joins(:user).where("user_id in (?) OR donation_type in (?)",
+                                                (user_id.present? ? user_id : []),
+                                                (donation_type.present? ? donation_type : []))
       else
-        donations = Donation.all
+        donations = all
       end
       return donations
   end
