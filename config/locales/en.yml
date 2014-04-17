@@ -12,8 +12,6 @@ en:
       address: 'Address'
       phone_1: 'Phone 1'
       phone_2: 'Phone 2'
-      mobile: 'Mobile'
-      email: 'Email'
       new_center: 'New Center'
       edit_center: 'Edit Center'
       button:
@@ -61,6 +59,8 @@ en:
       name: 'Name'
       description: 'Description'
       manage: 'Manage'
+      mobile: 'Mobile'
+      email: 'Email'
       delete: 'Delete'
       deactivate: 'Deactivate'
       activate: 'Activate'
@@ -80,13 +80,12 @@ en:
         cancel: 'Cancel'
   instructor:
     caption:
+      eligibilities: 'Eligibilities'
       button:
-        save: 'Save'
-        update: 'Update'
-        reset: 'Reset'
-        cancel: 'Cancel'
-        new : 'New Instructor'
+        update: 'Update Instructor'
+        new: 'Create Instructor'
     message:
+      remove: 'Are you sure you want to remove this instructor?'
       success:
         created: 'Instructor created successfully.'
         updated: "Instructor updated successfully."
@@ -150,6 +149,8 @@ en:
     mailer:
       paragraph_1: 'Thank you for the donation.'
       paragraph_2: 'Please find donation details are as below.'
+      signature_text_thnak_you: 'Thank you,'
+      signature_text_team: 'Pranic Healing Team'
   mailer:
     send_donation_notification_to_donor:
       subject: 'Donation Notification'
