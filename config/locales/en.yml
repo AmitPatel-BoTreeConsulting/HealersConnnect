@@ -98,7 +98,15 @@ en:
         edit: 'Edit Instructor'
   workshop:
     caption:
+      instructor: 'Instructor'
+      assistant_instructor: 'Assistant instructor'
       workshops: 'Workshops'
+      fees_after_session: 'Fees after session'
+      fees_before_session: 'Fees before session'
+      fees_on_session: 'Fees on session'
+      fees_on_rejoining: 'Fees on rejoining'
+      button:
+        new: 'Create Workshop'
     message:
       workshop_created: "Workshop '%{workshop}' created successfully."
       workshop_updated: "Workshop '%{workshop}' updated successfully."

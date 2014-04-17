@@ -6,39 +6,40 @@
     = form_for @workshop,  html: {class: 'form-horizontal', role: 'form'} do |f|
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Course
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.course')}
         .col-sm-9
           = f.collection_select :course_id, Course.all, :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Instructor
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('workshop.caption.instructor')}
         .col-sm-9
-          = f.collection_select :instructor_id, Instructor.all, :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' } 
+          = f.collection_select :instructor_id, Instructor.all, :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Assistant instructor
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('workshop.caption.assistant_instructor')}
         .col-sm-9
           = f.collection_select :assistant_instructor_id, Instructor.all, :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Center
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('donation.caption.center')}
         .col-sm-9
           = f.collection_select :center_id, Center.all, :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Fees after session
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'}  #{t('workshop.caption.fees_after_session')}
         .col-sm-9
           = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Fees before session
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('workshop.caption.fees_before_session')}
         .col-sm-9
           = f.number_field :fees_before_session, class: 'col-xs-10 col-sm-5'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Fees on session
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('workshop.caption.fees_on_session')}
         .col-sm-9
           = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Fees on rejoining
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('workshop.caption.fees_on_rejoining')}
         .col-sm-9
-          = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5'             
+          = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5'
 
       .clearfix
         .col-md-offset-3.col-md-9
-          = f.submit class: 'btn btn-info'
-          = f.submit 'Reset', type: 'reset', class: 'btn'
+          = f.submit t('workshop.caption.button.new'), class: 'btn btn-info', title: t('workshop.caption.button.new')
+          = f.submit t('common.caption.button.reset'), type: 'reset', class: 'btn', title: t('common.caption.button.reset')
+          = link_to t('common.caption.button.cancel'), workshops_path, class: 'btn', title: t('common.caption.button.cancel')
