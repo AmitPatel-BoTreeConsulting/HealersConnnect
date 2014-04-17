@@ -62,4 +62,22 @@ module ApplicationHelper
 
   end
 
+  def render_css_class(name,class_is)
+    css_class = ''
+    msg_icon_class = ''
+    case name
+    when :error, :redirect_error
+      css_class = 'alert-danger'
+      msg_icon_class = 'icon-remove'
+    when :notice, :redirect_notice
+      css_class = 'alert-success'
+      msg_icon_class = 'icon-ok'
+    when :alert
+      css_class = 'alert-danger'
+      msg_icon_class = 'icon-remove'
+    else
+    end
+    return css_class if class_is == :css_class
+    return msg_icon_class if class_is == :msg_icon
+  end
 end

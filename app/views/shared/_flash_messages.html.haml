@@ -1,20 +1,7 @@
 - unless flash.empty?
   .row.flash_msg
     - flash.each do |name, message|
-      - css_class = ''
-      - msg_icon_class = ''
-      - case name
-      - when :error, :redirect_error
-        - css_class = 'alert-danger'
-        - msg_icon_class = 'icon-remove'
-      - when :notice, :redirect_notice
-        - css_class = 'alert-success'
-        - msg_icon_class = 'icon-ok'
-      - when :alert
-        - css_class = 'alert-danger'
-        - msg_icon_class = 'icon-remove'
-      - else
-      %div{ class: "text-center alert #{css_class}" }
+      %div{ class: "text-center alert #{render_css_class(name,:css_class)}" }
         %button.close{'data-dismiss' => 'alert', type: 'button'} &times;
-        %i{ class: "#{msg_icon_class}" }
+        %i{ class: "#{render_css_class(name,:msg_icon)}" }
         = message
