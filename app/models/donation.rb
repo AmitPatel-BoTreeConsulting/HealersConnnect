@@ -6,7 +6,7 @@ class Donation < ActiveRecord::Base
   acts_as_sequenced start_at: 1
 
   validates_presence_of :donor_name, :amount, :center_id
-  validates :donor_email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :donor_email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :amount, :numericality => true
 
   belongs_to :user
