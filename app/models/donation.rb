@@ -36,14 +36,6 @@ class Donation < ActiveRecord::Base
       donation_type = params[:donation_type].present? ? params[:donation_type].reject { |c| c.empty? } : []
       user_id = params[:user_id].present? ? params[:user_id].reject { |c| c.empty? } : []
       if donation_type.present? || user_id.present?
-        if donation_type.present?
-          modified_donation_type = donation_type[0].split(' ')
-          donation_type = modified_donation_type if donation_type.size < modified_donation_type.size
-        end
-        if user_id.present?
-          modified_user_id = user_id[0].split(' ')
-          user_id = modified_user_id if user_id.size < modified_user_id.size
-        end
         donations = joins(:user).where("user_id in (?) OR donation_type in (?)",
                                                 (user_id.present? ? user_id : []),
                                                 (donation_type.present? ? donation_type : []))
