@@ -47,6 +47,9 @@ en:
       checkbox_accept_vow: 'accept_vow'
       checkbox: 'I accept VOW OF SECRECY'
       payment_type: 'Payment Type'
+      confirm_registration_cancel: 'Are you sure you want to cancel the registration?'
+      confirm_registration_confirm: 'Are you sure you want to confirm the registration?'
+      confirm_registration_remove: 'Are you sure you want to remove this registration?'
       pdf:
         title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
         name_of_course: 'Name of Course :'
@@ -97,6 +100,8 @@ en:
         status_confirmed: 'confirmed'
         status_cancelled: 'Cancelled'
         status_all: 'All'
+        update: 'Update Registration'
+        new: 'Create Registration'
     page_content:
       header:
         index: 'Registrations'
@@ -157,6 +162,7 @@ en:
       button:
         reset: 'Reset'
         cancel: 'Cancel'
+        delete: 'Delete'
       link:
         forgot_my_password: 'I forgot my password'
         confirmation_instructions: "Didn't receive confirmation instructions?"
