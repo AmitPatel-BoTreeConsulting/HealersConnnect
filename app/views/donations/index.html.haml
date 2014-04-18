@@ -2,6 +2,8 @@
 .page-header
   %h1
     = t('donation.caption.donations')
+    .btn-group.pull-right.btn_reports_export_margin
+      = link_to(t('donation.caption.button.new'), new_donation_path, class: 'btn btn-success btn-sm',title: t('donation.caption.button.new'))
 .row
   .col-xs-12
     %ul.nav.nav-pills#registrations_container
@@ -14,34 +16,30 @@
         = link_to 'Yearly', donations_path(timeline: 'yearly')
       %li{class: active_donation_pill}
         = link_to 'All', donations_path
-    .btn-group.pull-right.btn_registration_new_margin
-      = link_to(t('donation.caption.button.new'), new_donation_path, class: 'btn btn-success btn-sm',title: t('donation.caption.button.new'))
+    - if @donations.present?
+      .btn-group.pull-right.btn_registration_new_margin
+        = form_tag(donations_path(format: :pdf), method: :get, target: "_blank", class: 'form-horizontal', id: 'donationExportPdfForm') do
+          = hidden_field_tag 'timeline', @timeline
+          = hidden_field_tag 'interactive', false
+          = hidden_field_tag 'donation[donation_type][]', @donation_params[:donation_type]
+          = hidden_field_tag 'donation[user_id][]', @donation_params[:user_id]
+          = link_to '#', id: 'export_donation', class: 'donation_export_link', title: t('donation.caption.title.export')  do
+            %i.icon-print.bigger-130
     .space-20
 - if @timeline.present?
   .row
     .col-xs-12
       = form_tag(search_donations_path, method: :post, class: 'form-horizontal', id: 'clientFormCaseMgrs', multipart: true) do
         = hidden_field_tag 'timeline', @timeline
-        .col-xs-5
+        .col-xs-12
           %label.margin-right-10
             = t('donation.caption.donation_type')
-          = select_tag("donation[donation_type][]", options_for_select([["For Center", '1'], ["For Food for Hungry", '2']],  @donation_params[:donation_type]), multiple: 'true', style: "display: none;", id: 'form-field-select-4', class: 'width-60 chosen-select')
-
-        .col-xs-5
-          %label.margin-right-10
+          = select_tag("donation[donation_type][]", options_for_select([["For Center", '1'], ["For Food for Hungry", '2']],  @donation_params[:donation_type]), multiple: 'true', style: "display: none;", id: 'form-field-select-4', class: 'width-30 chosen-select donation_search_fields')
+          %label.margin-right-10.margin-left-5
             = t('donation.caption.received_by')
           = received_by_dropdown(Donation.all, @donation_params)
-          = submit_tag "Search", class: 'btn btn-sm btn-primary no-radius text-center', title: 'Filter Cases'
+          = submit_tag t('donation.caption.button.search'), class: 'btn btn-sm btn-primary no-radius text-center donation_search_fields', title: t('donation.caption.button.search')
       .col-xs-2
-        - if @donations.present?
-          = form_tag(donations_path(format: :pdf), method: :get, target: "_blank", class: 'form-horizontal', id: 'clientFormCaseMgrs') do
-            = hidden_field_tag 'timeline', @timeline
-            = hidden_field_tag 'interactive', false
-            = hidden_field_tag 'donation[donation_type][]', @donation_params[:donation_type]
-            = hidden_field_tag 'donation[user_id][]', @donation_params[:user_id]
-            .row
-              .col-xs-12
-                = button_to 'Export', nil, class: 'btn btn-primary btn-sm pull-right'
   .space-20
 .row
   .col-xs-12
@@ -74,7 +72,7 @@
               %td
                 = donation.user.email
               %td.text-center<
-                = link_to(export_donation_pdf_path(donation, format: :pdf), target: '_blank', title: 'Save as PDF') do
+                = link_to(export_donation_pdf_path(donation, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do
                   %i.icon-print.bigger-130
         - else
           %tr
@@ -89,10 +87,15 @@
         = render_chart(@donation_chart, 'donation_chart')
 
 :javascript
-   $(".chosen-select").chosen();
-    $('#chosen-multiple-style').on('click', function(e){
-            var target = $(e.target).find('input[type=radio]');
-            var which = parseInt(target.val());
-            if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
-             else $('#form-field-select-4').removeClass('tag-input-style');
+  $(function(){
+    $(".chosen-select").chosen();
+        $('#chosen-multiple-style').on('click', function(e){
+                var target = $(e.target).find('input[type=radio]');
+                var which = parseInt(target.val());
+                if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+                 else $('#form-field-select-4').removeClass('tag-input-style');
+        });
+    $('#export_donation').on('click', function () {
+      $('#donationExportPdfForm').submit();
     });
+  });

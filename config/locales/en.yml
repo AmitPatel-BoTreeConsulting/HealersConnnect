@@ -229,10 +229,13 @@ en:
         center: 'Center:'
         description: 'Description:'
         email: 'Email:'
+        report_title: 'Report'
       button:
         new: 'New Donation'
+        search: 'Search'
       title:
         save_as_pdf: 'Save as PDF'
+        export: 'Export'
     message:
       no_donations_found: 'No donations found'
       success:

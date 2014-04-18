@@ -1,11 +1,5 @@
 .row
   .col-xs-12
-    - if @donation_chart.present?
-      .col-xs-10
-        = image_tag @donation_chart.uri
-.spacer15
-.row
-  .col-xs-12
     %table.table.table-striped.table-bordered.table-hover
       %thead
         %tr
@@ -36,3 +30,9 @@
           %td{colspan: 7}
             .text-center
               %h3= = t('course.message.no_donations_found')
+.spacer15
+.row.text-center
+  .col-xs-12
+    - if @donation_chart.present?
+      .col-xs-10
+        = image_tag @donation_chart.uri
