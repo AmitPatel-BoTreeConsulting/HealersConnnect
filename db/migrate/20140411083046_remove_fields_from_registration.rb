@@ -1,7 +1,7 @@
 class RemoveFieldsFromRegistration < ActiveRecord::Migration
   # small hack to bypass the model based error
   # mostly validations and attr_accessible related
-  # http://guides.rubyonrails.org/migrations.html#using-models-in-your-migrations
+  # guides.rubyonrails.org/migrations.html#using-models-in-your-migrations
   class Registration < ActiveRecord::Base
   end
 
@@ -12,16 +12,20 @@ class RemoveFieldsFromRegistration < ActiveRecord::Migration
   end
 
   class Workshop < ActiveRecord::Base
-    attr_accessible :workshop_dated, :workshop_instructor, :workshop_place, :registration_id
+    attr_accessible :workshop_dated, :workshop_instructor
+    attr_accessible :workshop_place, :registration_id
   end
 
   def up
     # Before droping columns transfers the data to 'UserProfile' and 'Workshop'
 
     # Only following attributes will be copied to UserProfile from Registration
-    user_profile_attr = %w( first_name middle_name last_name birth_date education occupation gender married address mobile telephone email location long lat registration_id )
+    user_profile_attr = %w( first_name middle_name last_name birth_date
+      education occupation gender married address mobile telephone email
+      location long lat registration_id )
     # Only following attributes will be copied to Workshop from Registration
-    workshop_attr = %w( workshop_place workshop_dated workshop_instructor registration_id )
+    workshop_attr = %w( workshop_place workshop_dated workshop_instructor
+      registration_id )
 
     # To ensure, Active Record's knowledge of the table structure is current before manipulating data
     Registration.reset_column_information
@@ -30,7 +34,7 @@ class RemoveFieldsFromRegistration < ActiveRecord::Migration
 
     # Used Transaction because we need to transfer the all records
     # or none in case of any error
-    puts "------------------Starting migration of data to UserProfile and Workshop from Registration"
+    puts '------------------Starting migration of data from Registration'
     ActiveRecord::Base.transaction do
       Registration.find_in_batches do |records_batch|
         records_batch.each do |registration|
@@ -38,16 +42,21 @@ class RemoveFieldsFromRegistration < ActiveRecord::Migration
           # registration_id will be the foreign key in UserProfile and Workshop
           registration_attr_map['registration_id'] = registration_attr_map['id']
 
-          # using create with bang because stop migration if any records fails to create
+          # using create with bang because to stop migration in case
+          # any records fails to create
           # to avoid data loss
-          UserProfile.create!(registration_attr_map.reject { |k, v| user_profile_attr.exclude?(k) })
-          Workshop.create!(registration_attr_map.reject { |k, v| workshop_attr.exclude?(k) })
+          UserProfile.create!(registration_attr_map.reject do |k, v|
+            user_profile_attr.exclude?(k)
+          end)
+          Workshop.create!(registration_attr_map.reject do |k, v|
+            workshop_attr.exclude?(k)
+          end)
         end
       end
     end
-    puts "------------------Completed migrating data to UserProfile and Workshop from Registration"
+    puts '------------------Completed migrating data to Registration'
 
-    # creating FK for user table 
+    # creating FK for user table
     add_column :registrations, :user_id, :integer
     add_index :registrations, :user_id
 
