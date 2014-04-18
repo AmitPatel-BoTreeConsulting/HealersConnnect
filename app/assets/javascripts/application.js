@@ -19,8 +19,8 @@
 //= require ace-elements.min
 //= require registration
 //= require courses
-// require ckeditor-jquery
-// require ckeditor/config
+//= require ckeditor-jquery
+//= require ckeditor/config
 //= require instructors
 //= require jsapi
 //= require donation
