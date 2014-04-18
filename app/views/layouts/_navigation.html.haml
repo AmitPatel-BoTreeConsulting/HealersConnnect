@@ -10,7 +10,7 @@
           - options.each do |option|
             = render_navigation_menu_option(option)
           %li
-            = link_to "Sign Out", signout_path
+            = link_to t('common.caption.sign_out'), signout_path
         - else
           %li
             = link_to t('common.caption.sign_in'), signin_path

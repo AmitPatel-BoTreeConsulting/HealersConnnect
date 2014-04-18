@@ -11,7 +11,7 @@
     = course.review_donation
   %td.text-center<
     .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
-      = link_to(edit_course_path(course), class: 'green') do
+      = link_to(edit_course_path(course), class: 'green', title: t('common.caption.title.edit')) do
         %i.icon-pencil.bigger-130
       - if course.status
         = link_to(deactivate_course_path(course), method: :put, data: { confirm: t('course.message.deactivate_confirm_message') }, title: t('common.caption.deactivate')) do

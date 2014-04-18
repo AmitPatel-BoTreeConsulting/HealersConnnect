@@ -23,3 +23,4 @@
 //= require ckeditor/config
 //= require instructors
 //= require jsapi
+//= require donation

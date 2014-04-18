@@ -4,40 +4,42 @@
   .row
     .col-xs-12
       .form-group
-        %label.col-xs-3.col-sm-3.control-label.no-padding-right Donor Name
+        %label.col-xs-3.col-sm-3.control-label.no-padding-right= t('donation.caption.name')
         .col-sm-9
           = f.text_field :donor_name, class: 'col-xs-6 margin-right-10'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Donor Email
+        %label.col-sm-3.control-label.no-padding-right= t('donation.caption.email')
         .col-sm-9
           = f.text_field :donor_email, class: 'col-xs-6 margin-right-10'
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Donation Type
+        %label.col-sm-3.control-label.no-padding-right= t('donation.caption.donation_type')
         .col-sm-9
           .control-group
             .radio
               %label
                 = f.radio_button :donation_type, 1, checked: true, class: 'ace'
-                %span.lbl For Center
+                %span.lbl= t('donation.caption.for_center_radio')
               %label
                 = f.radio_button :donation_type, 2, class: 'ace'
-                %span.lbl For Food for Hungry
+                %span.lbl= t('donation.caption.for_food_for_hungry_radio')
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Center
+        %label.col-sm-3.control-label.no-padding-right= t('donation.caption.center')
         .col-sm-9
-          = select_tag 'center', options_from_collection_for_select(@centers, :id, :location), class: 'dcol-xs-6 margin-right-10', name: 'donation[center_id]',  prompt: '--Please select--'
+          = select_tag t('donation.caption.center_select_tag'), options_from_collection_for_select(@centers, :id, :location), class: 'dcol-xs-6 margin-right-10', name: 'donation[center_id]',  prompt: t('donation.caption.center_select_tag_prompt')
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Amount (&#x20B9;)
+        %label.col-sm-3.control-label.no-padding-right
+          = t('donation.caption.amount')
+          (&#x20B9;)
         .col-sm-9
           = f.text_field :amount, class: 'col-xs-6 margin-right-10'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Description
+        %label.col-sm-3.control-label.no-padding-right= t('common.caption.description')
         .col-sm-9
           = f.text_area :description, rows: 4, class: 'col-xs-6 margin-right-10'
       .form-group
         %label.col-xs-3.col-sm-3.control-label.no-padding-right
         .col-xs-8
-          = submit_tag t('instructor.caption.button.save'), class: 'btn btn-primary btn-sm', title: t('instructor.caption.button.save')
-          = link_to('Cancel',donations_path , class: "btn btn-sm btn-grey btn-primary btn-primary", title: 'Cancel')
+          = submit_tag t('donation.caption.button.new'), class: 'btn btn-primary', title: t('donation.caption.button.new')
+          = link_to(t('common.caption.button.cancel'),donations_path , class: 'btn', title: t('common.caption.button.cancel'))

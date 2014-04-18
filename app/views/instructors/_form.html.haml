@@ -1,3 +1,6 @@
+- @instructor ||= Center.new
+- create_view = @instructor.new_record?
+- submit_btn_caption = ( create_view ? t('instructor.caption.button.new') : t('instructor.caption.button.update') )
 = form_for @instructor, html: { class: 'form-horizontal', role: 'form'} do |f|
   .row
     .col-xs-12.col-sm-12
@@ -6,26 +9,25 @@
   .row
     .col-xs-12
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Name
+        %label.col-sm-3.control-label.no-padding-right= t('common.caption.name')
         .col-sm-9
-          = f.text_field :name, placeholder: 'Name', class: 'col-xs-10 col-sm-5'
+          = f.text_field :name, class: 'col-xs-10 col-sm-5'
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Email
+        %label.col-sm-3.control-label.no-padding-right= t('common.caption.email')
         .col-sm-9
           = f.email_field :email, class: 'col-xs-10 col-sm-5'
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Mobile
+        %label.col-sm-3.control-label.no-padding-right= t('common.caption.mobile')
         .col-sm-9
           = f.telephone_field :mobile, class: 'col-xs-10 col-sm-5'
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right Eligibilities
+        %label.col-sm-3.control-label.no-padding-right= t('instructor.caption.eligibilities')
         .col-sm-9
           = f.collection_select :course_ids, Course.all, :id, :name, {}, multiple: true, prompt: false, id: 'form-field-select-4', class: 'instructor-chosen-select tag-input-style', data: { placeholder: ' ' }
       .clearfix
         .col-md-offset-3.col-md-9
-          = f.submit instructor_submit_button, class: 'btn btn-primary'
-          = f.submit t('instructor.caption.button.reset'), type: 'reset', class: 'btn'
-          = link_to t('instructor.caption.button.cancel'), instructors_path, class: 'btn'
+          = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', title: "#{submit_btn_caption}"
+          = link_to t('common.caption.button.cancel'), instructors_path, class: 'btn', title: t('common.caption.button.cancel')
