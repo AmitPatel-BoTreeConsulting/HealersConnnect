@@ -38,14 +38,14 @@
         .col-sm-9
           = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5'
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Workshop Start date
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('workshop.caption.start_date')}
         .col-sm-3
           .input-group
             = f.text_field :start_date, :value => @workshop.start_date.try(:strftime, "%d/%m/%Y") , id: 'id-date-picker-1', class: 'form-control date-picker'
             %span.input-group-addon
               %i.icon-calendar.bigger-110
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} Workshop End date
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('workshop.caption.end_date')}
         .col-sm-3
           .input-group
             = f.text_field :end_date, :value => @workshop.end_date.try(:strftime, "%d/%m/%Y") , id: 'id-date-picker-1', class: 'form-control date-picker'

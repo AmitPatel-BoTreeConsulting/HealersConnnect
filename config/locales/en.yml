@@ -194,6 +194,9 @@ en:
       fees_before_session: 'Fees before session'
       fees_on_session: 'Fees on session'
       fees_on_rejoining: 'Fees on rejoining'
+      start_date: ' Workshop Start date'
+      end_date: ' Workshop End date'
+
       button:
         new: 'Create Workshop'
     message:
