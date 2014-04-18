@@ -1,4 +1,3 @@
-- @donation_params ||= Donation.new
 .page-header
   %h1
     Donations
@@ -44,13 +43,13 @@
     - @donation_params[:donation_type].each do |donation_type|
       = hidden_field_tag 'donation[donation_type][]', donation_type
   - else
-    = hidden_field_tag 'donation[user_id][]', @donation_params[:donation_type]
+    = hidden_field_tag 'donation[user_id][]', ''
 
   - if @donation_params[:user_id].present?
     - @donation_params[:user_id].each do |user_id|
       = hidden_field_tag 'donation[user_id][]', user_id
   - else
-    = hidden_field_tag 'donation[user_id][]', @donation_params[:user_id]
+    = hidden_field_tag 'donation[user_id][]', ''
   .row
     .col-xs-12
       = button_to 'Export', nil, class: 'btn btn-primary btn-sm'
