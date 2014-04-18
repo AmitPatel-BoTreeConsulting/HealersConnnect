@@ -21,8 +21,18 @@
         = form_tag(donations_path(format: :pdf), method: :get, target: "_blank", class: 'form-horizontal', id: 'donationExportPdfForm') do
           = hidden_field_tag 'timeline', @timeline
           = hidden_field_tag 'interactive', false
-          = hidden_field_tag 'donation[donation_type][]', @donation_params[:donation_type]
-          = hidden_field_tag 'donation[user_id][]', @donation_params[:user_id]
+          - if @donation_params[:donation_type].present?
+            - @donation_params[:donation_type].each do |donation_type|
+              = hidden_field_tag 'donation[donation_type][]', donation_type
+          - else
+            = hidden_field_tag 'donation[user_id][]', ''
+
+          - if @donation_params[:user_id].present?
+            - @donation_params[:user_id].each do |user_id|
+              = hidden_field_tag 'donation[user_id][]', user_id
+          - else
+            = hidden_field_tag 'donation[user_id][]', ''
+
           = link_to '#', id: 'export_donation', class: 'donation_export_link', title: t('donation.caption.title.export')  do
             %i.icon-print.bigger-130
     .space-20
