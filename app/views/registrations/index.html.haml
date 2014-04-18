@@ -19,14 +19,14 @@
       %table#sample-table-2.table.table-striped.table-bordered.table-hover
         %thead
           %tr
-            %th{width: '5%'} Sr No.
-            %th{width: '27%'} Name
-            %th.text-center{width: '10%'} Mobile
-            %th.text-center{width: '10%'} Payment Type
-            %th.text-center{width: '10%'} Course Attempt
+            %th{width: '5%'} #{t('common.caption.serial_number')}
+            %th{width: '27%'} #{t('common.caption.name')}
+            %th.text-center{width: '10%'} #{t('common.caption.mobile')}
+            %th.text-center{width: '10%'} #t('registration.caption.payment_type')}
+            %th.text-center{width: '10%'} #t('registration.caption.course_attempt')}
             %th{width: '5%'} Gender
-            %th.text-center{width: '10%'} Marital Status
-            %th.text-center{width: '10%'} Registered On
+            %th.text-center{width: '10%'} #{t('registration.caption.marital_status')}
+            %th.text-center{width: '10%'} #t('registration.caption.registered_on')}
             %th.text-center{width: '10%'} Manage
         %tbody
           - @registrations.each_with_index do |registration, index|

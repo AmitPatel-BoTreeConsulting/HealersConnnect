@@ -2,6 +2,7 @@
 - @registration.user_profile ||= UserProfile.new
 - # @registration.workshop ||= Workshop.new
 - url = url_for_registration_form(@registration, @workshop)
+- text_field_class = 'col-xs-10 col-sm-5'
 
 = form_for @registration, url: url, html: { class: 'form-horizontal', role: 'form'} do |f|
   = f.hidden_field :workshop_id
@@ -56,37 +57,37 @@
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.education')
           .col-sm-9
-            = ff.text_field :education, class: 'col-xs-10 col-sm-5'
+            = ff.text_field :education, class: text_field_class
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.occupation')
           .col-sm-9
-            = ff.text_field :occupation, class: 'col-xs-10 col-sm-5'
+            = ff.text_field :occupation, class: text_field_class
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right{ for: 'form-input-readonly' }
             = t('registration.caption.residential_address')
           .col-sm-9
-            = ff.text_area :address, class: 'col-xs-10 col-sm-5', rows: 4
+            = ff.text_area :address, class: text_field_class, rows: 4
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.mobile')
           .col-sm-9
-            = ff.telephone_field :mobile, class: 'col-xs-10 col-sm-5'
+            = ff.telephone_field :mobile, class: text_field_class
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.telephone')
           .col-sm-9
-            = ff.telephone_field :telephone, class: 'col-xs-10 col-sm-5'
+            = ff.telephone_field :telephone, class: text_field_class
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.email')
           .col-sm-9
-            = ff.text_field :email, class: 'col-xs-10 col-sm-5'
+            = ff.text_field :email, class: text_field_class
         .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right
