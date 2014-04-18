@@ -13,7 +13,7 @@ class WorkshopsController < ApplicationController
     @workshop  = Workshop.new(params[:workshop])
     respond_to do |format|
       if @workshop.save
-        format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_created')}
+        format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_created', workshop: @workshop.course.name)}
       else
         format.html {render :new}
       end

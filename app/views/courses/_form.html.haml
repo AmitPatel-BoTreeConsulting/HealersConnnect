@@ -1,3 +1,6 @@
+- @course ||= Course.new
+- create_view = @course.new_record?
+- submit_btn_caption = ( create_view ? t('course.caption.button.new') : t('course.caption.button.update') )
 = render partial: 'shared/error_messages', locals: { target: @course }
 .row
   .col-xs-12
@@ -45,5 +48,5 @@
 
       .clearfix
         .col-md-offset-3.col-md-9
-          = f.submit class: 'btn btn-info'
-          = f.submit 'Reset', type: 'reset', class: 'btn'
+          = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', title: "#{submit_btn_caption}"
+          = link_to(t('common.caption.button.cancel'),courses_path , class: 'btn', title: t('common.caption.button.cancel'))
