@@ -1,3 +1,4 @@
+- @workshop ||= Workshop.new
 - create_view = @workshop.new_record?
 - workshop_sessions = @workshop.workshop_sessions
 = render partial: 'shared/error_messages', locals: { target: @workshop }
@@ -50,8 +51,50 @@
           .input-group
             = f.text_field :end_date, :value => @workshop.end_date.try(:strftime, "%d/%m/%Y") , id: 'id-date-picker-1', class: 'form-control date-picker'
             %span.input-group-addon
-              %i.icon-calendar.bigger-110    
+              %i.icon-calendar.bigger-110
+      .row
+        .col-xs-12
+          .form-group
+            .worksho-session
+              = render partial: 'workshops/workshop_session', locals: { f: f}
+
+        / #websiteUrlFieldTemplateContainer(style="display: none;")
+        #workshopSessionFieldTemplateContainer(style="display: none;")
+          %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session_start')
+          .col-sm-3
+            .input-group.bootstrap-timepicker
+              = f.text_field 'workshop[session_start_attributes][][session_start]', :value => '', id: 'timepicker1', class: 'form-control'
+              %span.input-group-addon
+                %i.icon-time.bigger-110
+
+          %label.col-sm-1.control-label= t('workshop.caption.session_end')
+          .col-sm-3
+            .input-group.bootstrap-timepicker
+              = f.text_field 'workshop[session_start_attributes][][session_end]', :value => '', id: 'timepicker2', class: 'form-control'
+              %span.input-group-addon
+                %i.icon-time.bigger-110
+
       .clearfix
         .col-md-offset-3.col-md-9
           = f.submit t('workshop.caption.button.new'), class: 'btn btn-primary', title: t('workshop.caption.button.new')
           = link_to t('common.caption.button.cancel'), workshops_path, class: 'btn', title: t('common.caption.button.cancel')
+:javascript
+  $(function(){
+    $('#timepicker1').timepicker({
+    minuteStep: 1,
+    showSeconds: true,
+    showMeridian: false
+  }).next().on(ace.click_event, function(){
+    $(this).prev().focus();
+  });
+
+    $('#timepicker2').timepicker({
+    minuteStep: 1,
+    showSeconds: true,
+    showMeridian: false
+  }).next().on(ace.click_event, function(){
+    $(this).prev().focus();
+  });
+
+
+  });

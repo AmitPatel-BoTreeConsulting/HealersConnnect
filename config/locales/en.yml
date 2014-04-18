@@ -196,7 +196,8 @@ en:
       fees_on_rejoining: 'Fees on rejoining'
       start_date: ' Workshop Start date'
       end_date: ' Workshop End date'
-
+      session_start: 'Session Start'
+      session_end: 'Session End'
       button:
         new: 'Create Workshop'
     message:

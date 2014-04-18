@@ -1,0 +1,13 @@
+%label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session_start')
+.col-sm-3
+  .input-group.bootstrap-timepicker
+    = f.text_field :end_date, :value => nil, id: 'timepicker1', class: 'form-control'
+    %span.input-group-addon
+      %i.icon-time.bigger-110
+
+%label.col-sm-1.control-label= t('workshop.caption.session_end')
+.col-sm-3
+  .input-group.bootstrap-timepicker
+    = f.text_field :end_date, :value => nil, id: 'timepicker2', class: 'form-control'
+    %span.input-group-addon
+      %i.icon-time.bigger-110
