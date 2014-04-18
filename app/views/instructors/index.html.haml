@@ -17,7 +17,6 @@
             %th.text-center{width: '10%'} #{t('common.caption.mobile')}
             %th.text-center{width: '10%'} #{t('common.caption.manage')}
         - if @instructors.present?
-          %tbody
           - @instructors.each_with_index do |instructor, index|
             %tr
               %td= index + 1
