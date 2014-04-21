@@ -271,7 +271,7 @@ en:
     button:
       login: 'Login'
     placeholder:
-      username_or_email: 'Username or Email'
+      mobile_or_email: 'Mobile or Email'
       password: 'Password'
   forgot_password:
     caption:
