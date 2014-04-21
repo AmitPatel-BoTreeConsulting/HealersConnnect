@@ -167,6 +167,7 @@ en:
         forgot_my_password: 'I forgot my password'
         confirmation_instructions: "Didn't receive confirmation instructions?"
         unlock_instructions: "Didn't receive unlock instructions?"
+    10_digit_mobile_number: '10 digit mobile number'
   instructor:
     caption:
       eligibilities: 'Eligibilities'

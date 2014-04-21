@@ -5,5 +5,6 @@ class Center < ActiveRecord::Base
 
   attr_accessible :name, :address, :location, :lat, :long, :phone1, :phone2, :mobile, :email, :foundation_id
   validates_presence_of :name, :address, :email, :location
+  validates :mobile, phone: {possible: true, types: [:mobile]}
 
 end
