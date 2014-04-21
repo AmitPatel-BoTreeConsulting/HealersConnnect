@@ -229,6 +229,7 @@ en:
       received_on: 'Received on'
       amount: 'Amount'
       new_donation: 'New Donation'
+      placeholder_date: 'dd/mm/yyyy'
       pdf:
         title: 'Donation Receipt'
         receipt_no: 'Receipt Number:'

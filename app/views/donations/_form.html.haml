@@ -43,7 +43,7 @@
         %label.col-sm-3.control-label.no-padding-right= t('donation.caption.received_on')
         .col-sm-3
           .input-group
-            = f.text_field :received_on, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', value: date_formatted(Date.today)
+            = f.text_field :received_on, placeholder: t('donation.caption.placeholder_date'), class: 'form-control date-picker', id: 'id-date-picker-1', value: date_formatted(Date.today)
             %span.input-group-addon
               %i.icon-calendar.bigger-110
       .form-group
