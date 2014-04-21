@@ -19,7 +19,7 @@
 //= require chosen.jquery.min
 //= require common
 //= require ace-elements.min
-//= require registration
+//= require registrations
 //= require courses
 //= require instructors
 //= require jsapi
