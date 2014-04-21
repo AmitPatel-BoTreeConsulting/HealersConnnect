@@ -3,21 +3,14 @@ class ApplicationController < ActionController::Base
   layout :layout_for_signin
 
   protected
+
   def after_sign_in_path_for(resource)
-    if current_user.has_permission?(:registrations)
-      workshops_path
-    else
-      root_path
-    end
+    current_user.has_permission?(:registrations) ? workshops_path : root_path
   end
 
   private
   def layout_for_signin
-    if devise_controller?
-      'auth'
-    else
-      'application'
-    end
+    devise_controller? ? 'auth' : 'application'
   end
 
   def require_foundation_admin

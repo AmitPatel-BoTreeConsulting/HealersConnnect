@@ -6,12 +6,108 @@ en:
     not_permitted: "You are not authorized to access this page."
   center:
     caption:
+      centers: 'Centers'
+      foundation: 'Foundation'
+      location: 'Location'
+      address: 'Address'
+      phone_1: 'Phone 1'
+      phone_2: 'Phone 2'
+      new_center: 'New Center'
+      edit_center: 'Edit Center'
+      button:
+        update: 'Update Center'
+        new: 'Create Center'
+      placeholder:
+        location: 'Enter a Location'
     message:
       success:
         center_created: "Center '%{center}' created successfully."
         center_updated: "Center '%{center}' updated successfully."
   registration:
     caption:
+      date_of_birth: 'Date of Birth'
+      gender: 'Gender'
+      male: 'Male'
+      female: 'Female'
+      marital_status: 'Marital Status'
+      marital_status_married: 'Married'
+      marital_status_unmarried: 'Unmarried'
+      education: 'Education'
+      occupation: 'Occupation'
+      residential_address: 'Residential Address'
+      telephone: 'Telephone'
+      payment_by: 'Payment By'
+      cheque_details: 'Cheque Details'
+      course_attempt: 'Course Attempt'
+      course_attempt_fresher: 'Fresher'
+      course_attempt_review: 'Review'
+      basic_pranic_healing: 'Basic Pranic Healing'
+      net_banking_details: 'Net Banking Details'
+      registered_on: 'Registered On'
+      checkbox_accept_vow: 'accept_vow'
+      checkbox: 'I accept VOW OF SECRECY'
+      payment_type: 'Payment Type'
+      confirm_registration_cancel: 'Are you sure you want to cancel the registration?'
+      confirm_registration_confirm: 'Are you sure you want to confirm the registration?'
+      confirm_registration_remove: 'Are you sure you want to remove this registration?'
+      pdf:
+        title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
+        name_of_course: 'Name of Course :'
+        course_title: 'ARCHIEVING ONENESS WITH THE HIGHER SOUL'
+        trainer: 'Trainer :'
+        certificate_number: 'Certificate No. :'
+        name: 'Name :'
+        date_of_birth: 'Date Of Birth :'
+        gender: 'Gender :'
+        marital_status: 'Marital Status :'
+        education_qualification: 'Education Qualification :'
+        occupation: 'Occupation :'
+        resident_address: 'Residential Address / Postal Address :'
+        mobile: 'Mobile'
+        res_or_office_tel: 'Res/Office Tel. :'
+        email: 'E-mail :'
+        details_of_course: 'Details of Pranic Healing Courses you have taken (as applicable):'
+        course: 'Course'
+        place_conducted: 'Place Conducted'
+        year_and_date: 'Year & Date'
+        basic_pranic_healing: 'Basic Pranic Healing'
+        declaration: 'DECLARATION'
+        date: 'Date :'
+        vanue: 'Vanue :'
+        vanue_name: 'Ahmedabad'
+        signature: 'Signature :'
+        address_line_1: 'Flat 2, Sunny Side, Prof. U. U. Bhat Road, Matunga C. R.'
+        address_line_2: 'Mumbai 400 019'
+        address_line_3: 'Helpline: 93209 07358 Office Telephone: 24160008/24163137, 65084061 / 24160008'
+        address_line_4: 'Email: pranicmaharashtra@gmail.com Website: www.pranicmaharashtra.com'
+        text_paragraph_1: 'I am participating in this Pranic Healing Seminar at my own risk and my own will. I take full responsibility for participating in this program.'
+        text_paragraph_2: 'I release all instructors, organizers ans assistants of this seminar and Pranic Healing Gyan Prachar Kendra and World Pranic Healing Foundation and from all damages whatsoever and waive all rights to compensation on care of injury.'
+        text_paragraph_3: 'I declare that i am physically, emotionally and mentally able to participate in this seminar and will keep confidential the proceedings. I alse confirm that the information contained in this may be made available to World Pranic Healing Foundation.'
+      text:
+        text_paragraph_1: "I, hereby state that, having had the privilege of being accepted as a student in GRAND MASTER CHOA KOK SUI'S above-named course, do solemnly swear to keep Secret and Confidential, all the sacred teachings taught therein."
+        text_paragraph_2: 'On my Honour, I sincerely promise to preserve these sacred teachings in their purest form, and practice them in the proper and correct manner, guided by the golden rules and the Five Arhatic Virtues taught by Grand Master Choa Kok Sui. I also promise to prevent misuse or incorrect practice of these teachings by persons who have not been adequately instructed.'
+        text_paragraph_3: 'With the Lord God as my witness, and my Higher Self as my guide, I shall uphold this Vow of Secrecy and I will not divulge to anybody, under any circumstances, verbally or through the reproduction of written material, or through some other form, in whole or in part, any of the teachings, principles and techniques from the course.'
+        text_paragraph_4: 'I make this solemn vow freely and voluntarily, with no mental reservation or purpose of evasion.'
+      placeholder:
+        first_name: 'First Name'
+        middle_name: 'Middle Name'
+        surname: 'Surname'
+        date_of_birth_format: 'dd/mm/yyyy'
+        cheque_no: 'Cheque no'
+        bank_name: 'Bank name'
+        instructor: 'Instructor'
+      button:
+        status_confirmed: 'confirmed'
+        status_cancelled: 'Cancelled'
+        status_all: 'All'
+        update: 'Update Registration'
+        new: 'Create Registration'
+    page_content:
+      header:
+        index: 'Registrations'
+        new: 'New Registration'
+        edit: 'Edit Registration'
+        breadcrumb: 'Hinduism Revealed'
     message:
       success:
         registration_success: 'Registration complete. Thank you.'
@@ -19,6 +115,7 @@ en:
         removed: "Registration of '%{name}' removed successfully."
         activated: "Registration of '%{name}' activated successfully."
         deactivated: "Registration of '%{name}' deactivated successfully."
+        accept_order_to_proceed: 'You must accept to in order to proceed'
   course:
     caption:
       courses: 'Courses'
@@ -27,6 +124,9 @@ en:
       donation: 'Donation'
       review_donation: 'Review Donation'
       course_category: 'Course Category'
+      button:
+        update: 'Update Course'
+        new: 'Create Course'
     message:
       course_created: "Course '%{course}' created successfully."
       course_updated: "Course '%{course}' updated successfully."
@@ -43,6 +143,8 @@ en:
       name: 'Name'
       description: 'Description'
       manage: 'Manage'
+      mobile: 'Mobile'
+      email: 'Email'
       delete: 'Delete'
       deactivate: 'Deactivate'
       activate: 'Activate'
@@ -55,15 +157,24 @@ en:
       end_date: 'End Date'
       register: 'Register'
       view_registrations: 'View Registrations'
-  instructor:
-    caption:
+      title:
+        edit: 'Edit'
       button:
-        save: 'Save'
-        update: 'Update'
         reset: 'Reset'
         cancel: 'Cancel'
-        new : 'New Instructor'
+        delete: 'Delete'
+      link:
+        forgot_my_password: 'I forgot my password'
+        confirmation_instructions: "Didn't receive confirmation instructions?"
+        unlock_instructions: "Didn't receive unlock instructions?"
+  instructor:
+    caption:
+      eligibilities: 'Eligibilities'
+      button:
+        update: 'Update Instructor'
+        new: 'Create Instructor'
     message:
+      remove: 'Are you sure you want to remove this instructor?'
       success:
         created: 'Instructor created successfully.'
         updated: "Instructor updated successfully."
@@ -76,7 +187,18 @@ en:
         edit: 'Edit Instructor'
   workshop:
     caption:
+      instructor: 'Instructor'
+      assistant_instructor: 'Assistant instructor'
       workshops: 'Workshops'
+      fees_after_session: 'Fees after session'
+      fees_before_session: 'Fees before session'
+      fees_on_session: 'Fees on session'
+      fees_on_rejoining: 'Fees on rejoining'
+      start_date: ' Workshop Start date'
+      end_date: ' Workshop End date'
+
+      button:
+        new: 'Create Workshop'
     message:
       workshop_created: "Workshop '%{workshop}' created successfully."
       workshop_updated: "Workshop '%{workshop}' updated successfully."
@@ -89,13 +211,51 @@ en:
       header:
         index: 'Workshops'
         new: 'New Workshop'
-        edit: 'Edit Workshop' 
+        edit: 'Edit Workshop'
   donation:
-    captions:
+    caption:
+      receipt_no: 'Receipt No.'
+      donations: 'Donations'
+      name: 'Donar Name'
+      email: 'Donar Email'
+      donation_type: 'Donation Type'
+      center: 'Center'
+      for_center_radio: 'For Center'
+      for_food_for_hungry_radio: 'For Food for Hungry'
       add_donation_btn: "Add Donation"
+      center_select_tag: 'center'
+      center_select_tag_prompt: '--Please select--'
+      received_by: 'Received By'
+      received_on: 'Received on'
+      amount: 'Amount'
+      new_donation: 'New Donation'
+      pdf:
+        title: 'Donation Receipt'
+        receipt_no: 'Receipt Number:'
+        name: 'Name:'
+        amount: 'Amount'
+        received_by: 'Received By:'
+        donation_type: 'Donation Type:'
+        center: 'Center:'
+        description: 'Description:'
+        email: 'Email:'
+        report_title: 'Report'
+      button:
+        new: 'New Donation'
+        search: 'Search'
+        save: 'Save'
+      title:
+        save_as_pdf: 'Save as PDF'
+        export: 'Export'
     message:
+      no_donations_found: 'No donations found'
       success:
         donor_notification: 'Donation created successfully.'
+    mailer:
+      paragraph_1: 'Thank you for the donation.'
+      paragraph_2: 'Please find donation details are as below.'
+      signature_text_thnak_you: 'Thank you,'
+      signature_text_team: 'Pranic Healing Team'
   mailer:
     send_donation_notification_to_donor:
       subject: 'Donation Notification'
@@ -107,3 +267,21 @@ en:
       courses: 'Courses'
       instructors: 'Instructors'
       centers: 'Centers'
+  sign_in:
+    caption:
+      remember_me: 'Remember Me'
+    button:
+      login: 'Login'
+    placeholder:
+      username_or_email: 'Username or Email'
+      password: 'Password'
+  forgot_password:
+    caption:
+      placeholder:
+        new: 'New Password'
+        confirm_new_password: 'Confirm New Password'
+      button:
+        send_me: Send Me
+        change_password: 'Change my password'
+      link:
+        back_to_signin: 'Back To Signin'

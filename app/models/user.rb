@@ -57,7 +57,8 @@ class User < ActiveRecord::Base
     when :donations
       have_role?(Role::SUPER_ADMIN) ||
       have_role?(Role::FOUNDATION_ADMIN) ||
-      have_role?(Role::ACCOUNTANT)
+      have_role?(Role::ACCOUNTANT) ||
+      have_role?(Role::CENTER_ADMIN)
     else
     end
   end

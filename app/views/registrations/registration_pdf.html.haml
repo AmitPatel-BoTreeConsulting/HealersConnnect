@@ -17,16 +17,17 @@
             .main-content
               .page-content
                 %h2.text-center
-                  %b PRANIC HEALING GYAN PRACHAR KENDRA
-                  %h4.text-center Flat 2, Sunny Side, Prof. U. U. Bhat Road, Matunga C. R.
-                  %h4.text-center Mumbai 400 019
-                  %h4.text-center Helpline: 93209 07358 Office Telephone: 24160008/24163137, 65084061 / 24160008
-                  %h4.text-center Email: pranicmaharashtra@gmail.com Website: www.pranicmaharashtra.com
+                  %b= t('registration.caption.pdf.title')
+                  %h4.text-center= t('registration.caption.pdf.address_line_1')
+                  %h4.text-cente= t('registration.caption.pdf.address_line_2')
+                  %h4.text-center= t('registration.caption.pdf.address_line_3')
+                  %h4.text-center= t('registration.caption.pdf.address_line_4')
                 .space-28
                 .row
                   .col-xs-12
                     %h3
-                      %b Name of Course:  ARCHIEVING ONENESS WITH THE HIGHER SOUL
+                      %b= t('registration.caption.pdf.name_of_course')
+                      = t('registration.caption.pdf.course_title')
                 .space-28
                 - # uncomment when enabling workshop
                 - if false
@@ -34,69 +35,69 @@
                     .col-xs-8
                       .form-group
                         %label.h4
-                          %b Trainer:
+                          %b= t('registration.caption.pdf.trainer')
                         %label.h4= workshop.workshop_instructor.capitalize
                     .col-xs-4
                       .form-group.pull-left
                         %label.h4
-                          %b Certificate No.:
+                          %b= t('registration.caption.pdf.certificate_number')
                           %u
                 .row
                   .col-xs-8
                     .form-group
                       %label.h4
-                        %b Name :
+                        %b= t('registration.caption.pdf.name')
                       %label.h4= @profile.name.titleize
                   .col-xs-4
                     .form-group
                       %label.h4
-                        %b Date Of Birth :
+                        %b= t('registration.caption.pdf.date_of_birth')
                       %label.h4= @profile.birth_date.strftime(Settings.defaults.date_format_in_views)
                 .row
                   .col-xs-8
                     .form-group.text-left
                       %label.h4
-                        %b Gender :
+                        %b= t('registration.caption.pdf.gender')
                       %label.h4= gender
                   .col-xs-4
                     .form-group.pull-left
                       %label.h4
-                        %b Marital Status :
+                        %b= t('registration.caption.pdf.marital_status')
                       %label.h4= marital_status
                 .row
                   .col-xs-8
                     .form-group
                       %label.h4
-                        %b Education Qualification:
+                        %b= t('registration.caption.pdf.education_qualification')
                       %label.h4= @profile.education
                   .col-xs-4
                     .form-group.pull-left
                       %label.h4
-                        %b Occupation :
+                        %b= t('registration.caption.pdf.occupation')
                       %label.h4= @profile.occupation
                 .row
                   .col-xs-12
                     .form-group
                       %label.h4
-                        %b Residential Address / Postal Address:
+                        %b= t('registration.caption.pdf.resident_address')
                       %br/
                       %label.h4= simple_format(@profile.address)
                 .row
                   .col-xs-8
                     .form-group
                       %label.h4
-                        %b Mobile :
+                        %b= t('registration.caption.pdf.mobile')
                       %label.h4= @profile.mobile
                   .col-xs-4
                     .form-group.pull-left
                       %label.h4
-                        %b Res/Office Tel. :
+                        %b= t('registration.caption.pdf.res_or_office_tel')
                       %label.h4= @profile.telephone
                 .row
                   .col-xs-12
                     .form-group
                       %label.h4
-                        %b E-mail :
+                        %b= t('registration.caption.pdf.email')
                       %label.h4= @profile.email
                 - # uncomment when enabling Workshop
                 - if false
@@ -104,22 +105,22 @@
                     .col-xs-12
                       .form-group
                         %label.h4
-                          %b Details of Pranic Healing Courses you have taken (as applicable):
+                          %b= t('registration.caption.pdf.details_of_course')
                         %table{border: '1', style: 'width: 100%;'}
                           %thead
                             %tr{style: 'height: 30px;'}
                               %th.h4.text-center
-                                %b Course
+                                %b= t('registration.caption.pdf.course')
                               %th.h4.text-center
-                                %b Place Conducted
+                                %b= t('registration.caption.pdf.place_conducted')
                               %th.h4.text-center
-                                %b Year & Date
+                                %b= t('registration.caption.pdf.year_and_date')
                               %th.h4.text-center
-                                %b Name of Trainer
+                                %b= t('registration.caption.pdf.trainer')
                           %tbody
                             %tr{style: 'height: 30px;'}
                               %td.h4.text-center<
-                                Basic Pranic Healing
+                                = t('registration.caption.pdf.basic_pranic_healing')
                               %td.h4.text-center<
                                 = workshop.workshop_place.capitalize
                               %td.h4.text-center<
@@ -130,25 +131,25 @@
                   .col-xs-12
                     %h3.text-center
                       %u
-                        %b DECLARATION
+                        %b= t('registration.caption.pdf.declaration')
                 .row
                   .col-xs-12
-                    %p{style: 'font-size: 19px;'} I am participating in this Pranic Healing Seminar at my own risk and my own will. I take full responsibility for participating in this program.
-                    %p{style: 'font-size: 19px;'} I release all instructors, organizers ans assistants of this seminar and Pranic Healing Gyan Prachar Kendra and World Pranic Healing Foundation and from all damages whatsoever and waive all rights to compensation on care of injury.
-                    %p{style: 'font-size: 19px;'} I declare that i am physically, emotionally and mentally able to participate in this seminar and will keep confidential the proceedings. I alse confirm that the information contained in this may be made available to World Pranic Healing Foundation.
+                    %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_1')}
+                    %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_2')}
+                    %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_3')}
                 .space-20
                 .row
                   .col-xs-8
                     .form-group
                       %label.h4
-                        %b Date:
+                        %b= t('registration.caption.pdf.date')
                 .row
                   .col-xs-8
                     .form-group
                       %label.h4
-                        %b Vanue:
-                        Ahmedabad
+                        %b= t('registration.caption.pdf.vanue')
+                        = t('registration.caption.pdf.vanue_name')
                   .col-xs-4
                     .form-group
                       %label.h4
-                        %b Signature:
+                        %b= t('registration.caption.pdf.signature')

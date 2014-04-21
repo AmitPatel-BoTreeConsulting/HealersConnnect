@@ -1,12 +1,12 @@
 %table
   %tr
-    %th Sr No.
-    %th Name
-    %th Mobile
-    %th Payment Type
-    %th Gender
-    %th Mariral Status
-    %th Registered On
+    %th= t('common.caption.serial_number')
+    %th= t('common.caption.name')
+    %th= t('common.caption.mobile')
+    %th= t('registration.caption.payment_type')
+    %th= t('registration.caption.gender')
+    %th= t('registration.caption.marital_status')
+    %th= t('registration.caption.registered_on')
   - @registrations.each_with_index do |registration, index|
     - profile = registration.get_user_profile
     %tr
@@ -16,4 +16,4 @@
       %td= registration.payment_type.name
       %td= profile.gender
       %td= profile.marital_status
-      %td= registration.registration_date.strftime('%d/%m/%Y')
+      %td= registration.registration_date.strftime(Settings.defaults.date_format_in_views)
