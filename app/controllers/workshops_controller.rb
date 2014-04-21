@@ -3,6 +3,7 @@ class WorkshopsController < ApplicationController
 
   def index
     @workshops =  Workshop.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
+    @workshop_sessions = WorkshopSession.all
   end
 
   def new
