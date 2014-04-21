@@ -39,9 +39,11 @@ healing_protection_alias = 'healing_protection'
 prosperity_abundance_alias = 'prosperity_abundance'
 spirituality_alias = 'spirituality'
 
-course_categories = [ { name: 'Healing & Protection', alias: healing_protection_alias },
-                      { name: 'Prosperity & Abundance', alias: prosperity_abundance_alias },
-                      { name: 'Spirituality', alias: spirituality_alias } ]
+course_categories = [
+  { name: 'Healing & Protection', alias: healing_protection_alias },
+  { name: 'Prosperity & Abundance', alias: prosperity_abundance_alias },
+  { name: 'Spirituality', alias: spirituality_alias }
+]
 
 puts '--------Seeding CourseCategory-------'
 course_categories.each { |category| create_or_update_by_alias(CourseCategory, category)}
