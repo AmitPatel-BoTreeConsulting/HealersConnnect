@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ckeditor-jquery
+//= require ckeditor/config
 //= require bootstrap.min
 //= require bootstrap-datepicker.min
 //= require bootstrap-timepicker.min
@@ -20,8 +22,6 @@
 //= require ace-elements.min
 //= require registration
 //= require courses
-//= require ckeditor-jquery
-//= require ckeditor/config
 //= require instructors
 //= require jsapi
 //= require donation

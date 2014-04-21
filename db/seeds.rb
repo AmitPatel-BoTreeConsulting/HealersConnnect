@@ -62,6 +62,9 @@ admin_user = find_or_create_user({ email: 'admin@healersconnect.com', password: 
 accountant = find_or_create_user({ email: 'accountant@healersconnect.com', password: Settings.default_password })
 foundation_admin = find_or_create_user({ email: 'foundation@healersconnect.com', password: Settings.default_password })
 center_admin = find_or_create_user({ email: 'center@healersconnect.com', password: Settings.default_password })
+instructor = find_or_create_user({ email: 'instructor@healersconnect.com', password: Settings.default_password })
+healer = find_or_create_user({ email: 'healer@healersconnect.com', password: Settings.default_password })
+
 puts '-------------------------------------'
 
 #==================================================Create Foundations===================================================
