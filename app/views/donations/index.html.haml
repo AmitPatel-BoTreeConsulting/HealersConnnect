@@ -64,6 +64,7 @@
             %th{width: '10%'} #{t('donation.caption.amount')} (&#x20B9;)
             %th{width: '15%'} #{t('donation.caption.donation_type')}
             %th{width: '5%'} #{t('donation.caption.received_by')}
+            %th{width: '10%'}= t('donation.caption.received_on')
             %th
         - if @donations.present?
           - @donations.each do |donation|
@@ -81,6 +82,8 @@
                 = donation_type
               %td
                 = donation.user.email
+              %td
+                = date_formatted(donation.received_on)
               %td.text-center<
                 = link_to(export_donation_pdf_path(donation, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do
                   %i.icon-print.bigger-130

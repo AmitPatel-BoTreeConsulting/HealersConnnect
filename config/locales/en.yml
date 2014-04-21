@@ -227,8 +227,10 @@ en:
       center_select_tag: 'center'
       center_select_tag_prompt: '--Please select--'
       received_by: 'Received By'
+      received_on: 'Received on'
       amount: 'Amount'
       new_donation: 'New Donation'
+      placeholder_date: 'dd/mm/yyyy'
       pdf:
         title: 'Donation Receipt'
         receipt_no: 'Receipt Number:'
@@ -243,6 +245,7 @@ en:
       button:
         new: 'New Donation'
         search: 'Search'
+        save: 'Save'
       title:
         save_as_pdf: 'Save as PDF'
         export: 'Export'

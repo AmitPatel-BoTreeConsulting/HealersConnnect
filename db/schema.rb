@@ -97,10 +97,12 @@ ActiveRecord::Schema.define(:version => 20140421054515) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.integer  "sequential_id"
+    t.date     "received_on"
   end
 
   add_index "donations", %w(center_id), :name => "index_donations_on_center_id"
   add_index "donations", %w(donation_type), :name => "index_donations_on_donation_type"
+  add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
 
   create_table "foundations", :force => true do |t|
     t.string   "name"
