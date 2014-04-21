@@ -38,6 +38,13 @@
         .col-sm-9
           = f.text_area :description, rows: 4, class: text_field_class
       .form-group
+        %label.col-sm-3.control-label.no-padding-right Received On
+        .col-sm-3
+          .input-group
+            = f.text_field :received_on, placeholder: 'dd/mm/yyyy', class: 'form-control date-picker', id: 'id-date-picker-1', value: date_formatted(Date.today)
+            %span.input-group-addon
+              %i.icon-calendar.bigger-110
+      .form-group
         %label.col-xs-3.col-sm-3.control-label.no-padding-right
         .col-xs-8
           = submit_tag t('instructor.caption.button.save'), class: 'btn btn-primary btn-sm', title: t('instructor.caption.button.save')

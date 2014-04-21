@@ -62,4 +62,8 @@ module ApplicationHelper
 
   end
 
+  def date_formatted(date)
+    date.try(:strftime, '%d/%m/%Y')
+  end
+
 end

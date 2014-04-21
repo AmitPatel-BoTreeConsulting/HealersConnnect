@@ -2,10 +2,11 @@ class Donation < ActiveRecord::Base
   FOR_CENTER = 1
   FOR_FOOD_FOR_HUNGRY = 2
   attr_accessible :center_id, :description, :donation_type, :donor_name, :donor_email, :amount, :user_id
+  attr_accessible :received_on
   acts_as_sequenced scope: :receipt_number
   acts_as_sequenced start_at: 1
 
-  validates_presence_of :donor_name, :amount, :center_id
+  validates_presence_of :donor_name, :amount, :center_id, :received_on
   validates :donor_email, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :amount, :numericality => true
 
