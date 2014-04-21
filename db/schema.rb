@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20140421054515) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
+    t.string   "mobile"
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -202,7 +203,6 @@ ActiveRecord::Schema.define(:version => 20140421054515) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "mobile",                 :default => "", :null => false
   end
 
   add_index "users", %w(email), name: "index_users_on_email", unique: true
