@@ -1,7 +1,7 @@
 app_name: "Pranic Healing - Ahmedabad"
 brand_name: 'Pranic Healing'
 default_password: 'india2014'
-
+default_mobile: '9428107787'
 pagination:
   per_page: 10
 

@@ -64,12 +64,12 @@ def find_or_create_user(user_attrs)
   user
 end
 
-admin_user = find_or_create_user({ email: 'admin@healersconnect.com', password: Settings.default_password })
-accountant = find_or_create_user({ email: 'accountant@healersconnect.com', password: Settings.default_password })
-foundation_admin = find_or_create_user({ email: 'foundation@healersconnect.com', password: Settings.default_password })
-center_admin = find_or_create_user({ email: 'center@healersconnect.com', password: Settings.default_password })
-instructor = find_or_create_user({ email: 'instructor@healersconnect.com', password: Settings.default_password })
-healer = find_or_create_user({ email: 'healer@healersconnect.com', password: Settings.default_password })
+admin_user = find_or_create_user({ email: 'admin@healersconnect.com', password: Settings.default_password, mobile: Settings.default_mobile })
+accountant = find_or_create_user({ email: 'accountant@healersconnect.com', password: Settings.default_password, mobile: Settings.default_mobile })
+foundation_admin = find_or_create_user({ email: 'foundation@healersconnect.com', password: Settings.default_password, mobile: Settings.default_mobile })
+center_admin = find_or_create_user({ email: 'center@healersconnect.com', password: Settings.default_password, mobile: Settings.default_mobile })
+instructor = find_or_create_user({ email: 'instructor@healersconnect.com', password: Settings.default_password, mobile: Settings.default_mobile })
+healer = find_or_create_user({ email: 'healer@healersconnect.com', password: Settings.default_password, mobile: Settings.default_mobile })
 
 puts '-------------------------------------'
 
