@@ -1,0 +1,16 @@
+.navbar.navbar-inverse.navbar-fixed-top{ :role => "navigation" }
+  .container
+    .navbar-header
+      %button.navbar-toggle.pull-right{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %strong
+        = link_to(t('common.app_name').upcase, root_path, class: "navbar-brand", id: "logo")
+    .collapse.navbar-collapse.navbar-ex1-collapse{:role => "navigation"}
+      %ul.nav.navbar-nav.navbar-right
+        %li.active
+          = link_to t('common.caption.home_page_link'), root_path
+        %li
+          = link_to t('common.caption.sign_in'), signin_path

@@ -124,6 +124,10 @@ en:
       donation: 'Donation'
       review_donation: 'Review Donation'
       course_category: 'Course Category'
+      upcoming_cources_title: 'Upcomming Courses'
+      button:
+        update: 'Update Course'
+        new: 'Create Course'
     message:
       course_created: "Course '%{course}' created successfully."
       course_updated: "Course '%{course}' updated successfully."
@@ -135,8 +139,11 @@ en:
       deactivate_confirm_message: 'Are you sure, You want to deactivate this course'
 
   common:
+    app_name: 'Pranic Healing'
     caption:
+      home_page_link: 'HOME'
       serial_number: 'Sr No.'
+      center_location: 'Location'
       name: 'Name'
       description: 'Description'
       manage: 'Manage'
