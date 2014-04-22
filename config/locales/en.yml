@@ -128,6 +128,7 @@ en:
       button:
         update: 'Update Course'
         new: 'Create Course'
+      eligibility: 'Eligibility'
     message:
       course_created: "Course '%{course}' created successfully."
       course_updated: "Course '%{course}' updated successfully."
