@@ -19,6 +19,7 @@ gem 'devise'
 
 gem 'ancestry'
 gem "kaminari", "~> 0.14.1"
+gem 'jammit'
 
 group :development do
   # Routes helper.
