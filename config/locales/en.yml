@@ -125,9 +125,11 @@ en:
       donation: 'Donation'
       review_donation: 'Review Donation'
       course_category: 'Course Category'
+      upcoming_cources_title: 'Upcomming Courses'
       button:
         update: 'Update Course'
         new: 'Create Course'
+      eligibility: 'Eligibility'
     message:
       course_created: "Course '%{course}' created successfully."
       course_updated: "Course '%{course}' updated successfully."
@@ -139,8 +141,11 @@ en:
       deactivate_confirm_message: 'Are you sure, You want to deactivate this course'
 
   common:
+    app_name: 'Pranic Healing'
     caption:
+      home_page_link: 'HOME'
       serial_number: 'Sr No.'
+      center_location: 'Location'
       name: 'Name'
       description: 'Description'
       manage: 'Manage'
@@ -165,10 +170,12 @@ en:
         reset: 'Reset'
         cancel: 'Cancel'
         delete: 'Delete'
+        save: 'Save'
       link:
         forgot_my_password: 'I forgot my password'
         confirmation_instructions: "Didn't receive confirmation instructions?"
         unlock_instructions: "Didn't receive unlock instructions?"
+    10_digit_mobile_number: '10 digit mobile number'
   instructor:
     caption:
       eligibilities: 'Eligibilities'
@@ -232,8 +239,10 @@ en:
       center_select_tag: 'center'
       center_select_tag_prompt: '--Please select--'
       received_by: 'Received By'
+      received_on: 'Received on'
       amount: 'Amount'
       new_donation: 'New Donation'
+      placeholder_date: 'dd/mm/yyyy'
       pdf:
         title: 'Donation Receipt'
         receipt_no: 'Receipt Number:'
@@ -248,6 +257,7 @@ en:
       button:
         new: 'New Donation'
         search: 'Search'
+        save: 'Save'
       title:
         save_as_pdf: 'Save as PDF'
         export: 'Export Report'
@@ -277,7 +287,7 @@ en:
     button:
       login: 'Login'
     placeholder:
-      username_or_email: 'Username or Email'
+      mobile_or_email: 'Mobile or Email'
       password: 'Password'
   forgot_password:
     caption:

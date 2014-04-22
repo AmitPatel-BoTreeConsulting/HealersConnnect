@@ -12,16 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ckeditor-jquery
+//= require ckeditor/config
 //= require bootstrap.min
 //= require bootstrap-datepicker.min
 //= require bootstrap-timepicker.min
 //= require chosen.jquery.min
 //= require common
 //= require ace-elements.min
-//= require registration
+//= require registrations
 //= require courses
-//= require ckeditor-jquery
-//= require ckeditor/config
 //= require instructors
 //= require jsapi
 //= require donation

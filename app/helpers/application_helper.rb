@@ -79,4 +79,8 @@ module ApplicationHelper
     end
     {css_class: css_class, msg_icon_class: msg_icon_class}
   end
+
+  def date_formatted(date)
+    date.try(:strftime, '%d/%m/%Y')
+  end
 end

@@ -10,6 +10,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'jammit'
 end
 
 gem 'jquery-rails'
@@ -48,3 +49,4 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'sequenced'
 gem "google_visualr", ">= 2.1"
+gem 'phonelib'
