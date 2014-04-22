@@ -15,6 +15,4 @@ class Workshop < ActiveRecord::Base
   has_many :registrations
 
   accepts_nested_attributes_for :workshop_sessions, allow_destroy: true, reject_if: proc { |att|  att[:session_start].blank? || att[:session_end].blank?}
-
-  attr_accessor :date
 end

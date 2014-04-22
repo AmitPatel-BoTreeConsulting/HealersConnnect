@@ -16,8 +16,9 @@ class WorkshopsController < ApplicationController
         workshop[:session_end] = "#{workshop[:date]} #{workshop[:session_end]}".to_datetime
       end
     end
-    params[:workshop].delete(:date)
-
+    params[:workshop][:workshop_sessions_attributes].each do |i|
+      i.delete(:date)
+    end
     @workshop  = Workshop.new(params[:workshop])
     respond_to do |format|
       if @workshop.save

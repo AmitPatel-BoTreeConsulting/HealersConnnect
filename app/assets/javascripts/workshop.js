@@ -24,7 +24,14 @@ function appendCulpritsField(containerObj, clickCount) {
   containerObj.find('.fieldCollection:last').append(fieldRemoveBtnTemplate);
   var appendedField = containerObj.find('.fieldCollection:last');
   bindClickEventOnCulpritsFieldRemoveBtn(appendedField);
+  bindDatePickerOnCulpritsField();
 }
+
+function bindDatePickerOnCulpritsField() {
+  $('.date-picker').datepicker({autoclose:true, format: 'dd/mm/yyyy'}).next().on(ace.click_event, function(){
+      $(this).prev().focus();
+    });
+  }
 
 function bindClickEventOnCulpritsFieldRemoveBtn(fieldObj) {
   //alert(fieldObj);
@@ -89,4 +96,11 @@ function removeBreakTagFromFirstField(firstFieldObj) {
   if(breakTag.length > 0) {
     breakTag.remove();
   }
+}
+
+function emptyObject(obj) {
+  if((obj == undefined) || (obj == null) ) {
+    return true;
+  }
+  return false;
 }

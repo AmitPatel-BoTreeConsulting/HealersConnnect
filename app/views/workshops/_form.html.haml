@@ -40,28 +40,29 @@
                     = session_end_dropdown
             .space-20
             %label.col-sm-3.control-label.no-padding-right
-            %input#addCulpritsBtn.btn.btn-sm.btn-primary.no-radius(type="button" value="Add Session")
+            .col-sm-2
+              %input#addCulpritsBtn.btn.btn-sm.btn-primary.no-radius(type="button" value="Add Session")
         .space-20
-        #culpritsNameFieldTemplateContainer.hide
-          .wrapper-class
-            .fieldCollection
-              .spacer40
-              %label.col-sm-3.control-label.no-padding-right
-              .col-sm-2
-                .input-group
-                  = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker'
-                  %span.input-group-addon
-                    %i.icon-calendar.bigger-110
-              .col-sm-3
-                = session_start_dropdown
-                = session_end_dropdown
+          #culpritsNameFieldTemplateContainer.hide
+            .wrapper-class
+              .fieldCollection
+                .spacer40
+                %label.col-sm-3.control-label.no-padding-right
+                .col-sm-2
+                  .input-group
+                    = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker'
+                    %span.input-group-addon
+                      %i.icon-calendar.bigger-110
+                .col-sm-3
+                  = session_start_dropdown
+                  = session_end_dropdown
         #culpritsNamesFieldRemoveBtnTemplateContainer.hide
           = link_to('#') do
             %i.icon-remove
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees')}
           .col-sm-4
-            %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_for_fresher')}
+            %label.col-sm-3.no-padding-right.common_form_lbl #{t('workshop.caption.fees_for_fresher')}
         .form-group
           %label.col-sm-3.control-label.no-padding-right
           .col-sm-9
@@ -82,7 +83,7 @@
             .col-sm-1
               %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_after_session')}
             .col-sm-2
-              = label_tag 'workshop_fees_after', '', id: 'workshop_fees_after'
+              = label_tag 'workshop_fees_after', '', id: 'workshop_fees_after', class: 'common_form_lbl'
             .col-sm-4
               = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5'
         .form-group
