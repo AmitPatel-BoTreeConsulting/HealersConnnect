@@ -1,14 +1,13 @@
 class CoursesController < ApplicationController
   before_filter :course_from_params, only: [:show, :edit, :update,:destroy, :deactivate, :activate]
-  before_filter :required_access, only: [:index, :new, :create, :show, :edit, :update, :activate, :deactivate, :destroy]
+  before_filter :required_access, only: [:index, :create, :show, :edit, :update, :activate, :deactivate, :destroy]
 
   def index
     @courses  = Course.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
   def new
-    @course  = Course.new
-    @course_categories  = CourseCategory.all
+    redirect_to courses_path
   end
 
   def create
