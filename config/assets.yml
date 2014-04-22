@@ -11,6 +11,7 @@ package_assets: always
 # For apache==> http://httpd.apache.org/docs/2.0/mod/mod_deflate.html
 
 gzip_assets: off
+embed_assets: on
 
 javascripts:
   canvas:
