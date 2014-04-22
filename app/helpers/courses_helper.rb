@@ -3,7 +3,11 @@ module CoursesHelper
     course_names = []
     eligibility_split = eligibility.split(',')
     eligibility_split.each do |eligibility_alias|
-      course_names << Course.find_by_eligibility(eligibility_alias).name
+      if eligibility_alias == '16+'
+        course_names << '16+ years'
+      else
+        course_names << Course.find_by_eligibility(eligibility_alias).name
+      end
     end
     return course_names.join(', ')
   end
