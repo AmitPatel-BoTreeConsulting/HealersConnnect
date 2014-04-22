@@ -6,14 +6,6 @@
     = form_for @course,  html: {class: 'form-horizontal', role: 'form'} do |f|
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.name')}
-        .col-sm-9
-          %label.common_form_lbl
-            = @course.name
-            %b
-              = "[#{@course.course_category.name}]"
-      .space-4
-      .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.eligibility')}
         .col-sm-9
           %label.common_form_lbl
