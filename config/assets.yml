@@ -10,8 +10,9 @@ package_assets: always
 # For nginx==> http://nginx.org/en/docs/http/ngx_http_gzip_static_module.html
 # For apache==> http://httpd.apache.org/docs/2.0/mod/mod_deflate.html
 
+embed_assets: off
 gzip_assets: off
-embed_assets: on
+compress_assets: off
 
 javascripts:
   canvas:
