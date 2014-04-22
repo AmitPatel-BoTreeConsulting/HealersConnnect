@@ -102,16 +102,14 @@
               = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5'
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('center.caption.location')}
-          .col-sm-3
-            .input-group
-              = f.text_field :location, class: 'col-xs-12', placeholder: t('center.caption.placeholder.location')
-              = f.hidden_field :lat
-              = f.hidden_field :long
+          .col-sm-4
+            = f.text_field :location, class: 'col-xs-12', placeholder: t('center.caption.placeholder.location')
+            = f.hidden_field :lat
+            = f.hidden_field :long
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('common.caption.contact')}
-          .col-sm-3
-            .input-group
-              = f.text_field :contact, class: 'col-xs-12'
+          .col-sm-4
+            = f.text_field :contact, class: 'col-xs-12'
         .space-20
         .col-md-offset-3.col-md-9
           = f.submit t('workshop.caption.button.new'), class: 'btn btn-primary', title: t('workshop.caption.button.new')
