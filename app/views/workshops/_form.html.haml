@@ -42,7 +42,7 @@
             %label.col-sm-4.control-label.no-padding-right
             .col-sm-2
               %input#addCulpritsBtn.btn.btn-sm.btn-primary.no-radius(type="button" value="Add Session")
-        .space-20
+        .space-6
           #culpritsNameFieldTemplateContainer.hide
             .wrapper-class
               .fieldCollection
@@ -67,42 +67,39 @@
           %label.col-sm-3.control-label.no-padding-right
           .col-sm-9
             .col-sm-1
-            .col-sm-1
               %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_before_session')}
             .col-sm-2
               .input-group
                 = f.text_field :fees_date, id: 'id-date-picker-11', class: 'form-control date-picker'
                 %span.input-group-addon
                   %i.icon-calendar.bigger-110
-            .col-sm-4
+            .col-sm-5
               = f.number_field :fees_before_session, class: 'col-xs-10 col-sm-5'
         .form-group
           %label.col-sm-3.control-label.no-padding-right
           .col-sm-9
             .col-sm-1
-            .col-sm-1
               %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_after_session')}
             .col-sm-2
               = label_tag 'workshop_fees_after', '', id: 'workshop_fees_after', class: 'common_form_lbl'
-            .col-sm-4
+            .col-sm-5
               = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5'
         .form-group
           %label.col-sm-3.control-label.no-padding-right
           .col-sm-9
             .col-sm-1
-            .col-sm-1
               %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_on_spot')}
             .col-sm-2
               = label_tag 'workshop_fees_spot', '', id: 'workshop_fees_spot', class: 'common_form_lbl'
-            .col-sm-4
+            .col-sm-5
               = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5'
         .form-group
           %label.col-sm-3.control-label.no-padding-right
           .col-sm-9
-          .col-sm-3
-            %label.col-sm-4.control-label.no-padding-right #{t('workshop.caption.fees_for_review')}
-          .col-sm-3.margin-left-5
-            = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5'
+            .col-sm-3
+              %label #{t('workshop.caption.fees_for_review')}
+            .col-sm-5
+              = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5'
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('center.caption.location')}
           .col-sm-3

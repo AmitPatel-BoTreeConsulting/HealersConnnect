@@ -1,6 +1,6 @@
 module WorkshopsHelper
   def session_start_dropdown
-    select_tag("workshop[workshop_sessions_attributes][][session_start]", options_for_select(get_options_session_start_end_dropdown), :prompt=>"--Select--", class: 'col-xs-10 col-sm-5 margin-left-5')
+    select_tag("workshop[workshop_sessions_attributes][][session_start]", options_for_select(get_options_session_start_end_dropdown), :prompt=>"--Select--", class: 'col-xs-10 col-sm-4')
   end
 
   def session_end_dropdown
