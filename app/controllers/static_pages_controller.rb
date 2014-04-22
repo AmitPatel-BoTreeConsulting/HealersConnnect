@@ -8,7 +8,11 @@ class StaticPagesController < ApplicationController
   end
 
   def home
-    @workshops = Workshop.all
-    render layout: 'home'
+    if current_user
+      render :dashboard
+    else
+      @workshops = Workshop.all
+      render layout: 'home'
+    end
   end
 end
