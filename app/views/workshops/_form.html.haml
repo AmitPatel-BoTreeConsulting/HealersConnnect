@@ -117,22 +117,6 @@
 %script{:src => '//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places&region=india', type: 'text/javascript'}
 :javascript
   $(function(){
-    $('#timepicker65373').timepicker({
-    minuteStep: 1,
-    showSeconds: true,
-    showMeridian: false
-  }).next().on(ace.click_event, function(){
-    $(this).prev().focus();
-  });
-
-    $('#timepicker2').timepicker({
-    minuteStep: 1,
-    showSeconds: true,
-    showMeridian: false
-  }).next().on(ace.click_event, function(){
-    $(this).prev().focus();
-  });
-
   $('#id-date-picker-11').on('change', function() {
     $('#workshop_fees_after').text($('#id-date-picker-11').val());
   });
