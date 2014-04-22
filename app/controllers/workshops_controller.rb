@@ -16,9 +16,8 @@ class WorkshopsController < ApplicationController
         workshop[:session_end] = "#{workshop[:date]} #{workshop[:session_end]}".to_datetime
       end
     end
-    params[:workshop][:workshop_sessions_attributes].each do |i|
-      i.delete(:date)
-    end
+
+    remove_date_before_save(params[:workshop][:workshop_sessions_attributes])
     @workshop  = Workshop.new(params[:workshop])
     respond_to do |format|
       if @workshop.save
@@ -57,5 +56,11 @@ class WorkshopsController < ApplicationController
 
   def workshop_from_params
     @workshop = Workshop.find(params[:id])
+  end
+
+  def remove_date_before_save(workshop_attrs)
+    workshop_attrs.each do |workshop_attr|
+      workshop_attr.delete(:date)
+    end
   end
 end

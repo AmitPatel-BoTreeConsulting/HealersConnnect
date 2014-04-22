@@ -26,9 +26,9 @@
             = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
         .row
           .col-xs-12
+            %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session')
             #culpritsNameContainer
               .wrapper-class
-                %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session')
                 .fieldCollection
                   .col-sm-2
                     .input-group
