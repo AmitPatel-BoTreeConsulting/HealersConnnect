@@ -124,9 +124,6 @@ en:
       donation: 'Donation'
       review_donation: 'Review Donation'
       course_category: 'Course Category'
-      button:
-        update: 'Update Course'
-        new: 'Create Course'
     message:
       course_created: "Course '%{course}' created successfully."
       course_updated: "Course '%{course}' updated successfully."
@@ -163,6 +160,7 @@ en:
         reset: 'Reset'
         cancel: 'Cancel'
         delete: 'Delete'
+        save: 'Save'
       link:
         forgot_my_password: 'I forgot my password'
         confirmation_instructions: "Didn't receive confirmation instructions?"
