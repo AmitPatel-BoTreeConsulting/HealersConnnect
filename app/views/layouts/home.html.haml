@@ -2,8 +2,8 @@
 %html
   %head
     %title= Settings.app_name
-    = stylesheet_link_tag :canvas, :media => 'all'
-    = javascript_include_tag :canvas
+    = include_stylesheets :canvas, :media => 'all'
+    = include_javascripts :canvas
     = csrf_meta_tags
     %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1"}
   %body.pull_top
