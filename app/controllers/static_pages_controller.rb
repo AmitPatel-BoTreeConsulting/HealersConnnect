@@ -9,5 +9,6 @@ class StaticPagesController < ApplicationController
 
   def home
     @workshops = Workshop.all
+    render layout: 'home'
   end
 end
