@@ -62,6 +62,12 @@ HealersConnnect::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  config.before_initialize do
+    # Asset packaging library
+    # http://documentcloud.github.io/jammit/
+    config.gem "jammit"
+  end
+
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5

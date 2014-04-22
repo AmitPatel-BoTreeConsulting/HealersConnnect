@@ -49,4 +49,10 @@ HealersConnnect::Application.configure do
       authentication: 'plain',
       enable_starttls_auto: true
   }
+
+  config.before_initialize do
+    # Asset packaging library
+    # http://documentcloud.github.io/jammit/
+    config.gem "jammit"
+  end
 end
