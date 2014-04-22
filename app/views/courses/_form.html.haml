@@ -1,22 +1,17 @@
 - @course ||= Course.new
 - create_view = @course.new_record?
-- submit_btn_caption = ( create_view ? t('course.caption.button.new') : t('course.caption.button.update') )
 = render partial: 'shared/error_messages', locals: { target: @course }
 .row
   .col-xs-12
     = form_for @course,  html: {class: 'form-horizontal', role: 'form'} do |f|
       .space-4
       .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.course_category')}
-        .col-sm-9.margin-top-6
-          - @course_categories.each do |course_category|
-            .col-sm-3
-              = radio_button('course', 'course_category_id', course_category.id)
-              = course_category.name
-      .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.name')}
         .col-sm-9
-          = f.text_field :name, class: 'col-xs-10 col-sm-5'
+          %label.common_form_lbl
+            = @course.name
+            %b
+              = "[#{@course.course_category.name}]"
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-input-readonly'} #{t('common.caption.description')}
@@ -26,12 +21,12 @@
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.donation')}
         .col-sm-9
-          = f.text_field :donation, class: 'col-xs-10 col-sm-5'
+          = f.text_field :donation, class: 'input-sm course_textbox_tex_align', size: '0'
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.review_donation')}
         .col-sm-9
-          = f.text_field :review_donation, class: 'col-xs-10 col-sm-5'
+          = f.text_field :review_donation, class: 'input-sm course_textbox_tex_align', size: '0'
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.image')}
         .col-sm-9
@@ -48,5 +43,5 @@
 
       .clearfix
         .col-md-offset-3.col-md-9
-          = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', title: "#{submit_btn_caption}"
+          = f.submit t('common.caption.button.save'), class: 'btn btn-primary', title: t('common.caption.button.save')
           = link_to(t('common.caption.button.cancel'),courses_path , class: 'btn', title: t('common.caption.button.cancel'))

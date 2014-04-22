@@ -167,6 +167,7 @@ en:
         reset: 'Reset'
         cancel: 'Cancel'
         delete: 'Delete'
+        save: 'Save'
       link:
         forgot_my_password: 'I forgot my password'
         confirmation_instructions: "Didn't receive confirmation instructions?"
@@ -201,7 +202,8 @@ en:
       fees_on_rejoining: 'Fees on rejoining'
       start_date: ' Workshop Start date'
       end_date: ' Workshop End date'
-
+      session_start: 'Session Start'
+      session_end: 'Session End'
       button:
         new: 'Create Workshop'
     message:
