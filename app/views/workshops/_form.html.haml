@@ -32,7 +32,7 @@
                 .fieldCollection
                   .col-xs-2
                     .input-group
-                      = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker'
+                      = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-12', class: 'form-control date-picker'
                       %span.input-group-addon
                         %i.icon-calendar.bigger-110
                   .col-xs-4
@@ -117,13 +117,5 @@
 %script{:src => '//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places&region=india', type: 'text/javascript'}
 :javascript
   $(function(){
-  $('#id-date-picker-11').on('change', function() {
-    $('#workshop_fees_after').text($('#id-date-picker-11').val());
-  });
-
-  $('#id-date-picker-1').on('change', function() {
-    $('#workshop_fees_spot').text($('#id-date-picker-1').val());
-  });
-
   initGoogleLocationSearchFields('workshop_location', 'workshop_long', 'workshop_lat', false);
   });
