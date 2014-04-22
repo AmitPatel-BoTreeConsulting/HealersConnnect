@@ -157,6 +157,7 @@ en:
       end_date: 'End Date'
       register: 'Register'
       view_registrations: 'View Registrations'
+      contact: 'Contact'
       title:
         edit: 'Edit'
       button:
@@ -190,14 +191,17 @@ en:
       instructor: 'Instructor'
       assistant_instructor: 'Assistant instructor'
       workshops: 'Workshops'
-      fees_after_session: 'Fees after session'
-      fees_before_session: 'Fees before session'
-      fees_on_session: 'Fees on session'
-      fees_on_rejoining: 'Fees on rejoining'
+      fees: 'Fees'
+      fees_after_session: 'After'
+      fees_before_session: 'Before'
+      fees_on_spot: 'Spot'
+      fees_for_fresher: 'For Fresher'
+      fees_for_review: 'For Review'
       start_date: ' Workshop Start date'
       end_date: ' Workshop End date'
       session_start: 'Session Start'
       session_end: 'Session End'
+      session: 'Session'
       button:
         new: 'Create Workshop'
     message:

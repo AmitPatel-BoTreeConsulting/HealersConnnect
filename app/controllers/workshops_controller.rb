@@ -3,7 +3,6 @@ class WorkshopsController < ApplicationController
 
   def index
     @workshops =  Workshop.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
-    @workshop_sessions = WorkshopSession.all
   end
 
   def new
@@ -11,6 +10,14 @@ class WorkshopsController < ApplicationController
   end
 
   def create
+    params[:workshop][:workshop_sessions_attributes].each do |workshop|
+      if workshop[:date].present?
+        workshop[:session_start] = "#{workshop[:date]} #{workshop[:session_start]}".to_datetime
+        workshop[:session_end] = "#{workshop[:date]} #{workshop[:session_end]}".to_datetime
+      end
+    end
+    params[:workshop].delete(:date)
+
     @workshop  = Workshop.new(params[:workshop])
     respond_to do |format|
       if @workshop.save
