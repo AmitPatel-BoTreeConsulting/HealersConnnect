@@ -25,40 +25,40 @@
           .col-sm-9
             = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
         .row
-          .col-xs-12
-            %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session')
+          .col-xs-9
+            %label.col-sm-4.control-label.no-padding-right= t('workshop.caption.session')
             #culpritsNameContainer
               .wrapper-class
                 .fieldCollection
-                  .col-sm-2
+                  .col-xs-2
                     .input-group
                       = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker'
                       %span.input-group-addon
                         %i.icon-calendar.bigger-110
-                  .col-sm-3
+                  .col-xs-4
                     = session_start_dropdown
                     = session_end_dropdown
             .space-20
-            %label.col-sm-3.control-label.no-padding-right
+            %label.col-sm-4.control-label.no-padding-right
             .col-sm-2
               %input#addCulpritsBtn.btn.btn-sm.btn-primary.no-radius(type="button" value="Add Session")
         .space-20
           #culpritsNameFieldTemplateContainer.hide
             .wrapper-class
               .fieldCollection
-                .spacer40
-                %label.col-sm-3.control-label.no-padding-right
-                .col-sm-2
+                .spacer30
+                %label.col-sm-4.control-label.no-padding-right
+                .col-xs-2
                   .input-group
                     = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker'
                     %span.input-group-addon
                       %i.icon-calendar.bigger-110
-                .col-sm-3
+                .col-xs-4
                   = session_start_dropdown
                   = session_end_dropdown
-        #culpritsNamesFieldRemoveBtnTemplateContainer.hide
-          = link_to('#') do
-            %i.icon-remove
+            #culpritsNamesFieldRemoveBtnTemplateContainer.hide
+              = link_to('#') do
+                %i.icon-remove
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees')}
           .col-sm-4
@@ -93,7 +93,7 @@
             .col-sm-1
               %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_on_spot')}
             .col-sm-2
-              = label_tag 'workshop_fees_spot', '', id: 'workshop_fees_spot'
+              = label_tag 'workshop_fees_spot', '', id: 'workshop_fees_spot', class: 'common_form_lbl'
             .col-sm-4
               = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5'
         .form-group
@@ -119,7 +119,7 @@
         .col-md-offset-3.col-md-9
           = f.submit t('workshop.caption.button.new'), class: 'btn btn-primary', title: t('workshop.caption.button.new')
           = link_to t('common.caption.button.cancel'), workshops_path, class: 'btn', title: t('common.caption.button.cancel')
-%script{:src => '//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places', type: 'text/javascript'}
+%script{:src => '//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places&region=india', type: 'text/javascript'}
 :javascript
   $(function(){
     $('#timepicker65373').timepicker({
@@ -140,6 +140,10 @@
 
   $('#id-date-picker-11').on('change', function() {
     $('#workshop_fees_after').text($('#id-date-picker-11').val());
+  });
+
+  $('#id-date-picker-1').on('change', function() {
+    $('#workshop_fees_spot').text($('#id-date-picker-1').val());
   });
 
   initGoogleLocationSearchFields('workshop_location', 'workshop_long', 'workshop_lat', false);

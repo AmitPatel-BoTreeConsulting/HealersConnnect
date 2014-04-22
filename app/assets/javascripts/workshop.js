@@ -17,7 +17,6 @@ function appendCulpritsField(containerObj, clickCount) {
     var idStr = $(this).attr("id") + "_" + clickCount;
     $(this).attr("id", idStr);
   });
-  //alert(newDiv.html());
   containerObj.append(newDiv.html());
   // Append the Remove Btn to the text field
   fieldRemoveBtnTemplate = $('#culpritsNamesFieldRemoveBtnTemplateContainer').html();
@@ -34,7 +33,6 @@ function bindDatePickerOnCulpritsField() {
   }
 
 function bindClickEventOnCulpritsFieldRemoveBtn(fieldObj) {
-  //alert(fieldObj);
   if(emptyObject(fieldObj)) {
     return;
   }
