@@ -1,49 +1,44 @@
-#websiteUrlsContainer.form-group
-  - if @workshop_sessions.present?
-    - @workshop_sessions.each_with_index do |workshop_session, index|
-      - workshop_session_id = workshop_session.id
-      - session_start = workshop_session.session_start
-      = session_start
-      - session_end = workshop_session.session_end
-      .wrapper-class
-        - if index > 0
-          = label_tag :name, '', class: "col-md-4 col-sm-4 control-label no-padding-right"
-        .col-sm-8.col-md-8
-          .space-4
-          = hidden_field_tag('workshop[workshop_sessions_attributes][][id]', workshop_session_id)
-          %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session_start')
-          .col-sm-3
-            .input-group.bootstrap-timepicker
-              = text_field_tag 'workshop[workshop_sessions_attributes][][session_start]', session_start, id: 'timepicker1', class: 'form-control'
-              %span.input-group-addon
-                %i.icon-time.bigger-110
+/ .form-group
+/   - if @workshop_sessions.present?
+/     - @workshop_sessions.each_with_index do |workshop_session, index|
+/       - workshop_session_id = workshop_session.id
+/       - session_start = workshop_session.session_start
+/       = session_start
+/       - session_end = workshop_session.session_end
+/       .wrapper-class
+/         - if index > 0
+/           %label.col-sm-3.control-label.no-padding-right
+/           .col-sm-8.col-md-8
+/             .space-4
+/             = hidden_field_tag('workshop[workshop_sessions_attributes][][id]', workshop_session_id)
+/             %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session_start')
+/             .col-sm-3
+/               .input-group.bootstrap-timepicker
+/                 = text_field_tag 'workshop[workshop_sessions_attributes][][session_start]', session_start, id: 'timepicker1', class: 'form-control'
+/                 %span.input-group-addon
+/                   %i.icon-time.bigger-110
 
-            %label.col-sm-1.control-label= t('workshop.caption.session_end')
-            .col-sm-3
-              .input-group.bootstrap-timepicker
-                = text_field_tag 'workshop[workshop_sessions_attributes][][session_end]', session_end, id: 'timepicker2', class: 'form-control'
-                %span.input-group-addon
-                  %i.icon-time.bigger-110
+/               %label.col-sm-1.control-label= t('workshop.caption.session_end')
+/               .col-sm-3
+/                 .input-group.bootstrap-timepicker
+/                   = text_field_tag 'workshop[workshop_sessions_attributes][][session_end]', session_end, id: 'timepicker2', class: 'form-control'
+/                   %span.input-group-addon
+/                     %i.icon-time.bigger-110
 
-    #removeClientUrlsContainer(style='display: none;')
+/     #removeClientUrlsContainer(style='display: none;')
 
-  - else
-    .wrapper-class
-      %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session_start')
-      .col-sm-3
-        .input-group.bootstrap-timepicker
-          = text_field_tag 'workshop[workshop_sessions_attributes][][session_start]', nil, id: 'timepicker1', class: 'form-control'
-          %span.input-group-addon
-            %i.icon-time.bigger-110
+/   - else
+    / .wrapper-class
+    /   %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session')
+    /   .fieldCollection
+    /     .col-sm-3
+    /       .input-group.bootstrap-timepicker
+    /         = text_field_tag 'workshop[workshop_sessions_attributes][][session_start]', '', id: 'timepicker1', class: 'form-control'
+    /         %span.input-group-addon
+    /           %i.icon-time.bigger-110
 
-      %label.col-sm-1.control-label= t('workshop.caption.session_end')
-      .col-sm-3
-        .input-group.bootstrap-timepicker
-          = text_field_tag 'workshop[workshop_sessions_attributes][][session_end]', nil, id: 'timepicker2', class: 'form-control'
-          %span.input-group-addon
-            %i.icon-time.bigger-110
-.form-group
-  %label.col-md-4.col-sm-4.control-label.no-padding-right
-  .col-sm-1
-    .controls
-      %input#addUrlBtn.btn.btn-sm.btn-primary.no-radius(type="button" value="Add Session")
+    /     .col-sm-3
+    /       .input-group.bootstrap-timepicker
+    /         = text_field_tag 'workshop[workshop_sessions_attributes][][session_end]', '', id: 'timepicker2', class: 'form-control'
+    /         %span.input-group-addon
+    /           %i.icon-time.bigger-110

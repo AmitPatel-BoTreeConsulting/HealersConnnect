@@ -25,4 +25,4 @@
 //= require instructors
 //= require jsapi
 //= require donation
-//= require workshop
+//= require workshops
