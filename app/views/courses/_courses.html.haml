@@ -1,6 +1,6 @@
 %tr.info
   %td<
-    = course_counter + 1
+    = serial_number(@page,@courses.size,course_counter)
   %td<
     = link_to course.name, edit_course_path(course)
   %td<
