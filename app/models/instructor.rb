@@ -7,6 +7,5 @@ class Instructor < ActiveRecord::Base
   has_many :course_instructors
   has_many :courses, through: :course_instructors
   has_many :workshops
-  validates :mobile, phone: {possible: true, types: [:mobile]}
 
 end

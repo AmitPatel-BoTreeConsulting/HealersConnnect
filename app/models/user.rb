@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :mobile, :password, :password_confirmation, :remember_me
   attr_accessible :login
   # attr_accessible :title, :body
-  validates :mobile, phone: {possible: true, types: [:mobile]}
 
   has_many :donations
   has_many :user_roles
