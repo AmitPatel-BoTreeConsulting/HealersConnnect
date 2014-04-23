@@ -87,18 +87,6 @@ toggleRemoveBtnCaseFirstField = (containerObj) ->
   firstField = fields.first()
   firstFieldRemoveBtn = firstField.find(".icon-minus-sign")
   firstFieldRemoveBtnPresent = firstFieldRemoveBtn.length > 0
-#  if fieldsCount > 10
-#
-#    # If not present then only append the Remove Btn
-#    unless firstFieldRemoveBtnPresent
-#
-#      # Append the Remove btn against the first field
-#      fieldRemoveBtnTemplate = $("#culpritsNamesFieldRemoveBtnTemplateContainer").html()
-#      firstField.append fieldRemoveBtnTemplate
-#      bindClickEventOnCulpritsFieldRemoveBtn firstField
-#    else
-#      removeBreakTagFromFirstField firstField
-#  else
   if firstFieldRemoveBtnPresent
     removeBreakTagFromFirstField firstField
 
