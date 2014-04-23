@@ -55,6 +55,9 @@ module ApplicationHelper
     when :courses
       url = courses_path
       link_title = t('navbar.menu.title.courses')
+    when :workshops
+      url = workshops_path
+      link_title = t('navbar.menu.title.workshops')
     else
     end
     content_tag(:li, link_to(link_title, url),

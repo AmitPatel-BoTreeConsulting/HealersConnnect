@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
 
   def has_permission?(controller)
     case controller
-    when :centers
+    when :centers,:workshops
       have_role?(Role::SUPER_ADMIN) ||
       have_role?(Role::FOUNDATION_ADMIN) ||
       have_role?(Role::CENTER_ADMIN)

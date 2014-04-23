@@ -1,12 +1,15 @@
 class WorkshopsController < ApplicationController
   before_filter :workshop_from_params , only: [:show,:edit, :update, :destroy]
+  before_filter :course_from_params, only: [:course_instructors]
 
   def index
+    @page = params[:page] || 1
     @workshops =  Workshop.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
   def new
     @workshop = Workshop.new
+    @instructors = Instructor.all(:order => 'name ASC')
   end
 
   def create
@@ -19,6 +22,7 @@ class WorkshopsController < ApplicationController
 
     remove_date_before_save(params[:workshop][:workshop_sessions_attributes])
     @workshop  = Workshop.new(params[:workshop])
+    @instructors = Instructor.all(:order => 'name ASC')
     respond_to do |format|
       if @workshop.save
         format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_created', workshop: @workshop.course.name)}
@@ -52,10 +56,21 @@ class WorkshopsController < ApplicationController
     end
   end
 
+ def course_instructors
+   respond_to do |format|
+     @instructors = @course.instructors
+     format.js
+   end
+ end
+
   private
 
   def workshop_from_params
     @workshop = Workshop.find(params[:id])
+  end
+
+  def course_from_params
+    @course = Course.find(params[:id])
   end
 
   def remove_date_before_save(workshop_attrs)

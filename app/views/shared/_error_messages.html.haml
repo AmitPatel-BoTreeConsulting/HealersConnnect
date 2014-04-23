@@ -1,8 +1,12 @@
 - unless target.nil?
   - if target.errors.any?
     .row.flash_msg
-      - target.errors.full_messages.each do |msg|
-        .text-center.alert.alert-danger.margin-bottom-10
+      .col-md-5.col-md-offset-4
+        .text-left.alert.alert-danger.margin-bottom-10.border-solid-4
           %button.close{'data-dismiss' => 'alert', type: 'button'} &times;
-          %i{ class: 'icon-remove' }
-          = msg
+          .error-message-header
+            = "#{target.errors.full_messages.count} Error(s) found"
+          - target.errors.full_messages.each do |msg|
+            %ul
+              %li
+                = msg

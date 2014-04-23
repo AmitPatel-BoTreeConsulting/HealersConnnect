@@ -270,6 +270,12 @@ en:
       paragraph_2: 'Please find donation details are as below.'
       signature_text_thnak_you: 'Thank you,'
       signature_text_team: 'Pranic Healing Team'
+      
+  instructors:
+    caption:
+      instructor_select_tag_prompt: '--Please select instructor--'
+      no_instrctor_found: '--Instructor not available--'
+
   mailer:
     send_donation_notification_to_donor:
       subject: 'Donation Notification'
@@ -281,6 +287,7 @@ en:
       courses: 'Courses'
       instructors: 'Instructors'
       centers: 'Centers'
+      workshops: 'Workshops'
   sign_in:
     caption:
       remember_me: 'Remember Me'
