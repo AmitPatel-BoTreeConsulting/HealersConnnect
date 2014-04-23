@@ -1,5 +1,5 @@
 $(document).ready ->
-  workshop_fees_on_rejoining
+  $('#workshop_fees_on_rejoining').val(0)
   clickCount = 0
   $("#addCulpritsBtn").click ->
     clickCount++
@@ -84,23 +84,23 @@ toggleRemoveBtnCaseFirstField = (containerObj) ->
   firstField = fields.first()
   firstFieldRemoveBtn = firstField.find(".icon-remove")
   firstFieldRemoveBtnPresent = firstFieldRemoveBtn.length > 0
-  if fieldsCount > 1
+#  if fieldsCount > 10
+#
+#    # If not present then only append the Remove Btn
+#    unless firstFieldRemoveBtnPresent
+#
+#      # Append the Remove btn against the first field
+#      fieldRemoveBtnTemplate = $("#culpritsNamesFieldRemoveBtnTemplateContainer").html()
+#      firstField.append fieldRemoveBtnTemplate
+#      bindClickEventOnCulpritsFieldRemoveBtn firstField
+#    else
+#      removeBreakTagFromFirstField firstField
+#  else
+  if firstFieldRemoveBtnPresent
+    removeBreakTagFromFirstField firstField
 
-    # If not present then only append the Remove Btn
-    unless firstFieldRemoveBtnPresent
-
-      # Append the Remove btn against the first field
-      fieldRemoveBtnTemplate = $("#culpritsNamesFieldRemoveBtnTemplateContainer").html()
-      firstField.append fieldRemoveBtnTemplate
-      bindClickEventOnCulpritsFieldRemoveBtn firstField
-    else
-      removeBreakTagFromFirstField firstField
-  else
-    if firstFieldRemoveBtnPresent
-      removeBreakTagFromFirstField firstField
-
-      # Remove the Remove btn against the first field
-      firstFieldRemoveBtn.parent().remove()
+    # Remove the Remove btn against the first field
+    firstFieldRemoveBtn.parent().remove()
   return
 
 # Dynamically added text fields starts with a <br/> tag.
