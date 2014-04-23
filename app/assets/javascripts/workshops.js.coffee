@@ -17,6 +17,17 @@ $(document).ready ->
     $("#workshop_fees_after").text sessionDate
     $("#workshop_fees_spot").text sessionDate
     return
+
+  $("#workshop_course_id").change ->
+    courseId = $('#workshop_course_id').val()
+    unless $("#workshop_course_id").val() is ""
+      $.ajax
+        cache: false
+        type: "POST"
+        url: "/workshops/course/instructors"
+        data:
+          id: courseId
+
   return
 
 appendCulpritsField = (containerObj, clickCount) ->

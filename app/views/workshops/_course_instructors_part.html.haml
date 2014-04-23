@@ -1,0 +1,15 @@
+.form-group
+  %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.instructor')}
+  .col-sm-9
+    = select_tag 'workshops[instructor_id]', options_from_collection_for_select(@instructors, :id, :name),
+    class: 'col-xs-10 col-sm-5',
+    name: 'donation[center_id]',
+    prompt: prompt_msg
+
+.form-group
+  %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.assistant_instructor')}
+  .col-sm-9
+    = select_tag 'workshops[assistant_instructor_id]', options_from_collection_for_select(@instructors, :id, :name),
+    class: 'col-xs-10 col-sm-5',
+    name: 'donation[center_id]',
+    prompt: prompt_msg

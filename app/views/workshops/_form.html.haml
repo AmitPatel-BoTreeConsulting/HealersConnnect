@@ -12,14 +12,8 @@
           %label.col-sm-3.control-label.no-padding-right #{t('common.caption.course')}
           .col-sm-9
             = f.collection_select :course_id, Course.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-5 col-sm-5' }
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.instructor')}
-          .col-sm-9
-            = f.collection_select :instructor_id, Instructor.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.assistant_instructor')}
-          .col-sm-9
-            = f.collection_select :assistant_instructor_id, Instructor.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
+        #course_instructors_part
+          = render partial: 'course_instructors_part', locals: {prompt_msg: t('instructors.caption.instructor_select_tag_prompt')}
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('donation.caption.center')}
           .col-sm-9
