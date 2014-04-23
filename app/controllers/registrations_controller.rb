@@ -24,6 +24,7 @@ class RegistrationsController < ApplicationController
       registration_date: Date.today,
       workshop_id: @workshop.id
     )
+    @eligibilities = @workshop.eligibilities
   end
 
   def create
