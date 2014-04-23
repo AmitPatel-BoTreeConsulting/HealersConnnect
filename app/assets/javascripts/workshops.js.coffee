@@ -8,12 +8,14 @@ $(document).ready ->
     return
 
   $("#id-date-picker-11").on "change", ->
-
     $("#workshop_fees_after").text $("#id-date-picker-11").val()
     return
 
   $("#id-date-picker-12").on "change", ->
-    $("#workshop_fees_spot").text $("#id-date-picker-12").val()
+    sessionDate = $("#id-date-picker-12").val()
+    $('#id-date-picker-11').val sessionDate
+    $("#workshop_fees_after").text sessionDate
+    $("#workshop_fees_spot").text sessionDate
     return
   return
 
