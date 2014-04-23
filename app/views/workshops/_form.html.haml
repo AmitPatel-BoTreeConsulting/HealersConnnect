@@ -24,7 +24,7 @@
             #culpritsNameContainer
               .wrapper-class
                 .fieldCollection
-                  .col-xs-2
+                  .col-xs-2.margin-right-15
                     .input-group
                       = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-12', class: 'form-control date-picker'
                       %span.input-group-addon
@@ -32,17 +32,16 @@
                   .col-xs-4
                     = session_start_dropdown
                     = session_end_dropdown
-            .space-20
-            %label.col-sm-4.control-label.no-padding-right
-            .col-sm-2
-              %input#addCulpritsBtn.btn.btn-sm.btn-primary.no-radius(type="button" value="Add Session")
+            #addCulpritsBtn{style: 'margin-top:5px;'}
+              = link_to('javascript:void(0)') do
+                %i.icon-plus
         .space-6
           #culpritsNameFieldTemplateContainer.hide
             .wrapper-class
               .fieldCollection
                 .spacer30
                 %label.col-sm-4.control-label.no-padding-right
-                .col-xs-2
+                .col-xs-2.margin-right-15
                   .input-group
                     = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker'
                     %span.input-group-addon
@@ -50,8 +49,9 @@
                 .col-xs-4
                   = session_start_dropdown
                   = session_end_dropdown
+
             #culpritsNamesFieldRemoveBtnTemplateContainer.hide
-              = link_to('#') do
+              = link_to('javascript:void(0)') do
                 %i.icon-remove
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees')}

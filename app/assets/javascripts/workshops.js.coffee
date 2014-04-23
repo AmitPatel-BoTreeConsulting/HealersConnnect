@@ -1,4 +1,5 @@
 $(document).ready ->
+  workshop_fees_on_rejoining
   clickCount = 0
   $("#addCulpritsBtn").click ->
     clickCount++
