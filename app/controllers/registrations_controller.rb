@@ -4,6 +4,7 @@ class RegistrationsController < ApplicationController
   before_filter :required_access, only: [:index, :edit, :update, :destroy, :activate, :deactivate, :export]
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export]
   before_filter :find_workshop, except: [:registration]
+  before_filter :set_eligibilities, only: [:new, :create, :edit, :update]
 
   def index
     @registrations = Registration.search(params)
@@ -122,4 +123,7 @@ class RegistrationsController < ApplicationController
       {status: @registration.active ? 'confirmed' : 'cancelled'}
     end
 
+    def set_eligibilities
+      @eligibilities = @workshop.eligibilities
+    end
 end
