@@ -51,6 +51,7 @@ en:
       confirm_registration_cancel: 'Are you sure you want to cancel the registration?'
       confirm_registration_confirm: 'Are you sure you want to confirm the registration?'
       confirm_registration_remove: 'Are you sure you want to remove this registration?'
+      continue_registration: 'No, Continue Registration'
       pdf:
         title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
         name_of_course: 'Name of Course :'
@@ -97,6 +98,8 @@ en:
         cheque_no: 'Cheque no'
         bank_name: 'Bank name'
         instructor: 'Instructor'
+        date_or_year: 'Date OR Year'
+        place: 'Place'
       button:
         status_confirmed: 'confirmed'
         status_cancelled: 'Cancelled'

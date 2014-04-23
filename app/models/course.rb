@@ -23,8 +23,19 @@ class Course < ActiveRecord::Base
   has_many :instructors, through: :course_instructors
   has_many :workshops
 
+  scope :by_alias, ->(aliases) { where(alias: aliases) }
+
   def update_status(status)
     update_attribute(:status, status)
   end
 
+  def eligibilities
+    eligibilities = Course.by_alias(eligibility.split(','))
+    eligibility_arrr = eligibilities.inject([]) { |eligibility_arr, course|
+      sub_eligibilities = course.eligibilities
+      eligibility_arr.push(*sub_eligibilities) unless sub_eligibilities.blank?
+      eligibility_arr
+    }
+    (eligibility_arrr + eligibilities).uniq
+  end
 end
