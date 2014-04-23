@@ -1,5 +1,8 @@
 $(document).ready ->
-  $('#workshop_fees_on_rejoining').val(0)
+
+  if $('#workshop_fees_on_rejoining').val() is ''
+    $('#workshop_fees_on_rejoining').val(0)
+
   clickCount = 0
   $("#addCulpritsBtn").click ->
     clickCount++
