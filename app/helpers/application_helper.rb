@@ -84,7 +84,7 @@ module ApplicationHelper
     date.try(:strftime, '%d/%m/%Y')
   end
 
-  def serial_number(page, collection_count, index)
-    (page.to_i - 1) * collection_count + index + 1
+  def serial_number(page, index)
+    (page.to_i - 1) * Settings.pagination.per_page + index + 1
   end  
 end
