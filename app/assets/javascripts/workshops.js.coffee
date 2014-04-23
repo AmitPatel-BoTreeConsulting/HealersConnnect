@@ -1,4 +1,5 @@
 $(document).ready ->
+  $('#workshop_fees_on_rejoining').val(0)
   clickCount = 0
   $("#addCulpritsBtn").click ->
     clickCount++
@@ -8,13 +9,26 @@ $(document).ready ->
     return
 
   $("#id-date-picker-11").on "change", ->
-
     $("#workshop_fees_after").text $("#id-date-picker-11").val()
     return
 
   $("#id-date-picker-12").on "change", ->
-    $("#workshop_fees_spot").text $("#id-date-picker-12").val()
+    sessionDate = $("#id-date-picker-12").val()
+    $('#id-date-picker-11').val sessionDate
+    $("#workshop_fees_after").text sessionDate
+    $("#workshop_fees_spot").text sessionDate
     return
+
+  $("#workshop_course_id").change ->
+    courseId = $('#workshop_course_id').val()
+    unless $("#workshop_course_id").val() is ""
+      $.ajax
+        cache: false
+        type: "POST"
+        url: "/workshops/course/instructors"
+        data:
+          id: courseId
+
   return
 
 appendCulpritsField = (containerObj, clickCount) ->
@@ -47,7 +61,7 @@ bindDatePickerOnCulpritsField = ->
   return
 bindClickEventOnCulpritsFieldRemoveBtn = (fieldObj) ->
   return  if emptyObject(fieldObj)
-  fieldObj.find(".icon-remove").click (event) ->
+  fieldObj.find(".icon-minus-sign").click (event) ->
     removeBtnMainParentContainer = $(this).closest(".wrapper-class")
     removeBtnMainParentContainer.remove()
     container = $("#culpritsNameContainer")
@@ -68,25 +82,25 @@ toggleRemoveBtnCaseFirstField = (containerObj) ->
   fields = containerObj.find(".fieldCollection")
   fieldsCount = fields.length
   firstField = fields.first()
-  firstFieldRemoveBtn = firstField.find(".icon-remove")
+  firstFieldRemoveBtn = firstField.find(".icon-minus-sign")
   firstFieldRemoveBtnPresent = firstFieldRemoveBtn.length > 0
-  if fieldsCount > 1
+#  if fieldsCount > 10
+#
+#    # If not present then only append the Remove Btn
+#    unless firstFieldRemoveBtnPresent
+#
+#      # Append the Remove btn against the first field
+#      fieldRemoveBtnTemplate = $("#culpritsNamesFieldRemoveBtnTemplateContainer").html()
+#      firstField.append fieldRemoveBtnTemplate
+#      bindClickEventOnCulpritsFieldRemoveBtn firstField
+#    else
+#      removeBreakTagFromFirstField firstField
+#  else
+  if firstFieldRemoveBtnPresent
+    removeBreakTagFromFirstField firstField
 
-    # If not present then only append the Remove Btn
-    unless firstFieldRemoveBtnPresent
-
-      # Append the Remove btn against the first field
-      fieldRemoveBtnTemplate = $("#culpritsNamesFieldRemoveBtnTemplateContainer").html()
-      firstField.append fieldRemoveBtnTemplate
-      bindClickEventOnCulpritsFieldRemoveBtn firstField
-    else
-      removeBreakTagFromFirstField firstField
-  else
-    if firstFieldRemoveBtnPresent
-      removeBreakTagFromFirstField firstField
-
-      # Remove the Remove btn against the first field
-      firstFieldRemoveBtn.parent().remove()
+    # Remove the Remove btn against the first field
+    firstFieldRemoveBtn.parent().remove()
   return
 
 # Dynamically added text fields starts with a <br/> tag.
