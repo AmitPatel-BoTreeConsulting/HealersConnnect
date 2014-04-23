@@ -74,7 +74,7 @@
                 %span.input-group-addon
                   %i.icon-calendar.bigger-110
             .col-sm-5
-              = f.number_field :fees_before_session, class: 'col-xs-10 col-sm-5'
+              = f.number_field :fees_before_session, class: 'col-xs-10 col-sm-5 text-right'
         .form-group
           %label.col-sm-3.control-label.no-padding-right
           .col-sm-9
@@ -83,7 +83,7 @@
             .col-sm-2
               = label_tag 'workshop_fees_after', '', id: 'workshop_fees_after', class: 'common_form_lbl'
             .col-sm-5
-              = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5'
+              = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5 text-right'
         .form-group
           %label.col-sm-3.control-label.no-padding-right
           .col-sm-9
@@ -92,14 +92,14 @@
             .col-sm-2
               = label_tag 'workshop_fees_spot', '', id: 'workshop_fees_spot', class: 'common_form_lbl'
             .col-sm-5
-              = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5'
+              = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5 text-right'
         .form-group
           %label.col-sm-3.control-label.no-padding-right
           .col-sm-9
             .col-sm-3
               %label #{t('workshop.caption.fees_for_review')}
             .col-sm-5
-              = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5'
+              = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5 text-right'
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('center.caption.location')}
           .col-sm-4
