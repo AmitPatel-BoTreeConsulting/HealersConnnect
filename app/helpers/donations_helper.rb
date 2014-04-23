@@ -4,7 +4,7 @@ module DonationsHelper
     options = donations.collect do |donation|
         [donation.user.email, donation.user.id]
     end
-    select_tag("donation[user_id][]", options_for_select(options.uniq, selected[:user_id]), multiple: 'true', style: "display: none;", id: 'form-field-select-4', class: 'width-30 chosen-select donation_search_fields')
+    select_tag("donation[user_id][]", options_for_select(options.uniq, selected[:user_id]), multiple: 'true', style: "display: none;", id: 'form-field-select-4', class: 'width-30 chosen-select donation_search_fields tag-input-style')
   end
 
   def active_donation_pill(timeline=nil)

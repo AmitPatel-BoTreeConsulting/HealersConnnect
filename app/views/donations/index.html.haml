@@ -44,7 +44,7 @@
         .col-xs-12
           %label.margin-right-10
             = t('donation.caption.donation_type')
-          = select_tag("donation[donation_type][]", options_for_select([["For Center", '1'], ["For Food for Hungry", '2']],  @donation_params[:donation_type]), multiple: 'true', style: "display: none;", id: 'form-field-select-4', class: 'width-30 chosen-select donation_search_fields')
+          = select_tag("donation[donation_type][]", options_for_select([["For Center", '1'], ["For Food for Hungry", '2']],  @donation_params[:donation_type]), multiple: 'true', style: "display: none;", id: 'form-field-select-4', class: 'width-30 chosen-select donation_search_fields tag-input-style')
           %label.margin-right-10.margin-left-5
             = t('donation.caption.received_by')
           = received_by_dropdown(Donation.all, @donation_params)
