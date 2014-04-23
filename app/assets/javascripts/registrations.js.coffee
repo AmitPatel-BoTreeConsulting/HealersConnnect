@@ -45,7 +45,7 @@ $(document).ready ->
 
   # Determine user is signed_in or not using hiddenfield
   user_signed_in = ->
-    $('#user_signed_in').val is 'true'
+    $('#user_signed_in').val() is 'true'
 
   # Ajax for comparing inserted phonenumber with existing user's phonenumber
   # if numbers matched then the response will open login confirmation popup

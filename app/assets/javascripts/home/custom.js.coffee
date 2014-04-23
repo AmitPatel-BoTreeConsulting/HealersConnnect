@@ -14,4 +14,4 @@ $(document).ready ->
 
   # Determine user is signed_in or not using hiddenfield
   user_signed_in = ->
-    $('#user_signed_in').val is 'true'
+    $('#user_signed_in').val() is 'true'

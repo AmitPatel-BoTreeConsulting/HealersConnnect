@@ -4,5 +4,8 @@
   $('input[type="submit"]').attr('disabled','disabled');
   $('#sign_in_confirmation').popup({
   autoopen: true,
-  opacity: 0.7
+  opacity: 0.7,
+  beforeopen: function() {
+  $("#continueRegistrationBtn").addClass('sign_in_confirmation_close');
+  }
   });

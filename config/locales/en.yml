@@ -98,6 +98,8 @@ en:
         cheque_no: 'Cheque no'
         bank_name: 'Bank name'
         instructor: 'Instructor'
+        date_or_year: 'Date OR Year'
+        place: 'Place'
       button:
         status_confirmed: 'confirmed'
         status_cancelled: 'Cancelled'
