@@ -229,6 +229,11 @@ ActiveRecord::Schema.define(:version => 20140421180457) do
     t.datetime "end_date"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+    t.datetime "fees_date"
+    t.string   "location"
+    t.float    "lat"
+    t.float    "long"
+    t.string   "contact"
   end
 
 end

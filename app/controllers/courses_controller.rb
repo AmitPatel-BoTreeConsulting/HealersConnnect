@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   before_filter :required_access, only: [:index, :create, :show, :edit, :update, :activate, :deactivate, :destroy]
 
   def index
+    @page = params[:page] || 1
     @courses  = Course.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
