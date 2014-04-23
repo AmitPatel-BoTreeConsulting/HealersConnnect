@@ -1,14 +1,10 @@
 module CoursesHelper
-  def render_course_eligibility eligibility
-    course_names = []
-    eligibility_split = eligibility.split(',')
-    eligibility_split.each do |eligibility_alias|
-      if eligibility_alias == '16+'
-        course_names << '16+ years'
-      else
-        course_names << Course.find_by_alias(eligibility_alias).name
-      end
+  def render_course_eligibility aliases
+    aliases_split = aliases.split(',')
+    if aliases_split.include?('16+')
+      '16+ years'
+    else
+      Course.by_alias(aliases_split).map(&:name).join(', ')
     end
-    return course_names.join(', ')
   end
 end
