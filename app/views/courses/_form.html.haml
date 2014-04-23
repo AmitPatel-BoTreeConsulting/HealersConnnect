@@ -12,13 +12,13 @@
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.donation')}
-        .col-sm-9
-          = f.text_field :donation, class: 'input-sm course_textbox_tex_align', size: '0'
+        .col-sm-8
+          .col-sm-2
+            = f.text_field :donation, class: 'input-sm course_textbox_tex_align', size: '0'
+          %label.col-sm-3.control-label.text-left{for: 'form-field-1'} #{t('course.caption.review_donation')}
+          .col-sm-2
+            = f.text_field :review_donation, class: 'input-sm course_textbox_tex_align', size: '0'
       .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.review_donation')}
-        .col-sm-9
-          = f.text_field :review_donation, class: 'input-sm course_textbox_tex_align', size: '0'
       .form-group
         %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.image')}
         .col-sm-9

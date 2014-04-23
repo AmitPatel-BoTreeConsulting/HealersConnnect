@@ -3,9 +3,9 @@
     = t('course.caption.edit_course')
     %small
       %i.icon-double-angle-right
-      = @course.name
       %b
-        = "[#{@course.course_category.name}]"
+        = @course.name
       |
+      #{t('course.caption.eligibility')}:
       = render_course_eligibility(@course.eligibility)
 = render :partial => 'form'
