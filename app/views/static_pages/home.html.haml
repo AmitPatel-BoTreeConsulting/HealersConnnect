@@ -46,7 +46,7 @@
   .row
     .col-xs-12
       .table-responsive
-        %table.table.table-striped.table-bordered.table-hover
+        %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
           %thead
             %tr
               %th.text-center #{t('common.caption.start_date')}
@@ -63,3 +63,11 @@
                 .text-center
                   %h3
                     = t('workshop.message.no_workshop_active')
+
+- # Body of the sign in confirmation model
+- # appears upon clicking registration link if user is not logged in
+.hide
+  = render partial: 'registrations/sign_in_confirmation'
+  - # store the value of current user is logged in or not
+  - # for determining whether sign_in_confirmation popup will appear or not
+  = hidden_field_tag 'user_signed_in', !current_user.blank?

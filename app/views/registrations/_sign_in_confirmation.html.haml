@@ -1,0 +1,11 @@
+#sign_in_confirmation.popup-body
+  .center
+    .spacer20
+    %h4 Already registered? Please sign in for hassle free registration.
+    = link_to t('common.caption.sign_in'), new_user_session_path, class: 'btn btn-md btn-success'
+    .spacer10
+    %hr.hr-2px
+    .spacer10
+    %h4 Not registered?
+    = link_to t('registration.caption.continue_registration'), 'javascript:void(0)', class: 'btn btn-md btn-success', id: 'continueRegistrationBtn'
+    .spacer20
