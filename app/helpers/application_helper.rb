@@ -17,6 +17,8 @@ module ApplicationHelper
         active_current_page?('courses', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
       when :instructors
         active_current_page?('instructors',HealersConnectConstant:: COMMON_CONTROLLER_ACTIONS)
+      when :workshops
+        active_current_page?('workshops',HealersConnectConstant:: COMMON_CONTROLLER_ACTIONS)
       else
         false
       end
