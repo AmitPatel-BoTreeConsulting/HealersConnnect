@@ -34,3 +34,29 @@ $(document).ready ->
     else
       $("#cheque_details").hide()
       $("#net_banking_details").hide()
+
+  # =============== course registration page
+  # whenever user add/change phone number or mobile
+  # Show popup confirmation for sign in if user is not logged in
+  # and changed number matches with any existing user's number
+  $('#registration_user_profile_attributes_mobile, #registration_user_profile_attributes_telephone').change ->
+    unless user_signed_in()
+      checkPhoneNumberByAjax()
+
+  # Determine user is signed_in or not using hiddenfield
+  user_signed_in = ->
+    $('#user_signed_in').val is 'true'
+
+  # Ajax for comparing inserted phonenumber with existing user's phonenumber
+  # if numbers matched then the response will open login confirmation popup
+  # and disables the submit button
+  # if not matched then response enables the submit button
+  checkPhoneNumberByAjax = ->
+    $.ajax
+      type: "POST"
+      beforeSend: (xhr) ->
+        xhr.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
+      url: '/check_phone_number'
+      data:
+        mobile: $('#registration_user_profile_attributes_mobile').val()
+        telephone: $('#registration_user_profile_attributes_telephone').val()

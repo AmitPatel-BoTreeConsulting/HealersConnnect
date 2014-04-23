@@ -1,0 +1,8 @@
+- if @profile.blank?
+  $('input[type="submit"]').removeAttr('disabled');
+- else
+  $('input[type="submit"]').attr('disabled','disabled');
+  $('#sign_in_confirmation').popup({
+  autoopen: true,
+  opacity: 0.7
+  });
