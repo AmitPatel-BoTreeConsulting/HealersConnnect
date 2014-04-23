@@ -83,4 +83,8 @@ module ApplicationHelper
   def date_formatted(date)
     date.try(:strftime, '%d/%m/%Y')
   end
+
+  def serial_number(page, index)
+    (page.to_i - 1) * Settings.pagination.per_page + index + 1
+  end  
 end
