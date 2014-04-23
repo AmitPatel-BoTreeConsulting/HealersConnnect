@@ -61,7 +61,7 @@ bindDatePickerOnCulpritsField = ->
   return
 bindClickEventOnCulpritsFieldRemoveBtn = (fieldObj) ->
   return  if emptyObject(fieldObj)
-  fieldObj.find(".icon-remove").click (event) ->
+  fieldObj.find(".icon-minus-sign").click (event) ->
     removeBtnMainParentContainer = $(this).closest(".wrapper-class")
     removeBtnMainParentContainer.remove()
     container = $("#culpritsNameContainer")
@@ -82,7 +82,7 @@ toggleRemoveBtnCaseFirstField = (containerObj) ->
   fields = containerObj.find(".fieldCollection")
   fieldsCount = fields.length
   firstField = fields.first()
-  firstFieldRemoveBtn = firstField.find(".icon-remove")
+  firstFieldRemoveBtn = firstField.find(".icon-minus-sign")
   firstFieldRemoveBtnPresent = firstFieldRemoveBtn.length > 0
 #  if fieldsCount > 10
 #
