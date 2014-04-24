@@ -49,4 +49,3 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'sequenced'
 gem "google_visualr", ">= 2.1"
-gem 'phonelib'
