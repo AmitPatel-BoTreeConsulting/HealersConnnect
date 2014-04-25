@@ -61,7 +61,7 @@
             %th{width: '12%'} #{t('donation.caption.receipt_no')}
             %th{width: '20%'} #{t('donation.caption.name')}
             %th{width: '25%'} #{t('donation.caption.center')}
-            %th{width: '10%'} #{t('donation.caption.amount')} (&#x20B9;)
+            %th.text-center{width: '10%'} #{t('donation.caption.amount')} (&#x20B9;)
             %th{width: '15%'} #{t('donation.caption.donation_type')}
             %th{width: '5%'} #{t('donation.caption.received_by')}
             %th{width: '10%'}= t('donation.caption.received_on')
@@ -76,7 +76,7 @@
                 = donation.donor_name
               %td
                 = donation.center.name
-              %td
+              %td.text-right
                 = donation.amount
               %td
                 = donation_type

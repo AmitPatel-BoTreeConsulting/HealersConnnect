@@ -152,3 +152,13 @@ ul#registrations_container { margin: 0!important;}
 .border-solid-4 {border: 4px solid}
 .font-22 {font-size: 22px !important;}
 .chosen-container-multi .chosen-choices li.search-choice .search-choice-close {background: none!important;}
+
+
+/* Custom container */
+.container-fixed {
+  margin: 0 auto;
+  max-width: 960px;
+}
+.container-fixed > hr {
+  margin: 30px 0;
+}

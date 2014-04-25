@@ -1,56 +1,59 @@
 - @center ||= Center.new
 - create_view = @center.new_record?
 - submit_btn_caption = ( create_view ? t('center.caption.button.new') : t('center.caption.button.update') )
+- text_box_class = 'col-xs-10 col-sm-6'
 = render partial: 'shared/error_messages', locals: { target: @center }
 .row
   .col-xs-12
-    = form_for @center, html: {class: 'form-horizontal', role: 'form'} do |f|
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.name')}
-        .col-sm-9
-          = f.text_field :name, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('center.caption.foundation')}
-        .col-sm-9
-          = f.collection_select :foundation_id, @foundations, :id, :name
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('center.caption.location')}
-        .col-sm-9
-          = f.text_field :location, class: 'col-xs-10 col-sm-5', placeholder: t('center.caption.placeholder.location')
-          = f.hidden_field :lat
-          = f.hidden_field :long
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-input-readonly'} #{t('center.caption.address')}
-        .col-xs-10.col-sm-4
-          = f.text_area :address, rows: 4, class: 'form-control'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('center.caption.phone_1')}
-        .col-sm-9
-          = f.phone_field :phone1, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('center.caption.phone_2')}
-        .col-sm-9
-          = f.phone_field :phone2, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'}  #{t('common.caption.mobile')}
-        .col-sm-9
-          = f.phone_field :mobile, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'}  #{t('center.caption.email')}
-        .col-sm-9
-          = f.email_field :email, class: 'col-xs-10 col-sm-5'
-      .clearfix
-        .col-md-offset-3.col-md-9
-          = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', title: "#{submit_btn_caption}"
-          = link_to(t('common.caption.button.cancel'),centers_path , class: 'btn', title: t('common.caption.button.cancel'))
+    .col-xs-10.col-md-offset-2
+      = form_for @center, html: {class: 'form-horizontal', role: 'form'} do |f|
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.name')}
+          .col-sm-9
+            = f.text_field :name, class: text_box_class
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('center.caption.foundation')}
+          .col-sm-9
+            = f.collection_select :foundation_id, @foundations, :id, :name
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('center.caption.location')}
+          .col-sm-9
+            = f.text_field :location, class: text_box_class, placeholder: t('center.caption.placeholder.location')
+            = f.hidden_field :lat
+            = f.hidden_field :long
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: 'form-input-readonly'} #{t('center.caption.address')}
+          .col-xs-10.col-sm-9
+            = f.text_area :address, rows: 4, cols: 10, class: text_box_class
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('center.caption.phone_1')}
+          .col-sm-9
+            = f.phone_field :phone1, class: text_box_class
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('center.caption.phone_2')}
+          .col-sm-9
+            = f.phone_field :phone2, class: text_box_class
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'}  #{t('common.caption.mobile')}
+          .col-sm-9
+            = f.phone_field :mobile, class: text_box_class
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'}  #{t('center.caption.email')}
+          .col-sm-9
+            = f.email_field :email, class: text_box_class
+        .clearfix
+          .form-group
+            .col-md-offset-3.col-md-9
+              = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', title: "#{submit_btn_caption}"
+              = link_to(t('common.caption.button.cancel'),centers_path , class: 'btn', title: t('common.caption.button.cancel'))
 %script{:src => '//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places', type: 'text/javascript'}
 :javascript
   $(function(){
