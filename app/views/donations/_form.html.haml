@@ -1,53 +1,54 @@
-- text_field_class = 'col-xs-4 margin-right-10'
+- text_field_class = 'col-xs-10 col-sm-6'
 = form_for @donation, html: { class: 'form-horizontal', role: 'form'} do |f|
   = hidden_field_tag 'donation[user_id]', current_user.id
   = render partial: 'shared/error_messages', locals: { target: @donation }
   .row
     .col-xs-12
-      .form-group
-        %label.col-xs-3.col-sm-3.control-label.no-padding-right= t('donation.caption.name')
-        .col-sm-9
-          = f.text_field :donor_name, class: text_field_class
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right= t('donation.caption.email')
-        .col-sm-9
-          = f.text_field :donor_email, class: text_field_class
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right= t('donation.caption.donation_type')
-        .col-sm-9
-          .control-group
-            .radio
-              %label
-                = f.radio_button :donation_type, 1, checked: true, class: 'ace'
-                %span.lbl= t('donation.caption.for_center_radio')
-              %label
-                = f.radio_button :donation_type, 2, class: 'ace'
-                %span.lbl= t('donation.caption.for_food_for_hungry_radio')
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right= t('donation.caption.center')
-        .col-sm-9
-          = select_tag t('donation.caption.center_select_tag'), options_from_collection_for_select(@centers, :id, :location), class: 'col-xs-3 margin-right-10', name: 'donation[center_id]',  prompt: t('donation.caption.center_select_tag_prompt')
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right
-          = t('donation.caption.amount')
-          (&#x20B9;)
-        .col-sm-9
-          = f.text_field :amount, class: 'col-xs-3 margin-right-10 text-align-r'
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right= t('common.caption.description')
-        .col-sm-9
-          = f.text_area :description, rows: 4, class: text_field_class
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right= t('donation.caption.received_on')
-        .col-sm-3
-          .input-group
-            = f.text_field :received_on, placeholder: t('donation.caption.placeholder_date'), class: 'form-control date-picker', id: 'id-date-picker-1', value: date_formatted(Date.today)
-            %span.input-group-addon
-              %i.icon-calendar.bigger-110
-      .form-group
-        %label.col-xs-3.col-sm-3.control-label.no-padding-right
-        .col-xs-8
-          = submit_tag t('donation.caption.button.save'), class: 'btn btn-primary', title: t('donation.caption.button.save')
-          = link_to(t('common.caption.button.cancel'),donations_path , class: 'btn', title: t('common.caption.button.cancel'))
+      .col-xs-10.col-md-offset-2
+        .form-group
+          %label.col-xs-3.col-sm-3.control-label.no-padding-right= t('donation.caption.name')
+          .col-sm-9
+            = f.text_field :donor_name, class: text_field_class
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('donation.caption.email')
+          .col-sm-9
+            = f.text_field :donor_email, class: text_field_class
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('donation.caption.donation_type')
+          .col-sm-9
+            .control-group
+              .radio
+                %label
+                  = f.radio_button :donation_type, 1, checked: true, class: 'ace'
+                  %span.lbl= t('donation.caption.for_center_radio')
+                %label
+                  = f.radio_button :donation_type, 2, class: 'ace'
+                  %span.lbl= t('donation.caption.for_food_for_hungry_radio')
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('donation.caption.center')
+          .col-sm-9
+            = select_tag t('donation.caption.center_select_tag'), options_from_collection_for_select(@centers, :id, :location), name: 'donation[center_id]',  prompt: t('donation.caption.center_select_tag_prompt')
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right
+            = t('donation.caption.amount')
+            (&#x20B9;)
+          .col-sm-9
+            = f.text_field :amount, class: 'col-xs-3 margin-right-10 text-align-r'
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('common.caption.description')
+          .col-sm-9
+            = f.text_area :description, rows: 4, class: text_field_class
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('donation.caption.received_on')
+          .col-sm-3
+            .input-group
+              = f.text_field :received_on, placeholder: t('donation.caption.placeholder_date'), class: 'form-control date-picker', id: 'id-date-picker-1', value: date_formatted(Date.today)
+              %span.input-group-addon
+                %i.icon-calendar.bigger-110
+        .form-group
+          %label.col-xs-3.col-sm-3.control-label.no-padding-right
+          .col-xs-8
+            = submit_tag t('donation.caption.button.save'), class: 'btn btn-primary', title: t('donation.caption.button.save')
+            = link_to(t('common.caption.button.cancel'),donations_path , class: 'btn', title: t('common.caption.button.cancel'))
