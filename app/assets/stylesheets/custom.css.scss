@@ -15,6 +15,18 @@
   text-align: center;
 }
 
+.page-content {
+  padding: 8px 20px 24px 10px !important;
+}
+
+.page-header {
+  margin: 0 0 12px -8px !important;
+}
+
+.page-header h1 {
+  margin: 0px 0px !important;
+}
+
 /* For footer section */
 html,
 body {
@@ -177,7 +189,12 @@ ul#registrations_container { margin: 0!important;}
   width: 50% !important;
 }
 
-/* Override header navigation link on hover */
+/* Override header navigation link */
+.active > a{
+  background-color: #E7E7E7 !important;
+  color: #438EB9 !important;
+}
+
 .navbar .navbar-nav > li > a:hover {
   color: #438EB9 !important;
 }
