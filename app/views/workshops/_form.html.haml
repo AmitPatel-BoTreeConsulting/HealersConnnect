@@ -5,8 +5,7 @@
 = render partial: 'shared/error_messages', locals: { target: @workshop }
 .row
   .col-xs-12
-    .col-xs-2
-    .col-xs-10
+    .col-xs-10.col-md-offset-2
       = form_for @workshop,  html: {class: 'form-horizontal', role: 'form', id: 'clientForm'} do |f|
         .space-4
         %form.form-horizontal#sample-form

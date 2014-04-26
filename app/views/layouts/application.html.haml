@@ -17,10 +17,11 @@
   %body
     #wrap
       = render partial: 'layouts/navigation'
-      #main-container.main-container.container-fixed
-        .main-container-inner
-          .main-content
-            .page-content
-              #message-container
-                = render partial: 'shared/flash_messages'
-              = yield
+      .container-fixed
+        #main-container.main-container
+          .main-container-inner
+            .main-content
+              .page-content
+                #message-container
+                  = render partial: 'shared/flash_messages'
+                = yield
