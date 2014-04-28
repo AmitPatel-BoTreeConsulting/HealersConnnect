@@ -5,110 +5,123 @@
 = render partial: 'shared/error_messages', locals: { target: @workshop }
 .row
   .col-xs-12
-    = form_for @workshop,  html: {class: 'form-horizontal', role: 'form', id: 'clientForm'} do |f|
-      .space-4
-      %form.form-horizontal#sample-form
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right #{t('common.caption.course')}
-          .col-sm-9
-            = f.collection_select :course_id, Course.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-5 col-sm-5' }
-        #course_instructors_part
-          = render partial: 'course_instructors_part', locals: {prompt_msg: t('instructors.caption.instructor_select_tag_prompt')}
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right #{t('donation.caption.center')}
-          .col-sm-9
-            = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
-        .row
-          .col-xs-9
-            %label.col-sm-4.control-label.no-padding-right= t('workshop.caption.session')
-            #culpritsNameContainer
+    .col-xs-10
+      = form_for @workshop,  html: {class: 'form-horizontal', role: 'form', id: 'clientForm'} do |f|
+        .space-4
+        %form.form-horizontal#sample-form
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right #{t('common.caption.course')}
+            .col-sm-9
+              = f.collection_select :course_id, Course.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-5 col-sm-5' }
+          #course_instructors_part
+            = render partial: 'course_instructors_part', locals: {prompt_msg: t('instructors.caption.instructor_select_tag_prompt')}
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right #{t('donation.caption.center')}
+            .col-sm-9
+              = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
+          .row
+            .col-xs-12
+              %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session')
+              #culpritsNameContainer
+                .wrapper-class
+                  .fieldCollection
+                    .col-xs-3.margin-right-15
+                      .input-group
+                        = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-12', class: 'form-control date-picker'
+                        %span.input-group-addon
+                          %i.icon-calendar.bigger-110
+                    .col-xs-4
+                      = session_start_dropdown
+                      = session_end_dropdown
+                #addCulpritsBtn
+                  = link_to('javascript:void(0)', class: 'font-22') do
+                    %i.icon-plus-sign
+            .space-6
+            #culpritsNameFieldTemplateContainer.hide
               .wrapper-class
-                .fieldCollection
-                  .col-xs-2.margin-right-15
+                .fieldCollection{style: 'margin-top:-15px;'}
+                  .spacer30
+                  %label.col-sm-3.control-label.no-padding-right
+                  .col-xs-3.margin-right-15
                     .input-group
-                      = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-12', class: 'form-control date-picker'
+                      = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker'
                       %span.input-group-addon
                         %i.icon-calendar.bigger-110
                   .col-xs-4
                     = session_start_dropdown
                     = session_end_dropdown
-              #addCulpritsBtn
-                = link_to('javascript:void(0)', class: 'font-22') do
-                  %i.icon-plus-sign
-          .space-6
-          #culpritsNameFieldTemplateContainer.hide
-            .wrapper-class
-              .fieldCollection{style: 'margin-top:-15px;'}
-                .spacer30
-                %label.col-sm-4.control-label.no-padding-right
-                .col-xs-2.margin-right-15
-                  .input-group
-                    = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker'
-                    %span.input-group-addon
-                      %i.icon-calendar.bigger-110
-                .col-xs-4
-                  = session_start_dropdown
-                  = session_end_dropdown
 
-            #culpritsNamesFieldRemoveBtnTemplateContainer.hide
-              = link_to('javascript:void(0)', class: 'font-22') do
-                %i.icon-minus-sign
-        .space-6
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees')}
-          .col-sm-4
-            %label.col-sm-3.no-padding-right.common_form_lbl #{t('workshop.caption.fees_for_fresher')}
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right
-          .col-sm-9
-            .col-sm-1
-              %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_before_session')}
-            .col-sm-2
-              .input-group
-                = f.text_field :fees_date, id: 'id-date-picker-11', class: 'form-control date-picker'
-                %span.input-group-addon
-                  %i.icon-calendar.bigger-110
-            .col-sm-5
-              = f.number_field :fees_before_session, class: 'col-xs-10 col-sm-5 text-right'
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right
-          .col-sm-9
-            .col-sm-1
-              %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_after_session')}
-            .col-sm-2
-              = label_tag 'workshop_fees_after', '', id: 'workshop_fees_after', class: 'common_form_lbl'
-            .col-sm-5
-              = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5 text-right'
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right
-          .col-sm-9
-            .col-sm-1
-              %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_on_spot')}
-            .col-sm-2
-              = label_tag 'workshop_fees_spot', '', id: 'workshop_fees_spot', class: 'common_form_lbl'
-            .col-sm-5
-              = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5 text-right'
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right
-          .col-sm-9
-            .col-sm-3
-              %label #{t('workshop.caption.fees_for_review')}
-            .col-sm-5
-              = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5 text-right'
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right #{t('center.caption.location')}
-          .col-sm-4
-            = f.text_field :location, class: 'col-xs-12', placeholder: t('center.caption.placeholder.location')
-            = f.hidden_field :lat
-            = f.hidden_field :long
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right #{t('common.caption.contact')}
-          .col-sm-4
-            = f.text_field :contact, class: 'col-xs-12'
-        .space-20
-        .col-md-offset-3.col-md-9
-          = f.submit t('workshop.caption.button.new'), class: 'btn btn-primary', title: t('workshop.caption.button.new')
-          = link_to t('common.caption.button.cancel'), workshops_path, class: 'btn', title: t('common.caption.button.cancel')
+              #culpritsNamesFieldRemoveBtnTemplateContainer.hide
+                = link_to('javascript:void(0)', class: 'font-22') do
+                  %i.icon-minus-sign
+          .space-6
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees')}
+            .col-sm-4
+              %label.col-sm-5.no-padding-right.common_form_lbl #{t('workshop.caption.fees_for_fresher')}
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+            .col-sm-9
+              .col-sm-2
+                %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_before_session')}
+              .col-sm-4
+                .input-group
+                  = f.text_field :fees_date, id: 'id-date-picker-11', class: 'form-control date-picker'
+                  %span.input-group-addon
+                    %i.icon-calendar.bigger-110
+              .col-sm-6
+                %label.col-sm-1.control-label
+                  %b (&#x20B9;)
+                .col-sm-9
+                  = f.number_field :fees_before_session, class: 'col-xs-10 col-sm-5 text-right'
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+            .col-sm-9
+              .col-sm-2
+                %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_after_session')}
+              .col-sm-4
+                = label_tag 'workshop_fees_after', '', id: 'workshop_fees_after', class: 'common_form_lbl'
+              .col-sm-6
+                %label.col-sm-1.control-label
+                  %b (&#x20B9;)
+                .col-sm-9
+                  = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5 text-right'
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+            .col-sm-9
+              .col-sm-2
+                %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_on_spot')}
+              .col-sm-4
+                = label_tag 'workshop_fees_spot', '', id: 'workshop_fees_spot', class: 'common_form_lbl'
+              .col-sm-6
+                %label.col-sm-1.control-label
+                  %b (&#x20B9;)
+                .col-sm-9
+                  = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5 text-right'
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+            .col-sm-9
+              .col-sm-6
+                %label #{t('workshop.caption.fees_for_review')}
+              .col-sm-6
+                %label.col-sm-1.control-label
+                  %b (&#x20B9;)
+                .col-sm-9
+                  = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5 text-right'
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right #{t('center.caption.location')}
+            .col-sm-9
+              = f.text_field :location, class: 'col-xs-10 col-sm-6', placeholder: t('center.caption.placeholder.location')
+              = f.hidden_field :lat
+              = f.hidden_field :long
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right #{t('common.caption.contact')}
+            .col-sm-9
+              = f.text_field :contact, class: 'col-xs-10 col-sm-6'
+          .space-20
+          .col-md-offset-3.col-md-9
+            = f.submit t('workshop.caption.button.new'), class: 'btn btn-primary', title: t('workshop.caption.button.new')
+            = link_to t('common.caption.button.cancel'), workshops_path, class: 'btn', title: t('common.caption.button.cancel')
 %script{:src => '//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places&region=india', type: 'text/javascript'}
 :javascript
   $(function(){

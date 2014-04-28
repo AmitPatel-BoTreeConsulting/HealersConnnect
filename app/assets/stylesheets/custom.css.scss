@@ -1,3 +1,9 @@
+/* ace.min override body background color */
+
+.background_color_for_inner_pages {
+  background-color: #FFFFFF !important;
+}
+
 /* ace.min overrides */
 
 .main-content{
@@ -5,8 +11,22 @@
 }
 
 .flash_msg{
-  padding: 20px;
   text-align: center;
+  margin-left: 0px;
+  width: 100%;
+}
+
+.page-content {
+  padding: 0px 20px 24px 10px !important;
+}
+
+.page-header {
+  margin: 8px 0 12px -8px !important;
+  min-width: 89.1em;
+}
+
+.page-header h1 {
+  margin: 0px 0px !important;
 }
 
 /* For footer section */
@@ -152,3 +172,41 @@ ul#registrations_container { margin: 0!important;}
 .border-solid-4 {border: 4px solid}
 .font-22 {font-size: 22px !important;}
 .chosen-container-multi .chosen-choices li.search-choice .search-choice-close {background: none!important;}
+
+
+/* Custom container */
+.container-fixed {
+  margin: 0 auto;
+  max-width: 90.5em;
+  width: 100%;
+}
+.container-fixed > hr {
+  margin: 30px 0;
+}
+
+.container {
+  max-width: 90.5em;
+  width: 100%;
+}
+
+#form_field_select_4_chosen {
+  width: 65% !important;
+}
+
+/* Override header navigation link */
+.active > a{
+  background-color: #E7E7E7 !important;
+  color: #438EB9 !important;
+}
+
+.navbar .navbar-nav > li > a:hover {
+  color: #438EB9 !important;
+}
+
+.navbar .navbar-brand {
+  padding-top: 14px !important;
+}
+
+.add_edit_page_header_margin {
+  margin: 0 0 12px -19px !important;
+}
