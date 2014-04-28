@@ -5,6 +5,8 @@ describe User do
     FactoryGirl.create(:user).should be_valid
   end
 
+  it { should respond_to(:member_id) }
+
   # ========== Validations ==========
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:password) }
