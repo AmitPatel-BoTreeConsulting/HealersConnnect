@@ -20,6 +20,7 @@ en:
       placeholder:
         location: 'Enter a Location'
     message:
+      no_centers_found: 'No Centers Found'
       success:
         center_created: "Center '%{center}' created successfully."
         center_updated: "Center '%{center}' updated successfully."
@@ -50,6 +51,7 @@ en:
       confirm_registration_cancel: 'Are you sure you want to cancel the registration?'
       confirm_registration_confirm: 'Are you sure you want to confirm the registration?'
       confirm_registration_remove: 'Are you sure you want to remove this registration?'
+      continue_registration: 'No, Continue Registration'
       pdf:
         title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
         name_of_course: 'Name of Course :'
@@ -63,7 +65,7 @@ en:
         education_qualification: 'Education Qualification :'
         occupation: 'Occupation :'
         resident_address: 'Residential Address / Postal Address :'
-        mobile: 'Mobile'
+        mobile: 'Mobile :'
         res_or_office_tel: 'Res/Office Tel. :'
         email: 'E-mail :'
         details_of_course: 'Details of Pranic Healing Courses you have taken (as applicable):'
@@ -96,6 +98,8 @@ en:
         cheque_no: 'Cheque no'
         bank_name: 'Bank name'
         instructor: 'Instructor'
+        date_or_year: 'Date OR Year'
+        place: 'Place'
       button:
         status_confirmed: 'confirmed'
         status_cancelled: 'Cancelled'
@@ -128,6 +132,7 @@ en:
       button:
         update: 'Update Course'
         new: 'Create Course'
+      eligibility: 'Eligibility'
     message:
       course_created: "Course '%{course}' created successfully."
       course_updated: "Course '%{course}' updated successfully."
@@ -161,6 +166,7 @@ en:
       end_date: 'End Date'
       register: 'Register'
       view_registrations: 'View Registrations'
+      contact: 'Contact'
       title:
         edit: 'Edit'
       button:
@@ -196,14 +202,17 @@ en:
       instructor: 'Instructor'
       assistant_instructor: 'Assistant instructor'
       workshops: 'Workshops'
-      fees_after_session: 'Fees after session'
-      fees_before_session: 'Fees before session'
-      fees_on_session: 'Fees on session'
-      fees_on_rejoining: 'Fees on rejoining'
+      fees: 'Fees'
+      fees_after_session: 'After'
+      fees_before_session: 'Before'
+      fees_on_spot: 'Spot'
+      fees_for_fresher: 'For Fresher'
+      fees_for_review: 'For Review'
       start_date: ' Workshop Start date'
       end_date: ' Workshop End date'
       session_start: 'Session Start'
       session_end: 'Session End'
+      session: 'Session'
       button:
         new: 'Create Workshop'
     message:
@@ -254,7 +263,7 @@ en:
         save: 'Save'
       title:
         save_as_pdf: 'Save as PDF'
-        export: 'Export'
+        export: 'Export Report'
     message:
       no_donations_found: 'No donations found'
       success:
@@ -264,6 +273,12 @@ en:
       paragraph_2: 'Please find donation details are as below.'
       signature_text_thnak_you: 'Thank you,'
       signature_text_team: 'Pranic Healing Team'
+      
+  instructors:
+    caption:
+      instructor_select_tag_prompt: '--Please select instructor--'
+      no_instrctor_found: '--Instructor not available--'
+
   mailer:
     send_donation_notification_to_donor:
       subject: 'Donation Notification'
@@ -275,6 +290,7 @@ en:
       courses: 'Courses'
       instructors: 'Instructors'
       centers: 'Centers'
+      workshops: 'Workshops'
   sign_in:
     caption:
       remember_me: 'Remember Me'

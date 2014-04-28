@@ -4,14 +4,12 @@ CKEDITOR.editorConfig = (config) ->
   config.width = '650'
   config.height = '200'
   config.toolbar_Pure = [
-    { name: 'clipboard',   items: [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
-    { name: 'editing',     items: [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
-    { name: 'basicstyles', items: [ 'Bold','Italic','Underline','Strike'] },
     { name: 'paragraph',   items: [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
-    { name: 'links',       items: [ 'Link','Unlink' ] },
     { name: 'insert',      items: [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak' ] },
-    { name: 'styles',      items: [ 'Styles','Format','Font','FontSize' ] },
+    { name: 'links',       items: [ 'Link','Unlink' ] },
+    { name: 'basicstyles', items: [ 'Bold','Italic','Underline','Strike'] },
     { name: 'colors',      items: [ 'TextColor','BGColor' ] },
+    { name: 'styles',      items: [ 'Styles','Format','Font','FontSize' ] }
   ]
   config.toolbar = 'Pure'
   true

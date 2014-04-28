@@ -30,7 +30,9 @@ HealersConnnect::Application.routes.draw do
       end
     end
   end
+  post 'workshops/course/instructors' => 'workshops#course_instructors'
   resources :donations
+  post 'check_phone_number' => 'users#check_phone_number'
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
   get 'static/home' => 'static_pages#home'

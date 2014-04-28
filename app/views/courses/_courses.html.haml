@@ -1,13 +1,13 @@
 %tr.info
   %td<
-    = course_counter + 1
+    = serial_number(@page,course_counter)
   %td<
     = link_to course.name, edit_course_path(course)
   %td<
     = course.course_category.name if course.course_category.present?
-  %td.text-center<
+  %td.text-right<
     = course.donation
-  %td.text-center<
+  %td.text-right<
     = course.review_donation
   %td.text-center<
     .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons

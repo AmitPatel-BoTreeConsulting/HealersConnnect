@@ -20,6 +20,7 @@ javascripts:
     - app/assets/javascripts/home/theme.js
     - app/assets/javascripts/home/index-slider.js
     - app/assets/javascripts/home/flexslider.js
+    - app/assets/javascripts/jquery.popupoverlay.js
 
 stylesheets:
   canvas:

@@ -17,6 +17,8 @@ module ApplicationHelper
         active_current_page?('courses', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
       when :instructors
         active_current_page?('instructors',HealersConnectConstant:: COMMON_CONTROLLER_ACTIONS)
+      when :workshops
+        active_current_page?('workshops',HealersConnectConstant:: COMMON_CONTROLLER_ACTIONS)
       else
         false
       end
@@ -55,6 +57,9 @@ module ApplicationHelper
     when :courses
       url = courses_path
       link_title = t('navbar.menu.title.courses')
+    when :workshops
+      url = workshops_path
+      link_title = t('navbar.menu.title.workshops')
     else
     end
     content_tag(:li, link_to(link_title, url),
@@ -83,4 +88,8 @@ module ApplicationHelper
   def date_formatted(date)
     date.try(:strftime, '%d/%m/%Y')
   end
+
+  def serial_number(page, index)
+    (page.to_i - 1) * Settings.pagination.per_page + index + 1
+  end  
 end

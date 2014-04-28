@@ -1,10 +1,15 @@
-- options = [:donations, :centers, :instructors, :courses]
-#navbar.navbar.navbar-default
-  #navbar-container.navbar-container
-    .navbar-header.pull-left
+- options = [:workshops, :donations, :centers, :instructors, :courses]
+%header#top.navbar.navbar-static-top.bs-docs-nav{role: "banner"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".bs-navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
       = link_to(root_path, class: 'navbar-brand') do
         = Settings.brand_name
-    .navbar-header.pull-right{role: "navigation"}
+    %nav.collapse.navbar-collapse.navbar-ex1-collapse{role: "navigation"}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
           - options.each do |option|

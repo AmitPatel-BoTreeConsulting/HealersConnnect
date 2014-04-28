@@ -1,33 +1,32 @@
 - @instructor ||= Center.new
 - create_view = @instructor.new_record?
-- submit_btn_caption = ( create_view ? t('instructor.caption.button.new') : t('instructor.caption.button.update') )
+- submit_btn_caption = ( create_view ? t('instructor.caption.button.new') : t('common.caption.button.save') )
+- text_field_class = 'col-xs-10 col-sm-6'
 = form_for @instructor, html: { class: 'form-horizontal', role: 'form'} do |f|
-  .row
-    .col-xs-12.col-sm-12
-      .center
-        = render partial: 'shared/error_messages', locals: { target: f.object }
+  = render partial: 'shared/error_messages', locals: { target: f.object }
   .row
     .col-xs-12
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right= t('common.caption.name')
-        .col-sm-9
-          = f.text_field :name, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right= t('common.caption.email')
-        .col-sm-9
-          = f.email_field :email, class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right= t('common.caption.mobile')
-        .col-sm-9
-          = f.telephone_field :mobile, placeholder: t('common.10_digit_mobile_number'), class: 'col-xs-10 col-sm-5'
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right= t('instructor.caption.eligibilities')
-        .col-sm-9
-          = f.collection_select :course_ids, Course.all, :id, :name, {}, multiple: true, prompt: false, id: 'form-field-select-4', class: 'instructor-chosen-select tag-input-style', data: { placeholder: ' ' }
-      .clearfix
-        .col-md-offset-3.col-md-9
-          = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', title: "#{submit_btn_caption}"
-          = link_to t('common.caption.button.cancel'), instructors_path, class: 'btn', title: t('common.caption.button.cancel')
+      .col-xs-10
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('common.caption.name')
+          .col-sm-9
+            = f.text_field :name, class: text_field_class
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('common.caption.email')
+          .col-sm-9
+            = f.email_field :email, class: text_field_class
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('common.caption.mobile')
+          .col-sm-9
+            = f.telephone_field :mobile, placeholder: t('common.10_digit_mobile_number'), class: text_field_class
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('instructor.caption.eligibilities')
+          .col-sm-9
+            = f.collection_select :course_ids, Course.all, :id, :name, {}, multiple: true, prompt: false, id: 'form-field-select-4', class: 'instructor-chosen-select chosen-select tag-input-style', data: { placeholder: '' }
+        .form-group
+          .col-md-offset-3.col-md-9
+            = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', title: "#{submit_btn_caption}"
+            = link_to t('common.caption.button.cancel'), instructors_path, class: 'btn', title: t('common.caption.button.cancel')

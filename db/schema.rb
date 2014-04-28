@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140421180457) do
+ActiveRecord::Schema.define(:version => 20140423105149) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20140421180457) do
     t.boolean  "active",            :default => true
     t.integer  "user_id"
     t.integer  "workshop_id"
+    t.text     "past_workshops"
   end
 
   add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
@@ -229,6 +230,11 @@ ActiveRecord::Schema.define(:version => 20140421180457) do
     t.datetime "end_date"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+    t.datetime "fees_date"
+    t.string   "location"
+    t.float    "lat"
+    t.float    "long"
+    t.string   "contact"
   end
 
 end
