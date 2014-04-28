@@ -5,7 +5,7 @@
 = render partial: 'shared/error_messages', locals: { target: @workshop }
 .row
   .col-xs-12
-    .col-xs-10.col-md-offset-2
+    .col-xs-10
       = form_for @workshop,  html: {class: 'form-horizontal', role: 'form', id: 'clientForm'} do |f|
         .space-4
         %form.form-horizontal#sample-form
@@ -70,7 +70,10 @@
                   %span.input-group-addon
                     %i.icon-calendar.bigger-110
               .col-sm-6
-                = f.number_field :fees_before_session, class: 'col-xs-10 col-sm-5 text-right'
+                %label.col-sm-1.control-label
+                  %b (&#x20B9;)
+                .col-sm-9
+                  = f.number_field :fees_before_session, class: 'col-xs-10 col-sm-5 text-right'
           .form-group
             %label.col-sm-3.control-label.no-padding-right
             .col-sm-9
@@ -79,7 +82,10 @@
               .col-sm-4
                 = label_tag 'workshop_fees_after', '', id: 'workshop_fees_after', class: 'common_form_lbl'
               .col-sm-6
-                = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5 text-right'
+                %label.col-sm-1.control-label
+                  %b (&#x20B9;)
+                .col-sm-9
+                  = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5 text-right'
           .form-group
             %label.col-sm-3.control-label.no-padding-right
             .col-sm-9
@@ -88,14 +94,20 @@
               .col-sm-4
                 = label_tag 'workshop_fees_spot', '', id: 'workshop_fees_spot', class: 'common_form_lbl'
               .col-sm-6
-                = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5 text-right'
+                %label.col-sm-1.control-label
+                  %b (&#x20B9;)
+                .col-sm-9
+                  = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5 text-right'
           .form-group
             %label.col-sm-3.control-label.no-padding-right
             .col-sm-9
               .col-sm-6
                 %label #{t('workshop.caption.fees_for_review')}
               .col-sm-6
-                = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5 text-right'
+                %label.col-sm-1.control-label
+                  %b (&#x20B9;)
+                .col-sm-9
+                  = f.number_field :fees_on_rejoining, class: 'col-xs-10 col-sm-5 text-right'
           .form-group
             %label.col-sm-3.control-label.no-padding-right #{t('center.caption.location')}
             .col-sm-9
