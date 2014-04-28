@@ -1,13 +1,13 @@
 .form-group
   %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.instructor')}
   .col-sm-9
-    = select_tag 'workshop[instructor_id]', options_from_collection_for_select(@instructors, :id, :name),
+    = select_tag 'workshop[instructor_id]', options_from_collection_for_select(@instructors, :id, :name, @workshop.instructor_id),
     class: 'col-xs-10 col-sm-5',
     prompt: prompt_msg
 
 .form-group
   %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.assistant_instructor')}
   .col-sm-9
-    = select_tag 'workshop[assistant_instructor_id]', options_from_collection_for_select(@instructors, :id, :name),
+    = select_tag 'workshop[assistant_instructor_id]', options_from_collection_for_select(@instructors, :id, :name,  @workshop.assistant_instructor_id),
     class: 'col-xs-10 col-sm-5',
     prompt: prompt_msg

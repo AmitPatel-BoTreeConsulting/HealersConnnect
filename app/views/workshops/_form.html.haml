@@ -13,29 +13,49 @@
           .col-sm-9
             = f.collection_select :course_id, Course.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-5 col-sm-5' }
         #course_instructors_part
-          = render partial: 'course_instructors_part', locals: {prompt_msg: t('instructors.caption.instructor_select_tag_prompt')}
+          = render partial: 'course_instructors_part', locals: {prompt_msg: t('instructors.caption.instructor_select_tag_prompt'), f: f}
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('donation.caption.center')}
           .col-sm-9
             = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
         .row
           .col-xs-9
-            %label.col-sm-4.control-label.no-padding-right= t('workshop.caption.session')
-            #culpritsNameContainer
-              .wrapper-class
-                .fieldCollection
-                  .col-xs-2.margin-right-15
-                    .input-group
-                      = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-12', class: 'form-control date-picker'
-                      %span.input-group-addon
-                        %i.icon-calendar.bigger-110
-                  .col-xs-4
-                    = session_start_dropdown
-                    = session_end_dropdown
-              #addCulpritsBtn
-                = link_to('javascript:void(0)', class: 'font-22') do
-                  %i.icon-plus-sign
-          .space-6
+            - if workshop_sessions.present?
+              - workshop_sessions.each_with_index do |workshop_session, index|
+                - workshop_session_id = workshop_session.id
+                - workshop_session_start = workshop_session.session_start
+                - workshop_session_end = workshop_session.session_end
+                %label.col-sm-4.control-label.no-padding-right= t('workshop.caption.session')
+                #culpritsNameContainer
+                  .wrapper-class
+                    .fieldCollection
+                      .col-xs-2.margin-right-15
+                        .input-group
+                          = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-12', class: 'form-control date-picker', value: workshop_session.session_start.try(:strftime, '%d/%m/%Y')
+                          %span.input-group-addon
+                            %i.icon-calendar.bigger-110
+                      .col-xs-4
+                        = session_start_dropdown
+                        = session_end_dropdown
+
+              .space-6
+            - else
+              %label.col-sm-4.control-label.no-padding-right= t('workshop.caption.session')
+              #culpritsNameContainer
+                .wrapper-class
+                  .fieldCollection
+                    .col-xs-2.margin-right-15
+                      .input-group
+                        = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-12', class: 'form-control date-picker'
+                        %span.input-group-addon
+                          %i.icon-calendar.bigger-110
+                    .col-xs-4
+                      = session_start_dropdown
+                      = session_end_dropdown
+                #addCulpritsBtn
+                  = link_to('javascript:void(0)', class: 'font-22') do
+                    %i.icon-plus-sign
+              .space-6
           #culpritsNameFieldTemplateContainer.hide
             .wrapper-class
               .fieldCollection{style: 'margin-top:-15px;'}
@@ -65,7 +85,7 @@
               %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_before_session')}
             .col-sm-2
               .input-group
-                = f.text_field :fees_date, id: 'id-date-picker-11', class: 'form-control date-picker'
+                = f.text_field :fees_date, id: 'id-date-picker-11', class: 'form-control date-picker', value: @workshop.fees_date.try(:strftime, '%d/%m/%Y')
                 %span.input-group-addon
                   %i.icon-calendar.bigger-110
             .col-sm-5

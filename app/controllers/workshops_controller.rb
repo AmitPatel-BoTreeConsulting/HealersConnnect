@@ -33,16 +33,25 @@ class WorkshopsController < ApplicationController
   end
 
   def edit
-
+    puts "^^^^^^^^^^^^^^^^^^^^^^^^#{@workshop.inspect}"
+    @instructors = Instructor.all(:order => 'name ASC')
   end
 
   def show
   end
 
   def update
+    params[:workshop][:workshop_sessions_attributes].each do |workshop|
+      if workshop[:date].present?
+        workshop[:session_start] = "#{workshop[:date]} #{workshop[:session_start]}".to_datetime
+        workshop[:session_end] = "#{workshop[:date]} #{workshop[:session_end]}".to_datetime
+      end
+    end
+
+    remove_date_before_save(params[:workshop][:workshop_sessions_attributes])
     respond_to do |format|
       if @workshop.update_attributes(params[:workshop])
-        format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_updated')}
+        format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_updated', workshop: @workshop.course.name)}
       else
         format.html {render :edit }
       end
