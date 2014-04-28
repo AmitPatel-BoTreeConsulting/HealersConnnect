@@ -14,13 +14,14 @@
       = javascript_include_tag 'excanvas.min'
     = csrf_meta_tags
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1'}
-  %body.skin-1
+  %body.background_color_for_inner_pages
     #wrap
       = render partial: 'layouts/navigation'
-      #main-container.main-container
-        .main-container-inner
-          .main-content
-            .page-content
-              #message-container
-                = render partial: 'shared/flash_messages'
-              = yield
+      .container-fixed
+        #main-container.main-container
+          .main-container-inner
+            .main-content
+              .page-content
+                #message-container
+                  = render partial: 'shared/flash_messages'
+                = yield
