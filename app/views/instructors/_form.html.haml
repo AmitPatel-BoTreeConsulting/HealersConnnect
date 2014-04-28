@@ -1,12 +1,12 @@
 - @instructor ||= Center.new
 - create_view = @instructor.new_record?
-- submit_btn_caption = ( create_view ? t('instructor.caption.button.new') : t('instructor.caption.button.update') )
+- submit_btn_caption = ( create_view ? t('instructor.caption.button.new') : t('common.caption.button.save') )
 - text_field_class = 'col-xs-10 col-sm-6'
 = form_for @instructor, html: { class: 'form-horizontal', role: 'form'} do |f|
   = render partial: 'shared/error_messages', locals: { target: f.object }
   .row
     .col-xs-12
-      .col-xs-10.col-md-offset-2
+      .col-xs-10.col-md-offset-1
         .form-group
           %label.col-sm-3.control-label.no-padding-right= t('common.caption.name')
           .col-sm-9

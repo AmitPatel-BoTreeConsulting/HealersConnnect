@@ -1,6 +1,6 @@
 - @center ||= Center.new
 - create_view = @center.new_record?
-- submit_btn_caption = ( create_view ? t('center.caption.button.new') : t('center.caption.button.update') )
+- submit_btn_caption = ( create_view ? t('center.caption.button.new') : t('common.caption.button.save') )
 - text_field_class = 'col-xs-10 col-sm-6'
 = render partial: 'shared/error_messages', locals: { target: @center }
 .row
