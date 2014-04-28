@@ -34,10 +34,6 @@ describe UserProfile do
     FactoryGirl.build(:user_profile, last_name: nil).should_not be_valid
   end
 
-  it 'is invalid without a email' do
-    FactoryGirl.build(:user_profile, email: nil).should_not be_valid
-  end
-
   # ========== Methods ==========
   it 'returns a full name as a string' do
     FactoryGirl.create(:user_profile, first_name: 'John', middle_name: 'Foo', last_name: 'Doe').name.should == "John Foo Doe"
