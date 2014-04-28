@@ -10,7 +10,11 @@ def find_or_create_instance(class_name, instance_name)
 end
 
 def create_or_update_by_alias(class_name, row)
-  instance  = class_name.find_by_alias(row[:alias])
+  if class_name == EventCategory
+    instance  = class_name.find_by_event_alias(row[:event_alias])
+  else
+    instance  = class_name.find_by_alias(row[:alias])
+  end
   if instance.blank?
     class_name.create!(row)
     puts "#{row[:name]}  added."
@@ -20,6 +24,7 @@ def create_or_update_by_alias(class_name, row)
   end
   instance
 end
+
 
 
 # Roles
@@ -196,3 +201,17 @@ cources_arr.each{ |cource_map|
   create_or_update_by_alias(Course, cource_map)
 }
 puts '---------------------------------------'
+
+# Event Category
+activity = 'activity'
+special_mediation = 'special_mediation'
+nurturing_session = 'nurturing_session'
+event_categories = [
+    { name: 'Activity', event_alias: activity },
+    { name: 'Special Mediation', event_alias: special_mediation },
+    { name: 'Nurturing Session', event_alias: nurturing_session }
+]
+
+puts '--------Seeding EventCategory-------'
+event_categories.each { |event_category| create_or_update_by_alias(EventCategory, event_category)}
+puts '-------------------------------------'

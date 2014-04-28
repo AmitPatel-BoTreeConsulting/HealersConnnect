@@ -309,3 +309,9 @@ en:
         change_password: 'Change my password'
       link:
         back_to_signin: 'Back To Signin'
+  event:
+    caption:
+    message:
+      event_created: "Event '%{event}' created successfully"
+      event_updated: "Event '%{event}' updated successfully"
+      event_destroy: "Event '%{event}' deleted successfully"
