@@ -223,6 +223,7 @@ en:
       workshop_activate: "Workshop '%{workshop}' activated successfully."
       no_workshops_found: 'No Workshops Found'
       no_workshop_active: 'No workshops scheduled, Please check again later'
+      remove: 'Are you sure you want to remove this workshop?'
     page_content:
       header:
         index: 'Workshops'
@@ -273,7 +274,7 @@ en:
       paragraph_2: 'Please find donation details are as below.'
       signature_text_thnak_you: 'Thank you,'
       signature_text_team: 'Pranic Healing Team'
-      
+
   instructors:
     caption:
       instructor_select_tag_prompt: '--Please select instructor--'

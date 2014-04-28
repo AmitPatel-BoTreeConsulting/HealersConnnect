@@ -52,7 +52,7 @@ class WorkshopsController < ApplicationController
   def destroy
     respond_to do |format|
       @workshop.destroy
-      format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_destroy')}
+      format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_destroy', workshop: @workshop.course.name)}
     end
   end
 
