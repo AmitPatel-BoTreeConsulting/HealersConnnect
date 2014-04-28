@@ -11,14 +11,14 @@
         %form.form-horizontal#sample-form
           .form-group
             %label.col-sm-3.control-label.no-padding-right #{t('common.caption.course')}
-            .col-sm-9
-              = f.collection_select :course_id, Course.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-5 col-sm-5' }
+            .col-sm-4
+              = f.collection_select :course_id, Course.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
           #course_instructors_part
             = render partial: 'course_instructors_part', locals: {prompt_msg: t('instructors.caption.instructor_select_tag_prompt')}
           .form-group
             %label.col-sm-3.control-label.no-padding-right #{t('donation.caption.center')}
-            .col-sm-9
-              = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
+            .col-sm-4
+              = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
           .row
             .col-xs-12
               %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.session')
@@ -30,8 +30,9 @@
                         = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-12', class: 'form-control date-picker'
                         %span.input-group-addon
                           %i.icon-calendar.bigger-110
-                    .col-xs-4
+                    .col-xs-2
                       = session_start_dropdown
+                    .col-xs-2
                       = session_end_dropdown
                 #addCulpritsBtn
                   = link_to('javascript:void(0)', class: 'font-22') do
@@ -47,8 +48,9 @@
                       = text_field_tag 'workshop[workshop_sessions_attributes][][date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker'
                       %span.input-group-addon
                         %i.icon-calendar.bigger-110
-                  .col-xs-4
+                  .col-xs-2
                     = session_start_dropdown
+                  .col-xs-2
                     = session_end_dropdown
 
               #culpritsNamesFieldRemoveBtnTemplateContainer.hide
