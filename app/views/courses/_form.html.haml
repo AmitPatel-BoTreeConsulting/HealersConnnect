@@ -10,20 +10,18 @@
         .col-xs-10.col-sm-4
           = f.text_area :description, rows: 4, class: 'form-control', :class => 'ckeditor'
       .space-4
-      .col-xs-offset-2
       .form-group
         %label.col-sm-2.control-label.no-padding-right{for: 'form-field-1'} #{t('course.caption.donation')}
-        .col-sm-8
-          .col-sm-3
-            = f.text_field :donation, class: 'input-sm course_textbox_tex_align', size: '0'
-          %label.col-sm-3.control-label.text-left{for: 'form-field-1'} #{t('course.caption.review_donation')}
-          .col-sm-2
-            = f.text_field :review_donation, class: 'input-sm course_textbox_tex_align', size: '0'
+        .col-xs-10.col-sm-1
+          = f.text_field :donation, class: 'input-sm course_textbox_tex_align', size: '0'
+        %label.col-sm-3.control-label.text-left{for: 'form-field-1'} #{t('course.caption.review_donation')}
+        .col-sm-2
+          = f.text_field :review_donation, class: 'input-sm course_textbox_tex_align', size: '0'
       .space-4
       .form-group
         %label.col-sm-2.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.image')}
-        .col-sm-9
-          = f.file_field :avatar, class: 'col-xs-10 col-sm-5'
+        .col-xs-10.col-sm-4
+          = f.file_field :avatar
       - if @course.avatar.present?
         .form-group#course_avatar_part
           %label.col-sm-2.control-label.no-padding-right
@@ -34,7 +32,8 @@
         .col-sm-9
           %img(src='' id='preview_course_avatar' style='display:none;')
 
-      .clearfix
-        .col-md-offset-2.col-md-9
+      .form-group
+        %label.col-sm-2.control-label.no-padding-right
+        .col-xs-10.col-sm-4
           = f.submit t('common.caption.button.save'), class: 'btn btn-primary', title: t('common.caption.button.save')
           = link_to(t('common.caption.button.cancel'),courses_path , class: 'btn', title: t('common.caption.button.cancel'))
