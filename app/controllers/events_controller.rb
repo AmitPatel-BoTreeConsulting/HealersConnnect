@@ -1,15 +1,19 @@
 class EventsController < ApplicationController
   before_filter :event_from_params, only: [:edit, :update, :show, :destroy]
+
   def index
-    @events = Event.all
+    @page = params[:page] || 1
+    @events = Event.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
   def new
     @event = Event.new
+    @event_categories = EventCategory.all
   end
 
-  def create(params)
+  def create
     @event = Event.new(params[:event])
+    @event_categories = EventCategory.all
     respond_to do |format|
       if @event.save
         format.html { redirect_to events_path, notice: t('event.message.event_created', event: @event.name) }
@@ -20,6 +24,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event_categories = EventCategory.all
   end
 
   def show

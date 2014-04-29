@@ -1,60 +1,55 @@
 require 'spec_helper'
 
 describe EventsController do
-  let!(:event) { create(:event) }
-  let(:service) { EventsController.new }
-  let(:params) { {} }
-  before do
-    params.merge!({
-                    event: {
-                        name: event.name,
-                        description: event.description,
-                        event_category_id: event.event_category_id
+  let!(:event_one) { create(:event) }
+  let!(:event_two) { create(:event) }
+  #let(:service) { EventsController.new }
+  let(:params) { {
+                  event:
+                    {
+                      name: event_one.name,
+                      description: event_one.description,
+                      event_category_id: event_one.event_category_id
                     }
-                  })
-  end
+                  }
+                }
 
-  context "#create" do
-    context 'when event created' do
-      let!(:created_event) { service.create(params) }
-      it 'should have name' do
-        expect(created_event.name).to eql(params[:event][:name])
-      end
-      #it 'should have description' do
-      #  expect(created_event.description).to eql(params[:event][:description])
-      #end
-      #it 'should have event_category_id' do
-      #  expect(created_event.event_category_id).to eql(params[:event][:event_category_id])
-      #end
-    end
-  end
 
   describe "GET 'index'" do
-    it "should returns event collection" do
-      get 'index'
-      response.should be_success
+    context '#index' do
+      it 'render the event index page' do
+        get :index
+        expect(response).to render_template(:index)
+      end
+      it "loads all of the events into @events", check: true do
+        get :index
+        expect(assigns(:events)).to match_array([event_one, event_two])
+      end
     end
   end
 
-  #describe "GET 'new'" do
-  #  it "returns http success" do
-  #    get 'new'
-  #    response.should be_success
-  #  end
-  #end
-  #
-  #describe "GET 'edit'" do
-  #  it "returns http success" do
-  #    get 'edit'
-  #    response.should be_success
-  #  end
-  #end
-  #
-  #describe "GET 'show'" do
-  #  it "returns http success" do
-  #    get 'show'
-  #    response.should be_success
-  #  end
-  #end
+  
+  describe "GET 'new'" do
+    before { get :new }
+
+    context "#new" do
+      it { should render_template('new') }
+
+      it 'should initialize new event object' do
+        assigns(:event).should be_a_new(Event)
+      end
+    end
+
+  end
+
+  describe "POST 'create'" do
+    context '#create' do
+      it 'should create a new Event' do
+        post :create, params
+        assigns(:event).should be_persisted
+      end
+
+    end
+  end
 
 end

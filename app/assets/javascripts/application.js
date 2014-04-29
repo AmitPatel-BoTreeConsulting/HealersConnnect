@@ -27,3 +27,4 @@
 //= require jsapi
 //= require donation
 //= require workshops
+//= require events
