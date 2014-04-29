@@ -40,4 +40,5 @@ HealersConnnect::Application.routes.draw do
   get 'donation/:id' => 'donations#export', as: :export_donation_pdf
 
   resources :events
+  resources :event_schedule
 end

@@ -14,4 +14,5 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type:  /\Aimage\/.*\Z/
 
   belongs_to :event_category
+  has_many :event_schedules
 end
