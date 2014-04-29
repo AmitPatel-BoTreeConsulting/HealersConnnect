@@ -91,5 +91,5 @@ module ApplicationHelper
 
   def serial_number(page, index)
     (page.to_i - 1) * Settings.pagination.per_page + index + 1
-  end  
+  end
 end
