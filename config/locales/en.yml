@@ -292,6 +292,7 @@ en:
       centers: 'Centers'
       workshops: 'Workshops'
       events: 'Events'
+      settings: 'Settings'
   sign_in:
     caption:
       remember_me: 'Remember Me'

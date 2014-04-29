@@ -27,4 +27,5 @@
 //= require jsapi
 //= require donation
 //= require workshops
+//= require nav_settings_dropdown
 //= require events

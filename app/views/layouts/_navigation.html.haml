@@ -1,14 +1,30 @@
-- options = [:workshops, :donations, :centers, :instructors, :courses, :events]
-#navbar.navbar.navbar-default
-  #navbar-container.navbar-container
-    .navbar-header.pull-left
+- options = [:workshops, :donations, :events]
+%header#top.navbar.navbar-static-top.bs-docs-nav{role: "banner"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".bs-navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
       = link_to(root_path, class: 'navbar-brand') do
         = Settings.brand_name
-    .navbar-header.pull-right{role: "navigation"}
+    %nav.collapse.navbar-collapse.navbar-ex1-collapse{role: "navigation"}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
           - options.each do |option|
             = render_navigation_menu_option(option)
+          %li.dropdown
+            %a{"data-close-others" => "false", "data-delay" => "1000", "data-hover" => "dropdown"}
+              = t('navbar.menu.title.settings')
+              %b.caret
+            %ul.dropdown-menu
+              %li.mobile-link
+                = render_navigation_menu_option(:centers)
+              %li
+                = render_navigation_menu_option(:courses)
+              %li
+                = render_navigation_menu_option(:instructors)
           %li
             = link_to t('common.caption.sign_out'), signout_path
         - else
