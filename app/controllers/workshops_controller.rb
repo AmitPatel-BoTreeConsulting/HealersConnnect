@@ -13,12 +13,18 @@ class WorkshopsController < ApplicationController
   end
 
   def create
+    session_date_arr = []
     params[:workshop][:workshop_sessions_attributes].each do |workshop|
       if workshop[:date].present?
+        session_date_arr << workshop[:date]
         workshop[:session_start] = "#{workshop[:date]} #{workshop[:session_start]}".to_datetime
         workshop[:session_end] = "#{workshop[:date]} #{workshop[:session_end]}".to_datetime
       end
     end
+
+    sorted_session_date_arr = session_date_arr.sort_by {|s| Date.parse s}
+    params[:workshop][:start_date] =  sorted_session_date_arr.first.to_datetime
+    params[:workshop][:end_date] =  sorted_session_date_arr.last.to_datetime
 
     remove_date_before_save(params[:workshop][:workshop_sessions_attributes])
     @workshop  = Workshop.new(params[:workshop])
@@ -33,7 +39,6 @@ class WorkshopsController < ApplicationController
   end
 
   def edit
-    puts "^^^^^^^^^^^^^^^^^^^^^^^^#{@workshop.inspect}"
     @instructors = Instructor.all(:order => 'name ASC')
   end
 
