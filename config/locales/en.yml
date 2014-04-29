@@ -291,6 +291,7 @@ en:
       instructors: 'Instructors'
       centers: 'Centers'
       workshops: 'Workshops'
+      settings: 'Settings'
   sign_in:
     caption:
       remember_me: 'Remember Me'
