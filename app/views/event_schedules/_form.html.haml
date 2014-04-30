@@ -1,6 +1,8 @@
 - @event_schedule ||= EventSchedule.new
 - create_view = @event_schedule.new_record?
 - submit_btn_caption = ( create_view ? t('event_schedule.caption.button.create') : t('event_schedule.caption.button.update') )
+- start_time_dropdown = get_session_start_end_time(@event_schedule.start_date)
+- end_time_dropdown = get_session_start_end_time(@event_schedule.end_date)
 = form_for @event_schedule, html: { class: 'form-horizontal', role: 'form'} do |f|
   .row
     .col-xs-12.col-sm-12
@@ -33,7 +35,7 @@
             %span.input-group-addon
               %i.icon-calendar.bigger-110
         .col-xs-2
-          = select_tag("event_schedule[session_start]", options_for_select(get_options_session_start_end_dropdown), :prompt=>"--Select--", class: 'form-control')
+          = select_tag("event_schedule[session_start]", options_for_select(get_options_session_start_end_dropdown, start_time_dropdown), :prompt=>"--Select--", class: 'form-control')
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right #{t('common.caption.end_date')}
@@ -43,7 +45,7 @@
             %span.input-group-addon
               %i.icon-calendar.bigger-110
         .col-xs-2
-          = select_tag("event_schedule[session_end]", options_for_select(get_options_session_start_end_dropdown), :prompt=>"--Select--", class: 'form-control')
+          = select_tag("event_schedule[session_end]", options_for_select(get_options_session_start_end_dropdown, end_time_dropdown), :prompt=>"--Select--", class: 'form-control')
       .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right #{t('common.caption.contact')}
