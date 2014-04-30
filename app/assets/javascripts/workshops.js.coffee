@@ -22,6 +22,10 @@ $(document).ready ->
     $("#workshop_fees_spot").text sessionDate
     return
 
+  $(".workshop-session-remove").click ->
+    workshopSessionSectionVal = $(this).children().attr("tag")
+    $("#workshop_session_edit_" + workshopSessionSectionVal).remove()
+
   $("#workshop_course_id").change ->
     courseId = $('#workshop_course_id').val()
     unless $("#workshop_course_id").val() is ""
