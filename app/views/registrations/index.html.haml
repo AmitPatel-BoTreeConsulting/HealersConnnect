@@ -31,7 +31,7 @@
             %th.text-center{width: '10%'} #{t('common.caption.manage')}
         %tbody
           - @registrations.each_with_index do |registration, index|
-            - user_profile = registration.user_profile || registration.user.user_profile
+            - user_profile = registration.try(:user_profile) || registration.user.user_profile
             %tr
               %td= index + 1
               %td= user_profile.name

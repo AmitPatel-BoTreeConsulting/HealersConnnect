@@ -30,8 +30,14 @@ end
 group :development, :test do
   # testing frameworks for application
   gem 'rspec-rails', '~> 2.0'
+end
+
+# Gems for testing
+group :test do
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
-  gem 'faker', '~> 1.3.0'
+  gem 'faker'
+  gem 'shoulda-matchers'
 end
 
 # Console improvement

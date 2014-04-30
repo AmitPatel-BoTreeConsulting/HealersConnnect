@@ -1,0 +1,7 @@
+- unless @profiles.blank?
+  Are you
+  .spacer-5
+  - @profiles.each do |profile|
+    - if profile.user
+      = link_to profile.name, new_workshop_registration_path(workshop_id: @workshop.id, user_id: profile.user.id)
+    .spacer-5

@@ -1,15 +1,17 @@
+- user_profile = @user.user_profile
 - @registration ||= Registration.new
 - create_view = @registration.new_record?
 - submit_btn_caption = ( create_view ? t('registration.caption.button.new') : t('registration.caption.button.update') )
 
 - # Initialize the nested attributes if they are not present
-- @registration = set_profile(@registration) if @registration.user_profile.blank?
+- @registration.user_profile ||= user_profile
 - # @registration.workshop ||= Workshop.new
 - url = url_for_registration_form(@registration, @workshop)
 - text_field_class = 'col-xs-10 col-sm-5'
 
 = form_for @registration, url: url, html: { class: 'form-horizontal', role: 'form'} do |f|
   = f.hidden_field :workshop_id
+  = hidden_field_tag 'registration[user_id]', @user.id unless current_user
   = render partial: 'shared/error_messages', locals: { target: @registration }
   .row
     .col-xs-12
@@ -18,85 +20,71 @@
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.member_id')
           .col-sm-9
-            = text_field_tag "user[member_id]", nil, class: 'col-xs-2 margin-right-10'
+            .col-xs-2.padding-top-5
+              = @user.member_id
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.name')
           .col-sm-9
-            = ff.text_field :first_name, placeholder: t('registration.caption.placeholder.first_name'), class: 'col-xs-2 margin-right-10'
-            = ff.text_field :middle_name, placeholder: t('registration.caption.placeholder.middle_name'), class: 'col-xs-2 margin-right-10'
-            = ff.text_field :last_name, placeholder: t('registration.caption.placeholder.surname'), class: 'col-xs-2'
+            .padding-top-5
+              = user_profile.first_name
+              = user_profile.middle_name
+              = user_profile.last_name
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.date_of_birth')
           .col-sm-3
-            .input-group
-              = ff.text_field :birth_date, placeholder: t('registration.caption.placeholder.date_of_birth_format'), class: 'form-control date-picker', id: 'id-date-picker-1', value: @registration.user_profile.birth_date.try(:strftime, '%d/%m/%Y')
-              %span.input-group-addon
-                %i.icon-calendar.bigger-110
+            .input-group.padding-top-5
+              = user_profile.birth_date.try(:strftime, '%d/%m/%Y')
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.gender')
-          .col-sm-9
-            .control-group
-              .radio
-                %label
-                  = ff.radio_button :gender, 'M', class: 'ace'
-                  %span.lbl= t('registration.caption.male')
-                %label
-                  = ff.radio_button :gender, 'F', class: 'ace'
-                  %span.lbl= t('registration.caption.female')
+          .col-sm-9.padding-top-5
+            = gender_formatted(user_profile.gender)
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.marital_status')
-          .col-sm-9
-            .control-group
-              .radio
-                %label
-                  = ff.radio_button :married, true, class: 'ace'
-                  %span.lbl= t('registration.caption.marital_status_married')
-                %label
-                  = ff.radio_button :married, false, class: 'ace'
-                  %span.lbl= t('registration.caption.marital_status_unmarried')
+          .col-sm-9.padding-top-5
+            = marital_status_formatted(user_profile.married)
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.education')
-          .col-sm-9
-            = ff.text_field :education, class: text_field_class
+          .col-sm-9.padding-top-5
+            = user_profile.education
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.occupation')
-          .col-sm-9
-            = ff.text_field :occupation, class: text_field_class
+          .col-sm-9.padding-top-5
+            = user_profile.occupation
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right{ for: 'form-input-readonly' }
             = t('registration.caption.residential_address')
-          .col-sm-9
-            = ff.text_area :address, class: text_field_class, rows: 4
+          .col-sm-9.padding-top-5
+            = user_profile.address
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.mobile')
-          .col-sm-9
-            = ff.telephone_field :mobile, placeholder: t('common.10_digit_mobile_number'), class: text_field_class
+          .col-sm-9.padding-top-5
+            = user_profile.mobile
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.telephone')
-          .col-sm-9
-            = ff.telephone_field :telephone, class: text_field_class
+          .col-sm-9.padding-top-5
+            = user_profile.telephone
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.email')
-          .col-sm-9
-            = ff.text_field :email, class: text_field_class
+          .col-sm-9.padding-top-5
+            = user_profile.email
         .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right

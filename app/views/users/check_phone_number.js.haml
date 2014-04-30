@@ -1,6 +1,7 @@
-- if @profile.blank?
+- if @profiles.blank?
   $('input[type="submit"]').removeAttr('disabled');
 - else
+  $('#sign_in_confirmation #usersListing').html('#{escape_javascript render(partial: 'registrations/users_listing')}');
   $('input[type="submit"]').attr('disabled','disabled');
   $('#sign_in_confirmation').popup({
   autoopen: true,
