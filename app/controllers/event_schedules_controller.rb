@@ -1,5 +1,6 @@
 class EventSchedulesController < ApplicationController
   before_filter :event_schedule_from_params , only: [:show, :edit, :update, :destroy]
+  before_filter :required_access, only: [:index, :new, :create, :edit, :update]
   def index
     @event_schedules = EventSchedule.all
   end
