@@ -2,6 +2,9 @@
   .center
     .spacer20
     %h4 Already registered? Please sign in for hassle free registration.
+    - if controller.controller_name == 'registrations'
+      #usersListing
+      = render partial: 'registrations/users_listing'
     = link_to t('common.caption.sign_in'), new_user_session_path, class: 'btn btn-md btn-success'
     .spacer10
     #registerWithoutLogIn
