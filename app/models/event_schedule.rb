@@ -1,5 +1,5 @@
 class EventSchedule < ActiveRecord::Base
-  attr_accessible :center_id, :contact, :donation, :end_date, :event_id, :lat, :long, :notes, :start_date
+  attr_accessible :center_id, :contact, :donation, :end_date, :event_id, :lat, :long, :notes, :start_date, :location, :course_ids
   belongs_to :center
   belongs_to :event
 

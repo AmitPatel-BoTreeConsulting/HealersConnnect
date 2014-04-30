@@ -3,6 +3,7 @@ class CreateEventSchedules < ActiveRecord::Migration
     create_table :event_schedules do |t|
       t.integer :event_id
       t.integer :center_id
+      t.string :location
       t.float :lat
       t.float :long
       t.datetime :start_date

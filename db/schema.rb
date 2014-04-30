@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(:version => 20140429110930) do
   end
 
   create_table "event_eligibilities", :force => true do |t|
-    t.integer  "event_id"
+    t.integer  "event_schedule_id"
     t.integer  "course_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20140429110930) do
   create_table "event_schedules", :force => true do |t|
     t.integer  "event_id"
     t.integer  "center_id"
+    t.string   "location"
     t.float    "lat"
     t.float    "long"
     t.datetime "start_date"

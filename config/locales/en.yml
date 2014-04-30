@@ -273,7 +273,7 @@ en:
       paragraph_2: 'Please find donation details are as below.'
       signature_text_thnak_you: 'Thank you,'
       signature_text_team: 'Pranic Healing Team'
-      
+
   instructors:
     caption:
       instructor_select_tag_prompt: '--Please select instructor--'
@@ -293,6 +293,7 @@ en:
       workshops: 'Workshops'
       events: 'Events'
       settings: 'Settings'
+      event_schedules: 'Event Schedules'
   sign_in:
     caption:
       remember_me: 'Remember Me'
@@ -331,3 +332,24 @@ en:
         index: 'Instructors'
         new: 'New Event'
         edit: 'Edit Event'
+  event_schedule:
+    caption:
+      event: 'Event'
+      center: 'Center'
+      location: 'Location'
+      notes: 'Notes'
+      button:
+        new: 'New Event Schedule'
+        create: 'Create Event Schedule'
+        update: 'Save'
+    page_content:
+      header:
+        new: 'New Event Schedule'
+        edit: 'Edit Event Schedule'
+    message:
+      event_schedule_created: "Event Schedule '%{event_schedule}' created successfully"
+      event_schedule_updated: "Event Schedule '%{event_schedule}' updated successfully"
+      event_schedule_destroy: "Event Schedule '%{event_schedule}' deleted successfully"
+      no_events_found: 'No Events Found'
+      remove: 'Are you sure you want to remove this event schedule?'
+      no_event_schedules_found: 'No Event Schedules Found'
