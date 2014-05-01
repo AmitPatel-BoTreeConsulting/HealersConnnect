@@ -22,15 +22,8 @@
             = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
         .space-4
         .form-group
-          %label.col-sm-3.control-label.no-padding-right #{t('event_schedule.caption.location')}
-          .col-sm-9
-            = f.text_field :location, class: 'col-xs-10 col-sm-6', placeholder: t('center.caption.placeholder.location')
-            = f.hidden_field :lat
-            = f.hidden_field :long
-        .space-4
-        .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('common.caption.start_date')}
-          .col-xs-3.margin-right-15
+          .col-xs-2.margin-right-15
             .input-group
               = text_field_tag 'event_schedule[start_date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker', :value => @event_schedule.start_date.try(:strftime, '%d/%m/%Y')
               %span.input-group-addon
@@ -40,13 +33,20 @@
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('common.caption.end_date')}
-          .col-xs-3.margin-right-15
+          .col-xs-2.margin-right-15
             .input-group
               = text_field_tag 'event_schedule[end_date]', nil, id: 'id-date-picker-1', class: 'form-control date-picker', :value => @event_schedule.end_date.try(:strftime, '%d/%m/%Y')
               %span.input-group-addon
                 %i.icon-calendar.bigger-110
           .col-xs-2
             = select_tag("event_schedule[session_end]", options_for_select(get_options_session_start_end_dropdown, end_time_dropdown), :prompt=>"--Select--", class: 'form-control')
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right #{t('event_schedule.caption.location')}
+          .col-sm-9
+            = f.text_field :location, class: 'col-xs-10 col-sm-6', placeholder: t('center.caption.placeholder.location')
+            = f.hidden_field :lat
+            = f.hidden_field :long
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('common.caption.contact')}
@@ -62,7 +62,7 @@
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right= t('instructor.caption.eligibilities')
-          .col-sm-9
+          .col-sm-7
             = f.collection_select :course_ids, Course.all, :id, :name, {}, multiple: true, prompt: false, id: 'form-field-select-4', class: 'instructor-chosen-select chosen-select tag-input-style', data: { placeholder: '' }
         .form-group
           %label.col-sm-3.control-label.no-padding-right{for: 'form-input-readonly'} #{t('event_schedule.caption.notes')}
