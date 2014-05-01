@@ -3,6 +3,7 @@ class EventSchedule < ActiveRecord::Base
   belongs_to :center
   belongs_to :event
 
+  validates_presence_of :center_id, :event_id, :location, :start_date, :end_date
   has_many :event_eligibilities
   has_many :courses, through: :event_eligibilities
 

@@ -1,6 +1,6 @@
 %tr.info
   %td<
-    = event_schedule.event.name
+    = link_to(event_schedule.event.name, edit_event_schedule_path(event_schedule))
   %td<
     = event_schedule.center.name
   %td<

@@ -13,8 +13,7 @@ class EventSchedulesController < ApplicationController
     params[:event_schedule][:start_date] = "#{params[:event_schedule][:start_date]} #{params[:event_schedule][:session_start]}".to_datetime
     params[:event_schedule][:end_date] = "#{params[:event_schedule][:end_date]} #{params[:event_schedule][:session_end]}".to_datetime
 
-    params[:event_schedule].delete(:session_start)
-    params[:event_schedule].delete(:session_end)
+    remove_sessions_before_save(params[:event_schedule])
     @event_schedule = EventSchedule.new(params[:event_schedule])
     if @event_schedule.save
       event_name = @event_schedule.event.name
@@ -35,8 +34,7 @@ class EventSchedulesController < ApplicationController
     params[:event_schedule][:start_date] = "#{params[:event_schedule][:start_date]} #{params[:event_schedule][:session_start]}".to_datetime
     params[:event_schedule][:end_date] = "#{params[:event_schedule][:end_date]} #{params[:event_schedule][:session_end]}".to_datetime
 
-    params[:event_schedule].delete(:session_start)
-    params[:event_schedule].delete(:session_end)
+    remove_sessions_before_save(params[:event_schedule])
     respond_to do |format|
       if @event_schedule.update_attributes(params[:event_schedule])
         format.html { redirect_to event_schedules_path, notice: t('event_schedule.message.event_schedule_updated', event_schedule: @event_schedule.event.name)}
@@ -57,5 +55,10 @@ class EventSchedulesController < ApplicationController
 
   def event_schedule_from_params
     @event_schedule = EventSchedule.find(params[:id])
+  end
+
+  def remove_sessions_before_save(params)
+    params.delete(:session_start)
+    params.delete(:session_end)
   end
 end

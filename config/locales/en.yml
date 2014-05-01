@@ -347,9 +347,9 @@ en:
         new: 'New Event Schedule'
         edit: 'Edit Event Schedule'
     message:
-      event_schedule_created: "Event Schedule '%{event_schedule}' created successfully"
-      event_schedule_updated: "Event Schedule '%{event_schedule}' updated successfully"
-      event_schedule_destroy: "Event Schedule '%{event_schedule}' deleted successfully"
+      event_schedule_created: "Event Schedule of '%{event_schedule}' created successfully"
+      event_schedule_updated: "Event Schedule of '%{event_schedule}' updated successfully"
+      event_schedule_destroy: "Event Schedule of '%{event_schedule}' deleted successfully"
       no_events_found: 'No Events Found'
       remove: 'Are you sure you want to remove this event schedule?'
       no_event_schedules_found: 'No Event Schedules Found'
