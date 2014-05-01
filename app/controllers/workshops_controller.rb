@@ -76,6 +76,12 @@ class WorkshopsController < ApplicationController
     end
   end
 
+  def destroy_workshop_session
+    workshop_session = WorkshopSession.find(params[:id])
+    @workshop = workshop_session.workshop
+    workshop_session.destroy
+  end
+
  def course_instructors
    respond_to do |format|
      @instructors = @course.instructors
