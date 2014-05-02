@@ -63,7 +63,7 @@
         .form-group
           %label.col-sm-3.control-label.no-padding-right= t('instructor.caption.eligibilities')
           .col-sm-7
-            = f.collection_select :course_ids, Course.all, :id, :name, {}, multiple: true, prompt: false, id: 'form-field-select-4', class: 'instructor-chosen-select chosen-select tag-input-style', data: { placeholder: '' }
+            = f.collection_select :course_ids, Course.all(order: 'name ASC'), :id, :name, {}, multiple: true, prompt: false, id: 'form-field-select-4', class: 'instructor-chosen-select chosen-select tag-input-style', data: { placeholder: '' }
         .form-group
           %label.col-sm-3.control-label.no-padding-right{for: 'form-input-readonly'} #{t('event_schedule.caption.notes')}
           .col-sm-9
