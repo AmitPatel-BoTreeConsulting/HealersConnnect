@@ -5,4 +5,7 @@
       %small
         %i.icon-double-angle-right
         = t('registration.page_content.header.breadcrumb')
-  = render :partial => 'form'
+  - if @user
+    = render partial: 'registrations/form_for_user'
+  - else
+    = render partial: 'registrations/form'

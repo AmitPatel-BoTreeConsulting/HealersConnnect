@@ -167,6 +167,7 @@ en:
       register: 'Register'
       view_registrations: 'View Registrations'
       contact: 'Contact'
+      member_id: 'Member ID'
       title:
         edit: 'Edit'
       button:

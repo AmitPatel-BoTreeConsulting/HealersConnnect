@@ -87,4 +87,13 @@ module ApplicationHelper
   def serial_number(page, index)
     (page.to_i - 1) * Settings.pagination.per_page + index + 1
   end
+
+  def gender_formatted(gender)
+    return unless gender
+    gender == 'M' ? t('registration.caption.male') : t('registration.caption.female')
+  end
+
+  def marital_status_formatted(married)
+    married ? t('registration.caption.marital_status_married') : t('registration.caption.marital_status_unmarried')
+  end
 end
