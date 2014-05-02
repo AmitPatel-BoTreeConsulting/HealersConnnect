@@ -274,7 +274,7 @@ en:
       paragraph_2: 'Please find donation details are as below.'
       signature_text_thnak_you: 'Thank you,'
       signature_text_team: 'Pranic Healing Team'
-      
+
   instructors:
     caption:
       instructor_select_tag_prompt: '--Please select instructor--'
@@ -294,6 +294,8 @@ en:
       workshops: 'Workshops'
       events: 'Events'
       settings: 'Settings'
+      event_schedules: 'Event Schedules'
+      activities: 'Activities'
   sign_in:
     caption:
       remember_me: 'Remember Me'
@@ -332,3 +334,40 @@ en:
         index: 'Instructors'
         new: 'New Event'
         edit: 'Edit Event'
+  event_schedule:
+    caption:
+      event: 'Event'
+      center: 'Center'
+      location: 'Location'
+      notes: 'Notes'
+      button:
+        new: 'New Event Schedule'
+        create: 'Create Event Schedule'
+        update: 'Save'
+    page_content:
+      header:
+        new: 'New Event Schedule'
+        edit: 'Edit Event Schedule'
+    message:
+      event_schedule_created: "Event Schedule of '%{event_schedule}' created successfully"
+      event_schedule_updated: "Event Schedule of '%{event_schedule}' updated successfully"
+      event_schedule_destroy: "Event Schedule of '%{event_schedule}' deleted successfully"
+      no_events_found: 'No Events Found'
+      remove: 'Are you sure you want to remove this event schedule?'
+      no_event_schedules_found: 'No Event Schedules Found'
+  activities:
+    caption:
+      activities: 'Activities'
+      button:
+        new: 'New Activity'
+        create: 'Create Activity'
+    message:
+      activities_created: "Activity '%{event}' created successfully"
+      activities_updated: "Activity '%{event}' updated successfully"
+      activities_destroy: "Activity '%{event}' deleted successfully"
+      no_activities_found: 'No Activities Found'
+      remove: 'Are you sure you want to remove this activity?'
+    page_content:
+      header:
+        new: 'New Activity'
+        edit: 'Edit Activity'

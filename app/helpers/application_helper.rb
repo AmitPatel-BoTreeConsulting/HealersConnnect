@@ -48,6 +48,13 @@ module ApplicationHelper
       url = events_path
       link_title = t('navbar.menu.title.events')
 
+    when :event_schedules
+      url = event_schedules_path
+      link_title = t('navbar.menu.title.event_schedules')
+
+    when :activities
+      url = events_path(manage_page: 'activity')
+      link_title = t('navbar.menu.title.activities')
     else
     end
     content_tag(:li, link_to(link_title, url),

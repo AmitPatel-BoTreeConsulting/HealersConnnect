@@ -1,15 +1,16 @@
+- edit_action_event_path = action_event ? edit_event_path(event, manage_page: action_event) : edit_event_path(event)
+- delete_action_event_path = action_event ? event_path(event, manage_page: action_event) : event_path(event)
 %tr.info
   %td<
     = serial_number(@page,event_counter)
   %td<
-    = link_to event.name, edit_event_path(event)
-  %td<
-    = event.event_category.name if event.event_category.present?
-  %td<
-    = event.description
+    = link_to event.name, edit_action_event_path
+  - if !action_event
+    %td<
+      = event.event_category.name if event.event_category.present?
   %td.text-center<
     .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
-      = link_to(edit_event_path(event), class: 'green', title: t('common.caption.title.edit')) do
+      = link_to(edit_action_event_path, class: 'green', title: t('common.caption.title.edit')) do
         %i.icon-pencil.bigger-130
-      = link_to(event_path(event), method: :delete, :confirm=>t('event.message.remove') , class: 'red', title: t('common.caption.delete'))  do
+      = link_to(delete_action_event_path, method: :delete, :confirm=> action_event ? t('activities.message.remove') : t('event.message.remove') , class: 'red', title: t('common.caption.delete'))  do
         %i.icon-trash.bigger-130
