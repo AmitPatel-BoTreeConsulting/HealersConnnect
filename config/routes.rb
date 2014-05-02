@@ -32,9 +32,13 @@ HealersConnnect::Application.routes.draw do
   end
   post 'workshops/course/instructors' => 'workshops#course_instructors'
   resources :donations
+  post 'check_phone_number' => 'users#check_phone_number'
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
   get 'static/home' => 'static_pages#home'
   get 'registration' => 'registrations#registration', as: :export
   get 'donation/:id' => 'donations#export', as: :export_donation_pdf
+
+  resources :events
+  resources :event_schedules
 end

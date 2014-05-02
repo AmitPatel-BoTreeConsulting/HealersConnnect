@@ -3,7 +3,7 @@
 - submit_btn_caption = ( create_view ? t('registration.caption.button.new') : t('registration.caption.button.update') )
 
 - # Initialize the nested attributes if they are not present
-- @registration.user_profile ||= UserProfile.new
+- @registration = set_profile(@registration) if @registration.user_profile.blank?
 - # @registration.workshop ||= Workshop.new
 - url = url_for_registration_form(@registration, @workshop)
 - text_field_class = 'col-xs-10 col-sm-5'
@@ -14,6 +14,11 @@
   .row
     .col-xs-12
       = f.fields_for :user_profile do |ff|
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right
+            = t('common.caption.member_id')
+          .col-sm-9
+            = text_field_tag "user[member_id]", nil, class: 'col-xs-2 margin-right-10'
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.name')
@@ -141,16 +146,17 @@
               %label
                 = f.radio_button :fresher, false, class: 'ace'
                 %span.lbl= t('registration.caption.course_attempt_review')
-      - # Remove this comment when enabling workshops
-      - if false
-        = f.fields_for :workshop do |ff|
-          .form-group
-            %label.col-sm-3.control-label.no-padding-right
-              = t('registration.caption.basic_pranic_healing')
-            .col-sm-9
-              =# ff.text_field :workshop_place, placeholder: 'Place', class: 'col-xs-2 margin-right-10'
-              =# ff.text_field :workshop_dated, placeholder: 'Date OR Year', class: 'col-xs-2 margin-right-10'
-              = ff.text_field :instructor_id, placeholder: t('registration.caption.placeholder.instructor'), class: 'col-xs-2'
+      - @eligibilities.each do |course|
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right
+            = course.name
+          .col-sm-9
+            - palce = @registration.past_workshops[course.alias]['palce'] rescue nil
+            - date = @registration.past_workshops[course.alias]['date'] rescue nil
+            - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil
+            = text_field_tag "registration[past_workshops[#{course.alias}][palce]]", palce, placeholder: t('registration.caption.placeholder.place'), class: 'col-xs-2 margin-right-10'
+            = text_field_tag "registration[past_workshops[#{course.alias}][date]]", date, placeholder: t('registration.caption.placeholder.date_or_year'), class: 'col-xs-2 margin-right-10'
+            = text_field_tag "registration[past_workshops[#{course.alias}][instructor]]", instructor, placeholder: t('registration.caption.placeholder.instructor'), class: 'col-xs-2'
       - if current_user
         .space-4
         .form-group
@@ -183,3 +189,12 @@
         .col-md-offset-3.col-md-9
           = f.submit "#{submit_btn_caption}", class: "#{registration_submit_button_class}", id: 'register', title: "#{submit_btn_caption}"
           = link_to t('common.caption.button.cancel'), workshop_registrations_path(@workshop), class: 'btn', title: t('common.caption.button.cancel')
+
+- # Body of the sign in confirmation model
+- # appears if user is not logged in and
+- # the mobile number entered by user matches to any existing user
+.hide
+  = render partial: 'registrations/sign_in_confirmation'
+  - # store the value of current user is logged in or not
+  - # for determining whether sign_in_confirmation popup will appear or not
+  = hidden_field_tag 'user_signed_in', !current_user.blank?

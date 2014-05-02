@@ -13,7 +13,7 @@
           %tr
             %th{width: '5%'} #{t('common.caption.serial_number')}
             %th{width: '27%'} #{t('common.caption.name')}
-            %th.text-center{width: '10%'} #{t('common.caption.email')}
+            %th{width: '10%'} #{t('common.caption.email')}
             %th.text-center{width: '10%'} #{t('common.caption.mobile')}
             %th.text-center{width: '10%'} #{t('common.caption.manage')}
         - if @instructors.present?
@@ -21,7 +21,7 @@
             %tr
               %td= index + 1
               %td= instructor.name
-              %td.text-center= instructor.email
+              %td= instructor.email
               %td.text-center= instructor.mobile
               %td.text-center<
                 .action-buttons

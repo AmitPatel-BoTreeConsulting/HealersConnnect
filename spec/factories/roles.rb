@@ -1,31 +1,25 @@
 FactoryGirl.define do
-  # factory :foundation_admin do
-  #   'name'   'Foundation Admin'
-  #   'alias'  'foundation_admin'
-  # end
+  factory :foundation_admin, class: 'Role' do
+    name 'Foundation Admin'
+  end
 
-  # factory :super_admin do
-  #   'name'   'Super Admin'
-  #   'alias'  'super_admin'
-  # end
+  factory :super_admin, class: 'Role' do
+    name 'Super Admin'
+  end
 
-  # factory :center_admin do
-  #   'name'   'Center Admin'
-  #   'alias'  'center_admin'
-  # end
+  factory :center_admin, class: 'Role' do
+    name 'Center Admin'
+  end
 
-  # factory :teacher do
-  #   'name'   'Teacher'
-  #   'alias'  'teacher'
-  # end
+  factory :instructor, class: 'Role' do
+    name 'Instructor'
+  end
 
-  # factory :healer do
-  #   'name'   'Healer'
-  #   'alias'  'healer'
-  # end
+  factory :healer, class: 'Role' do
+    name 'Healer'
+  end
 
-  # factory :accountant do
-  #   'name'   'Accountant'
-  #   'alias'  'accountant'
-  # end
+  factory :accountant, class: 'Role' do
+    name 'Accountant'
+  end
 end

@@ -8,3 +8,16 @@
 .section_header {
   margin-bottom: 20px;
 }
+
+.center {
+  text-align: center;
+}
+
+.popup-body {
+  background-color: #FFFFFF;
+  padding: 20px;
+}
+
+.hr-2px{
+  border-width: 2px 0 0;
+}

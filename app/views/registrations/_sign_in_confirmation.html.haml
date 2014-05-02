@@ -1,0 +1,19 @@
+- registration_controller = (controller.controller_name == 'registrations')
+#sign_in_confirmation.popup-body
+  .center
+    .spacer20
+    %h4 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet
+    / %h4 Already registered? Please sign in for hassle free registration.
+    - if registration_controller
+      #usersListing
+      = render partial: 'registrations/users_listing'
+    - else
+      = link_to t('common.caption.sign_in'), new_user_session_path, class: 'btn btn-md btn-success'
+    .spacer10
+    #registerWithoutLogIn
+      %hr.hr-2px
+      .spacer10
+      - unless registration_controller
+        %h4 Not registered?
+      = link_to t('registration.caption.continue_registration'), 'javascript:void(0)', class: 'btn btn-md btn-success', id: 'continueRegistrationBtn'
+      .spacer20

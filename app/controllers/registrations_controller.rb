@@ -4,6 +4,7 @@ class RegistrationsController < ApplicationController
   before_filter :required_access, only: [:index, :edit, :update, :destroy, :activate, :deactivate, :export]
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export]
   before_filter :find_workshop, except: [:registration]
+  before_filter :set_eligibilities, only: [:new, :create, :edit, :update]
 
   def index
     @registrations = Registration.search(params)
@@ -18,6 +19,7 @@ class RegistrationsController < ApplicationController
   end
 
   def new
+    set_user_from_user_id
     default_profile_values = { gender: 'M', married: true }
     @registration = Registration.new(
       user_profile_attributes: default_profile_values,
@@ -41,6 +43,7 @@ class RegistrationsController < ApplicationController
         redirect_to root_path
       end
     else
+      set_user_from_user_id
       render :new
     end
   end
@@ -122,4 +125,11 @@ class RegistrationsController < ApplicationController
       {status: @registration.active ? 'confirmed' : 'cancelled'}
     end
 
+    def set_eligibilities
+      @eligibilities = @workshop.eligibilities
+    end
+
+    def set_user_from_user_id
+      @user = User.find_by_id(params[:user_id]) unless current_user
+    end
 end

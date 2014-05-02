@@ -7,6 +7,8 @@ class Instructor < ActiveRecord::Base
   has_many :course_instructors
   has_many :courses, through: :course_instructors
   has_many :workshops
-  validates :mobile, phone: {possible: true, types: [:mobile]}
+  validates :mobile, numericality: { only_integer: true },
+            length: { is: 10 }, allow_blank: true,
+            format:  {:with => /^[1-9]/}
 
 end

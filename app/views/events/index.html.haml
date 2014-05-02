@@ -1,0 +1,42 @@
+- action_event = params[:manage_page]
+- action_event_path = action_event ? new_event_path(manage_page: action_event) : new_event_path
+.page-header
+  %h1
+    - if action_event
+      = t('activities.caption.activities')
+    - else
+      = t('event.caption.events')
+.row
+  .col-xs-12
+    .btn-group.pull-right.margin-bottom-10
+      = link_to action_event ? t('activities.caption.button.new') : t('event.caption.button.new'), action_event_path, class: 'btn btn-sm btn-success', title: action_event ? t('activities.caption.button.new') : t('event.caption.button.new')
+.row
+  .space-6
+  .col-xs-12
+    .table-responsive
+
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '6%'} #{t('common.caption.serial_number')}
+            %th{width: '70%'} #{t('common.caption.name')}
+            - if !action_event
+              %th #{t('event.caption.event_category')}
+            %th.text-center{width: '7%'} #{t('common.caption.manage')}
+        - if @events.present?
+          = render :partial => 'events', collection: @events, as: :event, locals: {action_event: action_event}
+        - else
+          %tr
+            %td{colspan: 5}
+              .text-center
+                %h3
+                  - if action_event
+                    = t('activities.message.no_activities_found')
+                  - else
+                    = t('event.message.no_events_found')
+    .col-xs-12
+      .row
+        .col-sm-6
+        .col-sm-6
+          .dataTables_paginate.paging_bootstrap
+            = paginate @events

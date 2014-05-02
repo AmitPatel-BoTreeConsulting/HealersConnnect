@@ -18,6 +18,7 @@
 //= require bootstrap-datepicker.min
 //= require bootstrap-timepicker.min
 //= require chosen.jquery.min
+//= require jquery.popupoverlay
 //= require common
 //= require ace-elements.min
 //= require registrations
@@ -26,3 +27,5 @@
 //= require jsapi
 //= require donation
 //= require workshops
+//= require nav_settings_dropdown
+//= require events

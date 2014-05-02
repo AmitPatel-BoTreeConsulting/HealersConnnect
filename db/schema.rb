@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140421180457) do
+ActiveRecord::Schema.define(:version => 20140429110930) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -102,6 +102,48 @@ ActiveRecord::Schema.define(:version => 20140421180457) do
 
   add_index "donations", ["center_id"], :name => "index_donations_on_center_id"
   add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
+  add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
+
+  create_table "event_categories", :force => true do |t|
+    t.string   "name"
+    t.string   "alias"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "event_eligibilities", :force => true do |t|
+    t.integer  "event_schedule_id"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "event_schedules", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "center_id"
+    t.string   "location"
+    t.float    "lat"
+    t.float    "long"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "contact"
+    t.integer  "donation"
+    t.text     "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "event_category_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
 
   create_table "foundations", :force => true do |t|
     t.string   "name"
@@ -138,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20140421180457) do
     t.boolean  "active",            :default => true
     t.integer  "user_id"
     t.integer  "workshop_id"
+    t.text     "past_workshops"
   end
 
   add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
@@ -202,6 +245,7 @@ ActiveRecord::Schema.define(:version => 20140421180457) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "member_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
