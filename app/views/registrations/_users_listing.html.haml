@@ -1,7 +1,21 @@
 - unless @profiles.blank?
-  Are you
-  .spacer-5
-  - @profiles.each do |profile|
-    - if profile.user
-      = link_to profile.name, new_workshop_registration_path(workshop_id: @workshop.id, user_id: profile.user.id)
-    .spacer-5
+  %strong Are you
+  .spacer10
+  .row
+    .col-xs-12
+      .table-responsive
+        %table#sample-table-2.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th.text-align-center #{t('common.caption.name')}
+              %th.text-align-center{width: '25px'} #{t('common.caption.mobile')}
+              %th.text-align-center{width: '25px'} #{t('registration.caption.telephone')}
+              %th
+          %tbody
+            - @profiles.each do |profile|
+              - if profile.user
+                %tr
+                  %td= link_to profile.name, new_workshop_registration_path(workshop_id: @workshop.id, user_id: profile.user.id)
+                  %td= profile.mobile
+                  %td= profile.telephone
+                  %td= link_to(t('common.caption.register'), new_workshop_registration_path(workshop_id: @workshop.id, user_id: profile.user.id), class: 'green', title: t('common.caption.register'))
