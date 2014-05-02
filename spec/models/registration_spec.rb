@@ -30,4 +30,7 @@ describe Registration do
 
   it { should accept_nested_attributes_for(:user_profile) }
   it { should serialize(:past_workshops).as(Hash) }
+
+  it { should allow_value('06/13 136', '12/13 12547').for(:certificate_number) }
+  it { should_not allow_value('12/13 12avc', '2/13 1234', '2 13 1234').for(:certificate_number) }
 end
