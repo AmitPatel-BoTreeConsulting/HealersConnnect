@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140429110930) do
+ActiveRecord::Schema.define(:version => 20140502142132) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -104,6 +104,18 @@ ActiveRecord::Schema.define(:version => 20140429110930) do
   add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
   add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
 
+  create_table "event_activity_galleries", :force => true do |t|
+    t.integer  "event_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  add_index "event_activity_galleries", ["event_id"], :name => "index_event_activity_galleries_on_event_id"
+
   create_table "event_categories", :force => true do |t|
     t.string   "name"
     t.string   "alias"
@@ -114,8 +126,8 @@ ActiveRecord::Schema.define(:version => 20140429110930) do
   create_table "event_eligibilities", :force => true do |t|
     t.integer  "event_schedule_id"
     t.integer  "course_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "event_schedules", :force => true do |t|
