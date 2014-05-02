@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_filter :event_from_params, only: [:edit, :update, :show, :destroy]
   before_filter :set_event_category, only: [:new, :create, :edit, :update]
+  before_filter :required_access, only: [:index, :create, :show, :edit, :update, :destroy]
 
   def index
     @page = params[:page] || 1
