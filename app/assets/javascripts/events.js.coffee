@@ -1,4 +1,4 @@
-$(document).ready ->
+$ ->
 
   $("#event_avatar").change ->
     $('#event_avatar_part').hide();

@@ -3,6 +3,5 @@
 FactoryGirl.define do
   factory :event_category do
     name "MyString"
-    event_alias "MyString"
   end
 end

@@ -1,4 +1,4 @@
 class EventCategory < ActiveRecord::Base
-  attr_accessible :event_alias, :name
+  attr_accessible :alias, :name
   has_many :events
 end

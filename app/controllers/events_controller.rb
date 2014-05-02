@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :event_from_params, only: [:edit, :update, :show, :destroy]
+  before_filter :set_event_category, only: [:new, :create, :edit, :update]
 
   def index
     @page = params[:page] || 1
@@ -8,23 +9,20 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event_categories = EventCategory.all
   end
 
   def create
     @event = Event.new(params[:event])
-    @event_categories = EventCategory.all
     respond_to do |format|
       if @event.save
         format.html { redirect_to events_path, notice: t('event.message.event_created', event: @event.name) }
       else
-        format.json {render :new}
+        format.html {render :new}
       end
     end
   end
 
   def edit
-    @event_categories = EventCategory.all
   end
 
   def show
@@ -35,7 +33,7 @@ class EventsController < ApplicationController
       if @event.update_attributes(params[:event])
         format.html { redirect_to events_path, notice: t('event.message.event_updated', event: @event.name)}
       else
-        format.json { render :edit }
+        format.html { render :edit }
       end
     end
   end
@@ -49,6 +47,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def set_event_category
+    @event_categories = EventCategory.all
+  end
 
   def event_from_params
     @event = Event.find(params[:id])
