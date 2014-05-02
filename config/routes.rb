@@ -38,4 +38,6 @@ HealersConnnect::Application.routes.draw do
   get 'static/home' => 'static_pages#home'
   get 'registration' => 'registrations#registration', as: :export
   get 'donation/:id' => 'donations#export', as: :export_donation_pdf
+
+  resources :events
 end

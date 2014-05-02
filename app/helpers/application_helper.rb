@@ -5,24 +5,8 @@ module ApplicationHelper
   end
 
   def active_menu(menu)
-    active_menu =
-      case menu
-      when :donations
-        active_current_page?('donations', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
-      when :registrations
-        active_current_page?('registrations', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
-      when :centers
-        active_current_page?('centers', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
-      when :courses
-        active_current_page?('courses', HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
-      when :instructors
-        active_current_page?('instructors',HealersConnectConstant:: COMMON_CONTROLLER_ACTIONS)
-      when :workshops
-        active_current_page?('workshops',HealersConnectConstant:: COMMON_CONTROLLER_ACTIONS)
-      else
-        false
-      end
-      'active' if active_menu
+    active_menu = active_current_page?(menu.to_s, HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
+    'active' if active_menu
   end
 
   def active_current_page?(controller, action = nil, src = nil)
@@ -60,6 +44,10 @@ module ApplicationHelper
     when :workshops
       url = workshops_path
       link_title = t('navbar.menu.title.workshops')
+    when :events
+      url = events_path
+      link_title = t('navbar.menu.title.events')
+
     else
     end
     content_tag(:li, link_to(link_title, url),

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140423105149) do
+ActiveRecord::Schema.define(:version => 20140428114150) do
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -102,6 +102,26 @@ ActiveRecord::Schema.define(:version => 20140423105149) do
 
   add_index "donations", ["center_id"], :name => "index_donations_on_center_id"
   add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
+  add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
+
+  create_table "event_categories", :force => true do |t|
+    t.string   "name"
+    t.string   "alias"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "event_category_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
 
   create_table "foundations", :force => true do |t|
     t.string   "name"
