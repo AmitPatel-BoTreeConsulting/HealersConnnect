@@ -3,12 +3,12 @@ class EventsController < ApplicationController
 
   def index
     @page = params[:page] || 1
-    @events = Event.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
+    @events = deside_scope_for_event_and_activities(params[:manage_page]).page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
   def new
     @event = Event.new
-    @event_categories = EventCategory.all
+    @event_categories = params[:manage_page] ? EventCategory.all : EventCategory.except_activity
   end
 
   def create
@@ -16,7 +16,8 @@ class EventsController < ApplicationController
     @event_categories = EventCategory.all
     respond_to do |format|
       if @event.save
-        format.html { redirect_to events_path, notice: t('event.message.event_created', event: @event.name) }
+        flash_msg = params[:manage_page] == 'activity' ? t('activities.message.activities_created', event: @event.name) : t('event.message.event_created', event: @event.name)
+        format.html { redirect_to events_path(:manage_page => params[:manage_page]), notice: flash_msg}
       else
         format.json {render :new}
       end
@@ -24,7 +25,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event_categories = EventCategory.all
+    @event_categories = params[:manage_page] ? EventCategory.all : EventCategory.except_activity
   end
 
   def show
@@ -33,7 +34,8 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to events_path, notice: t('event.message.event_updated', event: @event.name)}
+        flash_msg = params[:manage_page].present? ? t('activities.message.activities_updated', event: @event.name) : t('event.message.event_created', event: @event.name)
+        format.html { redirect_to events_path(:manage_page => params[:manage_page]), notice: flash_msg }
       else
         format.json { render :edit }
       end
@@ -44,7 +46,8 @@ class EventsController < ApplicationController
     respond_to do |format|
       event_name = @event.name
       @event.destroy
-      format.html { redirect_to events_path, notice: t('event.message.event_destroy', event: event_name)}
+      flash_msg = params[:manage_page].present? ? t('activities.message.activities_destroy', event: @event.name) : t('event.message.event_created', event: @event.name)
+      format.html { redirect_to events_path(:manage_page => params[:manage_page]), notice: flash_msg }
     end
   end
 
@@ -54,4 +57,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def deside_scope_for_event_and_activities(params)
+    params ? Event.events_with_only_activity : Event.events_without_activity
+  end
 end
