@@ -131,6 +131,8 @@ ckeditor/config.js: ckeditor/config-9c409d1f6a9ff1eb8bdd949d1c6e71a8.js
 ckeditor/config/index.js: ckeditor/config-9c409d1f6a9ff1eb8bdd949d1c6e71a8.js
 excanvas.min.js: excanvas.min-eecb15f5b8d8550d6f8a8ab37261c463.js
 excanvas/index.min.js: excanvas.min-eecb15f5b8d8550d6f8a8ab37261c463.js
+home/custom.js: home/custom-a2cee5d865dd66ffda13cee1ae56fc90.js
+home/custom/index.js: home/custom-a2cee5d865dd66ffda13cee1ae56fc90.js
 html5shiv.js: html5shiv-53237491a69f6b56d8df8924971f2446.js
 html5shiv/index.js: html5shiv-53237491a69f6b56d8df8924971f2446.js
 ace-ie.min.css: ace-ie.min-847c1029b10a0b1cda05728376f7d5f1.css
