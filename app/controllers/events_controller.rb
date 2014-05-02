@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_filter :event_from_params, only: [:edit, :update, :show, :destroy]
+  before_filter :set_event_category, only: [:new, :create, :edit, :update]
 
   def index
     @page = params[:page] || 1
@@ -13,13 +14,12 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
-    @event_categories = EventCategory.all
     respond_to do |format|
       if @event.save
         flash_msg = params[:manage_page] == 'activity' ? t('activities.message.activities_created', event: @event.name) : t('event.message.event_created', event: @event.name)
         format.html { redirect_to events_path(:manage_page => params[:manage_page]), notice: flash_msg}
       else
-        format.json {render :new}
+        format.html {render :new}
       end
     end
   end
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
         flash_msg = params[:manage_page].present? ? t('activities.message.activities_updated', event: @event.name) : t('event.message.event_created', event: @event.name)
         format.html { redirect_to events_path(:manage_page => params[:manage_page]), notice: flash_msg }
       else
-        format.json { render :edit }
+        format.html { render :edit }
       end
     end
   end
@@ -52,6 +52,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def set_event_category
+    @event_categories = EventCategory.all
+  end
 
   def event_from_params
     @event = Event.find(params[:id])
