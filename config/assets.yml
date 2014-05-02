@@ -21,6 +21,7 @@ javascripts:
     - app/assets/javascripts/home/index-slider.js
     - app/assets/javascripts/home/flexslider.js
     - app/assets/javascripts/jquery.popupoverlay.js
+    - app/assets/javascripts/home/custom.js
 
 stylesheets:
   canvas:
