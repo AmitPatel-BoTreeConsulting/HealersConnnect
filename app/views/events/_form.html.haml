@@ -1,0 +1,43 @@
+- @instructor ||= Center.new
+- create_view = @event.new_record?
+- submit_btn_caption = ( create_view ? t('event.caption.button.create') : t('event.caption.button.update') )
+= form_for @event, html: { class: 'form-horizontal', role: 'form'} do |f|
+  .row
+    .col-xs-12.col-sm-12
+      .center
+        = render partial: 'shared/error_messages', locals: { target: f.object }
+  .row
+    .col-xs-12
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right= t('event.caption.event_category')
+        .col-sm-9
+          = f.collection_select :event_category_id, @event_categories,:id,:name
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right= t('common.caption.name')
+        .col-sm-9
+          = f.text_field :name, class: 'col-xs-10 col-sm-5'
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right= t('common.caption.description')
+        .col-sm-9
+          = f.text_area :description, class: 'col-xs-10 col-sm-5'
+      .space-4
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.image')}
+        .col-sm-9
+          = f.file_field :avatar, class: 'col-xs-10 col-sm-5'
+      - if @event.avatar.present?
+        .form-group#event_avatar_part
+          %label.col-sm-3.control-label.no-padding-right
+          .col-sm-9
+            = image_tag @event.avatar.url(:thumb)
+      .form-group
+        %label.col-sm-3.control-label.no-padding-right
+        .col-sm-9
+          %img(src='' id='preview_event_avatar' style='display:none;')
+
+      .clearfix
+        .col-md-offset-3.col-md-9
+          = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', title: "#{submit_btn_caption}"
+          = link_to t('common.caption.button.cancel'), events_path, class: 'btn', title: t('common.caption.button.cancel')

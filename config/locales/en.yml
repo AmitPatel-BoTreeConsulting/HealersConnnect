@@ -292,6 +292,8 @@ en:
       instructors: 'Instructors'
       centers: 'Centers'
       workshops: 'Workshops'
+      events: 'Events'
+      settings: 'Settings'
   sign_in:
     caption:
       remember_me: 'Remember Me'
@@ -310,3 +312,23 @@ en:
         change_password: 'Change my password'
       link:
         back_to_signin: 'Back To Signin'
+  event:
+    caption:
+      events: 'Events'
+      event_category: 'Event Category'
+      description: 'Description'
+      button:
+        new: 'New Event'
+        update: 'Save'
+        create: 'Create Event'
+    message:
+      event_created: "Event '%{event}' created successfully"
+      event_updated: "Event '%{event}' updated successfully"
+      event_destroy: "Event '%{event}' deleted successfully"
+      no_events_found: 'No Events Found'
+      remove: 'Are you sure you want to remove this event?'
+    page_content:
+      header:
+        index: 'Instructors'
+        new: 'New Event'
+        edit: 'Edit Event'

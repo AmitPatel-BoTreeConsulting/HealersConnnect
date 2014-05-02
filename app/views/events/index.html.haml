@@ -1,0 +1,33 @@
+.page-header
+  %h1
+    = t('event.caption.events')
+.row
+  .col-xs-12
+    .btn-group.pull-right.margin-bottom-10
+      = link_to t('event.caption.button.new'), new_event_path, class: 'btn btn-sm btn-success', title: t('event.caption.button.new')
+.row
+  .space-6
+  .col-xs-12
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '7%'} #{t('common.caption.serial_number')}
+            %th #{t('common.caption.name')}
+            %th #{t('event.caption.event_category')}
+            %th.text-center #{t('event.caption.description')}
+            %th.text-center #{t('common.caption.manage')}
+        - if @events.present?
+          = render :partial => 'events', collection: @events, as: :event
+        - else
+          %tr
+            %td{colspan: 5}
+              .text-center
+                %h3
+                  = t('event.message.no_events_found')
+    .col-xs-12
+      .row
+        .col-sm-6
+        .col-sm-6
+          .dataTables_paginate.paging_bootstrap
+            = paginate @events
