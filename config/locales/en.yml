@@ -294,6 +294,7 @@ en:
       events: 'Events'
       settings: 'Settings'
       event_schedules: 'Event Schedules'
+      activities: 'Activities'
   sign_in:
     caption:
       remember_me: 'Remember Me'
@@ -353,3 +354,19 @@ en:
       no_events_found: 'No Events Found'
       remove: 'Are you sure you want to remove this event schedule?'
       no_event_schedules_found: 'No Event Schedules Found'
+  activities:
+    caption:
+      activities: 'Activities'
+      button:
+        new: 'New Activity'
+        create: 'Create Activity'
+    message:
+      activities_created: "Activity '%{event}' created successfully"
+      activities_updated: "Activity '%{event}' updated successfully"
+      activities_destroy: "Activity '%{event}' deleted successfully"
+      no_activities_found: 'No Activities Found'
+      remove: 'Are you sure you want to remove this activity?'
+    page_content:
+      header:
+        new: 'New Activity'
+        edit: 'Edit Activity'
