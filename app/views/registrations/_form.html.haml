@@ -3,7 +3,7 @@
 - submit_btn_caption = ( create_view ? t('registration.caption.button.new') : t('registration.caption.button.update') )
 
 - # Initialize the nested attributes if they are not present
-- @registration.user_profile ||= UserProfile.new
+- @registration = set_profile(@registration) if @registration.user_profile.blank?
 - # @registration.workshop ||= Workshop.new
 - url = url_for_registration_form(@registration, @workshop)
 - text_field_class = 'col-xs-10 col-sm-5'
@@ -14,6 +14,11 @@
   .row
     .col-xs-12
       = f.fields_for :user_profile do |ff|
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right
+            = t('common.caption.member_id')
+          .col-sm-9
+            = text_field_tag "user[member_id]", nil, class: 'col-xs-2 margin-right-10'
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.name')

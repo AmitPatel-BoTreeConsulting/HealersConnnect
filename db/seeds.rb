@@ -22,6 +22,7 @@ def create_or_update_by_alias(class_name, row)
 end
 
 
+
 # Roles
 roles = [ { name: 'Super Admin', alias: Role::SUPER_ADMIN },
           { name: 'Center Admin', alias: Role::CENTER_ADMIN },
@@ -196,3 +197,17 @@ cources_arr.each{ |cource_map|
   create_or_update_by_alias(Course, cource_map)
 }
 puts '---------------------------------------'
+
+# Event Category
+activity = 'activity'
+special_mediation = 'special_mediation'
+nurturing_session = 'nurturing_session'
+event_categories = [
+    { name: 'Activity', alias: activity },
+    { name: 'Special Mediation', alias: special_mediation },
+    { name: 'Nurturing Session', alias: nurturing_session }
+]
+
+puts '--------Seeding EventCategory-------'
+event_categories.each { |event_category| create_or_update_by_alias(EventCategory, event_category)}
+puts '-------------------------------------'

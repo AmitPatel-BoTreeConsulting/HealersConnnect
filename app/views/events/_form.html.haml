@@ -1,0 +1,49 @@
+- @instructor ||= Center.new
+- create_view = @event.new_record?
+- submit_btn_caption = ( create_view ? (action_event ? t('activities.caption.button.create') : t('event.caption.button.create')) : t('event.caption.button.update') )
+- btn_cancel_redirection = action_event ? events_path(manage_page: action_event) : events_path
+= form_for @event, html: { class: 'form-horizontal', role: 'form'} do |f|
+  - if action_event
+    = hidden_field_tag 'manage_page', 'activity'
+    = f.hidden_field :event_category_id, value: @event_categories.first.id
+  .row
+    .col-xs-12.col-sm-12
+      .center
+        = render partial: 'shared/error_messages', locals: { target: f.object }
+  .row
+    .col-xs-12
+      .col-xs-10
+        - if !action_event
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right= t('event.caption.event_category')
+            .col-sm-9
+              = f.collection_select :event_category_id, @event_categories,:id,:name
+          .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('common.caption.name')
+          .col-sm-9
+            = f.text_field :name, class: 'col-xs-10 col-sm-5'
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('common.caption.description')
+          .col-sm-9
+            = f.text_area :description, rows: 4, class: 'form-control', :class => 'ckeditor'
+        .space-4
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right{for: 'form-field-1'} #{t('common.caption.image')}
+          .col-sm-9
+            = f.file_field :avatar, class: 'col-xs-10 col-sm-5'
+        - if @event.avatar.present?
+          .form-group#event_avatar_part
+            %label.col-sm-3.control-label.no-padding-right
+            .col-sm-9
+              = image_tag @event.avatar.url(:thumb)
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right
+          .col-sm-9
+            %img(src='' id='preview_event_avatar' style='display:none;')
+
+        .clearfix
+          .col-md-offset-3.col-md-9
+            = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', title: "#{submit_btn_caption}"
+            = link_to t('common.caption.button.cancel'), btn_cancel_redirection, class: 'btn', title: t('common.caption.button.cancel')

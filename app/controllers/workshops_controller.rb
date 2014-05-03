@@ -1,5 +1,5 @@
 class WorkshopsController < ApplicationController
-  before_filter :workshop_from_params , only: [:show,:edit, :update, :destroy]
+  before_filter :workshop_from_params , only: [:show, :edit, :update, :destroy]
   before_filter :course_from_params, only: [:course_instructors]
 
   def index
