@@ -31,6 +31,7 @@ HealersConnnect::Application.routes.draw do
     end
   end
   post 'workshops/course/instructors' => 'workshops#course_instructors'
+  post 'workshop_sessions/destroy' => 'workshops#destroy_workshop_session'
   resources :donations
   post 'check_phone_number' => 'users#check_phone_number'
   get 'static/new_center' => 'static_pages#new_center'
@@ -40,4 +41,5 @@ HealersConnnect::Application.routes.draw do
   get 'donation/:id' => 'donations#export', as: :export_donation_pdf
 
   resources :events
+  resources :event_schedules
 end

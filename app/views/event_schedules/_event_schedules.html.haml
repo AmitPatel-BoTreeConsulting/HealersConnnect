@@ -1,0 +1,19 @@
+%tr.info
+  %td<
+    = link_to(event_schedule.event.name, edit_event_schedule_path(event_schedule))
+  %td<
+    = event_schedule.center.name
+  %td<
+    = date_formatted(event_schedule.start_date)
+  %td<
+    = date_formatted(event_schedule.end_date)
+  %td.text-center<
+    = event_schedule.contact
+  %td.text-right<
+    = event_schedule.donation
+  %td.text-center<
+    .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
+      = link_to(edit_event_schedule_path(event_schedule), class: 'green', title: t('common.caption.title.edit')) do
+        %i.icon-pencil.bigger-130
+      = link_to(event_schedule_path(event_schedule), method: :delete, :confirm=>t('event_schedule.message.remove') , class: 'red', title: t('common.caption.delete'))  do
+        %i.icon-trash.bigger-130

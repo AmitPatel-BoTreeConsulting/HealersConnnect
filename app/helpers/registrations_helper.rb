@@ -39,4 +39,13 @@ module RegistrationsHelper
       workshop_registration_path(id: registration, workshop_id: workshop)
     end
   end
+
+  def set_profile(registration)
+    if registration.user
+      registration.user_profile = registration.user.user_profile
+    else
+      registration.build_user_profile
+    end
+    registration
+  end
 end

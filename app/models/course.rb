@@ -22,6 +22,8 @@ class Course < ActiveRecord::Base
   has_many :course_instructors
   has_many :instructors, through: :course_instructors
   has_many :workshops
+  has_many :event_eligibilities
+  has_many :event_schedule, through: :event_eligibilities
 
   scope :by_alias, ->(aliases) { where(alias: aliases) }
 

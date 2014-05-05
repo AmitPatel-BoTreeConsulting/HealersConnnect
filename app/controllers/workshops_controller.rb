@@ -1,5 +1,5 @@
 class WorkshopsController < ApplicationController
-  before_filter :workshop_from_params , only: [:show,:edit, :update, :destroy]
+  before_filter :workshop_from_params , only: [:show, :edit, :update, :destroy]
   before_filter :course_from_params, only: [:course_instructors]
 
   def index
@@ -13,12 +13,18 @@ class WorkshopsController < ApplicationController
   end
 
   def create
+    session_date_arr = []
     params[:workshop][:workshop_sessions_attributes].each do |workshop|
       if workshop[:date].present?
+        session_date_arr << workshop[:date]
         workshop[:session_start] = "#{workshop[:date]} #{workshop[:session_start]}".to_datetime
         workshop[:session_end] = "#{workshop[:date]} #{workshop[:session_end]}".to_datetime
       end
     end
+
+    sorted_session_date_arr = session_date_arr.sort_by {|s| Date.parse s}
+    params[:workshop][:start_date] =  sorted_session_date_arr.first.to_datetime
+    params[:workshop][:end_date] =  sorted_session_date_arr.last.to_datetime
 
     remove_date_before_save(params[:workshop][:workshop_sessions_attributes])
     @workshop  = Workshop.new(params[:workshop])
@@ -33,16 +39,30 @@ class WorkshopsController < ApplicationController
   end
 
   def edit
-
+    @instructors = Instructor.all(:order => 'name ASC')
   end
 
   def show
   end
 
   def update
+    session_date_arr = []
+    params[:workshop][:workshop_sessions_attributes].each do |workshop|
+      if workshop[:date].present?
+        session_date_arr << workshop[:date]
+        workshop[:session_start] = "#{workshop[:date]} #{workshop[:session_start]}".to_datetime
+        workshop[:session_end] = "#{workshop[:date]} #{workshop[:session_end]}".to_datetime
+      end
+    end
+
+    sorted_session_date_arr = session_date_arr.sort_by {|s| Date.parse s}
+    params[:workshop][:start_date] =  sorted_session_date_arr.first.to_datetime
+    params[:workshop][:end_date] =  sorted_session_date_arr.last.to_datetime
+
+    remove_date_before_save(params[:workshop][:workshop_sessions_attributes])
     respond_to do |format|
       if @workshop.update_attributes(params[:workshop])
-        format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_updated')}
+        format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_updated', workshop: @workshop.course.name)}
       else
         format.html {render :edit }
       end
@@ -52,8 +72,14 @@ class WorkshopsController < ApplicationController
   def destroy
     respond_to do |format|
       @workshop.destroy
-      format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_destroy')}
+      format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_destroy', workshop: @workshop.course.name)}
     end
+  end
+
+  def destroy_workshop_session
+    workshop_session = WorkshopSession.find(params[:id])
+    @workshop = workshop_session.workshop
+    workshop_session.destroy
   end
 
  def course_instructors

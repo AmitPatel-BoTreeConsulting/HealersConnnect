@@ -111,6 +111,28 @@ ActiveRecord::Schema.define(:version => 20140502082242) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "event_eligibilities", :force => true do |t|
+    t.integer  "event_schedule_id"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "event_schedules", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "center_id"
+    t.string   "location"
+    t.float    "lat"
+    t.float    "long"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "contact"
+    t.integer  "donation"
+    t.text     "notes"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.integer  "event_category_id"
     t.string   "name"
@@ -225,6 +247,7 @@ ActiveRecord::Schema.define(:version => 20140502082242) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "member_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

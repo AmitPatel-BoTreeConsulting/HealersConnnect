@@ -13,5 +13,9 @@ class Event < ActiveRecord::Base
   has_attached_file :avatar, Paperclip::Attachment.default_options.merge(paperclip_options)
   validates_attachment_content_type :avatar, content_type:  /\Aimage\/.*\Z/
 
+  scope :events_without_activity, -> { joins(:event_category).where("event_categories.alias !='activity'") }
+
+  scope :events_with_only_activity, -> { joins(:event_category).where("event_categories.alias ='activity'") }
   belongs_to :event_category
+  has_many :event_schedules
 end
