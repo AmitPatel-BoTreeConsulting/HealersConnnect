@@ -1,5 +1,21 @@
-$(document).ready ->
+bindWorkshopSessionsRemove = ->
+  $(".workshop-session-remove").click ->
+    workshopSessionSectionVal = $(this).children().attr("tag")
+    woskshopSessionId = $(this).children().attr("id")
+    $("#workshop_session_edit_" + workshopSessionSectionVal).remove()
+    unless $("#workshop_course_id").val() is ""
+      $.ajax
+        cache: false
+        type: "POST"
+        url: "/workshop_sessions/destroy"
+        data:
+          id: woskshopSessionId
+        success: () ->
+          bindWorkshopSessionsRemove()
 
+
+$(document).ready ->
+  bindWorkshopSessionsRemove()
   if $('#workshop_fees_on_rejoining').val() is ''
     $('#workshop_fees_on_rejoining').val(0)
 
