@@ -7,6 +7,7 @@
 - # @registration.workshop ||= Workshop.new
 - url = url_for_registration_form(@registration, @workshop)
 - text_field_class = 'col-xs-10 col-sm-5'
+- inline_fields_class = 'col-xs-2 margin-right-10'
 
 = form_for @registration, url: url, html: { class: 'form-horizontal', role: 'form'} do |f|
   = f.hidden_field :workshop_id
@@ -23,8 +24,8 @@
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.name')
           .col-sm-9
-            = ff.text_field :first_name, placeholder: t('registration.caption.placeholder.first_name'), class: 'col-xs-2 margin-right-10'
-            = ff.text_field :middle_name, placeholder: t('registration.caption.placeholder.middle_name'), class: 'col-xs-2 margin-right-10'
+            = ff.text_field :first_name, placeholder: t('registration.caption.placeholder.first_name'), class: inline_fields_class
+            = ff.text_field :middle_name, placeholder: t('registration.caption.placeholder.middle_name'), class: inline_fields_class
             = ff.text_field :last_name, placeholder: t('registration.caption.placeholder.surname'), class: 'col-xs-2'
         .space-4
         .form-group
@@ -167,6 +168,18 @@
               = f.text_field :registration_date, placeholder: t('registration.caption.placeholder.date_of_birth_format'), class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.registration_date.try(:strftime, '%d/%m/%Y')
               %span.input-group-addon
                 %i.icon-calendar.bigger-110
+                .space-4
+        - if current_user && current_user.is_center_admin?
+          .space-4
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+              = t('registration.caption.certificate_number')
+            .col-sm-9
+              = f.text_field :certificate_number_month, placeholder: t('registration.placeholders.certificate_number_month'), class: 'col-xs-1 margin-right-10'
+              %div.certificate-number-sign /
+              = f.text_field :certificate_number_year, placeholder: t('registration.placeholders.certificate_number_year'), class: 'col-xs-1 margin-right-10'
+              = f.text_field :certificate_number_id, placeholder: t('registration.placeholders.certificate_number_id'), class: 'col-xs-2'
+
       - if @registration.new_record?
         .hr.hr-24
         -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
