@@ -1,0 +1,11 @@
+.row
+  .col-xs-12
+    .painting
+      - @event_photo_gallery.each do |event_gallery|
+        .col-xs-4
+          %div{style: 'height:250px; width:500px;'}
+            = image_tag(event_gallery.photo.url(:medium), class: 'event_photo_image_height_width')
+            .event_photo_image_height_width.center
+              .name= event_gallery.photo_file_name
+              .name
+                = link_to t('event_photo_gallery.caption.remove'), remove_event_photo_path(event_gallery), confirm: t('event_photo_gallery.message.remove'), method: 'delete'

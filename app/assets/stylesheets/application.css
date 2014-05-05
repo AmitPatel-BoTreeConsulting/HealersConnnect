@@ -20,5 +20,6 @@
  *= require chosen.min
  *= require custom
  *= require instructors
+ *= require event_photos
  *= require_self
  */

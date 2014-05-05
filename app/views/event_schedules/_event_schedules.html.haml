@@ -13,6 +13,8 @@
     = event_schedule.donation
   %td.text-center<
     .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
+      = link_to(event_schedule_path(event_schedule), class: 'warning', title: t('common.caption.title.gallery')) do
+        %i.icon-picture.bigger-130
       = link_to(edit_event_schedule_path(event_schedule), class: 'green', title: t('common.caption.title.edit')) do
         %i.icon-pencil.bigger-130
       = link_to(event_schedule_path(event_schedule), method: :delete, :confirm=>t('event_schedule.message.remove') , class: 'red', title: t('common.caption.delete'))  do
