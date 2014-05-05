@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_filter :event_from_params, only: [:edit, :update, :show, :destroy]
   before_filter :set_event_category, only: [:new, :create, :edit, :update]
   before_filter :required_access, only: [:index, :create, :show, :edit, :update, :destroy]
+  before_filter :set_param_for_activities, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   def index
     @page = params[:page] || 1
@@ -64,5 +65,9 @@ class EventsController < ApplicationController
 
   def deside_scope_for_event_and_activities(params)
     params ? Event.events_with_only_activity : Event.events_without_activity
+  end
+
+  def set_param_for_activities
+    @activity = params[:manage_page]
   end
 end
