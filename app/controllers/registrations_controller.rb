@@ -52,6 +52,7 @@ class RegistrationsController < ApplicationController
   end
 
   def update
+    @registration.concate_certificate_number(params[:registration])
     if @registration.update_attributes(params[:registration])
       flash[:notice] =
         t('registration.message.success.registration_edit_success',

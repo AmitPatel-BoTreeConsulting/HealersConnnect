@@ -30,6 +30,7 @@ en:
       gender: 'Gender'
       male: 'Male'
       female: 'Female'
+      certificate_number: 'Certificate Number'
       marital_status: 'Marital Status'
       marital_status_married: 'Married'
       marital_status_unmarried: 'Unmarried'
@@ -120,6 +121,10 @@ en:
         activated: "Registration of '%{name}' activated successfully."
         deactivated: "Registration of '%{name}' deactivated successfully."
         accept_order_to_proceed: 'You must accept to in order to proceed'
+    placeholders:
+      certificate_number_month: 'XX'
+      certificate_number_year: 'XX'
+      certificate_number_id: 'X...'
   course:
     caption:
       courses: 'Courses'
