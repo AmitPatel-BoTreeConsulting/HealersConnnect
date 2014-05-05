@@ -18,7 +18,7 @@
             %th.text-center{width: '8%'} #{t('common.caption.end_date')}
             %th.text-center{width: '7%'} #{t('common.caption.contact')}
             %th.text-center{width: '7%'} #{t('course.caption.donation')} (&#x20B9;)
-            %th.text-center{width: '7%'} #{t('common.caption.manage')}
+            %th.text-center{width: '8%'} #{t('common.caption.manage')}
         - if @event_schedules.present?
           = render :partial => 'event_schedules', collection: @event_schedules, as: :event_schedule
         - else

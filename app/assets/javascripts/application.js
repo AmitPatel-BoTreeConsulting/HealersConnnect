@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require ckeditor-jquery
 //= require ckeditor/config
 //= require bootstrap.min
@@ -29,3 +31,4 @@
 //= require workshops
 //= require nav_settings_dropdown
 //= require events
+//= require event_schedules

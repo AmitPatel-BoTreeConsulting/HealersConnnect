@@ -1,2 +1,62 @@
-%h1 EventSchedules#show
-%p Find me in app/views/event_schedules/show.html.haml
+.page-header
+  %h1
+    = @event_schedule.event.name.capitalize
+.row
+  .space-6
+  .col-xs-12
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th #{t('event_shecdule.caption.event')}
+            %th #{t('event_shecdule.caption.center')}
+            %th{width: '8%'} #{t('common.caption.start_date')}
+            %th.text-center{width: '8%'} #{t('common.caption.end_date')}
+            %th.text-center{width: '7%'} #{t('common.caption.contact')}
+            %th.text-center{width: '7%'} #{t('course.caption.donation')} (&#x20B9;)
+        %tbody
+          %tr.info
+            %td<
+              = @event_schedule.event.name
+            %td<
+              = @event_schedule.center.name
+            %td<
+              = date_formatted(@event_schedule.start_date)
+            %td<
+              = date_formatted(@event_schedule.end_date)
+            %td<
+              = @event_schedule.contact
+            %td.text-right<
+              = @event_schedule.donation
+.page-header
+  %h1
+    = t('common.caption.title.gallery')
+    .btn-group.pull-right.btn_reports_export_margin
+      = link_to(t('common.caption.button.back'), event_schedules_path, class: 'btn btn-primary btn-sm',title: t('common.caption.button.back'))
+.row
+  .col-xs-12
+    = form_for @event_photo, :url => upload_photo_path do |f|
+      = f.hidden_field :event_photo, {:value => @event_schedule.id, :name => 'event_photo[event_id]'}
+      = f.label :photo, t('event_photo_gallery.caption.upload_photos')
+      = f.file_field :photo, multiple: true, name: "event_photo[photo]"
+.space-6
+/ - if @event_photo_gallery.present?
+#paintings
+  - if @event_photo_gallery.present?
+    .row
+      .col-xs-12
+        .painting
+          - @event_photo_gallery.each do |event_gallery|
+            .col-xs-4
+              %div.event_photo_height_width
+                = image_tag(event_gallery.photo.url(:medium), class: 'event_photo_image_height_width')
+                .event_photo_image_height_width.center
+                  .name= event_gallery.photo_file_name
+                  .name
+                    = link_to t('event_photo_gallery.caption.remove'), remove_event_photo_path(event_gallery), confirm: t('event_photo_gallery.message.remove'), method: 'delete'
+  .clear
+%script#template-upload{type: "text/x-tmpl"}
+  .upload
+    {%=o.name%}
+    .progress
+      .bar{style: "width: 0%"}

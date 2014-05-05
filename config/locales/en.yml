@@ -30,6 +30,7 @@ en:
       gender: 'Gender'
       male: 'Male'
       female: 'Female'
+      certificate_number: 'Certificate Number'
       marital_status: 'Marital Status'
       marital_status_married: 'Married'
       marital_status_unmarried: 'Unmarried'
@@ -120,6 +121,10 @@ en:
         activated: "Registration of '%{name}' activated successfully."
         deactivated: "Registration of '%{name}' deactivated successfully."
         accept_order_to_proceed: 'You must accept to in order to proceed'
+    placeholders:
+      certificate_number_month: 'XX'
+      certificate_number_year: 'XX'
+      certificate_number_id: 'X...'
   course:
     caption:
       courses: 'Courses'
@@ -170,11 +175,13 @@ en:
       member_id: 'Member ID'
       title:
         edit: 'Edit'
+        gallery: 'Gallery'
       button:
         reset: 'Reset'
         cancel: 'Cancel'
         delete: 'Delete'
         save: 'Save'
+        back: 'Back'
       link:
         forgot_my_password: 'I forgot my password'
         confirmation_instructions: "Didn't receive confirmation instructions?"
@@ -372,3 +379,12 @@ en:
       header:
         new: 'New Activity'
         edit: 'Edit Activity'
+  event_photo_gallery:
+    caption:
+      remove: 'Remove'
+      upload_photos: 'Upload Photos'
+    message:
+      event_photo_destroy: "Event photo '%{event_photo}' deleted successfully"
+      no_photos_found: 'No Photos Found'
+      remove: 'Are you sure you want to remove this photo?'
+
