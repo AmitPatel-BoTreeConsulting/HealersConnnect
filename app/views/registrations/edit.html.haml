@@ -4,5 +4,13 @@
       = t('registration.page_content.header.edit')
       %small
         %i.icon-double-angle-right
-        = t('registration.page_content.header.breadcrumb')
+        = @workshop.course.name
+        - unless @workshop.start_date.blank?
+          &nbsp;
+          %i.icon-calendar.bigger-110
+          = @workshop.start_date.try(:strftime, '%d/%m/%Y')
+        - unless @workshop.location.blank?
+          &nbsp;
+          %span.icon-map-marker.bigger-110
+          = @workshop.location
   = render :partial => 'form'
