@@ -1,0 +1,1 @@
+$(document).ready(function(){var n;return $("#WorkshopRegistrationTable tr a").click(function(t){var r;return n()?void 0:(t.preventDefault(),r=$(this).attr("href"),$("#sign_in_confirmation").popup({autoopen:!0,opacity:.7,onopen:function(){return $("#continueRegistrationBtn").attr("href",r)}}))}),n=function(){return"true"===$("#user_signed_in").val()}});
