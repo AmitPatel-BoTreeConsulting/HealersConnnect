@@ -224,6 +224,7 @@ en:
       workshop_activate: "Workshop '%{workshop}' activated successfully."
       no_workshops_found: 'No Workshops Found'
       no_workshop_active: 'No workshops scheduled, Please check again later'
+      remove: 'Are you sure you want to remove this workshop?'
     page_content:
       header:
         index: 'Workshops'

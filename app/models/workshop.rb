@@ -11,7 +11,7 @@ class Workshop < ActiveRecord::Base
   belongs_to :instructor
   belongs_to :assistant_instructor, class_name: 'Instructor'
   belongs_to :center
-  has_many :workshop_sessions, dependent: :delete_all
+  has_many :workshop_sessions, dependent: :destroy
   has_many :registrations
 
   accepts_nested_attributes_for :workshop_sessions, allow_destroy: true, reject_if: proc { |att|  att[:session_start].blank? || att[:session_end].blank?}
