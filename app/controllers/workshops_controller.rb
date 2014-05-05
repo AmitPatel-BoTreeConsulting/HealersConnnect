@@ -41,7 +41,7 @@ class WorkshopsController < ApplicationController
   end
 
   def edit
-    @instructors = Instructor.all(:order => 'name ASC')
+    @instructors = Instructor.order(:name)
   end
 
   def show
@@ -68,7 +68,7 @@ class WorkshopsController < ApplicationController
       if @workshop.update_attributes(params[:workshop])
         format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_updated', workshop: @workshop.course.name)}
       else
-        @instructors = Instructor.all(:order => 'name ASC')
+        @instructors = Instructor.order(:name)
         format.html {render :edit }
       end
     end
