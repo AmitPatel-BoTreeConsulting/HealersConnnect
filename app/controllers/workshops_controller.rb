@@ -23,8 +23,10 @@ class WorkshopsController < ApplicationController
     end
 
     sorted_session_date_arr = session_date_arr.sort_by {|s| Date.parse s}
-    params[:workshop][:start_date] =  sorted_session_date_arr.first.to_datetime
-    params[:workshop][:end_date] =  sorted_session_date_arr.last.to_datetime
+    if sorted_session_date_arr.present?
+      params[:workshop][:start_date] =  sorted_session_date_arr.first.to_datetime
+      params[:workshop][:end_date] =  sorted_session_date_arr.last.to_datetime
+    end
 
     remove_date_before_save(params[:workshop][:workshop_sessions_attributes])
     @workshop  = Workshop.new(params[:workshop])
@@ -56,14 +58,17 @@ class WorkshopsController < ApplicationController
     end
 
     sorted_session_date_arr = session_date_arr.sort_by {|s| Date.parse s}
-    params[:workshop][:start_date] =  sorted_session_date_arr.first.to_datetime
-    params[:workshop][:end_date] =  sorted_session_date_arr.last.to_datetime
+    if sorted_session_date_arr.present?
+      params[:workshop][:start_date] =  sorted_session_date_arr.first.to_datetime
+      params[:workshop][:end_date] =  sorted_session_date_arr.last.to_datetime
+    end
 
     remove_date_before_save(params[:workshop][:workshop_sessions_attributes])
     respond_to do |format|
       if @workshop.update_attributes(params[:workshop])
         format.html {redirect_to workshops_path, notice: t('workshop.message.workshop_updated', workshop: @workshop.course.name)}
       else
+        @instructors = Instructor.all(:order => 'name ASC')
         format.html {render :edit }
       end
     end
