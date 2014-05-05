@@ -3,5 +3,6 @@ class EventEligibility < ActiveRecord::Base
 
   belongs_to :event_schedule
   belongs_to :course
+  belongs_to :event_activity_gallery
 
 end
