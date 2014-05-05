@@ -45,13 +45,13 @@
   - if @event_photo_gallery.present?
     .row
       .col-xs-12
-        .painting
-          - @event_photo_gallery.each do |event_gallery|
-            .col-xs-4
-              %div.event_photo_height_width
+        .row-fluid
+          %ul.ace-thumbnails
+            - @event_photo_gallery.each do |event_gallery|
+              %li
                 = image_tag(event_gallery.photo.url(:medium), class: 'event_photo_image_height_width')
-                .event_photo_image_height_width.center
-                  .name= event_gallery.photo_file_name
+                .center
+                  .name= truncate(event_gallery.photo_file_name, length: 17)
                   .name
                     = link_to t('event_photo_gallery.caption.remove'), remove_event_photo_path(event_gallery), confirm: t('event_photo_gallery.message.remove'), method: 'delete'
   .clear
