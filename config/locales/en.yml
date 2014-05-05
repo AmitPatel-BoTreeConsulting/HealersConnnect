@@ -147,6 +147,7 @@ en:
     app_name: 'Pranic Healing'
     caption:
       home_page_link: 'HOME'
+      home_page_course_link: 'COURSES'
       serial_number: 'Sr No.'
       center_location: 'Location'
       name: 'Name'

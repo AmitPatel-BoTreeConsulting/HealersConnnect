@@ -15,4 +15,9 @@ class StaticPagesController < ApplicationController
       render layout: 'home'
     end
   end
+
+  def courses
+    render layout: 'home'
+  end
+
 end
