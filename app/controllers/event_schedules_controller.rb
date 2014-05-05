@@ -1,6 +1,6 @@
 class EventSchedulesController < ApplicationController
   before_filter :event_schedule_from_params , only: [:show, :edit, :update, :destroy]
-  before_filter :required_access, only: [:index, :new, :create, :edit, :update]
+  before_filter :required_access, only: [:index, :new, :create, :edit, :update, :show]
   def index
     @event_schedules = EventSchedule.all
   end
@@ -28,6 +28,8 @@ class EventSchedulesController < ApplicationController
   end
 
   def show
+    @event_photo = EventPhoto.new
+    @event_photo_gallery = event_photos_by_id(params[:id])
   end
 
   def update
@@ -52,6 +54,24 @@ class EventSchedulesController < ApplicationController
     end
   end
 
+  def upload_photo
+    @event_photo = EventPhoto.create(params[:event_photo])
+    @event_photo_gallery = event_photos_by_id(params[:event_photo][:event_id])
+    respond_to { |format|
+      format.js {
+        render file: 'event_schedules/event_photo'
+      }
+    }
+  end
+
+  def remove_event_photo
+    respond_to do |format|
+      event_photo_by_id = event_photo_from_params(params[:id])
+      event_photo_name = event_photo_by_id.photo_file_name
+      event_photo_by_id.destroy
+      format.html { redirect_to event_schedule_path(event_photo_by_id.event_id), notice: t('event_photo_gallery.message.event_photo_destroy', event_photo: event_photo_name) }
+    end
+  end
 
   def event_schedule_from_params
     @event_schedule = EventSchedule.find(params[:id])
@@ -60,5 +80,13 @@ class EventSchedulesController < ApplicationController
   def remove_sessions_before_save(params)
     params.delete(:session_start)
     params.delete(:session_end)
+  end
+
+  def event_photos_by_id(event_id)
+    EventPhoto.find_all_by_event_id(event_id)
+  end
+
+  def event_photo_from_params(event_photo_id)
+    EventPhoto.find(event_photo_id)
   end
 end
