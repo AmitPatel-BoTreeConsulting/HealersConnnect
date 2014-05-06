@@ -42,7 +42,7 @@ class Registration < ActiveRecord::Base
   end
 
   def certificate_number_splitted
-    certificate_number.split(/[\/ ]/) rescue []
+    @certificate_number_splitted ||= certificate_number.split(/[\/ ]/) rescue []
   end
 
   # Export registration list
