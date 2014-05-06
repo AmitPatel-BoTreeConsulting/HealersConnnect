@@ -1,5 +1,5 @@
 module CoursesHelper
-  def render_course_eligibility aliases
+  def render_course_eligibility(aliases)
     aliases_split = aliases.split(',')
     if aliases_split.include?('16+')
       '16+ years'

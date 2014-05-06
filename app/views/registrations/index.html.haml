@@ -12,7 +12,7 @@
     .btn-group.pull-right.btn_registration_new_margin
       =# link_to 'New Registration', new_registration_path, class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
       - if @registrations.present?
-        = link_to('Export', export_path(format: 'xls', status: params[:status], workshop_id: @workshop.id), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin')
+        = link_to('Export', export_registrations_path(format: 'xls', status: params[:status], workshop_id: @workshop.id), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin')
     .space-6
 .row
   .col-xs-12
@@ -53,5 +53,5 @@
                   - else
                     = link_to(activate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_confirm') }, title: 'Confirm') do
                       %i.icon-play.bigger-130
-                  = link_to(workshop_registrations_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
+                  = link_to(workshop_registration_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
                     %i.icon-trash.bigger-130

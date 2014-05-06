@@ -5,13 +5,15 @@ class RegistrationsController < ApplicationController
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export]
   before_filter :find_workshop, except: [:registration]
   before_filter :set_eligibilities, only: [:new, :create, :edit, :update]
+  before_filter :check_center_admin_access, only: [:edit, :update, :destroy, :activate, :deactivate, :export]
 
   def index
     @registrations = Registration.search(params)
+    @registrations = @registrations.filter_by_center(current_user.centers) if Registration.should_filter_by_center?(current_user)
   end
 
   # Export registration list
-  def registration
+  def export_registrations
     respond_to do |format|
       format.html
       format.xls { @registrations = Registration.search(params) }
@@ -31,10 +33,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(params[:registration])
     if @registration.save
-      unless current_user.present?
-        @registration.registration_date = @registration.created_at
-        @registration.save
-      end
+      @registration.update_attribute(:registration_date, @registration.created_at) unless current_user.present?
 
       flash[:notice] = t('registration.message.success.registration_success')
       if current_user
@@ -96,6 +95,15 @@ class RegistrationsController < ApplicationController
   end
 
   private
+    def check_center_admin_access
+      # Deny Access to Current User only if
+      # user does not have foundation_admin and super_admin role and
+      # he tries to access registrations of other centers
+      if Registration.should_filter_by_center?(current_user) && !(current_user.centers.include?(@workshop.center))
+        access_denied_redirect(t('permissions.not_permitted'))
+      end
+    end
+
     def collect_payment_types
       @payment_types = PaymentType.all
     end

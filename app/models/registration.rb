@@ -24,6 +24,15 @@ class Registration < ActiveRecord::Base
   validates_format_of :certificate_number, with: /\A[0-9]{2}\/[0-9]{2}\s[0-9]{1,}\Z/, allow_blank: true
   validates_uniqueness_of :certificate_number, allow_blank: true
 
+  scope :filter_by_center, ->(center) { joins(:workshop).where(workshops: { center_id: center }) }
+
+  class << self
+    def should_filter_by_center?(user)
+      return true if user.is_center_admin? && !user.centers.blank? && !user.is_super_admin_or_foundation_admin?
+      false
+    end
+  end
+
   def course_attempt
     fresher? ? 'Fresher' : 'Review'
   end
@@ -42,7 +51,7 @@ class Registration < ActiveRecord::Base
   end
 
   def certificate_number_splitted
-    certificate_number.split(/[\/ ]/) rescue []
+    @certificate_number_splitted ||= certificate_number.split(/[\/ ]/) rescue []
   end
 
   # Export registration list

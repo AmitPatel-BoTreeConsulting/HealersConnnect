@@ -13,18 +13,18 @@
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
           - options.each do |option|
-            = render_navigation_menu_option(option)
+            = render_navigation_menu_option(option, @activity)
           %li.dropdown
             %a{"data-close-others" => "false", "data-delay" => "1000", "data-hover" => "dropdown"}
               = t('navbar.menu.title.settings')
               %b.caret
             %ul.dropdown-menu
               %li.mobile-link
-                = render_navigation_menu_option(:centers)
+                = render_navigation_menu_option(:centers, nil)
               %li
-                = render_navigation_menu_option(:courses)
+                = render_navigation_menu_option(:courses, nil)
               %li
-                = render_navigation_menu_option(:instructors)
+                = render_navigation_menu_option(:instructors, nil)
           %li
             = link_to t('common.caption.sign_out'), signout_path
         - else
