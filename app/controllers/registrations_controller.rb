@@ -31,10 +31,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(params[:registration])
     if @registration.save
-      unless current_user.present?
-        @registration.registration_date = @registration.created_at
-        @registration.save
-      end
+      @registration.update_attribute(:registration_date, @registration.created_at) unless current_user.present?
 
       flash[:notice] = t('registration.message.success.registration_success')
       if current_user
