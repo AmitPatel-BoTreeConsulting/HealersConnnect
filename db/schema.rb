@@ -181,18 +181,20 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
   end
 
   create_table "registrations", :force => true do |t|
-    t.boolean  "fresher",           :default => true
+    t.boolean  "fresher",            :default => true
     t.string   "cheque_no"
     t.string   "bank_name"
     t.date     "cheque_date"
     t.integer  "payment_type_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.date     "registration_date"
-    t.boolean  "active",            :default => true
+    t.boolean  "active",             :default => true
     t.integer  "user_id"
     t.integer  "workshop_id"
     t.text     "past_workshops"
+    t.string   "certificate_number"
+    t.boolean  "certified"
   end
 
   add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"

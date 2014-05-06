@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
   end
 
   # Export registration list
-  def registration
+  def export_registrations
     respond_to do |format|
       format.html
       format.xls { @registrations = Registration.search(params) }
@@ -31,10 +31,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(params[:registration])
     if @registration.save
-      unless current_user.present?
-        @registration.registration_date = @registration.created_at
-        @registration.save
-      end
+      @registration.update_attribute(:registration_date, @registration.created_at) unless current_user.present?
 
       flash[:notice] = t('registration.message.success.registration_success')
       if current_user
@@ -52,6 +49,7 @@ class RegistrationsController < ApplicationController
   end
 
   def update
+    @registration.concate_certificate_number(params[:registration])
     if @registration.update_attributes(params[:registration])
       flash[:notice] =
         t('registration.message.success.registration_edit_success',

@@ -17,7 +17,7 @@ class DonationsController < ApplicationController
 
     if @timeline.present?
       donations_by_timeline = Donation.find_donation_by_timeline(@timeline, @donations)
-      @donation_chart = Donation.render_chart(data_for_chart: Donation.yearly_donations(donations_by_timeline), chart_type: :bar, chart_name: 'Donations', required_formatter: true, col_x: 'Donation', col_y: 'Donations',  interactive: params[:interactive])
+      @donation_chart = GoogleChartService.render_pie_chart(data_for_chart: Donation.yearly_donations(donations_by_timeline), chart_type: :bar, chart_name: 'Donations', required_formatter: true, col_x: 'Donation', col_y: 'Donations',  interactive: params[:interactive])
     end
 
     # Export PDF

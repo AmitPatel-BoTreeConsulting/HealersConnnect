@@ -41,15 +41,15 @@
     .col-xs-12
       = form_tag(search_donations_path, method: :post, class: 'form-horizontal', id: 'clientFormCaseMgrs', multipart: true) do
         = hidden_field_tag 'timeline', @timeline
-      .col-xs-6
-        %label.margin-right-10
-          = t('donation.caption.donation_type')
-        = select_tag("donation[donation_type][]", options_for_select([["For Center", '1'], ["For Food for Hungry", '2']],  @donation_params[:donation_type]), multiple: 'true', style: "display: none;", id: 'form-field-select-4', class: 'width-30 chosen-select donation_search_fields tag-input-style')
-      .col-xs-6
-        %label.margin-right-10.margin-left-5
-          = t('donation.caption.received_by')
-        = received_by_dropdown(Donation.all, @donation_params)
-        = submit_tag t('donation.caption.button.search'), class: 'btn btn-sm btn-primary no-radius text-center donation_search_fields', title: t('donation.caption.button.search')
+        .col-xs-6
+          %label.margin-right-10
+            = t('donation.caption.donation_type')
+          = select_tag("donation[donation_type][]", options_for_select([["For Center", '1'], ["For Food for Hungry", '2']],  @donation_params[:donation_type]), multiple: 'true', style: "display: none;", id: 'form-field-select-4', class: 'width-30 chosen-select donation_search_fields tag-input-style')
+        .col-xs-6
+          %label.margin-right-10.margin-left-5
+            = t('donation.caption.received_by')
+          = received_by_dropdown(Donation.all, @donation_params)
+          = submit_tag t('donation.caption.button.search'), class: 'btn btn-sm btn-primary no-radius text-center donation_search_fields', title: t('donation.caption.button.search')
       .col-xs-2
   .space-20
 .row

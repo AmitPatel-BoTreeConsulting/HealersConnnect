@@ -4,13 +4,16 @@ module ApplicationHelper
     "display:#{show ? 'block' : 'none'}"
   end
 
-  def active_menu(menu)
-    active_menu = active_current_page?(menu.to_s, HealersConnectConstant::COMMON_CONTROLLER_ACTIONS)
+  def active_menu(menu, other_attr)
+    active_menu = active_current_page?(menu.to_s, HealersConnectConstant::COMMON_CONTROLLER_ACTIONS, other_attr)
     'active' if active_menu
   end
 
-  def active_current_page?(controller, action = nil, src = nil)
-    if src == params[:src]
+  def active_current_page?(controller, action = nil, src = nil, other_attr)
+    if (controller == 'activities' || controller == 'events') && other_attr && (!action || action_present?(action))
+      return controller == 'activities'
+
+    elsif src == params[:src]
       return true if params[:controller] == controller && (!action || action_present?(action))
     end
     false
@@ -24,7 +27,7 @@ module ApplicationHelper
     end
   end
 
-  def render_navigation_menu_option(option)
+  def render_navigation_menu_option(option, other_attr)
     case option
     when :donations
       url = donations_path
@@ -58,7 +61,7 @@ module ApplicationHelper
     else
     end
     content_tag(:li, link_to(link_title, url),
-                class: active_menu(option)) if current_user.has_permission?(option)
+                class: active_menu(option, other_attr)) if current_user.has_permission?(option)
 
   end
 
