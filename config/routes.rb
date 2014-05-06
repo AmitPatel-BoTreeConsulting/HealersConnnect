@@ -14,19 +14,12 @@ HealersConnnect::Application.routes.draw do
     resources :donations
     resources :event_schedules
     resources :events
-  end
-
-  scope '/admin' do
     resources :courses do
       member do
         put :deactivate
         put :activate
       end
     end
-  end
-
-  # resources :registrations, only: [:index]
-  scope '/admin' do
     resources :workshops do
       resources :registrations do
         member do
@@ -37,6 +30,7 @@ HealersConnnect::Application.routes.draw do
       end
     end
   end
+
   post '/admin/donations/search' => 'donations#index', as: :search_donations
   post 'workshops/course/instructors' => 'workshops#course_instructors'
   post 'workshop_sessions/destroy' => 'workshops#destroy_workshop_session'
