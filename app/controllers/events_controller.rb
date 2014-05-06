@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event_categories = params[:manage_page] ? EventCategory.all : EventCategory.except_activity
+    set_event_categories
   end
 
   def create
@@ -20,13 +20,14 @@ class EventsController < ApplicationController
         flash_msg = params[:manage_page] == 'activity' ? t('activities.message.activities_created', event: @event.name) : t('event.message.event_created', event: @event.name)
         format.html { redirect_to events_path(:manage_page => params[:manage_page]), notice: flash_msg}
       else
+        set_event_categories
         format.html {render :new}
       end
     end
   end
 
   def edit
-    @event_categories = params[:manage_page] ? EventCategory.all : EventCategory.except_activity
+    set_event_categories
   end
 
   def show
@@ -38,6 +39,7 @@ class EventsController < ApplicationController
         flash_msg = params[:manage_page].present? ? t('activities.message.activities_updated', event: @event.name) : t('event.message.event_created', event: @event.name)
         format.html { redirect_to events_path(:manage_page => params[:manage_page]), notice: flash_msg }
       else
+        set_event_categories
         format.html { render :edit }
       end
     end
@@ -64,5 +66,9 @@ class EventsController < ApplicationController
 
   def deside_scope_for_event_and_activities(params)
     params ? Event.events_with_only_activity : Event.events_without_activity
+  end
+
+  def set_event_categories
+    @event_categories = params[:manage_page] ? EventCategory.all : EventCategory.except_activity
   end
 end
