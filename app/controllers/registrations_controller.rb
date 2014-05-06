@@ -5,9 +5,11 @@ class RegistrationsController < ApplicationController
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export]
   before_filter :find_workshop, except: [:registration]
   before_filter :set_eligibilities, only: [:new, :create, :edit, :update]
+  before_filter :check_center_admin_access, only: [:edit, :update, :destroy, :activate, :deactivate, :export]
 
   def index
     @registrations = Registration.search(params)
+    @registrations = @registrations.filter_by_center(current_user.centers) if Registration.should_filter_by_center?(current_user)
   end
 
   # Export registration list
@@ -93,6 +95,15 @@ class RegistrationsController < ApplicationController
   end
 
   private
+    def check_center_admin_access
+      # Deny Access to Current User only if
+      # user does not have foundation_admin and super_admin role and
+      # he tries to access registrations of other centers
+      if Registration.should_filter_by_center?(current_user) && !(current_user.centers.include?(@workshop.center))
+        access_denied_redirect(t('permissions.not_permitted'))
+      end
+    end
+
     def collect_payment_types
       @payment_types = PaymentType.all
     end

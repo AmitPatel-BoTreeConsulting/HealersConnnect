@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :donations
   has_many :user_roles
   has_many :roles, through: :user_roles
+  has_many :centers, through: :user_roles
 
   def is_foundation_admin?
     have_role?(Role::FOUNDATION_ADMIN)
@@ -38,6 +39,10 @@ class User < ActiveRecord::Base
     have_role?(Role::INSTRUCTOR)
   end
 
+  def is_super_admin_or_foundation_admin?
+    is_super_admin? || is_foundation_admin?
+  end
+
   def have_role?(role_type)
     roles.pluck(:alias).include? role_type if roles
   end
@@ -53,9 +58,13 @@ class User < ActiveRecord::Base
       have_role?(Role::FOUNDATION_ADMIN) ||
       have_role?(Role::CENTER_ADMIN) ||
       have_role?(Role::INSTRUCTOR)
-    when :instructors, :registrations
+    when :instructors
       have_role?(Role::SUPER_ADMIN) ||
       have_role?(Role::FOUNDATION_ADMIN)
+    when :registrations
+      have_role?(Role::SUPER_ADMIN) ||
+      have_role?(Role::FOUNDATION_ADMIN) ||
+      have_role?(Role::CENTER_ADMIN)
     when :donations
       have_role?(Role::SUPER_ADMIN) ||
       have_role?(Role::FOUNDATION_ADMIN) ||
