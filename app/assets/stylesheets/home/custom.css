@@ -21,3 +21,7 @@
 .hr-2px{
   border-width: 2px 0 0;
 }
+
+.right_box_nav_title {
+  border-bottom: 2px solid #E0E0E0;
+}
