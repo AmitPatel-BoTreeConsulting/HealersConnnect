@@ -1,5 +1,4 @@
 class DonationsController < ApplicationController
-  require 'google_chart_service'
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :find_donation, only: [:show, :export]
   before_filter :required_access, only: [:index, :new, :create, :export]

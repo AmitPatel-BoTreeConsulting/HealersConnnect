@@ -41,7 +41,7 @@ HealersConnnect::Application.routes.draw do
   get 'donation/:id' => 'donations#export', as: :export_donation_pdf
 
   post 'event_schedule/upload_photo' => 'event_schedules#upload_photo', as: :upload_photo
-  delete 'event_schedules/:id' => 'event_schedules#remove_event_photo', as: :remove_event_photo
+  delete 'event_schedules/photo/:id' => 'event_schedules#remove_event_photo', as: :remove_event_photo
 
   resources :events
   resources :event_schedules
