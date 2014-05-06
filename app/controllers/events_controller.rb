@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   def index
     @page = params[:page] || 1
-    @events = deside_scope_for_event_and_activities(params[:manage_page]).page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
+    @events = decide_scope_for_event_and_activities(params[:manage_page]).page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
   def new
@@ -64,7 +64,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def deside_scope_for_event_and_activities(params)
+  def decide_scope_for_event_and_activities(params)
     params ? Event.events_with_only_activity : Event.events_without_activity
   end
 
