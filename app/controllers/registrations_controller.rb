@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
   end
 
   # Export registration list
-  def registration
+  def export_registrations
     respond_to do |format|
       format.html
       format.xls { @registrations = Registration.search(params) }

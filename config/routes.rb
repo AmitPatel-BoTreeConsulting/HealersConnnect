@@ -37,7 +37,7 @@ HealersConnnect::Application.routes.draw do
   get 'static/new_center' => 'static_pages#new_center'
   get 'static/registration' => 'static_pages#registration'
   get 'static/home' => 'static_pages#home'
-  get 'registration' => 'registrations#registration', as: :export
+  get 'export_registrations' => 'registrations#export_registrations', as: :export_registrations
   get 'donation/:id' => 'donations#export', as: :export_donation_pdf
 
   post 'event_schedule/upload_photo' => 'event_schedules#upload_photo', as: :upload_photo
