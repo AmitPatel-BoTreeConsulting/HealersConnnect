@@ -4,7 +4,7 @@ class WorkshopsController < ApplicationController
 
   def index
     @page = params[:page] || 1
-    @workshops =  Workshop.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
+    @workshops =  Workshop.page(params[:page]).per(Settings.pagination.per_page).order('start_date DESC')
   end
 
   def new

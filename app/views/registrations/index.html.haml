@@ -53,5 +53,5 @@
                   - else
                     = link_to(activate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_confirm') }, title: 'Confirm') do
                       %i.icon-play.bigger-130
-                  = link_to(workshop_registrations_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
+                  = link_to(workshop_registration_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
                     %i.icon-trash.bigger-130
