@@ -31,6 +31,8 @@ HealersConnnect::Application.routes.draw do
     end
   end
 
+  resources :courses, controller: 'website/courses', as: 'website_courses'
+  get 'courses/by_category/:id' => 'website/courses#category_wise_courses', as: :category_wise_courses
   post '/admin/donations/search' => 'donations#index', as: :search_donations
   post 'workshops/course/instructors' => 'workshops#course_instructors'
   post 'workshop_sessions/destroy' => 'workshops#destroy_workshop_session'

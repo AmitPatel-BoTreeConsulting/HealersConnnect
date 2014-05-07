@@ -25,3 +25,7 @@
 .right_box_nav_title {
   border-bottom: 2px solid #E0E0E0;
 }
+
+.home_course_content_margin {
+  margin-top: 100px !important;
+}
