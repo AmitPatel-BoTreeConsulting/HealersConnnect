@@ -26,13 +26,13 @@
             %tr
               %th=t('home_courses.caption.date')
               %th=t('home_courses.caption.location')
-              %th{width: '5%'}
+              %th{width: '7%'}
           - upcoming_workshops.each do |upcoming_workshop|
             %tr
               %td= date_formatted(upcoming_workshop.start_date)
               %td= upcoming_workshop.location
-              %td
-                = link_to(image_tag('108-Share-16.png'), root_path, title: t('common.caption.register'))
+              %td.upcoming_workshops_register_link
+                = link_to(nil, root_path, title: t('common.caption.register'))
     - else
       %p
         %h5= t('home_courses.message.no_upcoming_workshops_found')

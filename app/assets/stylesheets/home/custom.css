@@ -29,3 +29,9 @@
 .home_course_content_margin {
   margin-top: 100px !important;
 }
+
+.upcoming_workshops_register_link {
+  background-image: url('/assets/108-Share-16.png');
+  background-repeat:no-repeat;
+  background-position:center;
+}
