@@ -13,6 +13,7 @@ class Workshop < ActiveRecord::Base
   belongs_to :center
   has_many :workshop_sessions, dependent: :destroy
   has_many :registrations
+  has_many :certificates
 
   accepts_nested_attributes_for :workshop_sessions, allow_destroy: true, reject_if: proc { |att|  att[:session_start].blank? || att[:session_end].blank?}
 

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_one :user_profile
   has_many :workshops
   has_many :registrations
+  has_many :certificates
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
