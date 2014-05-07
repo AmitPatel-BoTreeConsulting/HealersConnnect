@@ -35,12 +35,11 @@
       = link_to(t('common.caption.button.back'), event_schedules_path, class: 'btn btn-primary btn-sm',title: t('common.caption.button.back'))
 .row
   .col-xs-12
-    = form_for @event_photo, :url => upload_photo_path do |f|
+    = form_for EventPhoto.new, :url => upload_photo_path do |f|
       = f.hidden_field :event_photo, {:value => @event_schedule.id, :name => 'event_photo[event_schedule_id]'}
       = f.label :photo, t('event_photo_gallery.caption.upload_photos')
       = f.file_field :photo, multiple: true, name: "event_photo[photo]"
 .space-6
-/ - if @event_photo_gallery.present?
 #paintings
   - if @event_photo_gallery.present?
     .row

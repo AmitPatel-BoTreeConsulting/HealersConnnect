@@ -28,7 +28,6 @@ class EventSchedulesController < ApplicationController
   end
 
   def show
-    @event_photo = EventPhoto.new
     @event_photo_gallery = event_photos_by_id(params[:id])
   end
 
