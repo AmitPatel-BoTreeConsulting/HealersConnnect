@@ -1,6 +1,6 @@
 class EventPhoto < ActiveRecord::Base
-  belongs_to :event
-  attr_accessible :event_id, :photo
+  belongs_to :event_schedule
+  attr_accessible :event_schedule_id, :photo
 
   paperclip_options = {
         styles: {
