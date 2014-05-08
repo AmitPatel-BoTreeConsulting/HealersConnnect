@@ -2,6 +2,7 @@ class Registration < ActiveRecord::Base
   belongs_to :payment_type
   belongs_to :user
   belongs_to :workshop
+  has_one :certificate
 
   has_one :user_profile
 
@@ -25,10 +26,15 @@ class Registration < ActiveRecord::Base
   validates_uniqueness_of :certificate_number, allow_blank: true
 
   scope :filter_by_center, ->(center) { joins(:workshop).where(workshops: { center_id: center }) }
+  scope :confirmed, where(active: true)
+  scope :unconfirmed, where(active: false)
+  scope :uncertified, where(certified: [false, nil])
+  scope :certified, where(certified: true)
+  scope :without_certy_no, where(certificate_number: nil)
 
   class << self
     def should_filter_by_center?(user)
-      return true if user.is_center_admin? && !user.centers.blank? && !user.is_super_admin_or_foundation_admin?
+      return true if user.is_center_admin? && !user.is_super_admin_or_foundation_admin?
       false
     end
   end
@@ -98,5 +104,16 @@ class Registration < ActiveRecord::Base
   def certificate_number_id
     return if certificate_number.blank?
     certificate_number_splitted[2]
+  end
+
+  def certify
+    update_attribute(:certified, true)
+    attendee = User.find_by_member_id(user_profile.member_id)
+    if attendee.blank?
+      # If user not found then create new user from user_profile
+      attendee = User.create_from_user_profile!(user_profile)
+      update_attribute(:user_id, attendee.id)
+    end
+    create_certificate!(user_id: user_id, workshop_id: workshop_id)
   end
 end

@@ -99,4 +99,8 @@ module ApplicationHelper
   def marital_status_formatted(married)
     married ? t('registration.caption.marital_status_married') : t('registration.caption.marital_status_unmarried')
   end
+
+  def date_time_formatted(date)
+    date.try(:strftime, '%d/%m/%Y %I:%M%p')
+  end
 end

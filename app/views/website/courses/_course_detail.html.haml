@@ -1,0 +1,38 @@
+- upcoming_workshops = @course.workshops
+.row
+  .col-sm-7.left_box
+    .big
+      %h3= @course.name
+      %p
+        = image_tag @course.avatar.url(:medium) if @course.avatar.present?
+      %p
+        = simple_format(@course.description)
+  .col-sm-5.right_box
+    %h3.right_box_nav_title=t('home_courses.caption.prerequisite')
+    %p
+      - if @course.eligibilities.present?
+        - @course.eligibilities.each do |eligibility|
+          %p
+            = eligibility.name
+      - else
+        %p
+          %h5= t('home_courses.message.no_prerequisites_found')
+
+    %h3.right_box_nav_title=t('home_courses.caption.upcomming_workshops')
+    - if upcoming_workshops.present?
+      .table-responsive
+        %table.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th=t('home_courses.caption.date')
+              %th=t('home_courses.caption.location')
+              %th{width: '7%'}
+          - upcoming_workshops.each do |upcoming_workshop|
+            %tr
+              %td= date_formatted(upcoming_workshop.start_date)
+              %td= upcoming_workshop.location
+              %td.upcoming_workshops_register_link
+                = link_to(nil, root_path, title: t('common.caption.register'))
+    - else
+      %p
+        %h5= t('home_courses.message.no_upcoming_workshops_found')

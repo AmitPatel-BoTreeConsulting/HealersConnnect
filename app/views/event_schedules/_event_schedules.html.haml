@@ -1,12 +1,14 @@
 %tr.info
   %td<
+    = serial_number(@page,event_schedule_counter)
+  %td<
+    = date_time_formatted(event_schedule.start_date)
+  %td<
+    = date_time_formatted(event_schedule.end_date)
+  %td<
     = link_to(event_schedule.event.name, edit_event_schedule_path(event_schedule))
   %td<
     = event_schedule.center.name
-  %td<
-    = date_formatted(event_schedule.start_date)
-  %td<
-    = date_formatted(event_schedule.end_date)
   %td.text-center<
     = event_schedule.contact
   %td.text-right<
