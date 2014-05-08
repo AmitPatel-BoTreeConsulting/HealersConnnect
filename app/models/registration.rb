@@ -108,7 +108,6 @@ class Registration < ActiveRecord::Base
 
   def certify
     update_attribute(:certified, true)
-    puts "-----------#{self.inspect}" if user_profile.blank?
     attendee = User.find_by_member_id(user_profile.member_id)
     if attendee.blank?
       # If user not found then create new user from user_profile
