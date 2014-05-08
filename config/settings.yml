@@ -15,7 +15,6 @@ payment:
 
 defaults:
   date_format_in_views: '%d/%m/%Y'
-  date_format_in_event_schedule_views: '%d/%m/%Y %I:%M%p'
 
 paperclip:
   style:
