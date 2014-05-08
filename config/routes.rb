@@ -22,7 +22,13 @@ HealersConnnect::Application.routes.draw do
     end
     resources :workshops do
       resources :registrations do
+        collection do
+          get :confirm_certify_all
+          post :certify_all
+        end
         member do
+          get :confirm_certify
+          post :certify
           put :deactivate
           put :activate
           get :export

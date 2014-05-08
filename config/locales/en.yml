@@ -53,6 +53,7 @@ en:
       confirm_registration_confirm: 'Are you sure you want to confirm the registration?'
       confirm_registration_remove: 'Are you sure you want to remove this registration?'
       continue_registration: 'No, Continue Registration'
+      certify: 'Certify'
       pdf:
         title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
         name_of_course: 'Name of Course :'
@@ -121,6 +122,11 @@ en:
         activated: "Registration of '%{name}' activated successfully."
         deactivated: "Registration of '%{name}' deactivated successfully."
         accept_order_to_proceed: 'You must accept to in order to proceed'
+        certify_all: "%{number_of_confirmed_registration} attendees have been certified successfully for %{workshop_name}"
+        certify: "%{name} has been certified successfully for %{workshop_name}"
+      failure:
+        certify_all: 'Error while certifying registrations, Please try again later'
+        certify: 'Error while certifying registration, Please try again later'
     placeholders:
       certificate_number_month: 'XX'
       certificate_number_year: 'XX'
@@ -182,6 +188,7 @@ en:
         delete: 'Delete'
         save: 'Save'
         back: 'Back'
+        continue: 'Continue'
       link:
         forgot_my_password: 'I forgot my password'
         confirmation_instructions: "Didn't receive confirmation instructions?"
