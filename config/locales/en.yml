@@ -409,8 +409,8 @@ en:
     caption:
       date: 'Date'
       location: 'Location'
-      upcomming_workshops: 'UP COMING WORKSHOPS'
-      prerequisite: 'PREREQUISITE'
+      upcomming_workshops: 'UPCOMING WORKSHOPS'
+      eligibilities: 'ELIGIBILITIES'
     message:
-      no_prerequisites_found: 'No Prerequisites Found'
-      no_upcoming_workshops_found: 'No Up Coming Workshops Found'
+      no_eligibilities_found: 'No Eligibilities Found'
+      no_upcoming_workshops_found: 'No Upcoming Workshops Found'
