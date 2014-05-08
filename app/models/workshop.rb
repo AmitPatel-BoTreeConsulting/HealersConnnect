@@ -24,6 +24,8 @@ class Workshop < ActiveRecord::Base
   # Upcoming courses for homepage
   scope :upcoming_courses, lambda { where("start_date >= ?", Date.today).order(:start_date) }
 
+  scope :filter_by_center, ->(centers) { where(center_id: centers) }
+
   def eligibilities
     course.eligibilities
   end

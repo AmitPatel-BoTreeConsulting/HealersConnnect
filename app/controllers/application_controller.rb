@@ -45,4 +45,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_center_admin_access
+    # Deny Access to Current User only if
+    # user does not have foundation_admin and super_admin role and
+    # he tries to access registrations of other centers
+    if Registration.should_filter_by_center?(current_user) && !(current_user.centers.include?(@workshop.center))
+      access_denied_redirect(t('permissions.not_permitted'))
+    end
+  end
+
 end
