@@ -127,6 +127,7 @@ en:
       failure:
         certify_all: 'Error while certifying registrations, Please try again later'
         certify: 'Error while certifying registration, Please try again later'
+      no_registration_found: 'No Registration Found'
     placeholders:
       certificate_number_month: 'XX'
       certificate_number_year: 'XX'
