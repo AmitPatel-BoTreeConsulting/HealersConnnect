@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140502142132) do
+ActiveRecord::Schema.define(:version => 20140507091949) do
+
+  create_table "activity_photos", :force => true do |t|
+    t.integer  "event_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "activity_photos", ["event_id"], :name => "index_activity_photos_on_event_id"
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -119,7 +131,7 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
   end
 
   create_table "event_photos", :force => true do |t|
-    t.integer  "event_id"
+    t.integer  "event_schedule_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
@@ -128,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
     t.datetime "photo_updated_at"
   end
 
-  add_index "event_photos", ["event_id"], :name => "index_event_photos_on_event_id"
+  add_index "event_photos", ["event_schedule_id"], :name => "index_event_photos_on_event_schedule_id"
 
   create_table "event_schedules", :force => true do |t|
     t.integer  "event_id"

@@ -32,6 +32,27 @@ class EventsController < ApplicationController
   end
 
   def show
+    @activity_photo_gallery = activity_photos_by_id(params[:id])
+  end
+
+  def upload_photo
+    @activity_photo = ActivityPhoto.create(params[:activity_photo])
+    @activity_photo_gallery = activity_photos_by_id(params[:activity_photo][:event_id])
+    respond_to { |format|
+      format.js {
+        render file: 'events/activity_photo', locals: { action_event: params[:manage_page] }
+      }
+    }
+  end
+
+  def remove_activity_photo
+    respond_to do |format|
+      activity_photo_by_id = activity_photo_from_params(params[:id])
+      activity_photo_name = activity_photo_by_id.photo_file_name
+      activity_photo_by_id.destroy
+
+      format.html { redirect_to set_redirect_to_path(activity_photo_by_id.event_id), notice: t('activity_photo_gallery.message.activity_photo_destroy', activity_photo: activity_photo_name) }
+    end
   end
 
   def update
@@ -75,5 +96,17 @@ class EventsController < ApplicationController
 
   def set_event_categories
     @event_categories = params[:manage_page] ? EventCategory.all : EventCategory.except_activity
+  end
+
+  def activity_photos_by_id(event_id)
+    ActivityPhoto.find_all_by_event_id(event_id)
+  end
+
+  def activity_photo_from_params(activity_photo_id)
+    ActivityPhoto.find(activity_photo_id)
+  end
+
+  def set_redirect_to_path(event_id)
+    redirect_to_path = params[:manage_page] ? event_path(id: event_id, manage_page: 'activity') : event_path(event_id)
   end
 end

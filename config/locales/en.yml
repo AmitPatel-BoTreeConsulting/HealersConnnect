@@ -388,6 +388,14 @@ en:
       event_photo_destroy: "Event photo '%{event_photo}' deleted successfully"
       no_photos_found: 'No Photos Found'
       remove: 'Are you sure you want to remove this photo?'
+  activity_photo_gallery:
+    caption:
+      remove: 'Remove'
+      upload_photos: 'Upload Photos'
+    message:
+      activity_photo_destroy: "Activity photo '%{activity_photo}' deleted successfully"
+      no_photos_found: 'No Photos Found'
+      remove: 'Are you sure you want to remove this photo?'
 
   home_courses:
     caption:
