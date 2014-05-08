@@ -24,7 +24,7 @@
           = render :partial => 'event_schedules', collection: @event_schedules, as: :event_schedule
         - else
           %tr
-            %td{colspan: 7}
+            %td{colspan: 8}
               .text-center
                 %h3
                   = t('event_schedule.message.no_event_schedules_found')
