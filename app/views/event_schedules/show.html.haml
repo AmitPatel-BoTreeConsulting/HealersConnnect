@@ -17,9 +17,9 @@
         %tbody
           %tr.info
             %td<
-              = @event_schedule.start_date.strftime(Settings.defaults.date_format_in_event_schedule_views)
+              = date_time_formatted(@event_schedule.start_date)
             %td<
-              = @event_schedule.end_date.strftime(Settings.defaults.date_format_in_event_schedule_views)
+              = date_time_formatted(@event_schedule.end_date)
             %td<
               = @event_schedule.event.name
             %td<

@@ -2,9 +2,9 @@
   %td<
     = serial_number(@page,event_schedule_counter)
   %td<
-    = event_schedule.start_date.strftime(Settings.defaults.date_format_in_event_schedule_views)
+    = date_time_formatted(event_schedule.start_date)
   %td<
-    = event_schedule.end_date.strftime(Settings.defaults.date_format_in_event_schedule_views)
+    = date_time_formatted(event_schedule.end_date)
   %td<
     = link_to(event_schedule.event.name, edit_event_schedule_path(event_schedule))
   %td<
