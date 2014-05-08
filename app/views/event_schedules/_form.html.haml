@@ -14,7 +14,7 @@
         .form-group
           %label.col-sm-3.control-label.no-padding-right= t('event_schedule.caption.event')
           .col-sm-4
-            = f.collection_select :event_id, Event.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
+            = f.collection_select :event_id, Event.events_without_activity.order('name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right= t('event_schedule.caption.center')
