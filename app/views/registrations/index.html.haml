@@ -10,7 +10,9 @@
       %li{class: active_pill}
         = link_to t('registration.caption.button.status_all'), workshop_registrations_path(workshop_id: @workshop)
     .btn-group.pull-right.btn_registration_new_margin
-      =# link_to 'New Registration', new_registration_path, class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
+      - if current_user.is_center_admin? && @workshop.any_registration_awaiting_certification? && !@registrations.blank?
+        = link_to t('registration.caption.certify'), confirm_certify_all_workshop_registrations_path(@workshop), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin', remote: true
+      = link_to 'New Registration', new_workshop_registration_path(@workshop), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
       - if @registrations.present?
         = link_to('Export', export_registrations_path(format: 'xls', status: params[:status], workshop_id: @workshop.id), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin')
     .space-6
@@ -28,7 +30,7 @@
             %th{width: '5%'} Gender
             %th.text-center{width: '10%'} #{t('registration.caption.marital_status')}
             %th.text-center{width: '10%'} #{t('registration.caption.registered_on')}
-            %th.text-center{width: '10%'} #{t('common.caption.manage')}
+            %th.text-center{width: '13%'} #{t('common.caption.manage')}
         %tbody
           - @registrations.each_with_index do |registration, index|
             - user_profile = registration.try(:user_profile) || registration.user.user_profile
@@ -48,10 +50,16 @@
                   = link_to(export_workshop_registration_path(id: registration, workshop_id: @workshop, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do
                     %i.icon-print.bigger-130
                   - if registration.active
+                    - if current_user.is_center_admin? && !registration.certified
+                      = link_to(confirm_certify_workshop_registration_path(id: registration, workshop_id: @workshop), title: t('registration.caption.certify'), remote: true) do
+                        %i.icon-legal.bigger-130
                     = link_to(deactivate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_cancel') }, title: t('common.caption.button.cancel')) do
                       %i.icon-pause.bigger-130
                   - else
                     = link_to(activate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_confirm') }, title: 'Confirm') do
                       %i.icon-play.bigger-130
-                  = link_to(workshop_registrations_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
+                  = link_to(workshop_registration_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
                     %i.icon-trash.bigger-130
+
+.hide
+  = render partial: 'registrations/certify/certify_all_popup'

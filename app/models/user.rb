@@ -2,21 +2,35 @@ class User < ActiveRecord::Base
   has_one :user_profile
   has_many :workshops
   has_many :registrations
+  has_many :certificates
+  has_many :donations
+  has_many :user_roles
+  has_many :roles, through: :user_roles
+  has_many :centers, through: :user_roles
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :validatable, authentication_keys: [:login]
+         authentication_keys: [:login]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :mobile, :password, :password_confirmation, :remember_me
-  attr_accessible :login
+  attr_accessible :login, :member_id
   # attr_accessible :title, :body
 
-  has_many :donations
-  has_many :user_roles
-  has_many :roles, through: :user_roles
+  validates_format_of       :email, with: Devise.email_regexp, allow_blank: true, :if => :email_changed?
+  validates_presence_of     :password, on: :create
+  validates_confirmation_of :password, :on=>:create
+  validates_uniqueness_of :member_id, allow_blank: true
+
+  class << self
+    def create_from_user_profile!(user_profile)
+      user = create!(email: user_profile.email, password: Settings.default_password, member_id: user_profile.member_id)
+      user_profile.update_attribute(:user_id, user.id)
+      user
+    end
+  end
 
   def is_foundation_admin?
     have_role?(Role::FOUNDATION_ADMIN)
@@ -38,6 +52,10 @@ class User < ActiveRecord::Base
     have_role?(Role::INSTRUCTOR)
   end
 
+  def is_super_admin_or_foundation_admin?
+    is_super_admin? || is_foundation_admin?
+  end
+
   def have_role?(role_type)
     roles.pluck(:alias).include? role_type if roles
   end
@@ -53,9 +71,13 @@ class User < ActiveRecord::Base
       have_role?(Role::FOUNDATION_ADMIN) ||
       have_role?(Role::CENTER_ADMIN) ||
       have_role?(Role::INSTRUCTOR)
-    when :instructors, :registrations
+    when :instructors
       have_role?(Role::SUPER_ADMIN) ||
       have_role?(Role::FOUNDATION_ADMIN)
+    when :registrations
+      have_role?(Role::SUPER_ADMIN) ||
+      have_role?(Role::FOUNDATION_ADMIN) ||
+      have_role?(Role::CENTER_ADMIN)
     when :donations
       have_role?(Role::SUPER_ADMIN) ||
       have_role?(Role::FOUNDATION_ADMIN) ||
@@ -82,5 +104,4 @@ class User < ActiveRecord::Base
   def login
     @login || mobile || email
   end
-
 end

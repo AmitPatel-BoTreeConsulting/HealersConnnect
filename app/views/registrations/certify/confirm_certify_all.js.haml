@@ -1,0 +1,12 @@
+- if @registrations_without_certy_no.blank?
+  var popup_title = "#{"You are about to certify #{@registrations_set_to_certify.count} attendees for #{@workshop.course.name}. Are you sure you want to continue certification process?"}";
+  $('#confirmCertifyAllBtn').removeClass('hide');
+  $('#confirmCertifyAllBtn').attr('href', "#{certify_all_workshop_registrations_path(@workshop)}");
+- else
+  - # When no uncertified registrations found
+  var popup_title = "Following attendees doesn't have certificate number. Please update registration with certificate number.";
+  $('#confirmCertifyAllBtn').addClass('hide');
+  $('#certifyAll #usersWithoutCertyListing').html('#{escape_javascript render(partial: 'registrations/certify/users_without_certy_listing.html')}');
+
+$('#certifyPopupTitle').text(popup_title);
+$('#certifyAll').popup({ autoopen: true, opacity: 0.7 });

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140502142132) do
+ActiveRecord::Schema.define(:version => 20140507095714) do
+
+  create_table "activity_photos", :force => true do |t|
+    t.integer  "event_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "activity_photos", ["event_id"], :name => "index_activity_photos_on_event_id"
 
   create_table "centers", :force => true do |t|
     t.string   "name"
@@ -29,6 +41,19 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
   end
 
   add_index "centers", ["foundation_id"], :name => "index_centers_on_foundation_id"
+
+  create_table "certificates", :force => true do |t|
+    t.string   "certificate_number"
+    t.integer  "user_id"
+    t.integer  "workshop_id"
+    t.integer  "registration_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "certificates", ["registration_id"], :name => "index_certificates_on_registration_id"
+  add_index "certificates", ["user_id"], :name => "index_certificates_on_user_id"
+  add_index "certificates", ["workshop_id"], :name => "index_certificates_on_workshop_id"
 
   create_table "course_categories", :force => true do |t|
     t.string   "name"
@@ -102,7 +127,6 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
 
   add_index "donations", ["center_id"], :name => "index_donations_on_center_id"
   add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
-  add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
 
   create_table "event_categories", :force => true do |t|
     t.string   "name"
@@ -119,7 +143,7 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
   end
 
   create_table "event_photos", :force => true do |t|
-    t.integer  "event_id"
+    t.integer  "event_schedule_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
@@ -128,7 +152,7 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
     t.datetime "photo_updated_at"
   end
 
-  add_index "event_photos", ["event_id"], :name => "index_event_photos_on_event_id"
+  add_index "event_photos", ["event_schedule_id"], :name => "index_event_photos_on_event_schedule_id"
 
   create_table "event_schedules", :force => true do |t|
     t.integer  "event_id"
@@ -227,6 +251,7 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
     t.integer  "user_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "member_id"
   end
 
   add_index "user_profiles", ["registration_id"], :name => "index_user_profiles_on_registration_id"
@@ -246,7 +271,8 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
   add_index "user_roles", ["user_id"], :name => "index_user_roles_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
+    t.string   "email",                  :default => ""
+    t.string   "mobile"
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -258,11 +284,11 @@ ActiveRecord::Schema.define(:version => 20140502142132) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "mobile",                 :default => "", :null => false
     t.integer  "member_id"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["mobile"], :name => "index_users_on_mobile", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "workshop_sessions", :force => true do |t|

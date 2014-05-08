@@ -22,7 +22,13 @@ HealersConnnect::Application.routes.draw do
     end
     resources :workshops do
       resources :registrations do
+        collection do
+          get :confirm_certify_all
+          post :certify_all
+        end
         member do
+          get :confirm_certify
+          post :certify
           put :deactivate
           put :activate
           get :export
@@ -31,6 +37,8 @@ HealersConnnect::Application.routes.draw do
     end
   end
 
+  resources :courses, controller: 'website/courses', as: 'website_courses'
+  get 'courses/by_category/:id' => 'website/courses#category_wise_courses', as: :category_wise_courses
   post '/admin/donations/search' => 'donations#index', as: :search_donations
   post 'workshops/course/instructors' => 'workshops#course_instructors'
   post 'workshop_sessions/destroy' => 'workshops#destroy_workshop_session'
@@ -38,6 +46,8 @@ HealersConnnect::Application.routes.draw do
   get 'export_registrations' => 'registrations#export_registrations', as: :export_registrations
   get 'admin/donation/:id' => 'donations#export', as: :export_donation_pdf
   post 'admin/event_schedules/upload_photo' => 'event_schedules#upload_photo', as: :upload_photo
+  post 'admin/events/upload_photo' => 'events#upload_photo', as: :upload_activity_photo
   delete 'admin/event_schedules/event_schedules/photo/:id' => 'event_schedules#remove_event_photo', as: :remove_event_photo
+  delete 'admin/events/photo/:id' => 'events#remove_activity_photo', as: :remove_activity_photo
 
 end

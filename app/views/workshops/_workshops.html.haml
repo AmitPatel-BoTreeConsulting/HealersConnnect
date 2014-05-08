@@ -1,16 +1,16 @@
 %tr.info
   %td<
     = serial_number(@page,workshop_counter)
+  %td.text-center<
+    = date_formatted(workshop.start_date)
+  %td.text-center<
+    = date_formatted(workshop.end_date)
   %td<
     = workshop.course.name
   %td<
     = workshop.instructor.name
   %td
     = workshop.center.name
-  %td.text-center<
-    = date_formatted(workshop.start_date)
-  %td.text-center<
-    = date_formatted(workshop.end_date)
   %td.text-center<
     .action-buttons
       = link_to(workshop_registrations_path(workshop), class: 'blue', title: 'View Registrations')  do

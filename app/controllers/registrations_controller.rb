@@ -2,12 +2,14 @@ class RegistrationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :collect_payment_types
   before_filter :required_access, only: [:index, :edit, :update, :destroy, :activate, :deactivate, :export]
-  before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export]
+  before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export, :confirm_certify, :certify]
   before_filter :find_workshop, except: [:registration]
   before_filter :set_eligibilities, only: [:new, :create, :edit, :update]
+  before_filter :check_center_admin_access, only: [:edit, :update, :destroy, :activate, :deactivate, :export]
 
   def index
     @registrations = Registration.search(params)
+    @registrations = @registrations.filter_by_center(current_user.centers) if Registration.should_filter_by_center?(current_user)
   end
 
   # Export registration list
@@ -92,7 +94,64 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def confirm_certify
+    respond_to do |format|
+      format.js do
+        render 'registrations/certify/confirm_certify.js.haml'
+      end
+    end
+  end
+
+  def certify
+    msg_map = nil
+    begin
+      @registration.certify
+      msg_map = { notice: t('registration.message.success.certify',
+          name: @registration.user_profile.name,
+          workshop_name: @workshop.course.name
+      )}
+    rescue ActiveRecord::RecordInvalid => e
+      logger.error "ERROR While: certifying all confirmed registrations"
+      logger.error "#{e.backtrace.first}: #{e.message} (#{e.class})"
+      msg_map = { error: e.record.errors.full_message }
+    end
+    redirect_to workshop_registrations_path(@workshop), flash: msg_map
+  end
+
+  def confirm_certify_all
+    @registrations_set_to_certify = @workshop.registrations.confirmed.uncertified
+    @registrations_without_certy_no = @workshop.registrations.without_certy_no
+    respond_to do |format|
+      format.js do
+        render 'registrations/certify/confirm_certify_all.js.haml'
+      end
+    end
+  end
+
+  def certify_all
+    no_of_confirmed_registrations = @workshop.certify_all_confirmed_registrations
+    message_map = 
+      if no_of_confirmed_registrations.instance_of?(ActiveRecord::RecordInvalid)
+        { error: t('registration.message.failure.certify_all') }
+      else
+        { notice: t('registration.message.success.certify_all',
+          number_of_confirmed_registration: no_of_confirmed_registrations,
+          workshop_name: @workshop.course.name
+        )}
+      end
+    redirect_to workshop_registrations_path(@workshop), flash: message_map
+  end
+
   private
+    def check_center_admin_access
+      # Deny Access to Current User only if
+      # user does not have foundation_admin and super_admin role and
+      # he tries to access registrations of other centers
+      if Registration.should_filter_by_center?(current_user) && !(current_user.centers.include?(@workshop.center))
+        access_denied_redirect(t('permissions.not_permitted'))
+      end
+    end
+
     def collect_payment_types
       @payment_types = PaymentType.all
     end
