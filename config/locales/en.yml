@@ -160,6 +160,7 @@ en:
     caption:
       home_page_link: 'HOME'
       home_page_course_link: 'COURSES'
+      home_page_activity_link: 'ACVITIES'
       serial_number: 'Sr No.'
       center_location: 'Location'
       name: 'Name'
