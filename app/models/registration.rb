@@ -34,7 +34,7 @@ class Registration < ActiveRecord::Base
 
   class << self
     def should_filter_by_center?(user)
-      return true if user.is_center_admin? && !user.centers.blank? && !user.is_super_admin_or_foundation_admin?
+      return true if user.is_center_admin? && !user.is_super_admin_or_foundation_admin?
       false
     end
   end
