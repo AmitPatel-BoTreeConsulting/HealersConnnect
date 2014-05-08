@@ -11,8 +11,13 @@ class StaticPagesController < ApplicationController
     if current_user
       render :dashboard
     else
-      @workshops = Workshop.all
+      @workshops = Workshop.upcoming_courses
       render layout: 'home'
     end
   end
+
+  def courses
+    render layout: 'home'
+  end
+
 end

@@ -17,6 +17,6 @@ class Event < ActiveRecord::Base
 
   scope :events_with_only_activity, -> { joins(:event_category).where("event_categories.alias ='activity'") }
   belongs_to :event_category
-  has_many :event_schedules
-  has_many :event_activity_galleries
+  has_many :event_schedules, dependent: :destroy
+  has_many :activity_photos, dependent: :destroy
 end

@@ -1,2 +1,53 @@
-%h1 Events#show
-%p Find me in app/views/events/show.html.haml
+- action_event = params[:manage_page]
+- upload_gallery_path =  action_event ? upload_activity_photo_path(manage_page: action_event) : upload_activity_photo_path
+- back_to_index_path = action_event ? events_path(manage_page: action_event) : events_path
+.page-header
+  %h1
+    = @event.name.capitalize
+.row
+  .space-6
+  .col-xs-12
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '80%'} #{t('common.caption.name')}
+            %th #{t('event.caption.event_category')}
+        %tbody
+          %tr.info
+            %td<
+              = @event.name
+            %td<
+              = @event.event_category.name if @event.event_category.present?
+.page-header
+  %h1
+    = t('common.caption.title.gallery')
+    .btn-group.pull-right.btn_reports_export_margin
+      = link_to(t('common.caption.button.back'), back_to_index_path, class: 'btn btn-primary btn-sm',title: t('common.caption.button.back'))
+.row
+  .col-xs-12
+    = form_for ActivityPhoto.new, :url => upload_gallery_path do |f|
+      = f.hidden_field :event_photo, {:value => @event.id, :name => 'activity_photo[event_id]'}
+      = f.label :photo, t('event_photo_gallery.caption.upload_photos')
+      = f.file_field :photo, multiple: true, name: "activity_photo[photo]"
+.space-6
+#paintings
+  - if @activity_photo_gallery.present?
+    .row
+      .col-xs-12
+        .painting
+          - @activity_photo_gallery.each do |activity_gallery|
+          - activity_gallery_path =  action_event ? remove_activity_photo_path(activity_gallery, manage_page: action_event) : remove_activity_photo_path(activity_gallery)
+            .col-xs-4
+              %div.event_photo_height_width
+                = image_tag(activity_gallery.photo.url(:medium), class: 'event_photo_image_height_width')
+                .event_photo_image_height_width.center
+                  .name= activity_gallery.photo_file_name
+                  .name
+                    = link_to t('event_photo_gallery.caption.remove'), activity_gallery_path, confirm: t('event_photo_gallery.message.remove'), method: 'delete'
+  .clear
+%script#template-upload{type: "text/x-tmpl"}
+  .upload
+    {%=o.name%}
+    .progress
+      .bar{style: "width: 0%"}

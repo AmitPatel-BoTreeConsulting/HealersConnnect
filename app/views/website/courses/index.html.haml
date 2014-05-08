@@ -1,0 +1,13 @@
+#contact.home_course_content_margin
+  .container
+    .row
+      .col-md-12.section_header
+        %h3= t('common.caption.home_page_course_link').capitalize
+    .row
+      = form_for Course.new,  html: {class: 'form-horizontal', role: 'form', id: 'clientForm'} do |f|
+        .col-sm-4
+          = f.collection_select :id, CourseCategory.all(order: 'name ASC'), :id, :name, { prompt: false }, class: 'form-control', id: 'course_category_id'
+        .col-sm-8
+          = f.collection_select :id, @courses, :id, :name, { prompt: false }, class: 'form-control', id: 'courses_dropdown_id'
+    #course_details
+      = render :partial => 'course_detail', locals: {course: @course}

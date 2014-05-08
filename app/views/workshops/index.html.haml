@@ -12,12 +12,12 @@
       %table.table.table-striped.table-bordered.table-hover
         %thead
           %tr
-            %th{width: '7%'} #{t('common.caption.serial_number')}
+            %th{width: '5%'} #{t('common.caption.serial_number')}
+            %th.text-center{width: '8%'} #{t('common.caption.start_date')}
+            %th.text-center{width: '8%'} #{t('common.caption.end_date')}
             %th #{t('common.caption.course')}
             %th #{t('common.caption.instructor')}
             %th #{t('common.caption.center')}
-            %th.text-center{width: '8%'} #{t('common.caption.start_date')}
-            %th.text-center{width: '8%'} #{t('common.caption.end_date')}
             %th.text-center{width: '8%'} #{t('common.caption.manage')}
         - if @workshops.present?
           = render :partial => 'workshops', collection: @workshops, as: :workshop

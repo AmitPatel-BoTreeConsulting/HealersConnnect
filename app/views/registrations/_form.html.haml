@@ -99,76 +99,76 @@
           .col-sm-9
             = ff.text_field :email, class: text_field_class
         .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right
-          = t('registration.caption.payment_by')
-        .col-sm-9
-          = f.collection_select :payment_type_id, @payment_types, :id, :name
-      %div#cheque_details{style: cheque_details_visibility}
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right
+            = t('registration.caption.payment_by')
+          .col-sm-9
+            = f.collection_select :payment_type_id, @payment_types, :id, :name
+        %div#cheque_details{style: cheque_details_visibility}
+          .space-4
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+              = t('registration.caption.cheque_details')
+            .col-sm-9
+              = f.text_field :cheque_no, placeholder: t('registration.caption.placeholder.cheque_no'), class: 'col-xs-2 margin-right-10'
+              = f.text_field :bank_name, placeholder: t('registration.caption.placeholder.bank_name'), class: 'col-xs-2 margin-right-10'
+              .col-sm-2.no-padding-left
+                .input-group
+                  = f.text_field :cheque_date, placeholder: t('registration.caption.placeholder.date_of_birth_format'), class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.cheque_date.try(:strftime, '%d/%m/%Y')
+                  %span.input-group-addon
+                    %i.icon-calendar.bigger-110
+              / = f.text_field :cheque_date, placeholder: 'Cheque dated', class: 'col-xs-2'
+        %div#net_banking_details{style: net_banking_details_visibility}
+          .space-4
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+              = t('registration.caption.net_banking_details')
+            .col-sm-9
+              %span.lbl= "Bank Name : #{Settings.payment.net_banking.bank_name}"
+              %br/
+              %span.lbl= "Account Name : #{Settings.payment.net_banking.account_name}"
+              %br/
+              %span.lbl= "Account : #{Settings.payment.net_banking.account_number}"
+              %br/
+              %span.lbl= "IFSC : #{Settings.payment.net_banking.ifsc}"
+              %br/
+              %span.lbl= "Branch : #{Settings.payment.net_banking.branch_name}"
+              %br/
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
-            = t('registration.caption.cheque_details')
+            = t('registration.caption.course_attempt')
           .col-sm-9
-            = f.text_field :cheque_no, placeholder: t('registration.caption.placeholder.cheque_no'), class: 'col-xs-2 margin-right-10'
-            = f.text_field :bank_name, placeholder: t('registration.caption.placeholder.bank_name'), class: 'col-xs-2 margin-right-10'
-            .col-sm-2.no-padding-left
+            .control-group
+              .radio
+                %label
+                  = f.radio_button :fresher, true, class: 'ace'
+                  %span.lbl= t('registration.caption.course_attempt_fresher')
+                %label
+                  = f.radio_button :fresher, false, class: 'ace'
+                  %span.lbl= t('registration.caption.course_attempt_review')
+        - @eligibilities.each do |course|
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+              = course.name
+            .col-sm-9
+              - palce = @registration.past_workshops[course.alias]['palce'] rescue nil
+              - date = @registration.past_workshops[course.alias]['date'] rescue nil
+              - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil
+              = text_field_tag "registration[past_workshops[#{course.alias}][palce]]", palce, placeholder: t('registration.caption.placeholder.place'), class: 'col-xs-2 margin-right-10'
+              = text_field_tag "registration[past_workshops[#{course.alias}][date]]", date, placeholder: t('registration.caption.placeholder.date_or_year'), class: 'col-xs-2 margin-right-10'
+              = text_field_tag "registration[past_workshops[#{course.alias}][instructor]]", instructor, placeholder: t('registration.caption.placeholder.instructor'), class: 'col-xs-2'
+        - if current_user
+          .space-4
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+              = t('registration.caption.registered_on')
+            .col-sm-3
               .input-group
-                = f.text_field :cheque_date, placeholder: t('registration.caption.placeholder.date_of_birth_format'), class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.cheque_date.try(:strftime, '%d/%m/%Y')
+                = f.text_field :registration_date, placeholder: t('registration.caption.placeholder.date_of_birth_format'), class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.registration_date.try(:strftime, '%d/%m/%Y')
                 %span.input-group-addon
                   %i.icon-calendar.bigger-110
-            / = f.text_field :cheque_date, placeholder: 'Cheque dated', class: 'col-xs-2'
-      %div#net_banking_details{style: net_banking_details_visibility}
-        .space-4
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right
-            = t('registration.caption.net_banking_details')
-          .col-sm-9
-            %span.lbl= "Bank Name : #{Settings.payment.net_banking.bank_name}"
-            %br/
-            %span.lbl= "Account Name : #{Settings.payment.net_banking.account_name}"
-            %br/
-            %span.lbl= "Account : #{Settings.payment.net_banking.account_number}"
-            %br/
-            %span.lbl= "IFSC : #{Settings.payment.net_banking.ifsc}"
-            %br/
-            %span.lbl= "Branch : #{Settings.payment.net_banking.branch_name}"
-            %br/
-      .space-4
-      .form-group
-        %label.col-sm-3.control-label.no-padding-right
-          = t('registration.caption.course_attempt')
-        .col-sm-9
-          .control-group
-            .radio
-              %label
-                = f.radio_button :fresher, true, class: 'ace'
-                %span.lbl= t('registration.caption.course_attempt_fresher')
-              %label
-                = f.radio_button :fresher, false, class: 'ace'
-                %span.lbl= t('registration.caption.course_attempt_review')
-      - @eligibilities.each do |course|
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right
-            = course.name
-          .col-sm-9
-            - palce = @registration.past_workshops[course.alias]['palce'] rescue nil
-            - date = @registration.past_workshops[course.alias]['date'] rescue nil
-            - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil
-            = text_field_tag "registration[past_workshops[#{course.alias}][palce]]", palce, placeholder: t('registration.caption.placeholder.place'), class: 'col-xs-2 margin-right-10'
-            = text_field_tag "registration[past_workshops[#{course.alias}][date]]", date, placeholder: t('registration.caption.placeholder.date_or_year'), class: 'col-xs-2 margin-right-10'
-            = text_field_tag "registration[past_workshops[#{course.alias}][instructor]]", instructor, placeholder: t('registration.caption.placeholder.instructor'), class: 'col-xs-2'
-      - if current_user
-        .space-4
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right
-            = t('registration.caption.registered_on')
-          .col-sm-3
-            .input-group
-              = f.text_field :registration_date, placeholder: t('registration.caption.placeholder.date_of_birth_format'), class: 'form-control date-picker', id: 'id-date-picker-1', :value => @registration.registration_date.try(:strftime, '%d/%m/%Y')
-              %span.input-group-addon
-                %i.icon-calendar.bigger-110
-                .space-4
+                  .space-4
         - if current_user && current_user.is_center_admin?
           .space-4
           .form-group
@@ -180,28 +180,28 @@
               = f.text_field :certificate_number_year, placeholder: t('registration.placeholders.certificate_number_year'), class: 'col-xs-1 margin-right-10'
               = f.text_field :certificate_number_id, placeholder: t('registration.placeholders.certificate_number_id'), class: 'col-xs-2'
 
-      - if @registration.new_record?
-        .hr.hr-24
-        -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
-        %div{style: 'text-align:justify'}
-          .col-xs-12
-            %p= t('registration.caption.text.text_paragraph_1')
-            %p= t('registration.caption.text.text_paragraph_2')
-            %p= t('registration.caption.text.text_paragraph_3')
-            %p= t('registration.caption.text.text_paragraph_4')
+        - if @registration.new_record?
+          .hr.hr-24
+          -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
+          %div{style: 'text-align:justify'}
+            .col-xs-12
+              %p= t('registration.caption.text.text_paragraph_1')
+              %p= t('registration.caption.text.text_paragraph_2')
+              %p= t('registration.caption.text.text_paragraph_3')
+              %p= t('registration.caption.text.text_paragraph_4')
 
-            .checkbox
-              %label
-                = check_box_tag t('registration.caption.checkbox_accept_vow'), false, false, checked: false, id: t('registration.caption.checkbox_accept_vow')
-                = t('registration.caption.checkbox')
-              .hc-red
-                = "(#{t('registration.message.success.accept_order_to_proceed')})"
+              .checkbox
+                %label
+                  = check_box_tag t('registration.caption.checkbox_accept_vow'), false, false, checked: false, id: t('registration.caption.checkbox_accept_vow')
+                  = t('registration.caption.checkbox')
+                .hc-red
+                  = "(#{t('registration.message.success.accept_order_to_proceed')})"
 
-            .space-10
-      .clearfix
-        .col-md-offset-3.col-md-9
-          = f.submit "#{submit_btn_caption}", class: "#{registration_submit_button_class}", id: 'register', title: "#{submit_btn_caption}"
-          = link_to t('common.caption.button.cancel'), workshop_registrations_path(@workshop), class: 'btn', title: t('common.caption.button.cancel')
+              .space-10
+        .clearfix
+          .col-md-offset-3.col-md-9
+            = f.submit "#{submit_btn_caption}", class: "#{registration_submit_button_class}", id: 'register', title: "#{submit_btn_caption}"
+            = link_to t('common.caption.button.cancel'), workshop_registrations_path(@workshop), class: 'btn', title: t('common.caption.button.cancel')
 
 - # Body of the sign in confirmation model
 - # appears if user is not logged in and
