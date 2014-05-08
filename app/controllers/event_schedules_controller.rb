@@ -2,7 +2,8 @@ class EventSchedulesController < ApplicationController
   before_filter :event_schedule_from_params , only: [:show, :edit, :update, :destroy]
   before_filter :required_access, only: [:index, :new, :create, :edit, :update, :show]
   def index
-    @event_schedules = EventSchedule.all
+    @page = params[:page] || 1
+    @event_schedules = EventSchedule.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
   def new
@@ -28,7 +29,6 @@ class EventSchedulesController < ApplicationController
   end
 
   def show
-    @event_photo = EventPhoto.new
     @event_photo_gallery = event_photos_by_id(params[:id])
   end
 
@@ -56,7 +56,7 @@ class EventSchedulesController < ApplicationController
 
   def upload_photo
     @event_photo = EventPhoto.create(params[:event_photo])
-    @event_photo_gallery = event_photos_by_id(params[:event_photo][:event_id])
+    @event_photo_gallery = event_photos_by_id(params[:event_photo][:event_schedule_id])
     respond_to { |format|
       format.js {
         render file: 'event_schedules/event_photo'
@@ -69,7 +69,7 @@ class EventSchedulesController < ApplicationController
       event_photo_by_id = event_photo_from_params(params[:id])
       event_photo_name = event_photo_by_id.photo_file_name
       event_photo_by_id.destroy
-      format.html { redirect_to event_schedule_path(event_photo_by_id.event_id), notice: t('event_photo_gallery.message.event_photo_destroy', event_photo: event_photo_name) }
+      format.html { redirect_to event_schedule_path(event_photo_by_id.event_schedule_id), notice: t('event_photo_gallery.message.event_photo_destroy', event_photo: event_photo_name) }
     end
   end
 
@@ -82,8 +82,8 @@ class EventSchedulesController < ApplicationController
     params.delete(:session_end)
   end
 
-  def event_photos_by_id(event_id)
-    EventPhoto.find_all_by_event_id(event_id)
+  def event_photos_by_id(event_schedule_id)
+    EventPhoto.find_all_by_event_schedule_id(event_schedule_id)
   end
 
   def event_photo_from_params(event_photo_id)

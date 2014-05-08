@@ -1,10 +1,16 @@
 class WorkshopsController < ApplicationController
   before_filter :workshop_from_params , only: [:show, :edit, :update, :destroy]
   before_filter :course_from_params, only: [:course_instructors]
+  before_filter :check_center_admin_access, only: [:edit, :update, :destroy]
 
   def index
     @page = params[:page] || 1
-    @workshops =  Workshop.page(params[:page]).per(Settings.pagination.per_page).order('start_date DESC')
+    if Registration.should_filter_by_center?(current_user)
+      workshops = Workshop.filter_by_center(current_user.centers)
+    else
+      workshops = Workshop
+    end
+    @workshops =  workshops.page(params[:page]).per(Settings.pagination.per_page).order('start_date DESC')
   end
 
   def new

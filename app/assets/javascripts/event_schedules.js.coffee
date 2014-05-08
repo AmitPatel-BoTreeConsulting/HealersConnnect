@@ -1,12 +1,16 @@
 jQuery ->
-  $('#new_event_photo').fileupload
+  ajax_request_for_gallery('new_event_photo')
+  ajax_request_for_gallery('new_activity_photo')
+
+ajax_request_for_gallery = (selector) ->
+  $('#'+selector).fileupload
     dataType: "script"
     add: (e, data) ->
       types = /(\.|\/)(gif|jpe?g|png)$/i
       file = data.files[0]
       if types.test(file.type) || types.test(file.name)
         data.context = $(tmpl("template-upload", file))
-        $('#new_event_photo').append(data.context)
+        $('#'+selector).append(data.context)
         data.submit()
       else
         alert("#{file.name} is not a gif, jpeg, or png image file")

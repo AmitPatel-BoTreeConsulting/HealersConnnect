@@ -14,7 +14,7 @@
         .form-group
           %label.col-sm-3.control-label.no-padding-right= t('event_schedule.caption.event')
           .col-sm-4
-            = f.collection_select :event_id, Event.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
+            = f.collection_select :event_id, Event.events_without_activity.order('name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right= t('event_schedule.caption.center')
@@ -58,7 +58,7 @@
             = t('common.caption.donation')
             %b (&#x20B9;)
           .col-sm-9
-            = f.text_field :donation, class: 'col-xs-10 col-sm-6'
+            = f.text_field :donation, class: 'col-xs-10 col-sm-2 text-right'
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right= t('instructor.caption.eligibilities')

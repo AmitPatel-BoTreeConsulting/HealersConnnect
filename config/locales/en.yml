@@ -53,6 +53,7 @@ en:
       confirm_registration_confirm: 'Are you sure you want to confirm the registration?'
       confirm_registration_remove: 'Are you sure you want to remove this registration?'
       continue_registration: 'No, Continue Registration'
+      certify: 'Certify'
       pdf:
         title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
         name_of_course: 'Name of Course :'
@@ -121,6 +122,12 @@ en:
         activated: "Registration of '%{name}' activated successfully."
         deactivated: "Registration of '%{name}' deactivated successfully."
         accept_order_to_proceed: 'You must accept to in order to proceed'
+        certify_all: "%{number_of_confirmed_registration} attendees have been certified successfully for %{workshop_name}"
+        certify: "%{name} has been certified successfully for %{workshop_name}"
+      failure:
+        certify_all: 'Error while certifying registrations, Please try again later'
+        certify: 'Error while certifying registration, Please try again later'
+      no_registration_found: 'No Registration Found'
     placeholders:
       certificate_number_month: 'XX'
       certificate_number_year: 'XX'
@@ -152,6 +159,7 @@ en:
     app_name: 'Pranic Healing'
     caption:
       home_page_link: 'HOME'
+      home_page_course_link: 'COURSES'
       serial_number: 'Sr No.'
       center_location: 'Location'
       name: 'Name'
@@ -182,6 +190,7 @@ en:
         delete: 'Delete'
         save: 'Save'
         back: 'Back'
+        continue: 'Continue'
       link:
         forgot_my_password: 'I forgot my password'
         confirmation_instructions: "Didn't receive confirmation instructions?"
@@ -387,4 +396,21 @@ en:
       event_photo_destroy: "Event photo '%{event_photo}' deleted successfully"
       no_photos_found: 'No Photos Found'
       remove: 'Are you sure you want to remove this photo?'
+  activity_photo_gallery:
+    caption:
+      remove: 'Remove'
+      upload_photos: 'Upload Photos'
+    message:
+      activity_photo_destroy: "Activity photo '%{activity_photo}' deleted successfully"
+      no_photos_found: 'No Photos Found'
+      remove: 'Are you sure you want to remove this photo?'
 
+  home_courses:
+    caption:
+      date: 'Date'
+      location: 'Location'
+      upcomming_workshops: 'UP COMING WORKSHOPS'
+      prerequisite: 'PREREQUISITE'
+    message:
+      no_prerequisites_found: 'No Prerequisites Found'
+      no_upcoming_workshops_found: 'No Up Coming Workshops Found'
