@@ -1,5 +1,8 @@
 .page-header
-  %h1= t('registration.caption.registrations')
+  %h1
+    = t('registration.caption.registrations')
+    %small
+      = render partial: 'workshops/workshop_details_page_header'
 .row
   .col-xs-12
     %ul.nav.nav-pills#registrations_container
@@ -31,35 +34,42 @@
             %th.text-center{width: '10%'} #{t('registration.caption.marital_status')}
             %th.text-center{width: '10%'} #{t('registration.caption.registered_on')}
             %th.text-center{width: '13%'} #{t('common.caption.manage')}
-        %tbody
-          - @registrations.each_with_index do |registration, index|
-            - user_profile = registration.try(:user_profile) || registration.user.user_profile
-            %tr
-              %td= index + 1
-              %td= user_profile.name
-              %td.text-center= user_profile.mobile
-              %td.text-center= registration.payment_type.name
-              %td.text-center= registration.course_attempt
-              %td.text-center= user_profile.gender
-              %td.text-center= user_profile.marital_status
-              %td.text-center= registration.registration_date.strftime('%d/%m/%Y')
-              %td.text-center<
-                .action-buttons
-                  = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', title: t('common.caption.title.edit')) do
-                    %i.icon-pencil.bigger-130
-                  = link_to(export_workshop_registration_path(id: registration, workshop_id: @workshop, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do
-                    %i.icon-print.bigger-130
-                  - if registration.active
-                    - if current_user.is_center_admin? && !registration.certified
-                      = link_to(confirm_certify_workshop_registration_path(id: registration, workshop_id: @workshop), title: t('registration.caption.certify'), remote: true) do
-                        %i.icon-legal.bigger-130
-                    = link_to(deactivate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_cancel') }, title: t('common.caption.button.cancel')) do
-                      %i.icon-pause.bigger-130
-                  - else
-                    = link_to(activate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_confirm') }, title: 'Confirm') do
-                      %i.icon-play.bigger-130
-                  = link_to(workshop_registration_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
-                    %i.icon-trash.bigger-130
+        - if @registrations.present?
+          %tbody
+            - @registrations.each_with_index do |registration, index|
+              - user_profile = registration.try(:user_profile) || registration.user.user_profile
+              %tr
+                %td= index + 1
+                %td= user_profile.name
+                %td.text-center= user_profile.mobile
+                %td.text-center= registration.payment_type.name
+                %td.text-center= registration.course_attempt
+                %td.text-center= user_profile.gender
+                %td.text-center= user_profile.marital_status
+                %td.text-center= registration.registration_date.strftime('%d/%m/%Y')
+                %td.text-center<
+                  .action-buttons
+                    = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', title: t('common.caption.title.edit')) do
+                      %i.icon-pencil.bigger-130
+                    = link_to(export_workshop_registration_path(id: registration, workshop_id: @workshop, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do
+                      %i.icon-print.bigger-130
+                    - if registration.active
+                      - if current_user.is_center_admin? && !registration.certified
+                        = link_to(confirm_certify_workshop_registration_path(id: registration, workshop_id: @workshop), title: t('registration.caption.certify'), remote: true) do
+                          %i.icon-legal.bigger-130
+                      = link_to(deactivate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_cancel') }, title: t('common.caption.button.cancel')) do
+                        %i.icon-pause.bigger-130
+                    - else
+                      = link_to(activate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_confirm') }, title: 'Confirm') do
+                        %i.icon-play.bigger-130
+                    = link_to(workshop_registration_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
+                      %i.icon-trash.bigger-130
+        - else
+          %tr
+            %td{colspan: 9}
+              .text-center
+                %h3
+                  = t('registration.message.no_registration_found')
 
 .hide
   = render partial: 'registrations/certify/certify_all_popup'
