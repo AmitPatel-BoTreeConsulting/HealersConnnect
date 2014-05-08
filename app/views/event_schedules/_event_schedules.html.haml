@@ -6,7 +6,7 @@
   %td<
     = date_time_formatted(event_schedule.end_date)
   %td<
-    = link_to(event_schedule.event.name, edit_event_schedule_path(event_schedule))
+    = event_schedule.event.name
   %td<
     = event_schedule.center.name
   %td.text-center<
