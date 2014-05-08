@@ -15,10 +15,11 @@ class Workshop < ActiveRecord::Base
   has_many :registrations
   has_many :certificates
 
-  accepts_nested_attributes_for :workshop_sessions, allow_destroy: true, reject_if: proc { |att|  att[:session_start].blank? || att[:session_end].blank?}
+  accepts_nested_attributes_for :workshop_sessions, allow_destroy: true, reject_if: proc { |att| att[:session_start].blank? || att[:session_end].blank? || !att[:session_start].instance_of?(DateTime)}
 
   validates_presence_of :center_id, :course_id, :instructor_id, :fees_date, :location, :contact
   validates_presence_of :fees_before_session, :fees_after_session, :fees_on_session, :fees_on_rejoining
+  validate :workshop_session_presence
 
   def eligibilities
     course.eligibilities
@@ -44,5 +45,11 @@ class Workshop < ActiveRecord::Base
 
   def any_registration_awaiting_certification?
     !registrations.confirmed.uncertified.blank?
+  end
+
+  private
+
+  def workshop_session_presence
+    errors.add(:workshop_sessions, "can't be blank") if workshop_sessions.blank?
   end
 end
