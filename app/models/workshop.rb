@@ -17,6 +17,9 @@ class Workshop < ActiveRecord::Base
 
   accepts_nested_attributes_for :workshop_sessions, allow_destroy: true, reject_if: proc { |att|  att[:session_start].blank? || att[:session_end].blank?}
 
+  # Upcoming courses for homepage
+  scope :upcoming_courses, lambda { where("start_date >= ?", Date.today).order(:start_date) }
+
   def eligibilities
     course.eligibilities
   end
