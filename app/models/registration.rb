@@ -3,8 +3,8 @@ class Registration < ActiveRecord::Base
   belongs_to :user
   belongs_to :workshop
   has_one :certificate
-
   has_one :user_profile
+  has_many :registration_donations
 
   serialize(:past_workshops, Hash)
 
