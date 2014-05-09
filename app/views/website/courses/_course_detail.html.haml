@@ -8,15 +8,14 @@
       %p
         = simple_format(@course.description)
   .col-sm-5.right_box
-    %h3.right_box_nav_title=t('home_courses.caption.prerequisite')
+    %h3.right_box_nav_title=t('home_courses.caption.eligibilities')
     %p
       - if @course.eligibilities.present?
         - @course.eligibilities.each do |eligibility|
           %p
             = eligibility.name
       - else
-        %p
-          %h5= t('home_courses.message.no_prerequisites_found')
+        = render_course_eligibility(@course.eligibility)
 
     %h3.right_box_nav_title=t('home_courses.caption.upcomming_workshops')
     - if upcoming_workshops.present?
@@ -31,8 +30,9 @@
             %tr
               %td= date_formatted(upcoming_workshop.start_date)
               %td= upcoming_workshop.location
-              %td.upcoming_workshops_register_link
-                = link_to(nil, root_path, title: t('common.caption.register'))
+              %td
+                = link_to(new_workshop_registration_path(upcoming_workshop), title: t('common.caption.register')) do
+                  .upcoming_workshops_register_link.height_width_16
     - else
       %p
         %h5= t('home_courses.message.no_upcoming_workshops_found')

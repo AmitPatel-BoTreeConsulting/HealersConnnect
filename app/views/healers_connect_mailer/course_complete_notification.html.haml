@@ -1,0 +1,40 @@
+- start_date = @workshop.start_date
+- end_date   = @workshop.end_date
+- location   = @workshop.location
+- instructor = @workshop.instructor
+- assistant_instructor = @workshop.assistant_instructor
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+  %body
+    %P= "Dear #{@user.user_profile.try(:name).try(:titleize)},"
+    %p
+      = t('mailer.course_complete_notification.paragraph_1', course_name: @course.name)
+    - unless instructor.blank?
+      %p
+        %b Instructor:
+        = instructor.name.try(:titleize)
+    - unless assistant_instructor.blank?
+      %p
+        %b Assistant Instructor:
+        = instructor.name.try(:titleize)
+    - unless start_date.blank?
+      %p
+        %b Start Date:
+        = date_formatted(start_date)
+    - unless end_date.blank?
+      %p
+        %b End Date:
+        = date_formatted(end_date)
+    - unless location.blank?
+      %p
+        %b Location
+        = location.humanize
+    %br/
+    %p= t('mailer.course_complete_notification.aatma_namaste_text')
+    %br/
+    %p
+      = t('mailer.course_complete_notification.signature_thnak_you')
+      %br/
+      = @workshop.center.name.try(:titleize)

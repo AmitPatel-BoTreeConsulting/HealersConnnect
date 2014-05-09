@@ -118,6 +118,11 @@ body {
 .margin-bottom-10 { margin-bottom: 10px!important; }
 .margin-left-5 { margin-left: 5px!important; }
 
+/* Empty block, size of icon */
+.icon-blank {
+  height: 0px; width: 20px; font-size: 0; margin: 0; padding: 0; border: 0; display: -moz-stack;
+}
+
 .text-align-r {
   text-align: right;
 }
@@ -229,8 +234,8 @@ ul#registrations_container { margin: 0!important;}
 }
 
 .event_photo_image_height_width {
-  height: 200px;
-  width: 300px;
+  height: 150px;
+  width: 150px;
 }
 
 .event_photo_height_width {

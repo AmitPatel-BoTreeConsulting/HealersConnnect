@@ -20,6 +20,8 @@ paperclip:
   style:
     medium: '300x300'
     thumb: '100x100'
+    activity:
+      small: '55x55'
   image_path: '/system/:class/:avatars/:id/:style/:basename.:extension'
 
 mail:
