@@ -39,6 +39,28 @@ class Registration < ActiveRecord::Base
     end
   end
 
+  def donation_complete?
+    amount_settled == required_amount
+  end
+
+  def amount_settled
+    registration_donations.pluck(:amount).sum
+  end
+
+  def required_amount
+    workshop.send("fees_#{registration_timing}_session")
+  end
+
+  def registration_timing
+    if registration_date < workshop.fees_date.to_date
+      :before
+    elsif registration_date > workshop.fees_date.to_date
+      :after
+    else
+      :on
+    end
+  end
+
   def course_attempt
     fresher? ? 'Fresher' : 'Review'
   end

@@ -5,4 +5,5 @@ class RegistrationDonation < ActiveRecord::Base
   attr_accessible :amount, :description, :received_on, :user_id, :registration_id
 
   validates_presence_of :user_id, :registration_id, :amount, :description, :received_on
+  validates_numericality_of :amount
 end
