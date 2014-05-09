@@ -33,10 +33,15 @@
 .upcoming_workshops_register_link {
   background-image: url('/assets/108-Share-16.png');
   position: relative;
-  background-repeat: no-repeat;
+  background-repeat:no-repeat;
 }
 
 .height_width_16 {
   height: 16px;
   width: 16px;
+}
+
+.activity_small_photo_height_width {
+  height: 55px;
+  width: 55px;
 }

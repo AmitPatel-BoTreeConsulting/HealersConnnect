@@ -36,3 +36,5 @@ stylesheets:
     - app/assets/stylesheets/home/contact.css
     - app/assets/stylesheets/home/animate.css
     - app/assets/stylesheets/home/custom.css
+    - app/assets/stylesheets/home/blog.css
+    - app/assets/stylesheets/home/blogpost.css
