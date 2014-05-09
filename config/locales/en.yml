@@ -24,6 +24,18 @@ en:
       success:
         center_created: "Center '%{center}' created successfully."
         center_updated: "Center '%{center}' updated successfully."
+  registration_donation:
+    page_content:
+      header:
+        index: 'Registration Donation'
+        new: 'New Registration Donation'
+    caption:
+      amount: 'Amount'
+      description: 'Description'
+      received_on: 'Received On'
+    message:
+      success:
+        creation: 'Registration Donation created auccessfully'
   registration:
     caption:
       date_of_birth: 'Date of Birth'
@@ -128,6 +140,7 @@ en:
         certify_all: 'Error while certifying registrations, Please try again later'
         certify: 'Error while certifying registration, Please try again later'
       no_registration_found: 'No Registration Found'
+      no_registration_donation_found: 'No Registration Donation Found'
     placeholders:
       certificate_number_month: 'XX'
       certificate_number_year: 'XX'

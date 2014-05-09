@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def name
+    user_profile.try(:name) || email
+  end
+
   def is_foundation_admin?
     have_role?(Role::FOUNDATION_ADMIN)
   end

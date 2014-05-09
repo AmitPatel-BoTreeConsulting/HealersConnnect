@@ -22,6 +22,7 @@ HealersConnnect::Application.routes.draw do
     end
     resources :workshops do
       resources :registrations do
+        resources :registration_donations, only: [:index, :new, :create]
         collection do
           get :confirm_certify_all
           post :certify_all
