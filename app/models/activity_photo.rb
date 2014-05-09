@@ -4,7 +4,8 @@ class ActivityPhoto < ActiveRecord::Base
   paperclip_options = {
         styles: {
             medium: "#{Settings.paperclip.style.medium}>",
-            thumb: "#{Settings.paperclip.style.thumb}>"
+            thumb: "#{Settings.paperclip.style.thumb}>",
+            activity_small: "#{Settings.paperclip.style.activity.small}>"
         },
         :url => Settings.paperclip.image_path
     }

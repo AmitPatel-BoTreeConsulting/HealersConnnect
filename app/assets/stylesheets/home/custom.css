@@ -35,3 +35,8 @@
   background-repeat:no-repeat;
   background-position:center;
 }
+
+.activity_small_photo_height_width {
+  height: 55px;
+  width: 55px;
+}

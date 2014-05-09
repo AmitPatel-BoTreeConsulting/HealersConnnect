@@ -161,6 +161,7 @@ en:
       home_page_link: 'HOME'
       home_page_course_link: 'COURSES'
       home_page_activity_link: 'ACVITIES'
+      home_page_activity_photos: 'Photos'
       serial_number: 'Sr No.'
       center_location: 'Location'
       name: 'Name'
@@ -405,7 +406,6 @@ en:
       activity_photo_destroy: "Activity photo '%{activity_photo}' deleted successfully"
       no_photos_found: 'No Photos Found'
       remove: 'Are you sure you want to remove this photo?'
-
   home_courses:
     caption:
       date: 'Date'
@@ -415,3 +415,6 @@ en:
     message:
       no_prerequisites_found: 'No Prerequisites Found'
       no_upcoming_workshops_found: 'No Up Coming Workshops Found'
+  home_activities:
+    caption:
+      read_more: 'Read More'

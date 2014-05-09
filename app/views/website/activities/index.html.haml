@@ -1,0 +1,22 @@
+#blog.home_course_content_margin
+  .container
+    .section_header
+      %h3= t('activities.caption.activities')
+    .row.post_row
+      - @activities.each do |activity|
+        .col-sm-4
+          %br/
+          .post
+            .img
+              - if activity.avatar.present?
+                = link_to(image_tag(activity.avatar.url(:medium), class: 'img-responsive'), website_activity_path(activity))
+              - else
+                = link_to(image_tag('no_image.png'), website_activity_path(activity))
+            .text
+              %h5
+                = link_to(activity.name, website_activity_path(activity))
+              %span.date
+              %p
+                = simple_format(truncate(activity.description, length: 140, omission: " ... %s") % link_to(t('home_activities.caption.read_more'), website_activity_path(activity)))
+            = link_to(website_activity_path(activity), class: 'plus_wrapper') do
+              %span +
