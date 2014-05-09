@@ -4,6 +4,7 @@
   $('#confirmCertifyAllBtn').attr('href', "#{certify_all_workshop_registrations_path(@workshop)}");
 - else
   - # When no uncertified registrations found
+  $('#certifyAll #usersWithoutCertyListing').html('');
   var popup_title = "Following attendees doesn't have certificate number. Please update registration with certificate number.";
   $('#confirmCertifyAllBtn').addClass('hide');
   $('#certifyAll #usersWithoutCertyListing').html('#{escape_javascript render(partial: 'registrations/certify/users_without_certy_listing.html')}');
