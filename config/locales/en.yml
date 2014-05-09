@@ -300,6 +300,11 @@ en:
   mailer:
     send_donation_notification_to_donor:
       subject: 'Donation Notification'
+    course_complete_notification:
+      subject: "Congratulations!! You have completed %{course_name}"
+      paragraph_1: "You have successfully completed %{course_name} workshop. Here is the workshop details:"
+      aatma_namaste_text: "Aatma Namaste!!!"
+      signature_thnak_you: 'Thanking You,'
   navbar:
    menu:
     title:
