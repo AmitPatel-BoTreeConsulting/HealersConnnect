@@ -49,14 +49,17 @@
                 %td.text-center= registration.registration_date.strftime('%d/%m/%Y')
                 %td.text-center<
                   .action-buttons
+                    - if registration.active
+                      - if current_user.is_center_admin? && !registration.certified
+                        = link_to(confirm_certify_workshop_registration_path(id: registration, workshop_id: @workshop), title: t('registration.caption.certify'), remote: true) do
+                          %i.icon-legal.bigger-130
+                      - else
+                        .icon-blank
                     = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', title: t('common.caption.title.edit')) do
                       %i.icon-pencil.bigger-130
                     = link_to(export_workshop_registration_path(id: registration, workshop_id: @workshop, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do
                       %i.icon-print.bigger-130
                     - if registration.active
-                      - if current_user.is_center_admin? && !registration.certified
-                        = link_to(confirm_certify_workshop_registration_path(id: registration, workshop_id: @workshop), title: t('registration.caption.certify'), remote: true) do
-                          %i.icon-legal.bigger-130
                       = link_to(deactivate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_cancel') }, title: t('common.caption.button.cancel')) do
                         %i.icon-pause.bigger-130
                     - else
