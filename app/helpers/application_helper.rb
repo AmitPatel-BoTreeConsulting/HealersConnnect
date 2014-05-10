@@ -58,6 +58,10 @@ module ApplicationHelper
     when :activities
       url = events_path(manage_page: 'activity')
       link_title = t('navbar.menu.title.activities')
+
+    when :manage_homes
+      url = manage_homes_path
+      link_title = t('navbar.menu.title.manage_homes')
     else
     end
     content_tag(:li, link_to(link_title, url),

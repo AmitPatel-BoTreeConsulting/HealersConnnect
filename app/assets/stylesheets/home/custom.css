@@ -40,3 +40,20 @@
   height: 16px;
   width: 16px;
 }
+
+//============Override And Add Inline Style For Home Slider
+#feature_slider #tour.slide .info h2 {
+  font-size: 30px !important;
+}
+
+.navbar-brand{
+  margin-left: -27px !important;
+}
+
+#feature_slider #tour.slide .info{
+  right: 15% !important;
+}
+
+.slider_description_width{
+  width: 250px;
+}

@@ -1,48 +1,17 @@
 %section#feature_slider.lol
-  /
-    Each slide is composed by <img> and .info
-    \- .info's position is customized with css in index.css
-    \- each <img> parallax effect is declared by the following params inside its class:
-
-    example: class="asset left-472 sp600 t120 z3"
-    left-472 means left: -472px from the center
-    sp600 is speed transition
-    t120 is top to 120px
-    z3 is z-index to 3
-    Note: Maintain this order of params
-
-    For the backgrounds, you can combine from the bgs folder :D
-
-  - background_aqua = asset_path 'home/backgrounds/skyline.jpg'
-  %article#ideas.slide{:style => "background: url('#{background_aqua}') repeat-x top center;"}
-    .info
-      %h2 Make it easy for your happy customers to talk about you online.
-    = image_tag "home/slides/scene2/left-1.png", class: 'asset left-480 sp600 t260 z1'
-    = image_tag "home/slides/scene2/middle-1.png", class: 'asset left-210 sp600 t213 z2'
-    = image_tag "home/slides/scene2/right-1.png", class: 'asset left60 sp600 t260 z1'
-  - slide1 = asset_path 'home/backgrounds/indigo.jpg'
-  %article#showcasing.slide{:style => "background: url('#{slide1}') repeat-x top center;"}
-    = image_tag "home/slides/scene1/macbook-1.png", class: 'asset left-30 sp600 t120 z1'
-    .info
-      %h2 Become the most trusted business in your area.
-  - background_splash = asset_path 'home/backgrounds/aqua.jpg'
-  %article#tour.slide{:style => "background: url('#{background_splash}') repeat-x top center;"}
-    = image_tag "home/slides/scene3/ipad-1.png", class: 'asset left-472 sp650 t210 z3'
-    = image_tag "home/slides/scene3/iphone-1.png", class: 'asset left-365 sp600 t270 z4'
-    = image_tag "home/slides/scene3/desktop-1.png", class: 'asset left-350 sp450 t135 z2'
-    = image_tag "home/slides/scene3/macbook-1.png", class: 'asset left-185 sp550 t220 z1'
-    .info
-      %h2 24/7 review monitoring.
-      %a{:href => "contact_us.html"} GET IN TOUCH
-
+  - @upcoming_event_workshop_for_slider.each do |upcoming_event_workshop|
+    - background_splash = asset_path 'home/backgrounds/aqua.jpg'
+    %article#tour.slide{:style => "background: url('#{background_splash}') repeat-x top center;"}
+      = image_tag(upcoming_event_workshop[:image], class: 'asset left-472 sp650 t90 z3', style: 'width:910px;')
+      .info
+        %h2= upcoming_event_workshop[:name]
+        %div.slider_description_width
+          %h4{style: 'color: #ffffff;'}= simple_format(truncate(upcoming_event_workshop[:description], length: 100))
+        = link_to t('manage_home.caption.button.read_more'), workshop_event_detail_path(upcoming_event_workshop[:id])
 .spacer40
 .container
   .section_header
     %h3= t('course.caption.upcoming_cources_title')
-    -#%small
-    -#  %i.icon-double-angle-right
-    -#  27 April, 2014 @ GMCKS Pranic Healing Center, Ahmedabad
-    -# Git's reference for old code: d23f097c759df5d1b3773a5150fec5ae1e908c4f
   .row
     .col-xs-12
       = render partial: 'shared/flash_messages'
@@ -55,7 +24,7 @@
               %th #{t('common.caption.course')}
               %th #{t('common.caption.instructor')}
               %th.text-center #{t('common.caption.center_location')}
-              %th.text-center #{t('common.caption.register')} 
+              %th.text-center #{t('common.caption.register')}
           - if @workshops.present?
             = render :partial => 'workshops/workshop_registration_list', collection: @workshops, as: :workshop
           - else

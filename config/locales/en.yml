@@ -318,6 +318,7 @@ en:
       settings: 'Settings'
       event_schedules: 'Event Schedules'
       activities: 'Activities'
+      manage_homes: 'Manage Home'
   sign_in:
     caption:
       remember_me: 'Remember Me'
@@ -419,3 +420,11 @@ en:
     message:
       no_eligibilities_found: 'No Eligibilities Found'
       no_upcoming_workshops_found: 'No Upcoming Workshops Found'
+  manage_home:
+    caption:
+      button:
+        read_more: 'Read More'
+    page_content:
+      header:
+        upcoming_workshops: 'Upcoming Workshops'
+        upcoming_events: 'Upcoming Events'

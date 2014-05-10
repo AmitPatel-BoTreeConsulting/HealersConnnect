@@ -14,6 +14,7 @@ HealersConnnect::Application.routes.draw do
     resources :donations
     resources :event_schedules
     resources :events
+    resources :manage_homes
     resources :courses do
       member do
         put :deactivate
@@ -49,5 +50,7 @@ HealersConnnect::Application.routes.draw do
   post 'admin/events/upload_photo' => 'events#upload_photo', as: :upload_activity_photo
   delete 'admin/event_schedules/event_schedules/photo/:id' => 'event_schedules#remove_event_photo', as: :remove_event_photo
   delete 'admin/events/photo/:id' => 'events#remove_activity_photo', as: :remove_activity_photo
-
+  get 'manage_homes/update_upcoming_workshop/:id' => 'manage_homes#update_upcoming_workshop'
+  get 'manage_homes/update_upcoming_event/:id' => 'manage_homes#update_upcoming_event'
+  get '/static_pages/:id' => 'static_pages#show', as: :workshop_event_detail
 end
