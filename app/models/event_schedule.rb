@@ -22,6 +22,7 @@ class EventSchedule < ActiveRecord::Base
       upcoming_event_hash[:name] = event.event.name
       upcoming_event_hash[:description] = event.event.description
       upcoming_event_hash[:id] = event.event_id
+      upcoming_event_hash[:url] = Rails.application.routes.url_helpers.website_home_path(event.event_id)
       events << upcoming_event_hash
     end
     events

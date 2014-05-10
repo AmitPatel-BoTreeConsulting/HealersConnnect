@@ -67,6 +67,7 @@ class Workshop < ActiveRecord::Base
       upcoming_workshop_hash[:name] = workshop.course.name
       upcoming_workshop_hash[:description] = workshop.course.description
       upcoming_workshop_hash[:id] = workshop.course_id
+      upcoming_workshop_hash[:url] = Rails.application.routes.url_helpers.website_course_path(workshop.course_id)
       workshops << upcoming_workshop_hash
     end
     workshops

@@ -7,7 +7,7 @@
         %h2= upcoming_event_workshop[:name]
         %div.slider_description_width
           %h4{style: 'color: #ffffff;'}= simple_format(truncate(upcoming_event_workshop[:description], length: 100))
-        = link_to t('manage_home.caption.button.read_more'), workshop_event_detail_path(upcoming_event_workshop[:id])
+        = link_to t('manage_home.caption.button.read_more'), upcoming_event_workshop[:url]
 .spacer40
 .container
   .section_header
