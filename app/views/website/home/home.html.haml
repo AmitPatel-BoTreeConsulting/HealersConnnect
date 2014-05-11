@@ -2,7 +2,10 @@
   - @upcoming_event_workshop_for_slider.each do |upcoming_event_workshop|
     - background_splash = asset_path 'home/backgrounds/aqua.jpg'
     %article#tour.slide{:style => "background: url('#{background_splash}') repeat-x top center;"}
-      = image_tag(upcoming_event_workshop[:image], class: 'asset left-472 sp650 t90 z3', style: 'width:910px;')
+      - if upcoming_event_workshop[:image].present?
+        = image_tag(upcoming_event_workshop[:image], class: 'asset left-472 sp650 t90 z3', style: 'width:910px;')
+      - else
+        = image_tag('no_image.png',class: 'asset left-472 sp650 t90 z3', style: 'width:610px;')
       .info
         %h2= upcoming_event_workshop[:name]
         %div.slider_description_width
