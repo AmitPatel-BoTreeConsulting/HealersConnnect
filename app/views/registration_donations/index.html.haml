@@ -10,26 +10,28 @@
   .col-xs-12
     .btn-group.pull-right
       - if @registration_donations.present?
-        = link_to('Export', export_registrations_path(format: 'xls', status: params[:status], workshop_id: @workshop.id), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin')
-    .space-6
+        = link_to(export_registrations_path(format: 'xls', status: params[:status], workshop_id: @workshop.id), class: 'donation_export_link') do
+          %i.icon-print.bigger-130
+
 .row
   .col-xs-12
+    .spacer20
     .table-responsive
       %table#sample-table-2.table.table-striped.table-bordered.table-hover
         %thead
           %tr
             %th{width: '5%'} #{t('common.caption.serial_number')}
             %th{width: '15%'} #{t('common.caption.received_on')}
-            %th.text-center{width: '15%'} #{t('common.caption.amount')} &#x20B9;
-            %th.text-center= t('registration.caption.received_by')
+            %th.text-align-r{width: '15%'} #{t('common.caption.amount')} (&#x20B9;)
+            %th= t('registration.caption.received_by')
         - if @registration_donations.present?
           %tbody
             - @registration_donations.each_with_index do |registration_donation, index|
               %tr
                 %td= index + 1
                 %td= date_formatted(registration_donation.received_on)
-                %td.text-center= registration_donation.amount
-                %td.text-center= registration_donation.receiver.name
+                %td.text-align-r= registration_donation.amount
+                %td= registration_donation.receiver.name
         - else
           %tr
             %td{colspan: 9}
