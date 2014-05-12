@@ -26,18 +26,20 @@
         %thead
           %tr
             %th{width: '5%'} #{t('common.caption.serial_number')}
-            %th{width: '27%'} #{t('common.caption.name')}
+            %th{width: '24%'} #{t('common.caption.name')}
             %th.text-center{width: '10%'} #{t('common.caption.mobile')}
             %th.text-center{width: '10%'} #{t('registration.caption.payment_type')}
             %th.text-center{width: '10%'} #{t('registration.caption.course_attempt')}
             %th{width: '5%'} Gender
             %th.text-center{width: '10%'} #{t('registration.caption.marital_status')}
             %th.text-center{width: '10%'} #{t('registration.caption.registered_on')}
-            %th.text-center{width: '13%'} #{t('common.caption.manage')}
+            %th.text-center{width: '16%'} #{t('common.caption.manage')}
         - if @registrations.present?
           %tbody
             - @registrations.each_with_index do |registration, index|
               - user_profile = registration.try(:user_profile) || registration.user.user_profile
+              - reg_donations_link_class = 'font-17 '
+              - reg_donations_link_class << (registration.donation_complete? ? 'green' : 'red')
               %tr
                 %td= index + 1
                 %td= user_profile.name
@@ -55,6 +57,7 @@
                           %i.icon-legal.bigger-130
                       - else
                         .icon-blank
+                    = link_to('&#x20B9;'.html_safe, workshop_registration_registration_donations_path(@workshop, registration), class: reg_donations_link_class)
                     = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', title: t('common.caption.title.edit')) do
                       %i.icon-pencil.bigger-130
                     = link_to(export_workshop_registration_path(id: registration, workshop_id: @workshop, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do

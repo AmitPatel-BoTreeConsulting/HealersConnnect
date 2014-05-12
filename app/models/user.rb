@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_many :centers, through: :user_roles
+  has_many :registration_donations
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -30,6 +31,10 @@ class User < ActiveRecord::Base
       user_profile.update_attribute(:user_id, user.id)
       user
     end
+  end
+
+  def name
+    user_profile.try(:name) || email
   end
 
   def is_foundation_admin?
