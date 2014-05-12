@@ -33,6 +33,8 @@ en:
       amount: 'Amount'
       description: 'Description'
       received_on: 'Received On'
+      button:
+        create: 'Create Donation'
     message:
       success:
         creation: 'Registration Donation created auccessfully'
