@@ -26,13 +26,15 @@
         %thead
           %tr
             %th{width: '5%'} #{t('common.caption.serial_number')}
-            %th{width: '24%'} #{t('common.caption.name')}
+            %th{width: '20%'} #{t('common.caption.name')}
             %th.text-center{width: '10%'} #{t('common.caption.mobile')}
             %th.text-center{width: '10%'} #{t('registration.caption.payment_type')}
             %th.text-center{width: '10%'} #{t('registration.caption.course_attempt')}
             %th{width: '5%'} Gender
             %th.text-center{width: '10%'} #{t('registration.caption.marital_status')}
             %th.text-center{width: '10%'} #{t('registration.caption.registered_on')}
+            %th.text-center= t('registration.caption.donation_receivable')
+            %th.text-center= t('registration.caption.donation_received')
             %th.text-center{width: '16%'} #{t('common.caption.manage')}
         - if @registrations.present?
           %tbody
@@ -49,6 +51,8 @@
                 %td.text-center= user_profile.gender
                 %td.text-center= user_profile.marital_status
                 %td.text-center= registration.registration_date.strftime('%d/%m/%Y')
+                %td.text-center= registration.donation_receivable
+                %td.text-center= registration.donation_received
                 %td.text-center<
                   .action-buttons
                     - if registration.active
