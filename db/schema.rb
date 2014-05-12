@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140508065553) do
+ActiveRecord::Schema.define(:version => 20140509091037) do
 
   create_table "activity_photos", :force => true do |t|
     t.integer  "event_id"
@@ -165,8 +165,9 @@ ActiveRecord::Schema.define(:version => 20140508065553) do
     t.string   "contact"
     t.integer  "donation"
     t.text     "notes"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "show_on_slider", :default => false
   end
 
   create_table "events", :force => true do |t|
@@ -203,6 +204,19 @@ ActiveRecord::Schema.define(:version => 20140508065553) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "registration_donations", :force => true do |t|
+    t.integer  "registration_id"
+    t.integer  "user_id"
+    t.date     "received_on"
+    t.integer  "amount"
+    t.text     "description"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "registration_donations", ["registration_id"], :name => "index_registration_donations_on_registration_id"
+  add_index "registration_donations", ["user_id"], :name => "index_registration_donations_on_user_id"
 
   create_table "registrations", :force => true do |t|
     t.boolean  "fresher",            :default => true
@@ -310,13 +324,14 @@ ActiveRecord::Schema.define(:version => 20140508065553) do
     t.integer  "fees_on_rejoining"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.datetime "fees_date"
     t.string   "location"
     t.float    "lat"
     t.float    "long"
     t.string   "contact"
+    t.boolean  "show_on_slider",          :default => false
   end
 
 end

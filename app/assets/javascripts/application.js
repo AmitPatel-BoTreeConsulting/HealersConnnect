@@ -32,3 +32,5 @@
 //= require nav_settings_dropdown
 //= require events
 //= require event_schedules
+//= require manage_home
+//= require jquery.blockUI

@@ -3,8 +3,8 @@ class Registration < ActiveRecord::Base
   belongs_to :user
   belongs_to :workshop
   has_one :certificate
-
   has_one :user_profile
+  has_many :registration_donations
 
   serialize(:past_workshops, Hash)
 
@@ -36,6 +36,28 @@ class Registration < ActiveRecord::Base
     def should_filter_by_center?(user)
       return true if user.is_center_admin? && !user.is_super_admin_or_foundation_admin?
       false
+    end
+  end
+
+  def donation_complete?
+    amount_settled == required_amount
+  end
+
+  def amount_settled
+    registration_donations.pluck(:amount).sum
+  end
+
+  def required_amount
+    workshop.send("fees_#{registration_timing}_session")
+  end
+
+  def registration_timing
+    if registration_date < workshop.fees_date.to_date
+      :before
+    elsif registration_date > workshop.fees_date.to_date
+      :after
+    else
+      :on
     end
   end
 
