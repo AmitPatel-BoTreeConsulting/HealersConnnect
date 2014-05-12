@@ -1,0 +1,25 @@
+#blog_post.home_course_content_margin
+  .container
+    .section_header
+      %h3= @event.name.capitalize
+    .row
+      .col-sm-8
+        - if @event.avatar.present?
+          = image_tag(@event.avatar.url(:medium), class: 'post_pic img-responsive')
+        - else
+          = image_tag('no_image.png')
+        .post_content
+          %p
+            = simple_format(@event.description)
+      .col-sm-4
+        .sidebar
+          .box
+            .sidebar_header
+              %h4= t('common.caption.home_page_activity_photos')
+            - if @event.activity_photos.present?
+              %ul.recent_photos
+                - @event.activity_photos.each do |activity_photo|
+                  %li.activity_small_photo_height_width
+                    = image_tag(activity_photo.photo.url(:activity_small))
+            - else
+              %h5= t('activity_photo_gallery.message.no_photos_found')

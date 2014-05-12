@@ -1,4 +1,5 @@
 class Website::CoursesController < ApplicationController
+  before_filter :course_from_params , only: [:detail]
   layout 'home'
 
   def index
@@ -23,5 +24,14 @@ class Website::CoursesController < ApplicationController
         render file: 'website/courses/category_wise_courses'
       }
     end
+  end
+
+  def detail
+  end
+
+  private
+
+  def course_from_params
+    @course = Course.find(params[:id])
   end
 end

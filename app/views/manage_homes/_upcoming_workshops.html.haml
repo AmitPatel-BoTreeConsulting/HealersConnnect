@@ -1,0 +1,18 @@
+- @upcoming_workshops.each_with_index do |upcoming_workshop, index|
+  %tr.info
+    %td.center
+      %label
+        = check_box_tag 'upcoming_workshop', upcoming_workshop.id , upcoming_workshop.show_on_slider, class: 'ace upcoming_workshop'
+        %span.lbl
+    %td<
+      = index + 1
+    %td.text-center<
+      = date_formatted(upcoming_workshop.start_date)
+    %td.text-center<
+      = date_formatted(upcoming_workshop.end_date)
+    %td<
+      = upcoming_workshop.course.name
+    %td<
+      = upcoming_workshop.instructor.name
+    %td
+      = upcoming_workshop.center.name

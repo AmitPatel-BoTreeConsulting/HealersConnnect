@@ -320,6 +320,7 @@ en:
       settings: 'Settings'
       event_schedules: 'Event Schedules'
       activities: 'Activities'
+      manage_homes: 'Manage Home'
   sign_in:
     caption:
       remember_me: 'Remember Me'
@@ -423,3 +424,11 @@ en:
   home_activities:
     caption:
       read_more: 'Read More'
+  manage_home:
+    caption:
+      button:
+        read_more: 'Read More'
+    page_content:
+      header:
+        upcoming_workshops: 'Upcoming Workshops'
+        upcoming_events: 'Upcoming Events'
