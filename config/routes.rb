@@ -1,7 +1,7 @@
 HealersConnnect::Application.routes.draw do
   devise_for :users
 
-  root :to => 'static_pages#home'
+  root :to => 'website/home#home'
 
   devise_scope :user do
     get '/signin' => 'devise/sessions#new'
@@ -14,6 +14,7 @@ HealersConnnect::Application.routes.draw do
     resources :donations
     resources :event_schedules
     resources :events
+    resources :manage_homes
     resources :courses do
       member do
         put :deactivate
@@ -39,6 +40,7 @@ HealersConnnect::Application.routes.draw do
   end
 
   resources :courses, controller: 'website/courses', as: 'website_courses'
+  resources :home, controller: 'website/home', as: 'website_home'
   resources :activities, controller: 'website/activities', as: 'website_activities'
   get 'courses/by_category/:id' => 'website/courses#category_wise_courses', as: :category_wise_courses
   post '/admin/donations/search' => 'donations#index', as: :search_donations
@@ -51,5 +53,7 @@ HealersConnnect::Application.routes.draw do
   post 'admin/events/upload_photo' => 'events#upload_photo', as: :upload_activity_photo
   delete 'admin/event_schedules/event_schedules/photo/:id' => 'event_schedules#remove_event_photo', as: :remove_event_photo
   delete 'admin/events/photo/:id' => 'events#remove_activity_photo', as: :remove_activity_photo
-
+  get 'manage_homes/update_upcoming_workshop/:id' => 'manage_homes#update_upcoming_workshop'
+  get 'manage_homes/update_upcoming_event/:id' => 'manage_homes#update_upcoming_event'
+  get 'courses/detail/:id' => 'website/courses#detail', as: :course_detail
 end

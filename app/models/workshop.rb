@@ -22,8 +22,8 @@ class Workshop < ActiveRecord::Base
   validate :workshop_session_presence
 
   # Upcoming courses for homepage
-  scope :upcoming_courses, lambda { where("start_date >= ?", Date.today).order(:start_date) }
-
+  scope :upcoming_workshops, lambda { where("start_date >= ?", Date.today).order(:start_date) }
+  scope :show_on_slider, where(show_on_slider: true)
   scope :filter_by_center, ->(centers) { where(center_id: centers) }
 
   def eligibilities
@@ -56,5 +56,20 @@ class Workshop < ActiveRecord::Base
 
   def workshop_session_presence
     errors.add(:workshop_sessions, "can't be blank") if workshop_sessions.blank?
+  end
+
+  # Prepare array of upcoming workshops for home slider
+  def self.upcoming_workshops_for_slider
+    workshops = []
+    show_on_slider.each do |workshop|
+      upcoming_workshop_hash = {}
+      upcoming_workshop_hash[:image] = workshop.course.avatar
+      upcoming_workshop_hash[:name] = workshop.course.name
+      upcoming_workshop_hash[:description] = workshop.course.description
+      upcoming_workshop_hash[:id] = workshop.course_id
+      upcoming_workshop_hash[:url] = Rails.application.routes.url_helpers.course_detail_path(workshop.course_id)
+      workshops << upcoming_workshop_hash
+    end
+    workshops
   end
 end

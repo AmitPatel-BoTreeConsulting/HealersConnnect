@@ -1,0 +1,16 @@
+- @upcoming_events.each_with_index do |upcoming_event, index|
+  %tr.info
+    %td.center
+      %label
+        = check_box_tag 'upcoming_event', upcoming_event.id , upcoming_event.show_on_slider, class: 'ace upcoming_event'
+        %span.lbl
+    %td<
+      = index + 1
+    %td<
+      = date_time_formatted(upcoming_event.start_date)
+    %td<
+      = date_time_formatted(upcoming_event.end_date)
+    %td<
+      = upcoming_event.event.name
+    %td<
+      = upcoming_event.center.name

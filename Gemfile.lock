@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rusanu/blockuijs-rails.git
+  revision: 56e727429fa876fa03eade459404c98d74bf32e8
+  specs:
+    blockuijs-rails (0.1.0)
+      rails (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -206,6 +213,7 @@ PLATFORMS
 DEPENDENCIES
   ancestry
   better_errors
+  blockuijs-rails!
   ckeditor_rails
   coffee-rails (~> 3.2.1)
   daemons

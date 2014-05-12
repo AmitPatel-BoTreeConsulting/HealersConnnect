@@ -25,6 +25,8 @@
                 = render_navigation_menu_option(:courses, nil)
               %li
                 = render_navigation_menu_option(:instructors, nil)
+              %li
+                = render_navigation_menu_option(:manage_homes, nil)
           %li
             = link_to t('common.caption.sign_out'), signout_path
         - else

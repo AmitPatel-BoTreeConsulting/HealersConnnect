@@ -1,0 +1,46 @@
+%section#feature_slider.lol
+  - @upcoming_event_workshop_for_slider.each do |upcoming_event_workshop|
+    - background_splash = asset_path 'home/backgrounds/aqua.jpg'
+    %article#tour.slide{:style => "background: url('#{background_splash}') repeat-x top center;"}
+      - if upcoming_event_workshop[:image].present?
+        = image_tag(upcoming_event_workshop[:image], class: 'asset left-472 sp650 t90 z3', style: 'width:910px;')
+      - else
+        = image_tag('no_image.png',class: 'asset left-472 sp650 t90 z3', style: 'width:610px;')
+      .info
+        %h2= upcoming_event_workshop[:name]
+        %div.slider_description_width
+          %h4{style: 'color: #ffffff;'}= simple_format(truncate(upcoming_event_workshop[:description], length: 100))
+        = link_to t('manage_home.caption.button.read_more'), upcoming_event_workshop[:url]
+.spacer40
+.container
+  .section_header
+    %h3= t('course.caption.upcoming_cources_title')
+  .row
+    .col-xs-12
+      = render partial: 'shared/flash_messages'
+      .table-responsive
+        %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
+          %thead
+            %tr
+              %th.text-center #{t('common.caption.start_date')}
+              %th.text-center #{t('common.caption.end_date')}
+              %th #{t('common.caption.course')}
+              %th #{t('common.caption.instructor')}
+              %th.text-center #{t('common.caption.center_location')}
+              %th.text-center #{t('common.caption.register')}
+          - if @workshops.present?
+            = render :partial => 'workshops/workshop_registration_list', collection: @workshops, as: :workshop
+          - else
+            %tr
+              %td{colspan: 7}
+                .text-center
+                  %h3
+                    = t('workshop.message.no_workshop_active')
+
+- # Body of the sign in confirmation model
+- # appears upon clicking registration link if user is not logged in
+.hide
+  = render partial: 'registrations/sign_in_confirmation'
+  - # store the value of current user is logged in or not
+  - # for determining whether sign_in_confirmation popup will appear or not
+  = hidden_field_tag 'user_signed_in', !current_user.blank?
