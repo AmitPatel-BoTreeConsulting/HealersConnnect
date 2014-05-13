@@ -8,6 +8,14 @@
 
 .row
   .col-xs-12
+    %h4.smaller.lighter.blue= @registration.user_profile.name
+  .col-xs-3
+    %h4.smaller.lighter.purple= registration_donation_receivable_statistics
+  .col-xs-3
+    %h4.smaller.lighter.green= registration_donation_received_statistics
+  .col-xs-3
+    %h4.smaller.lighter.red= registration_donation_pending_statistics
+  .col-xs-3
     .btn-group.pull-right
       - if @registration_donations.present?
         = link_to(export_registrations_path(format: 'xls', status: params[:status], workshop_id: @workshop.id), class: 'donation_export_link') do
@@ -21,17 +29,19 @@
         %thead
           %tr
             %th{width: '5%'} #{t('common.caption.serial_number')}
-            %th{width: '15%'} #{t('common.caption.received_on')}
-            %th.text-align-r{width: '15%'} #{t('common.caption.amount')} (&#x20B9;)
-            %th= t('registration.caption.received_by')
+            %th.center{width: '10%'} #{t('common.caption.received_on')}
+            %th.center.text-align-r{width: '15%'} #{t('common.caption.amount')} (&#x20B9;)
+            %th= t('common.caption.received_by')
+            %th{width: '45%'}= t('common.caption.description')
         - if @registration_donations.present?
           %tbody
             - @registration_donations.each_with_index do |registration_donation, index|
               %tr
                 %td= index + 1
-                %td= date_formatted(registration_donation.received_on)
+                %td.center= date_formatted(registration_donation.received_on)
                 %td.text-align-r= registration_donation.amount
                 %td= registration_donation.receiver.name
+                %td= registration_donation.description
         - else
           %tr
             %td{colspan: 9}

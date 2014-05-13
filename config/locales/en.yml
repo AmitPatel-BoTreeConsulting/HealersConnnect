@@ -33,6 +33,9 @@ en:
       amount: 'Amount'
       description: 'Description'
       received_on: 'Received On'
+      receivable: 'Receivable'
+      received: 'Received'
+      pending: 'Pending'
       button:
         create: 'Create Donation'
     message:
@@ -200,6 +203,9 @@ en:
       view_registrations: 'View Registrations'
       contact: 'Contact'
       member_id: 'Member ID'
+      received_by: 'Received By'
+      received_on: 'Received On'
+      amount: 'Amount'
       title:
         edit: 'Edit'
         gallery: 'Gallery'
