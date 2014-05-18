@@ -26,6 +26,7 @@ group :development do
   # Routes helper.
   gem 'sextant'
   gem 'rails_layout'
+  gem 'quiet_assets'
 end
 
 group :development, :test do
