@@ -3,7 +3,7 @@ class Website::HomeController < ApplicationController
   before_filter :render_layout, only: [:show]
   def home
     if current_user
-      render :dashboard
+      render 'users/dashboard'
     else
       upcoming_event_workshop_for_slider
       @workshops = Workshop.upcoming_workshops

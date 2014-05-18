@@ -138,4 +138,12 @@ class Registration < ActiveRecord::Base
     end
     create_certificate!(user_id: user_id, workshop_id: workshop_id)
   end
+
+  def donation_receivable
+    workshop.donation_receivable(fresher, registration_date)
+  end
+
+  def donation_received
+    registration_donations.sum(:amount)
+  end
 end

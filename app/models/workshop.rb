@@ -52,6 +52,20 @@ class Workshop < ActiveRecord::Base
     !registrations.confirmed.uncertified.blank?
   end
 
+  def donation_receivable(is_fresher, registration_date)
+    if is_fresher
+      if registration_date <= fees_date.to_date
+        fees_before_session
+      elsif registration_date < start_date.to_date
+        fees_after_session
+      else
+        fees_on_session
+      end
+    else
+      fees_on_rejoining
+    end
+  end
+
   private
 
   def workshop_session_presence
