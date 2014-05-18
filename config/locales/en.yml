@@ -33,6 +33,11 @@ en:
       amount: 'Amount'
       description: 'Description'
       received_on: 'Received On'
+      receivable: 'Receivable'
+      received: 'Received'
+      pending: 'Pending'
+      button:
+        create: 'Create Donation'
     message:
       success:
         creation: 'Registration Donation created auccessfully'
@@ -66,6 +71,8 @@ en:
       confirm_registration_remove: 'Are you sure you want to remove this registration?'
       continue_registration: 'No, Continue Registration'
       certify: 'Certify'
+      donation_receivable: 'Donation Receivable'
+      donation_received: 'Donation Received'
       pdf:
         title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
         name_of_course: 'Name of Course :'
@@ -196,6 +203,9 @@ en:
       view_registrations: 'View Registrations'
       contact: 'Contact'
       member_id: 'Member ID'
+      received_by: 'Received By'
+      received_on: 'Received On'
+      amount: 'Amount'
       title:
         edit: 'Edit'
         gallery: 'Gallery'
