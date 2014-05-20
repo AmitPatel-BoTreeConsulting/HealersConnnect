@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def check_phone_number
-    @profiles = find_user_profile_from_member_id if params[:member_id]
+    @profiles = UserProfile.where(member_id: params[:member_id]) if params[:member_id]
     @workshop = Workshop.find_by_id(params[:workshop_id])
     if @profiles.blank?
       @profiles = UserProfile.where(mobile: params[:mobile])
@@ -22,10 +22,4 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-
-  def find_user_profile_from_member_id
-    profile = User.find_by_member_id(params[:member_id].to_i).try(:user_profile)
-    [profile] if profile
-  end
 end

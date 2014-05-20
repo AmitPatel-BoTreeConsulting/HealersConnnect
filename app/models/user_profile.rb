@@ -4,7 +4,7 @@ class UserProfile < ActiveRecord::Base
 
   after_create :add_unique_member_id
 
-  SEQUENCED_START_AT = 1000
+  RANDOM_MEMBER_ID_RANGE = 1000..9999
 
   attr_accessible :address, :birth_date, :education, :email, :first_name
   attr_accessible :gender, :last_name, :lat, :location, :long, :married
@@ -33,11 +33,12 @@ class UserProfile < ActiveRecord::Base
   private
 
   def generate_member_id
-    last_member_id = nil
-    UserProfile.transaction do
-      last_member_id = UserProfile.maximum("member_id")
-      last_member_id ||= UserProfile::SEQUENCED_START_AT
+    first_part = first_name.downcase[0..3]
+    second_part = birth_date.strftime('%d%m')
+
+    while UserProfile.find_by_member_id(first_part + second_part)
+      second_part = rand(RANDOM_MEMBER_ID_RANGE).to_s
     end
-    last_member_id.next
+    first_part + second_part
   end
 end
