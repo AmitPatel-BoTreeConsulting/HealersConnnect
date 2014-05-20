@@ -21,7 +21,7 @@ class RegistrationsController < ApplicationController
   end
 
   def new
-    set_user_from_user_id
+    set_user_from_member_id
     default_profile_values = { gender: 'M', married: true }
     @registration = Registration.new(
       user_profile_attributes: default_profile_values,
@@ -42,7 +42,7 @@ class RegistrationsController < ApplicationController
         redirect_to root_path
       end
     else
-      set_user_from_user_id
+      set_user_from_member_id
       render :new
     end
   end
@@ -177,7 +177,7 @@ class RegistrationsController < ApplicationController
       @eligibilities = @workshop.eligibilities
     end
 
-    def set_user_from_user_id
-      @user = User.find_by_id(params[:user_id]) unless current_user
+    def set_user_from_member_id
+      @user = User.find_by_member_id(params[:member_id]) unless current_user
     end
 end
