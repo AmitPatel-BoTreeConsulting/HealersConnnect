@@ -1,4 +1,4 @@
-- upcoming_workshops = @course.workshops
+- upcoming_workshops = @course.workshops.order(:start_date)
 .row
   .col-sm-7.left_box
     .big
