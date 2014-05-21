@@ -48,4 +48,12 @@ module RegistrationsHelper
     end
     registration
   end
+
+  def cancel_registration_path
+    if user_signed_in?
+      workshop_registrations_path(@workshop)
+    else
+      root_path
+    end
+  end
 end

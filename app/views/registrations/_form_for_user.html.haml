@@ -176,7 +176,7 @@
       .clearfix
         .col-md-offset-3.col-md-9
           = f.submit "#{submit_btn_caption}", class: "#{registration_submit_button_class}", id: 'register', title: "#{submit_btn_caption}"
-          = link_to t('common.caption.button.cancel'), workshop_registrations_path(@workshop), class: 'btn', title: t('common.caption.button.cancel')
+          = link_to t('common.caption.button.cancel'), cancel_registration_path, class: 'btn', title: t('common.caption.button.cancel')
 
 - # Body of the sign in confirmation model
 - # appears if user is not logged in and
