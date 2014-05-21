@@ -30,6 +30,14 @@ class UserProfile < ActiveRecord::Base
     update_attribute(:member_id, generate_member_id)
   end
 
+  def masked_mobile
+    if mobile.present?
+      masked = mobile.dup
+      masked[2..6] = '*****'
+      masked
+    end
+  end
+
   private
 
   def generate_member_id

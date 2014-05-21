@@ -15,11 +15,12 @@
   .row
     .col-xs-12
       = f.fields_for :user_profile do |ff|
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right
-            = t('common.caption.member_id')
-          .col-sm-9
-            = text_field_tag "user[member_id]", nil, class: 'col-xs-2 margin-right-10'
+        - unless user_signed_in?
+          .form-group
+            %label.col-sm-3.control-label.no-padding-right
+              = t('common.caption.member_id')
+            .col-sm-9
+              = text_field_tag "user[member_id]", nil, class: 'col-xs-2 margin-right-10'
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.name')
