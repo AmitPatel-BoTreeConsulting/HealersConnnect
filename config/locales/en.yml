@@ -126,7 +126,7 @@ en:
         status_cancelled: 'Cancelled'
         status_all: 'All'
         update: 'Update Registration'
-        new: 'Create Registration'
+        new: 'Register'
     page_content:
       header:
         index: 'Registrations'
