@@ -31,6 +31,7 @@ class Registration < ActiveRecord::Base
   scope :uncertified, where(certified: [false, nil])
   scope :certified, where(certified: true)
   scope :without_certy_no, where(certificate_number: nil)
+  scope :freshers, where(fresher: true)
 
   class << self
     def should_filter_by_center?(user)
@@ -49,6 +50,10 @@ class Registration < ActiveRecord::Base
 
   def required_amount
     workshop.send("fees_#{registration_timing}_session")
+  end
+
+  def user_profile
+    UserProfile.find_by_member_id(member_id)
   end
 
   def registration_timing

@@ -34,7 +34,7 @@ class Workshop < ActiveRecord::Base
   # returns nil if activerecord invalid error is encountered
   # returns count of total confirmed registration if all are updated successfully
   def certify_all_confirmed_registrations
-    registrations_to_confirm = registrations.confirmed.uncertified
+    registrations_to_confirm = registrations.confirmed.uncertified.freshers
     registration_confirmed_count = registrations_to_confirm.count
     begin
       ActiveRecord::Base.transaction do
