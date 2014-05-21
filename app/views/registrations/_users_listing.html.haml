@@ -1,5 +1,4 @@
 - unless @profiles.blank?
-  %strong Are you
   .spacer10
   .row
     .col-xs-12
@@ -18,4 +17,4 @@
                   %td= profile.name
                   %td= profile.mobile
                   %td= profile.telephone
-                  %td= link_to(t('common.caption.register'), new_workshop_registration_path(workshop_id: @workshop.id, user_id: profile.user.id), class: 'green', title: t('common.caption.register'))
+                  %td= link_to(t('common.caption.register'), new_workshop_registration_path(workshop_id: @workshop.id, member_id: profile.member_id), class: 'green', title: t('common.caption.register'))

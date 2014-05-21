@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140509091037) do
+ActiveRecord::Schema.define(:version => 20140518122915) do
 
   create_table "activity_photos", :force => true do |t|
     t.integer  "event_id"
@@ -265,7 +265,7 @@ ActiveRecord::Schema.define(:version => 20140509091037) do
     t.integer  "user_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.integer  "member_id"
+    t.string   "member_id"
   end
 
   add_index "user_profiles", ["registration_id"], :name => "index_user_profiles_on_registration_id"
@@ -298,7 +298,7 @@ ActiveRecord::Schema.define(:version => 20140509091037) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.integer  "member_id"
+    t.string   "member_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

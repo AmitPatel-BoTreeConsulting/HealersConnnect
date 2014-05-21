@@ -126,7 +126,7 @@ en:
         status_cancelled: 'Cancelled'
         status_all: 'All'
         update: 'Update Registration'
-        new: 'Create Registration'
+        new: 'Register'
     page_content:
       header:
         index: 'Registrations'
@@ -350,7 +350,7 @@ en:
     button:
       login: 'Login'
     placeholder:
-      mobile_or_email: 'Mobile or Email'
+      username: 'Member ID or Email'
       password: 'Password'
   forgot_password:
     caption:

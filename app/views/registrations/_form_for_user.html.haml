@@ -1,4 +1,4 @@
-- user_profile = @user.user_profile
+- user_profile = @member.user_profile
 - @registration ||= Registration.new
 - create_view = @registration.new_record?
 - submit_btn_caption = ( create_view ? t('registration.caption.button.new') : t('registration.caption.button.update') )
@@ -11,7 +11,7 @@
 
 = form_for @registration, url: url, html: { class: 'form-horizontal', role: 'form'} do |f|
   = f.hidden_field :workshop_id
-  = hidden_field_tag 'registration[user_id]', @user.id unless current_user
+  = hidden_field_tag 'registration[user_id]', @member.id unless current_user
   = render partial: 'shared/error_messages', locals: { target: @registration }
   .row
     .col-xs-12
@@ -21,7 +21,7 @@
             = t('common.caption.member_id')
           .col-sm-9
             .col-xs-2.padding-top-5
-              = @user.member_id
+              = @member.member_id
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.name')
@@ -72,7 +72,7 @@
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.mobile')
           .col-sm-9.padding-top-5
-            = user_profile.mobile
+            = user_profile.masked_mobile
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
@@ -176,7 +176,7 @@
       .clearfix
         .col-md-offset-3.col-md-9
           = f.submit "#{submit_btn_caption}", class: "#{registration_submit_button_class}", id: 'register', title: "#{submit_btn_caption}"
-          = link_to t('common.caption.button.cancel'), workshop_registrations_path(@workshop), class: 'btn', title: t('common.caption.button.cancel')
+          = link_to t('common.caption.button.cancel'), cancel_registration_path, class: 'btn', title: t('common.caption.button.cancel')
 
 - # Body of the sign in confirmation model
 - # appears if user is not logged in and
