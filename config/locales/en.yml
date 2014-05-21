@@ -350,7 +350,7 @@ en:
     button:
       login: 'Login'
     placeholder:
-      mobile_or_email: 'Mobile or Email'
+      username: 'Member ID or Email'
       password: 'Password'
   forgot_password:
     caption:
