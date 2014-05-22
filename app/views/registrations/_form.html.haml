@@ -1,10 +1,6 @@
-- @registration ||= Registration.new
 - create_view = @registration.new_record?
 - submit_btn_caption = ( create_view ? t('registration.caption.button.new') : t('registration.caption.button.update') )
 
-- # Initialize the nested attributes if they are not present
-- @registration = set_profile(@registration) if @registration.user_profile.blank?
-- # @registration.workshop ||= Workshop.new
 - url = url_for_registration_form(@registration, @workshop)
 - text_field_class = 'col-xs-10 col-sm-5'
 - inline_fields_class = 'col-xs-2 margin-right-10'

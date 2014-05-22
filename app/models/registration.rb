@@ -3,7 +3,7 @@ class Registration < ActiveRecord::Base
   belongs_to :user
   belongs_to :workshop
   has_one :certificate
-  has_one :user_profile
+  belongs_to :user_profile
   has_many :registration_donations
 
   serialize(:past_workshops, Hash)
@@ -16,7 +16,7 @@ class Registration < ActiveRecord::Base
 
   REGISTRATION_STATUSES = %w(confirmed cancelled)
 
-  attr_accessible :payment_type_id, :fresher, :cheque_no, :workshop_id, :user_id
+  attr_accessible :payment_type_id, :fresher, :cheque_no, :workshop_id, :user_id, :user_profile_id
   attr_accessible :bank_name, :cheque_date, :registration_date, :past_workshops
   attr_accessible :certificate_number
 

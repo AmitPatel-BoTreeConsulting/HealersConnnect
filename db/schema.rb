@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140521105838) do
+ActiveRecord::Schema.define(:version => 20140522081530) do
 
   create_table "activity_photos", :force => true do |t|
     t.integer  "event_id"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20140521105838) do
 
   add_index "donations", ["center_id"], :name => "index_donations_on_center_id"
   add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
+  add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
 
   create_table "event_categories", :force => true do |t|
     t.string   "name"
@@ -233,11 +234,11 @@ ActiveRecord::Schema.define(:version => 20140521105838) do
     t.text     "past_workshops"
     t.string   "certificate_number"
     t.boolean  "certified"
-    t.string   "member_id"
+    t.integer  "user_profile_id"
   end
 
-  add_index "registrations", ["member_id"], :name => "index_registrations_on_member_id"
   add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
+  add_index "registrations", ["user_profile_id"], :name => "index_registrations_on_user_profile_id"
   add_index "registrations", ["workshop_id"], :name => "index_registrations_on_workshop_id"
 
   create_table "roles", :force => true do |t|
@@ -263,14 +264,12 @@ ActiveRecord::Schema.define(:version => 20140521105838) do
     t.string   "location"
     t.float    "long"
     t.float    "lat"
-    t.integer  "registration_id"
     t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "member_id"
   end
 
-  add_index "user_profiles", ["registration_id"], :name => "index_user_profiles_on_registration_id"
   add_index "user_profiles", ["user_id"], :name => "index_user_profiles_on_user_id"
 
   create_table "user_roles", :force => true do |t|
@@ -288,7 +287,6 @@ ActiveRecord::Schema.define(:version => 20140521105838) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => ""
-    t.string   "mobile"
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -300,11 +298,12 @@ ActiveRecord::Schema.define(:version => 20140521105838) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "mobile",                 :default => "", :null => false
     t.string   "member_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["mobile"], :name => "index_users_on_mobile", :unique => true
+  add_index "users", ["member_id"], :name => "index_users_on_member_id", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "workshop_sessions", :force => true do |t|

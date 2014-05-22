@@ -1,5 +1,7 @@
 class UserProfile < ActiveRecord::Base
-  belongs_to :registration
+  has_many :registrations
+  #accepts_nested_attributes_for :registrations
+
   belongs_to :user
 
   after_create :add_unique_member_id

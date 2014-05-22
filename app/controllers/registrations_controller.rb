@@ -22,28 +22,39 @@ class RegistrationsController < ApplicationController
 
   def new
     check_for_profile()
-    default_profile_values = { gender: 'M', married: true }
     @registration = Registration.new(
-      user_profile_attributes: default_profile_values,
+      #user_profile_attributes: default_profile_values,
       registration_date: Date.today,
       workshop_id: @workshop.id
     )
+    @registration.build_user_profile(gender: 'M', married: true)
   end
 
   def create
-    @registration = Registration.new(params[:registration])
-    if @registration.save
-      @registration.update_attribute(:registration_date, @registration.created_at) unless current_user.present?
-
-      flash[:notice] = t('registration.message.success.registration_success')
-      if current_user
-        redirect_to workshop_registrations_path(status: 'confirmed')
-      else
-        redirect_to root_path
+    unless user_signed_in?
+      params[:registration][:registration_date] = Time.now
+      check_for_profile()
+      if @profile.present?
+        params[:registration][:user_profile_id] = @profile.id
       end
-    else
-      check_for_profile
-      render :new
+    end
+
+    Registration.transaction do
+      @registration = Registration.new(params[:registration])
+      if @registration.save
+        #@registration.update_attribute(:registration_date, @registration.created_at) unless current_user.present?
+        #@registration.update_attribute(:user_profiles_id, @registration.user_profile.id)
+
+        flash[:notice] = t('registration.message.success.registration_success')
+        if current_user
+          redirect_to workshop_registrations_path(status: 'confirmed')
+        else
+          redirect_to root_path
+        end
+      else
+        check_for_profile()
+        render :new
+      end
     end
   end
 

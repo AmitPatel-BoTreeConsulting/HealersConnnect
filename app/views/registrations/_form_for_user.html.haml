@@ -10,7 +10,7 @@
 
 = form_for @registration, url: url, html: { class: 'form-horizontal', role: 'form'} do |f|
   = f.hidden_field :workshop_id
-  = hidden_field_tag 'registration[user_id]', @profile.id unless current_user
+  = hidden_field_tag 'member_id', @profile.member_id unless current_user
   = render partial: 'shared/error_messages', locals: { target: @registration }
   .row
     .col-xs-12
