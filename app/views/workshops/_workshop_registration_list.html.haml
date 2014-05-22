@@ -1,8 +1,8 @@
 %tr.info
   %td.text-center<
-    = workshop.start_date.strftime('%Y-%m-%d') rescue nil
+    = date_formatted(workshop.start_date) rescue nil
   %td
-    = workshop.end_date.strftime('%Y-%m-%d') rescue nil
+    = date_formatted(workshop.end_date) rescue nil
   %td<
     = workshop.course.name
   %td<
