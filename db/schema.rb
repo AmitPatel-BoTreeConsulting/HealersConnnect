@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140518122915) do
+ActiveRecord::Schema.define(:version => 20140521105838) do
 
   create_table "activity_photos", :force => true do |t|
     t.integer  "event_id"
@@ -233,8 +233,10 @@ ActiveRecord::Schema.define(:version => 20140518122915) do
     t.text     "past_workshops"
     t.string   "certificate_number"
     t.boolean  "certified"
+    t.string   "member_id"
   end
 
+  add_index "registrations", ["member_id"], :name => "index_registrations_on_member_id"
   add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"
   add_index "registrations", ["workshop_id"], :name => "index_registrations_on_workshop_id"
 

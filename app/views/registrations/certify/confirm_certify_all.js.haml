@@ -1,5 +1,5 @@
 - if @registrations_without_certy_no.blank?
-  var popup_title = "#{"You are about to certify #{@registrations_set_to_certify.count} attendees for #{@workshop.course.name}. Are you sure you want to continue certification process?"}";
+  var popup_title = "#{"You are about to certify #{pluralize(@registrations_set_to_certify.count, 'attendee')} for #{@workshop.course.name}. Are you sure you want to continue certification process?"}";
   $('#confirmCertifyAllBtn').removeClass('hide');
   $('#confirmCertifyAllBtn').attr('href', "#{certify_all_workshop_registrations_path(@workshop)}");
 - else

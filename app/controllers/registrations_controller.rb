@@ -21,7 +21,7 @@ class RegistrationsController < ApplicationController
   end
 
   def new
-    check_for_membership()
+    check_for_profile()
     default_profile_values = { gender: 'M', married: true }
     @registration = Registration.new(
       user_profile_attributes: default_profile_values,
@@ -42,7 +42,7 @@ class RegistrationsController < ApplicationController
         redirect_to root_path
       end
     else
-      check_for_membership
+      check_for_profile
       render :new
     end
   end
@@ -119,8 +119,8 @@ class RegistrationsController < ApplicationController
   end
 
   def confirm_certify_all
-    @registrations_set_to_certify = @workshop.registrations.confirmed.uncertified
-    @registrations_without_certy_no = @workshop.registrations.without_certy_no
+    @registrations_set_to_certify = @workshop.registrations.certifiable
+    @registrations_without_certy_no = @workshop.registrations.certifiable.without_certificate
     respond_to do |format|
       format.js do
         render 'registrations/certify/confirm_certify_all.js.haml'
@@ -177,7 +177,7 @@ class RegistrationsController < ApplicationController
       @eligibilities = @workshop.eligibilities
     end
 
-    def check_for_membership
-      @member = User.find_by_member_id(params[:member_id]) if params[:member_id].present?
+    def check_for_profile
+      @profile = UserProfile.find_by_member_id(params[:member_id]) if params[:member_id].present?
     end
 end

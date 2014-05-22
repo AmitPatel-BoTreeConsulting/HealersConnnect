@@ -1,17 +1,16 @@
-- user_profile = @member.user_profile
 - @registration ||= Registration.new
 - create_view = @registration.new_record?
 - submit_btn_caption = ( create_view ? t('registration.caption.button.new') : t('registration.caption.button.update') )
 
 - # Initialize the nested attributes if they are not present
-- @registration.user_profile ||= user_profile
+- @registration.user_profile ||= @profile
 - # @registration.workshop ||= Workshop.new
 - url = url_for_registration_form(@registration, @workshop)
 - text_field_class = 'col-xs-10 col-sm-5'
 
 = form_for @registration, url: url, html: { class: 'form-horizontal', role: 'form'} do |f|
   = f.hidden_field :workshop_id
-  = hidden_field_tag 'registration[user_id]', @member.id unless current_user
+  = hidden_field_tag 'registration[user_id]', @profile.id unless current_user
   = render partial: 'shared/error_messages', locals: { target: @registration }
   .row
     .col-xs-12
@@ -21,70 +20,70 @@
             = t('common.caption.member_id')
           .col-sm-9
             .col-xs-2.padding-top-5
-              = @member.member_id
+              = @profile.member_id
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.name')
           .col-sm-9
             .padding-top-5
-              = user_profile.first_name
-              = user_profile.middle_name
-              = user_profile.last_name
+              = @profile.first_name
+              = @profile.middle_name
+              = @profile.last_name
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.date_of_birth')
           .col-sm-3
             .input-group.padding-top-5
-              = user_profile.birth_date.try(:strftime, '%d/%m/%Y')
+              = @profile.birth_date.try(:strftime, '%d/%m/%Y')
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.gender')
           .col-sm-9.padding-top-5
-            = gender_formatted(user_profile.gender)
+            = gender_formatted(@profile.gender)
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.marital_status')
           .col-sm-9.padding-top-5
-            = marital_status_formatted(user_profile.married)
+            = marital_status_formatted(@profile.married)
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.education')
           .col-sm-9.padding-top-5
-            = user_profile.education
+            = @profile.education
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.occupation')
           .col-sm-9.padding-top-5
-            = user_profile.occupation
+            = @profile.occupation
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right{ for: 'form-input-readonly' }
             = t('registration.caption.residential_address')
           .col-sm-9.padding-top-5
-            = user_profile.address
+            = @profile.address
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.mobile')
           .col-sm-9.padding-top-5
-            = user_profile.masked_mobile
+            = @profile.masked_mobile
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('registration.caption.telephone')
           .col-sm-9.padding-top-5
-            = user_profile.telephone
+            = @profile.telephone
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.email')
           .col-sm-9.padding-top-5
-            = user_profile.email
+            = @profile.email
         .space-4
       .form-group
         %label.col-sm-3.control-label.no-padding-right

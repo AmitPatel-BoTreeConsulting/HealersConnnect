@@ -12,9 +12,8 @@
               %th
           %tbody
             - @profiles.each do |profile|
-              - if profile.user
-                %tr
-                  %td= profile.name
-                  %td= profile.mobile
-                  %td= profile.telephone
-                  %td= link_to(t('common.caption.register'), new_workshop_registration_path(workshop_id: @workshop.id, member_id: profile.member_id), class: 'green', title: t('common.caption.register'))
+              %tr
+                %td= profile.name
+                %td= profile.mobile
+                %td= profile.telephone
+                %td= link_to(t('common.caption.register'), new_workshop_registration_path(workshop_id: @workshop.id, member_id: profile.member_id), class: 'green', title: t('common.caption.register'))

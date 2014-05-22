@@ -13,7 +13,7 @@
           &nbsp;
           %span.icon-map-marker.bigger-110
           = @workshop.location
-  - if @member
+  - if @profile
     = render partial: 'registrations/form_for_user'
   - else
     = render partial: 'registrations/form'

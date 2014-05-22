@@ -30,8 +30,9 @@ class Registration < ActiveRecord::Base
   scope :unconfirmed, where(active: false)
   scope :uncertified, where(certified: [false, nil])
   scope :certified, where(certified: true)
-  scope :without_certy_no, where(certificate_number: nil)
   scope :freshers, where(fresher: true)
+  scope :without_certificate, where(certificate_number: nil)
+  scope :certifiable, confirmed.freshers
 
   class << self
     def should_filter_by_center?(user)
@@ -52,9 +53,9 @@ class Registration < ActiveRecord::Base
     workshop.send("fees_#{registration_timing}_session")
   end
 
-  def user_profile
-    UserProfile.find_by_member_id(member_id)
-  end
+  #def user_profile
+  #  UserProfile.find_by_member_id(member_id)
+  #end
 
   def registration_timing
     if registration_date < workshop.fees_date.to_date
@@ -134,14 +135,17 @@ class Registration < ActiveRecord::Base
   end
 
   def certify
-    update_attribute(:certified, true)
-    attendee = User.find_by_member_id(user_profile.member_id)
-    if attendee.blank?
-      # If user not found then create new user from user_profile
-      attendee = User.create_from_user_profile!(user_profile)
-      update_attribute(:user_id, attendee.id)
+    Registration.transaction do
+      update_attribute(:certified, true)
+      attendee = User.find_by_member_id(member_id)
+      logger.debug "1...............Attendee :: #{attendee}"
+      if attendee.blank?
+        # If user not found then create new user from user_profile
+        attendee = User.create_from_user_profile!(user_profile)
+        update_attribute(:user_id, attendee.id)
+      end
+      create_certificate!(user_id: attendee.id, workshop_id: workshop_id)
     end
-    create_certificate!(user_id: user_id, workshop_id: workshop_id)
   end
 
   def donation_receivable
