@@ -137,8 +137,7 @@ class Registration < ActiveRecord::Base
   def certify
     Registration.transaction do
       update_attribute(:certified, true)
-      attendee = User.find_by_member_id(member_id)
-      logger.debug "1...............Attendee :: #{attendee}"
+      attendee = user_profile.user
       if attendee.blank?
         # If user not found then create new user from user_profile
         attendee = User.create_from_user_profile!(user_profile)
