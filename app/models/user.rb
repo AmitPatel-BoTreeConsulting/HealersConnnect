@@ -109,4 +109,16 @@ class User < ActiveRecord::Base
   def login
     @login || mobile || email
   end
+
+  def courses_attempted
+    certificates.map(&:course)
+  end
+
+  def courses_workshop_map
+    mapping = {}
+    certificates.each do |certificate|
+      mapping[certificate.course] = certificate.workshop
+    end
+    mapping
+  end
 end

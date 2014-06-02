@@ -133,17 +133,24 @@
               %label
                 = f.radio_button :fresher, false, class: 'ace'
                 %span.lbl= t('registration.caption.course_attempt_review')
+      - courses_workshop_map = @profile.courses_workshop_map
       - @eligibilities.each do |course|
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = course.name
           .col-sm-9
-            - palce = @registration.past_workshops[course.alias]['palce'] rescue nil
-            - date = @registration.past_workshops[course.alias]['date'] rescue nil
-            - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil
-            = text_field_tag "registration[past_workshops[#{course.alias}][palce]]", palce, placeholder: t('registration.caption.placeholder.place'), class: 'col-xs-2 margin-right-10'
-            = text_field_tag "registration[past_workshops[#{course.alias}][date]]", date, placeholder: t('registration.caption.placeholder.date_or_year'), class: 'col-xs-2 margin-right-10'
-            = text_field_tag "registration[past_workshops[#{course.alias}][instructor]]", instructor, placeholder: t('registration.caption.placeholder.instructor'), class: 'col-xs-2'
+            - if courses_workshop_map.has_key?(course)
+              - workshop = courses_workshop_map[course]
+              = text_field_tag "workshop_place", workshop.center.location, disabled: true, class: 'col-xs-2 margin-right-10'
+              = text_field_tag "workshop_date_or_year", date_formatted(workshop.end_date), disabled: true, class: 'col-xs-2 margin-right-10'
+              = text_field_tag "workshop_instructor", workshop.instructor.name, disabled: true, class: 'col-xs-2'
+            - else
+              - palce = @registration.past_workshops[course.alias]['palce'] rescue nil
+              - date = @registration.past_workshops[course.alias]['date'] rescue nil
+              - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil
+              = text_field_tag "registration[past_workshops[#{course.alias}][palce]]", palce, placeholder: t('registration.caption.placeholder.place'), class: 'col-xs-2 margin-right-10'
+              = text_field_tag "registration[past_workshops[#{course.alias}][date]]", date, placeholder: t('registration.caption.placeholder.date_or_year'), class: 'col-xs-2 margin-right-10'
+              = text_field_tag "registration[past_workshops[#{course.alias}][instructor]]", instructor, placeholder: t('registration.caption.placeholder.instructor'), class: 'col-xs-2'
       - if current_user
         .space-4
         .form-group

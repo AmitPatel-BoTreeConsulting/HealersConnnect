@@ -6,6 +6,7 @@ class Certificate < ActiveRecord::Base
   before_create :add_certificate_number
 
   attr_accessible :certificate_number, :user_id, :workshop_id, :registration_id
+  delegate :course, to: :workshop
 
   validates_presence_of :user_id, :workshop_id, :registration_id
 
