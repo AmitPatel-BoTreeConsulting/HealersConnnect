@@ -59,6 +59,7 @@ class RegistrationsController < ApplicationController
   end
 
   def edit
+    @profile = Registration.find(params[:id]).user_profile
   end
 
   def update

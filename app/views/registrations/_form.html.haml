@@ -144,11 +144,13 @@
                 %label
                   = f.radio_button :fresher, false, class: 'ace'
                   %span.lbl= t('registration.caption.course_attempt_review')
+        - courses_workshop_map = @profile.courses_workshop_map if @profile.present?
         - @eligibilities.each do |course|
           .form-group
             %label.col-sm-3.control-label.no-padding-right
               = course.name
-            .col-sm-9
+            = render partial: 'workshop_details', locals: {courses_workshop_map: courses_workshop_map, course: course}
+            -#.col-sm-9
               - palce = @registration.past_workshops[course.alias]['palce'] rescue nil
               - date = @registration.past_workshops[course.alias]['date'] rescue nil
               - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil

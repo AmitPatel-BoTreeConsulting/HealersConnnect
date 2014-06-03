@@ -138,7 +138,8 @@
         .form-group
           %label.col-sm-3.control-label.no-padding-right
             = course.name
-          .col-sm-9
+          = render partial: 'workshop_details', locals: {courses_workshop_map: courses_workshop_map, course: course}
+          -#.col-sm-9
             - if courses_workshop_map.has_key?(course)
               - workshop = courses_workshop_map[course]
               = text_field_tag "workshop_place", workshop.center.location, disabled: true, class: 'col-xs-2 margin-right-10'
