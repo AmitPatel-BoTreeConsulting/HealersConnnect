@@ -8,9 +8,11 @@ class UserProfile < ActiveRecord::Base
 
   RANDOM_MEMBER_ID_RANGE = 1000..9999
 
+  serialize(:past_workshops, Hash)
+
   attr_accessible :address, :birth_date, :education, :email, :first_name
   attr_accessible :gender, :last_name, :lat, :location, :long, :married
-  attr_accessible :middle_name, :mobile, :occupation, :telephone, :member_id
+  attr_accessible :middle_name, :mobile, :occupation, :telephone, :member_id, :past_workshops
   delegate :courses_attempted, :courses_workshop_map, to: :user
 
   validates_uniqueness_of :member_id

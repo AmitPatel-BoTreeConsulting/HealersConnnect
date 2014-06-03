@@ -144,6 +144,9 @@ class Registration < ActiveRecord::Base
         update_attribute(:user_id, attendee.id)
       end
       create_certificate!(user_id: attendee.id, workshop_id: workshop_id)
+
+      #copy past workshops details which is not tracked in the system
+      user_profile.update_attribute(:past_workshops, self.past_workshops) if self.past_workshops.present?
     end
   end
 

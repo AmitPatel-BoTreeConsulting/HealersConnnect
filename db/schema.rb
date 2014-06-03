@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140522081530) do
+ActiveRecord::Schema.define(:version => 20140603031544) do
 
   create_table "activity_photos", :force => true do |t|
     t.integer  "event_id"
@@ -265,9 +265,10 @@ ActiveRecord::Schema.define(:version => 20140522081530) do
     t.float    "long"
     t.float    "lat"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "member_id"
+    t.text     "past_workshops"
   end
 
   add_index "user_profiles", ["user_id"], :name => "index_user_profiles_on_user_id"

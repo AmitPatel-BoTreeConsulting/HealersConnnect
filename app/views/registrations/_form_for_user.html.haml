@@ -144,6 +144,13 @@
               = text_field_tag "workshop_place", workshop.center.location, disabled: true, class: 'col-xs-2 margin-right-10'
               = text_field_tag "workshop_date_or_year", date_formatted(workshop.end_date), disabled: true, class: 'col-xs-2 margin-right-10'
               = text_field_tag "workshop_instructor", workshop.instructor.name, disabled: true, class: 'col-xs-2'
+            - elsif @profile.present? && (past_workshops = @profile.past_workshops).present?
+              - palce = past_workshops[course.alias]['palce'] rescue nil
+              - date = past_workshops[course.alias]['date'] rescue nil
+              - instructor = past_workshops[course.alias]['instructor'] rescue nil
+              = text_field_tag "workshop_place", palce, disabled: true, class: 'col-xs-2 margin-right-10'
+              = text_field_tag "workshop_date_or_year", date, disabled: true, class: 'col-xs-2 margin-right-10'
+              = text_field_tag "workshop_instructor", instructor, disabled: true, class: 'col-xs-2'
             - else
               - palce = @registration.past_workshops[course.alias]['palce'] rescue nil
               - date = @registration.past_workshops[course.alias]['date'] rescue nil

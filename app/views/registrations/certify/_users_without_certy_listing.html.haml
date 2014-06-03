@@ -15,5 +15,5 @@
                 %td= registration.get_user_profile.name
                 %td<
                   .action-buttons
-                    = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', target: '_blank', title: t('common.caption.title.edit')) do
+                    = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', title: t('common.caption.title.edit')) do
                       %i.icon-pencil.bigger-130
