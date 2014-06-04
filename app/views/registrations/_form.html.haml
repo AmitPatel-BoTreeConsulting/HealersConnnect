@@ -182,7 +182,7 @@
         - if @registration.new_record?
           .hr.hr-24
           -#%h4.header.green Details of Pranic Healing Courses you have taken (as applicable)
-          %div{style: 'text-align:justify'}
+          -#%div{style: 'text-align:justify'}
             .col-xs-12
               %p= t('registration.caption.text.text_paragraph_1')
               %p= t('registration.caption.text.text_paragraph_2')
@@ -199,7 +199,7 @@
               .space-10
         .clearfix
           .col-md-offset-3.col-md-9
-            = f.submit "#{submit_btn_caption}", class: "#{registration_submit_button_class}", id: 'register', title: "#{submit_btn_caption}"
+            = f.submit "#{submit_btn_caption}", class: 'btn btn-primary', id: 'register', title: "#{submit_btn_caption}"
             = link_to t('common.caption.button.cancel'), cancel_registration_path, class: 'btn', title: t('common.caption.button.cancel')
 
 - # Body of the sign in confirmation model
