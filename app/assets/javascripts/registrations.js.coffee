@@ -46,8 +46,8 @@ $(document).ready ->
   # When user add/change member id field, send ajax to get list of matched user
   # then show popup containing this list
   $('#user_member_id').change ->
-    unless user_signed_in()
-      checkMemberIdByAjax()
+    #unless user_signed_in()
+    checkMemberIdByAjax()
 
 # Determine user is signed_in or not using hiddenfield
 user_signed_in = ->
