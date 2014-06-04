@@ -18,7 +18,7 @@
           %label.col-sm-3.control-label.no-padding-right #{t('donation.caption.center')}
           .col-sm-9
             = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
-        .row
+        .row#session_controls
           - if workshop_sessions.present?
             #workshop_sessions
               = render :partial => 'workshop_sessions', locals: {workshop_sessions: workshop_sessions}
@@ -69,7 +69,7 @@
               %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_before_session')}
             .col-sm-2
               .input-group
-                = f.text_field :fees_date, id: 'id-date-picker-11', class: 'form-control date-picker', value: @workshop.fees_date.try(:strftime, '%d/%m/%Y')
+                = f.text_field :fees_date, id: 'fees_before-date-picker', class: 'form-control date-picker', value: @workshop.fees_date.try(:strftime, '%d/%m/%Y')
                 %span.input-group-addon
                   %i.icon-calendar.bigger-110
             .col-sm-5
@@ -80,7 +80,7 @@
             .col-sm-1
               %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_after_session')}
             .col-sm-2
-              = label_tag 'workshop_fees_after', '', id: 'workshop_fees_after', class: 'common_form_lbl'
+              = label_tag 'workshop_fees_after', fees_date, id: 'workshop_fees_after', class: 'common_form_lbl'
             .col-sm-5
               = f.number_field :fees_after_session, class: 'col-xs-10 col-sm-5 text-right'
         .form-group
@@ -89,7 +89,7 @@
             .col-sm-1
               %label.col-sm-3.control-label.no-padding-right #{t('workshop.caption.fees_on_spot')}
             .col-sm-2
-              = label_tag 'workshop_fees_spot', '', id: 'workshop_fees_spot', class: 'common_form_lbl'
+              = label_tag 'workshop_fees_spot', fees_date, id: 'workshop_fees_spot', class: 'common_form_lbl'
             .col-sm-5
               = f.number_field :fees_on_session, class: 'col-xs-10 col-sm-5 text-right'
         .form-group
@@ -111,7 +111,7 @@
             = f.text_field :contact, class: 'col-xs-12'
         .space-20
         .col-md-offset-3.col-md-9
-          = f.submit t('workshop.caption.button.new'), class: 'btn btn-primary', title: t('workshop.caption.button.new')
+          = f.submit t('common.caption.button.save'), class: 'btn btn-primary', title: t('workshop.caption.button.new')
           = link_to t('common.caption.button.cancel'), workshops_path, class: 'btn', title: t('common.caption.button.cancel')
 %script{:src => '//maps.googleapis.com/maps/api/js?v=3&sensor=true&libraries=places&region=india', type: 'text/javascript'}
 :javascript

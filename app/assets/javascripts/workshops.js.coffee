@@ -27,13 +27,13 @@ $(document).ready ->
     toggleRemoveBtnCaseFirstField containerObj
     return
 
-  $("#id-date-picker-11").on "change", ->
-    $("#workshop_fees_after").text $("#id-date-picker-11").val()
-    return
+#  $(".wrapper-class .date-picker:first").on "change", ->
+#    $("#workshop_fees_after").text $(this).val()
+#    return
 
-  $("#id-date-picker-12").on "change", ->
-    sessionDate = $("#id-date-picker-12").val()
-    $('#id-date-picker-11').val sessionDate
+  $('#session_controls').on "change", ".wrapper-class .date-picker:first", ->
+    sessionDate = $(this).val()
+    $('#fees_before-date-picker').val sessionDate
     $("#workshop_fees_after").text sessionDate
     $("#workshop_fees_spot").text sessionDate
     return

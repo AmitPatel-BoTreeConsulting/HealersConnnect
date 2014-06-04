@@ -16,4 +16,12 @@ module WorkshopsHelper
   def get_session_start_end_time(session_start_end_time)
     session_start_end_time.strftime("%I:%M %p") if session_start_end_time.present?
   end
+
+  def fees_date
+    if @workshop.fees_date.present?
+      date_formatted(@workshop.fees_date)
+    else
+      ''
+    end
+  end
 end
