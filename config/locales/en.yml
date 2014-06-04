@@ -455,3 +455,8 @@ en:
       header:
         upcoming_workshops: 'Upcoming Workshops'
         upcoming_events: 'Upcoming Events'
+  user_profile:
+    caption:
+      members: 'Members'
+    message:
+      no_members_found: 'No members found'

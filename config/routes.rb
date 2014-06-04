@@ -56,4 +56,7 @@ HealersConnnect::Application.routes.draw do
   get 'manage_homes/update_upcoming_workshop/:id' => 'manage_homes#update_upcoming_workshop'
   get 'manage_homes/update_upcoming_event/:id' => 'manage_homes#update_upcoming_event'
   get 'courses/detail/:id' => 'website/courses#detail', as: :course_detail
+
+  get 'admin/user_profiles' => 'user_profile#index'
+
 end
