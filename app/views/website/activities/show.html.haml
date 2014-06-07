@@ -1,4 +1,4 @@
-%link{href: "http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css", rel: "stylesheet"}/
+= stylesheet_link_tag "home/blueimp-gallery.min.css"
 = stylesheet_link_tag "home/bootstrap-image-gallery.css"
 #blog_post.home_course_content_margin
   .container
@@ -29,16 +29,13 @@
               %h5= t('activity_photo_gallery.message.no_photos_found')
 
   #blueimp-gallery.blueimp-gallery
-    / The container for the modal slides
     .slides
-    / Controls for the borderless lightbox
     %h3.title
     %a.prev ‹
     %a.next ›
     %a.close ×
     %a.play-pause
     %ol.indicator
-    / The modal dialog, which will be used to wrap the lightbox content
     .modal.fade
       .modal-dialog
         .modal-content
@@ -51,9 +48,6 @@
               Previous
             %button.btn.btn-primary.next{type: "button"}
               Next
-
-%script{src: "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"}
-/ Bootstrap JS is not required, but included for the responsive demo navigation and button states
-%script{src: "http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"}
-%script{src: "http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"}
+= javascript_include_tag "home/ajax_google.js"
+= javascript_include_tag "home/blueimp.js"
 = javascript_include_tag "home/bootstrap-image-gallery.min.js"
