@@ -13,7 +13,7 @@ class UserProfile < ActiveRecord::Base
   attr_accessible :address, :birth_date, :education, :email, :first_name
   attr_accessible :gender, :last_name, :lat, :location, :long, :married
   attr_accessible :middle_name, :mobile, :occupation, :telephone, :member_id, :past_workshops
-  delegate :courses_attempted, :courses_workshop_map, to: :user
+  delegate :courses_attempted, to: :user
 
   validates_uniqueness_of :member_id
   validates_presence_of :address, :birth_date, :education, :occupation
@@ -43,6 +43,9 @@ class UserProfile < ActiveRecord::Base
     end
   end
 
+  def courses_workshop_map
+    self.user.courses_workshop_map if user.present?
+  end
   private
 
   def generate_member_id
