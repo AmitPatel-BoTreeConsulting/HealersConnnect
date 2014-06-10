@@ -13,7 +13,7 @@ class UserProfile < ActiveRecord::Base
   attr_accessible :address, :birth_date, :education, :email, :first_name
   attr_accessible :gender, :last_name, :lat, :location, :long, :married
   attr_accessible :middle_name, :mobile, :occupation, :telephone, :member_id, :past_workshops
-  delegate :courses_attempted, :courses_workshop_map, to: :user
+  delegate :courses_attempted, to: :user
 
   validates_uniqueness_of :member_id
   validates_presence_of :address, :birth_date, :education, :occupation
@@ -22,6 +22,14 @@ class UserProfile < ActiveRecord::Base
   validates :mobile, numericality: { only_integer: true },
             length: { is: 10 }, allow_blank: true,
             format:  {:with => /^[1-9]/}
+
+  def self.search(search)
+    if search
+      where('lower(first_name) LIKE ?', "%#{search}%".downcase)
+    else
+      scoped
+    end
+  end
 
   def name
     "#{ first_name } #{ middle_name } #{ last_name }"
@@ -43,6 +51,9 @@ class UserProfile < ActiveRecord::Base
     end
   end
 
+  def courses_workshop_map
+    self.user.courses_workshop_map if user.present?
+  end
   private
 
   def generate_member_id
