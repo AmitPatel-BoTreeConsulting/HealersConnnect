@@ -1,0 +1,23 @@
+#blueimp-gallery.blueimp-gallery
+  .slides
+  %h3.title
+  %a.prev ‹
+  %a.next ›
+  %a.close ×
+  %a.play-pause
+  %ol.indicator
+  .modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", type: "button"} ×
+          %h4.modal-title
+        .modal-body.next
+        .modal-footer
+          %button.btn.btn-default.pull-left.prev{type: "button"}
+            Previous
+          %button.btn.btn-primary.next{type: "button"}
+            Next
+= javascript_include_tag "home/ajax_google.js"
+= javascript_include_tag "home/blueimp.js"
+= javascript_include_tag "home/bootstrap-image-gallery.min.js"
