@@ -3,8 +3,14 @@ class Website::CoursesController < ApplicationController
   layout 'home'
 
   def index
+    workshop = Workshop.find_by_id(params[:workshop_id])
     @courses = Course.find_all_by_course_category_id(CourseCategory.first.id).sort_by(&:id)
-    @course = @courses.first
+
+    if workshop.present?
+      @course = workshop.course
+    else
+      @course = @courses.first
+    end
   end
 
   def category_wise_courses

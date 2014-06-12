@@ -4,12 +4,10 @@
     %article#tour.slide{:style => "background: url('#{background_splash}') repeat-x top center;"}
       - if upcoming_event_workshop[:image].present?
         = image_tag(upcoming_event_workshop[:image], class: 'asset left-472 sp650 t90 z3', style: 'width:910px;')
-      - else
-        = image_tag('no_image.png',class: 'asset left-472 sp650 t90 z3', style: 'width:610px;')
       .info
-        %h2= upcoming_event_workshop[:name]
+        %h4= upcoming_event_workshop[:name]
         %div.slider_description_width
-          %h4{style: 'color: #ffffff;'}= simple_format(truncate(upcoming_event_workshop[:description], length: 100))
+          %p= truncate(strip_tags(upcoming_event_workshop[:description]), length: 200, separator: ' ')
         = link_to t('manage_home.caption.button.read_more'), upcoming_event_workshop[:url]
 .spacer20
 .container

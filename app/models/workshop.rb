@@ -23,7 +23,7 @@ class Workshop < ActiveRecord::Base
 
   # Upcoming courses for homepage
   scope :upcoming_workshops, lambda { where("start_date >= ?", Date.today).order(:start_date) }
-  scope :show_on_slider, where(show_on_slider: true)
+  scope :show_on_slider, upcoming_workshops.where(show_on_slider: true)
   scope :filter_by_center, ->(centers) { where(center_id: centers) }
 
   def eligibilities
@@ -81,7 +81,8 @@ class Workshop < ActiveRecord::Base
       upcoming_workshop_hash[:name] = workshop.course.name
       upcoming_workshop_hash[:description] = workshop.course.description
       upcoming_workshop_hash[:id] = workshop.course_id
-      upcoming_workshop_hash[:url] = Rails.application.routes.url_helpers.course_detail_path(workshop.course_id)
+      upcoming_workshop_hash[:url] = Rails.application.routes.url_helpers.website_courses_path(workshop_id: workshop.id)
+      upcoming_workshop_hash[:show_on_slider] = workshop.show_on_slider
       workshops << upcoming_workshop_hash
     end
     workshops

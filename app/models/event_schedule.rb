@@ -9,7 +9,7 @@ class EventSchedule < ActiveRecord::Base
   has_many :event_photos, dependent: :destroy
 
   scope :upcoming_events, lambda { where("start_date >= ?", Date.today).order(:start_date) }
-  scope :show_on_slider, where(show_on_slider: true)
+  scope :show_on_slider, upcoming_events.where(show_on_slider: true)
 
   private
 
@@ -23,6 +23,7 @@ class EventSchedule < ActiveRecord::Base
       upcoming_event_hash[:description] = event.event.description
       upcoming_event_hash[:id] = event.event_id
       upcoming_event_hash[:url] = Rails.application.routes.url_helpers.website_home_path(event.event_id)
+      upcoming_event_hash[:show_on_slider] = event.show_on_slider
       events << upcoming_event_hash
     end
     events
