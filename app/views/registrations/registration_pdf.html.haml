@@ -27,21 +27,20 @@
                   .col-xs-12
                     %h3
                       %b= t('registration.caption.pdf.name_of_course')
-                      %b= t('registration.caption.pdf.course_title')
+                      %b= @registration.workshop.course.name
                 .space-28
                 - # uncomment when enabling workshop
-                - if false
-                  .row
-                    .col-xs-8
-                      .form-group
-                        %label.h4
-                          %b= t('registration.caption.pdf.trainer')
-                        %label.h4= workshop.workshop_instructor.capitalize
-                    .col-xs-4
-                      .form-group.pull-left
-                        %label.h4
-                          %b= t('registration.caption.pdf.certificate_number')
-                          %u
+                .row
+                  .col-xs-8
+                    .form-group
+                      %label.h4
+                        %b= t('registration.caption.pdf.trainer')
+                      %label.h4= @registration.workshop.instructor.name.capitalize
+                  .col-xs-4
+                    .form-group.pull-left
+                      %label.h4
+                        %b= t('registration.caption.pdf.certificate_number')
+                      %label.h4= @registration.certificate_number
                 .row
                   .col-xs-8
                     .form-group
@@ -127,23 +126,23 @@
                                 = workshop.workshop_dated
                               %td.h4.text-center<
                                 = workshop.workshop_instructor.capitalize
-                .row
+                -#.row
                   .col-xs-12
                     %h3.text-center
                       %u
                         %b= t('registration.caption.pdf.declaration')
-                .row
+                -#.row
                   .col-xs-12
                     %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_1')}
                     %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_2')}
                     %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_3')}
-                .space-20
-                .row
+                -#.space-20
+                -#.row
                   .col-xs-8
                     .form-group
                       %label.h4
                         %b= t('registration.caption.pdf.date')
-                .row
+                -#.row
                   .col-xs-8
                     .form-group
                       %label.h4
