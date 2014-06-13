@@ -35,6 +35,13 @@ class Website::CoursesController < ApplicationController
   def detail
   end
 
+  def show_course_image
+    render :text => open(Course.find(params[:id]).avatar.path(params[:style].to_sym), "rb").read
+      format.js {
+        render file: 'website/courses/category_wise_courses'
+      }
+  end
+
   private
 
   def course_from_params

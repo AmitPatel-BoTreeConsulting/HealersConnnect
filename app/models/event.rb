@@ -7,8 +7,13 @@ class Event < ActiveRecord::Base
           medium: "#{Settings.paperclip.style.medium}>",
           thumb: "#{Settings.paperclip.style.thumb}>"
       },
-      :url => Settings.paperclip.image_path
+      :path => Settings.events.paperclip.path,
+      :url => Settings.events.paperclip.url
   }
+
+  Paperclip.interpolates :id do |image, style|
+    image.instance.id
+  end
 
   has_attached_file :avatar, Paperclip::Attachment.default_options.merge(paperclip_options)
   validates_attachment_content_type :avatar, content_type:  /\Aimage\/.*\Z/

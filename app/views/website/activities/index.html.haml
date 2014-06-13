@@ -9,7 +9,7 @@
           .post
             .img
               - if activity.avatar.present?
-                = link_to(image_tag(activity.avatar.url(:medium), class: 'img-responsive'), website_activity_path(activity))
+                = link_to(image_tag(website_activity_image_path(style: :medium, id: activity.id, filename: activity.avatar_file_name), class: 'img-responsive'), website_activity_path(activity))
               - else
                 = link_to(image_tag('no_image.png'), website_activity_path(activity))
             .text

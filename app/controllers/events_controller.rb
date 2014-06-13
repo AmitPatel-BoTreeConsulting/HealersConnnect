@@ -27,6 +27,14 @@ class EventsController < ApplicationController
     end
   end
 
+  def show_image
+    render :text => open(Event.find(params[:id]).avatar.path(params[:style].to_sym), "rb").read
+  end
+
+  def show_event_image_gallery
+    render :text => open(ActivityPhoto.find(params[:id]).photo.path(params[:style].to_sym), "rb").read
+  end
+
   def edit
     set_event_categories
   end

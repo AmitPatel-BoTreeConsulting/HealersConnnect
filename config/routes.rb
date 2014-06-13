@@ -58,5 +58,11 @@ HealersConnnect::Application.routes.draw do
   get 'courses/detail/:id' => 'website/courses#detail', as: :course_detail
 
   get 'admin/user_profiles' => 'user_profile#index'
-
+  get 'photos/events/:id/:style/:filename' => 'events#show_image', as: :event_image
+  get 'photos/events/:event_id/gallery/:id/:style/:filename' => 'events#show_event_image_gallery', as: :event_image_gallery
+  get 'photos/event_schedule_gallery/:event_schedule_id/:id/:style/:filename' => 'event_schedules#show_event_schedule_gallery', as: :event_schedule_gallery
+  get 'photos/courses/:id/:style/:filename' => 'courses#show_course_image', as: :course_image
+  get 'photos/courses/:id/:style/:filename' => 'website/courses#show_course_image', as: :website_course_image
+  get 'photos/events/:id/:style/:filename' => 'website/activities#show_activity_image', as: :website_activity_image
+  get 'photos/events/:event_id/gallery/:id/:style/:filename' => 'website/activities#show_event_image_gallery', as: :website_event_image_gallery
 end

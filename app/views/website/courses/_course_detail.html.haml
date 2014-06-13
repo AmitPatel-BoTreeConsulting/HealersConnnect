@@ -4,7 +4,10 @@
     .big
       %h3= @course.name
       %p
-        = image_tag @course.avatar.url(:medium) if @course.avatar.present?
+        - if  @course.avatar_file_name.present?
+          = image_tag website_course_image_path(style: :medium, id: @course.id, filename: @course.avatar_file_name)
+        - else
+          = image_tag ('no_image.png')
       %p
         = simple_format(@course.description)
   .col-sm-5.right_box

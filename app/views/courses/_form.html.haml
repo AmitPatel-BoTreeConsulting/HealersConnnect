@@ -26,7 +26,7 @@
         .form-group#course_avatar_part
           %label.col-sm-2.control-label.no-padding-right
           .col-sm-9
-            = image_tag @course.avatar.url(:thumb)
+            = image_tag course_image_path(style: :medium, id: @course.id, filename: @course.avatar_file_name)
       .form-group
         %label.col-sm-2.control-label.no-padding-right
         .col-sm-9

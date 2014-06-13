@@ -25,6 +25,10 @@ class EventSchedulesController < ApplicationController
     end
   end
 
+  def show_event_schedule_gallery
+    render :text => open(EventPhoto.find(params[:id]).photo.path(params[:style].to_sym), "rb").read
+  end
+
   def edit
   end
 

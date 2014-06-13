@@ -37,7 +37,7 @@
           .form-group#event_avatar_part
             %label.col-sm-3.control-label.no-padding-right
             .col-sm-9
-              = image_tag @event.avatar.url(:thumb)
+              = image_tag event_image_url(style: :thumb, id: @event.id, filename: @event.avatar_file_name)
         .form-group
           %label.col-sm-3.control-label.no-padding-right
           .col-sm-9
