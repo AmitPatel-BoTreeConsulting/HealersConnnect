@@ -5,7 +5,7 @@ class Role < ActiveRecord::Base
   HEALER = 'healer'
   ACCOUNTANT = 'accountant'
   FOUNDATION_ADMIN = 'foundation_admin'
-
+  REGISTRAR_ADMIN = 'registrar'
   attr_accessible :name, :alias
 
   validates_presence_of :name
@@ -19,7 +19,7 @@ class Role < ActiveRecord::Base
   scope :healers, where(alias: HEALER)
   scope :accountants, where(alias: ACCOUNTANT)
   scope :foundation_admins, where(alias: FOUNDATION_ADMIN)
-
+  scope :registrars, where(alias: REGISTRAR_ADMIN)
   class << self
     def super_admin
       super_admins.first if super_admins
@@ -39,6 +39,14 @@ class Role < ActiveRecord::Base
 
     def center_admin
       center_admins.first if center_admins
+    end
+
+    def instructor
+      instructors.first if instructors
+    end
+
+    def registrar
+      registrars.first if registrars
     end
 
   end

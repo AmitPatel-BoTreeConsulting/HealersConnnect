@@ -23,14 +23,6 @@ class UserProfile < ActiveRecord::Base
             length: { is: 10 }, allow_blank: true,
             format:  {:with => /^[1-9]/}
 
-  def self.search(search)
-    if search
-      where('lower(first_name) LIKE ?', "%#{search}%".downcase)
-    else
-      scoped
-    end
-  end
-
   def name
     "#{ first_name } #{ middle_name } #{ last_name }"
   end

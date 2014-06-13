@@ -1,6 +1,6 @@
 class InstructorsController < ApplicationController
+  load_and_authorize_resource
   before_filter :authenticate_user!
-  before_filter :required_access,  only: [:index, :new, :create, :edit, :update, :destroy]
   before_filter :find_instructor, only: [:edit, :update, :destroy]
 
   def index
@@ -9,6 +9,8 @@ class InstructorsController < ApplicationController
 
   def new
     @instructor = Instructor.new
+    @instructors = Instructor.all(:order => 'name ASC')
+    unauthorized! if cannot? :new, @instructor
   end
 
   def create

@@ -23,10 +23,10 @@
           %thead
             %tr
               %th.text-center #{t('common.caption.start_date')}
-              %th.text-center #{t('common.caption.end_date')}
+              %th #{t('common.caption.end_date')}
               %th #{t('common.caption.course')}
               %th #{t('common.caption.instructor')}
-              %th.text-center #{t('common.caption.center_location')}
+              %th #{t('common.caption.center_location')}
               %th.text-center #{t('common.caption.register')}
           - if @workshops.present?
             = render :partial => 'workshops/workshop_registration_list', collection: @workshops, as: :workshop

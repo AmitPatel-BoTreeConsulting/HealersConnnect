@@ -1,11 +1,9 @@
 class RegistrationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :collect_payment_types
-  before_filter :required_access, only: [:index, :edit, :update, :destroy, :activate, :deactivate, :export]
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export, :confirm_certify, :certify]
   before_filter :find_workshop, except: [:registration]
   before_filter :set_eligibilities, only: [:new, :create, :edit, :update]
-  before_filter :check_center_admin_access, only: [:edit, :update, :destroy, :activate, :deactivate, :export]
 
   def index
     @registrations = Registration.search(params)

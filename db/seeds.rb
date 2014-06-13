@@ -29,7 +29,8 @@ roles = [ { name: 'Super Admin', alias: Role::SUPER_ADMIN },
           { name: 'Instructor', alias: Role::INSTRUCTOR },
           { name: 'Healer', alias: Role::HEALER },
           { name: 'Accountant', alias: Role::ACCOUNTANT },
-          { name: 'Foundation Admin', alias: Role::FOUNDATION_ADMIN } ]
+          { name: 'Foundation Admin', alias: Role::FOUNDATION_ADMIN },
+          { name: 'Registrar', alias: Role::REGISTRAR_ADMIN} ]
 
 puts '------------Seeding Roles------------'
 roles.each { |role| create_or_update_by_alias(Role, role)}
@@ -71,7 +72,7 @@ foundation_admin = find_or_create_user({ email: 'foundation@healersconnect.com',
 center_admin = find_or_create_user({ email: 'center@healersconnect.com', password: Settings.default_password })
 instructor = find_or_create_user({ email: 'instructor@healersconnect.com', password: Settings.default_password })
 healer = find_or_create_user({ email: 'healer@healersconnect.com', password: Settings.default_password })
-
+registrar = find_or_create_user({email: 'registrar@healersconnect.com', password: Settings.default_password})
 puts '-------------------------------------'
 
 #==================================================Create Foundations===================================================
@@ -136,12 +137,15 @@ application_admin_role = Role.super_admin
 account_role = Role.accountant
 foundation_admin_role = Role.foundation_admin
 center_admin_role = Role.center_admin
+instructor_role = Role.instructor
+registrar_role = Role.registrar
 
 user_role_for_super_admin = find_or_create_user_role(admin_user, application_admin_role)
 user_role_for_accountant = find_or_create_user_role(accountant, account_role)
 user_role_for_foundation_admin = find_or_create_user_role(foundation_admin, foundation_admin_role)
 user_role_for_center_admin = find_or_create_user_role(center_admin, center_admin_role)
-
+user_role_for_instructor_role = find_or_create_user_role(instructor, instructor_role)
+user_role_for_registrar = find_or_create_user_role(registrar, registrar_role)
 # =========================Create cources=========================
 
 # Find course categories:

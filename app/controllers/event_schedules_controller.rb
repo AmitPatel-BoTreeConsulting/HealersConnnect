@@ -1,19 +1,17 @@
 class EventSchedulesController < ApplicationController
+  load_and_authorize_resource
   before_filter :event_schedule_from_params , only: [:show, :edit, :update, :destroy]
-  before_filter :required_access, only: [:index, :new, :create, :edit, :update, :show]
   def index
     @page = params[:page] || 1
     @event_schedules = EventSchedule.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
-
   def new
     @event_schedule = EventSchedule.new
+    unauthorized! if cannot? :new, @event_schedule
   end
-
   def create
     params[:event_schedule][:start_date] = "#{params[:event_schedule][:start_date]} #{params[:event_schedule][:session_start]}".to_datetime
     params[:event_schedule][:end_date] = "#{params[:event_schedule][:end_date]} #{params[:event_schedule][:session_end]}".to_datetime
-
     remove_sessions_before_save(params[:event_schedule])
     @event_schedule = EventSchedule.new(params[:event_schedule])
     if @event_schedule.save

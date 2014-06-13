@@ -65,7 +65,6 @@ class Workshop < ActiveRecord::Base
       fees_on_rejoining
     end
   end
-
   private
 
   def workshop_session_presence

@@ -1,7 +1,7 @@
 class WorkshopsController < ApplicationController
+  load_and_authorize_resource
   before_filter :workshop_from_params , only: [:show, :edit, :update, :destroy]
   before_filter :course_from_params, only: [:course_instructors]
-  before_filter :check_center_admin_access, only: [:edit, :update, :destroy]
 
   def index
     @page = params[:page] || 1
@@ -16,6 +16,7 @@ class WorkshopsController < ApplicationController
   def new
     @workshop = Workshop.new
     @instructors = Instructor.all(:order => 'name ASC')
+    unauthorized! if cannot? :new, @workshop
   end
 
   def create

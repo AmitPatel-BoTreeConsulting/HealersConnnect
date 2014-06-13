@@ -9,17 +9,13 @@ class User < ActiveRecord::Base
   has_many :centers, through: :user_roles
   has_many :registration_donations
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          authentication_keys: [:login]
-
-  # Setup accessible (or protected) attributes for your model
+  
   attr_accessible :email, :mobile, :password, :password_confirmation, :remember_me
   attr_accessible :login, :member_id
-  # attr_accessible :title, :body
-
+  
   validates_format_of       :email, with: Devise.email_regexp, allow_blank: true, :if => :email_changed?
   validates_presence_of     :password, on: :create
   validates_confirmation_of :password, :on=>:create
@@ -31,6 +27,10 @@ class User < ActiveRecord::Base
       user_profile.update_attribute(:user_id, user.id)
       user
     end
+  end
+
+  def is?(role)
+   roles.find_by_alias(role.to_s).present?
   end
 
   def name
@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   def is_center_admin?
     have_role?(Role::CENTER_ADMIN)
   end
-
+  
   def is_instructor?
     have_role?(Role::INSTRUCTOR)
   end
@@ -64,34 +64,6 @@ class User < ActiveRecord::Base
   def have_role?(role_type)
     roles.pluck(:alias).include? role_type if roles
   end
-
-  def has_permission?(controller)
-    case controller
-    when :centers, :workshops, :events, :event_schedules, :activities, :manage_homes
-      have_role?(Role::SUPER_ADMIN) ||
-      have_role?(Role::FOUNDATION_ADMIN) ||
-      have_role?(Role::CENTER_ADMIN)
-    when :courses
-      have_role?(Role::SUPER_ADMIN) ||
-      have_role?(Role::FOUNDATION_ADMIN) ||
-      have_role?(Role::CENTER_ADMIN) ||
-      have_role?(Role::INSTRUCTOR)
-    when :instructors
-      have_role?(Role::SUPER_ADMIN) ||
-      have_role?(Role::FOUNDATION_ADMIN)
-    when :registrations
-      have_role?(Role::SUPER_ADMIN) ||
-      have_role?(Role::FOUNDATION_ADMIN) ||
-      have_role?(Role::CENTER_ADMIN)
-    when :donations
-      have_role?(Role::SUPER_ADMIN) ||
-      have_role?(Role::FOUNDATION_ADMIN) ||
-      have_role?(Role::ACCOUNTANT) ||
-      have_role?(Role::CENTER_ADMIN)
-    else
-    end
-  end
-
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)

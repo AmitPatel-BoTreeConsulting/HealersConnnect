@@ -1,7 +1,6 @@
 class RegistrationDonationsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :set_registration_and_workshop
-  before_filter :check_center_admin_access
 
   def index
     @registration_donations = RegistrationDonation.where(registration_id: @registration.id)

@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
+  load_and_authorize_resource
   before_filter :event_from_params, only: [:edit, :update, :show, :destroy]
   before_filter :set_event_category, only: [:new, :create, :edit, :update]
-  before_filter :required_access, only: [:index, :create, :show, :edit, :update, :destroy]
   before_filter :set_param_for_activities, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   def index
@@ -12,6 +12,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     set_event_categories
+    unauthorized! if cannot? :new, @event
   end
 
   def create

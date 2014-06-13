@@ -1,7 +1,8 @@
 class DonationsController < ApplicationController
+  load_and_authorize_resource
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :find_donation, only: [:show, :export]
-  before_filter :required_access, only: [:index, :new, :create, :export]
+  
   def index
     if params[:timeline].present?
       @timeline = params[:timeline]
@@ -38,6 +39,7 @@ class DonationsController < ApplicationController
   def new
     @donation = Donation.new
     @centers = Center.all
+    unauthorized! if cannot? :new, @donation
   end
 
   def create

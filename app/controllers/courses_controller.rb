@@ -1,16 +1,15 @@
 class CoursesController < ApplicationController
+  load_and_authorize_resource
   before_filter :course_from_params, only: [:show, :edit, :update,:destroy, :deactivate, :activate]
-  before_filter :required_access, only: [:index, :create, :show, :edit, :update, :activate, :deactivate, :destroy]
 
   def index
     @page = params[:page] || 1
     @courses  = Course.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
-
   def new
     redirect_to courses_path
+    unauthorized! if cannot? :new, @course
   end
-
   def create
     @course  = Course.new(params[:course])
     @course_categories  = CourseCategory.all
@@ -22,14 +21,9 @@ class CoursesController < ApplicationController
       end
     end
   end
-
-  def show
-  end
-
   def edit
     @course_categories = CourseCategory.all
   end
-
   def update
     respond_to do |format|
       if @course.update_attributes(params[:course])
@@ -40,15 +34,12 @@ class CoursesController < ApplicationController
       end
     end
   end
-
   def deactivate
     update_course_status(:deactivate)
   end
-
   def activate
     update_course_status(:activate)
   end
-
   def destroy
     respond_to do |format|
       course_name = @course.name
@@ -76,5 +67,4 @@ class CoursesController < ApplicationController
         format.html { redirect_to courses_path, notice: message }
     end
   end
-
 end
