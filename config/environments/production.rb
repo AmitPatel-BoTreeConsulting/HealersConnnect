@@ -47,7 +47,11 @@ HealersConnnect::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
+<<<<<<< HEAD
   config.assets.precompile += %w( font-awesome-ie7.min.css pdf/ace.min.css pdf/bootstrap.css pdf/custom.css ace-ie.min.css excanvas.min.js html5shiv.js ckeditor/config.js.coffee)
+=======
+  config.assets.precompile += %w( font-awesome-ie7.min.css pdf/ace.min.css pdf/bootstrap.css pdf/custom.css ace-ie.min.css excanvas.min.js html5shiv.js)
+>>>>>>> d39418dbc726ff607abfc91880499102df9c4817
   
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

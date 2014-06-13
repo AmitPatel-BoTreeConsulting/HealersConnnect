@@ -26,8 +26,12 @@
                 .row
                   .col-xs-12
                     %h3
+<<<<<<< HEAD
                       %b= t('registration.caption.pdf.name_of_course')
                       %b= t('registration.caption.pdf.course_title')
+=======
+                      %b Name of Course:  INNER TEACHINGS OF HINDUISM REVEALED
+>>>>>>> d39418dbc726ff607abfc91880499102df9c4817
                 .space-28
                 - # uncomment when enabling workshop
                 - if false
@@ -46,9 +50,21 @@
                   .col-xs-8
                     .form-group
                       %label.h4
+<<<<<<< HEAD
                         %b= t('registration.caption.pdf.name')
                       %label.h4= @profile.name.titleize
                   .col-xs-4
+=======
+                        %b Trainer :
+                      %label.h4 Shriram Rajagopal
+                  .col-xs-4
+                    .form-group.pull-left
+                      %label.h4
+                        %b Certificate No. :
+                        %u
+                .row
+                  .col-xs-8
+>>>>>>> d39418dbc726ff607abfc91880499102df9c4817
                     .form-group
                       %label.h4
                         %b= t('registration.caption.pdf.date_of_birth')
@@ -68,8 +84,13 @@
                   .col-xs-8
                     .form-group
                       %label.h4
+<<<<<<< HEAD
                         %b= t('registration.caption.pdf.education_qualification')
                       %label.h4= @profile.education
+=======
+                        %b Education Qualification :
+                      %label.h4= @registration.education
+>>>>>>> d39418dbc726ff607abfc91880499102df9c4817
                   .col-xs-4
                     .form-group.pull-left
                       %label.h4
@@ -79,7 +100,11 @@
                   .col-xs-12
                     .form-group
                       %label.h4
+<<<<<<< HEAD
                         %b= t('registration.caption.pdf.resident_address')
+=======
+                        %b Residential Address / Postal Address :
+>>>>>>> d39418dbc726ff607abfc91880499102df9c4817
                       %br/
                       %label.h4= simple_format(@profile.address)
                 .row
@@ -97,6 +122,7 @@
                   .col-xs-12
                     .form-group
                       %label.h4
+<<<<<<< HEAD
                         %b= t('registration.caption.pdf.email')
                       %label.h4= @profile.email
                 - # uncomment when enabling Workshop
@@ -127,6 +153,30 @@
                                 = workshop.workshop_dated
                               %td.h4.text-center<
                                 = workshop.workshop_instructor.capitalize
+=======
+                        %b Details of Pranic Healing Courses you have taken (as applicable) :
+                      %table{border: "1", style: 'width: 100%;'}
+                        %thead
+                          %tr{style: 'height: 30px;'}
+                            %th.h4.text-center
+                              %b Course
+                            %th.h4.text-center
+                              %b Place Conducted
+                            %th.h4.text-center
+                              %b Year & Date
+                            %th.h4.text-center
+                              %b Name of Trainer
+                        %tbody
+                          %tr{style: 'height: 30px;'}
+                            %td.h4.text-center<
+                              Basic Pranic Healing
+                            %td.h4.text-center<
+                              = @registration.workshop_place.capitalize
+                            %td.h4.text-center<
+                              = @registration.workshop_dated
+                            %td.h4.text-center<
+                              = @registration.workshop_instructor.capitalize
+>>>>>>> d39418dbc726ff607abfc91880499102df9c4817
                 .row
                   .col-xs-12
                     %h3.text-center
@@ -134,9 +184,16 @@
                         %b= t('registration.caption.pdf.declaration')
                 .row
                   .col-xs-12
+<<<<<<< HEAD
                     %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_1')}
                     %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_2')}
                     %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_3')}
+=======
+                    %p{style: 'font-size: 17px;'} I, hereby state that, having had the privilege of being accepted as a student in GRAND MASTER CHOA KOK SUI’S above-named course, do solemnly swear to keep Secret and Confidential, all the sacred teachings taught therein.
+                    %p{style: 'font-size: 17px;'} On my Honour, I sincerely promise to preserve these sacred teachings in their purest form, and practice them in the proper and correct manner, guided by the golden rules and the Five Arhatic Virtues taught by Grand Master ChoaKok Sui. I also promise to prevent misuse or incorrect practice of these teachings by persons who have not been adequately instructed.
+                    %p{style: 'font-size: 17px;'} With the Lord God as my witness, and my Higher Self as my guide, I shall uphold this Vow of Secrecy and I will not divulge to anybody, under any circumstances, verbally or through the reproduction of written material, or through some other form, in whole or in part, any of the teachings, principles and techniques from the course.
+                    %p{style: 'font-size: 17px;'} I make this solemn vow freely and voluntarily, with no mental reservation or purpose of evasion. I hereby affix my signature.
+>>>>>>> d39418dbc726ff607abfc91880499102df9c4817
                 .space-20
                 .row
                   .col-xs-8
@@ -147,8 +204,13 @@
                   .col-xs-8
                     .form-group
                       %label.h4
+<<<<<<< HEAD
                         %b= t('registration.caption.pdf.vanue')
                         = t('registration.caption.pdf.vanue_name')
+=======
+                        %b Vanue:
+                        GMCKS PRANIC HEALING CENTER’ AHMEDABAD
+>>>>>>> d39418dbc726ff607abfc91880499102df9c4817
                   .col-xs-4
                     .form-group
                       %label.h4
