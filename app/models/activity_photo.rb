@@ -7,8 +7,14 @@ class ActivityPhoto < ActiveRecord::Base
             thumb: "#{Settings.paperclip.style.thumb}>",
             activity_small: "#{Settings.paperclip.style.activity.small}>"
         },
-        :url => Settings.paperclip.image_path
+        :path => Settings.event_gallery.paperclip.path,
+        :url => Settings.event_gallery.paperclip.url
     }
+
+  Paperclip.interpolates :event_id do |image, style|
+    image.instance.event_id
+  end
+
   has_attached_file :photo, Paperclip::Attachment.default_options.merge(paperclip_options)
   validates_attachment_content_type :photo, content_type:  /\Aimage\/.*\Z/
 end

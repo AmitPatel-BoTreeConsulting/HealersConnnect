@@ -77,7 +77,7 @@ class Workshop < ActiveRecord::Base
     workshops = []
     show_on_slider.each do |workshop|
       upcoming_workshop_hash = {}
-      upcoming_workshop_hash[:image] = workshop.course.avatar
+      upcoming_workshop_hash[:image] = Rails.application.routes.url_helpers.website_course_image_path(style: :original, id: workshop.course.id, filename: workshop.course.avatar_file_name) if workshop.course.avatar_file_name.present?
       upcoming_workshop_hash[:name] = workshop.course.name
       upcoming_workshop_hash[:description] = workshop.course.description
       upcoming_workshop_hash[:id] = workshop.course_id

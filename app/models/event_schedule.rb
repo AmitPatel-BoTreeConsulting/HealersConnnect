@@ -18,7 +18,7 @@ class EventSchedule < ActiveRecord::Base
     events = []
     show_on_slider.each do |event|
       upcoming_event_hash = {}
-      upcoming_event_hash[:image] = event.event.avatar
+      upcoming_event_hash[:image] = Rails.application.routes.url_helpers.website_activity_image_path(style: :original, id: event.event.id, filename: event.event.avatar_file_name) if event.event.avatar_file_name.present?
       upcoming_event_hash[:name] = event.event.name
       upcoming_event_hash[:description] = event.event.description
       upcoming_event_hash[:id] = event.event_id

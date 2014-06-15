@@ -4,7 +4,7 @@
       %ul.ace-thumbnails
         - @event_photo_gallery.each do |event_gallery|
           %li
-            = image_tag(event_gallery.photo.url(:medium), class: 'event_photo_image_height_width')
+            = image_tag event_schedule_gallery_path(style: :medium, event_schedule_id: event_gallery.event_schedule_id, id: event_gallery.id, filename: event_gallery.photo_file_name), class: 'event_photo_image_height_width'
             .center
               .name= truncate(event_gallery.photo_file_name, length: 17)
               .name

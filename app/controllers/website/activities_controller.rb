@@ -9,6 +9,13 @@ class Website::ActivitiesController < ApplicationController
   def show
   end
 
+  def show_activity_iamge
+  end
+
+  def show_event_image_gallery
+    render :text => open(ActivityPhoto.find(params[:id]).photo.path(params[:style].to_sym), "rb").read
+  end
+
   private
 
   def activity_from_params

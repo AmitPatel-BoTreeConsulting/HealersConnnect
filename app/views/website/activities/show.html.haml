@@ -7,7 +7,7 @@
     .row
       .col-sm-8
         - if @activity.avatar.present?
-          = image_tag(@activity.avatar.url(:medium), class: 'post_pic img-responsive')
+          = image_tag(website_activity_image_path(style: :medium, id: @activity.id, filename: @activity.avatar_file_name), class: 'post_pic img-responsive')
         - else
           = image_tag('no_image.png')
         .post_content
@@ -23,8 +23,8 @@
               %ul.recent_photos
                 - @activity.activity_photos.each do |activity_photo|
                   %li.activity_small_photo_height_width
-                    %a{"data-gallery" => "", href: activity_photo.photo.url(:original)}
-                      = image_tag(activity_photo.photo.url(:activity_small))
+                    %a{"data-gallery" => "", href:  website_event_image_gallery_path(style: :original, event_id: activity_photo. event_id, id: activity_photo.id, filename: activity_photo.photo_file_name)}
+                      = image_tag website_event_image_gallery_path(style: :activity_small, event_id: activity_photo. event_id, id: activity_photo.id, filename: activity_photo.photo_file_name), class: 'event_photo_image_height_width'
             - else
               %h5= t('activity_photo_gallery.message.no_photos_found')
 = render :partial => 'website/gallery_slider_content'

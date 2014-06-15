@@ -10,7 +10,8 @@ class Course < ActiveRecord::Base
           medium: "#{Settings.paperclip.style.medium}>",
           thumb: "#{Settings.paperclip.style.thumb}>"
       },
-      :url => Settings.paperclip.image_path
+      :path => Settings.courses.paperclip.path,
+      :url => Settings.courses.paperclip.url
   }
 
   has_attached_file :avatar, Paperclip::Attachment.default_options.merge(paperclip_options)

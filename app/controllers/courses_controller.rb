@@ -41,6 +41,10 @@ class CoursesController < ApplicationController
     end
   end
 
+  def show_course_image
+    render :text => open(Course.find(params[:id]).avatar.path(params[:style].to_sym), "rb").read
+  end
+
   def deactivate
     update_course_status(:deactivate)
   end

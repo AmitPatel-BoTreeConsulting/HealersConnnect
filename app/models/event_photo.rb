@@ -7,7 +7,8 @@ class EventPhoto < ActiveRecord::Base
             medium: "#{Settings.paperclip.style.medium}>",
             thumb: "#{Settings.paperclip.style.thumb}>"
         },
-        :url => Settings.paperclip.image_path
+        :path => Settings.event_schedule_gallery.paperclip.path,
+        :url => Settings.event_schedule_gallery.paperclip.url
     }
   has_attached_file :photo, Paperclip::Attachment.default_options.merge(paperclip_options)
   validates_attachment_content_type :photo, content_type:  /\Aimage\/.*\Z/
