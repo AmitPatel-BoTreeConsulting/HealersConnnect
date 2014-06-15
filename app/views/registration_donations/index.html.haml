@@ -6,20 +6,7 @@
     .btn-group.pull-right
       = link_to 'New Donation', new_workshop_registration_registration_donation_path(@workshop, @registration), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
 
-.row
-  .col-xs-12
-    %h4.smaller.lighter.blue= @registration.get_user_profile.name
-  .col-xs-3
-    %h4.smaller.lighter.purple= registration_donation_receivable_statistics
-  .col-xs-3
-    %h4.smaller.lighter.green= registration_donation_received_statistics
-  .col-xs-3
-    %h4.smaller.lighter.red= registration_donation_pending_statistics
-  .col-xs-3
-    .btn-group.pull-right
-      - if @registration_donations.present?
-        = link_to(export_registrations_path(format: 'xls', status: params[:status], workshop_id: @workshop.id), class: 'donation_export_link') do
-          %i.icon-print.bigger-130
+= render 'payment_statistics'
 
 .row
   .col-xs-12
