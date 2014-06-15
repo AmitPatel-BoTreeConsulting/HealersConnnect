@@ -11,6 +11,9 @@
     %P= "Dear #{@user.user_profile.try(:name).try(:titleize)},"
     %p
       = t('mailer.course_complete_notification.paragraph_1', course_name: @course.name)
+    %p
+      %b Certificate Number:
+      = @certificate.certificate_number
     - unless instructor.blank?
       %p
         %b Instructor:
