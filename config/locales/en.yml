@@ -181,6 +181,7 @@ en:
       home_page_link: 'HOME'
       home_page_course_link: 'COURSES'
       home_page_activity_link: 'ACTIVITIES'
+      home_page_events_link: 'EVENTS'
       home_page_activity_photos: 'Photos'
       serial_number: 'Sr No.'
       center_location: 'Location'
