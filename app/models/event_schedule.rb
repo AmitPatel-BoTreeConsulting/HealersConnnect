@@ -11,6 +11,10 @@ class EventSchedule < ActiveRecord::Base
   scope :upcoming_events, lambda { where("start_date >= ?", Date.today).order(:start_date) }
   scope :show_on_slider, upcoming_events.where(show_on_slider: true)
 
+  def event_eligibility_names
+    event_eligibilities.inject([]) { |result, eligibility| result << eligibility.course.name }
+  end
+
   private
 
   # Prepare array of upcoming events for home slider
@@ -32,4 +36,5 @@ class EventSchedule < ActiveRecord::Base
   def self.upcoming_events
     includes(:event).where('start_date >= ?', Date.today).order(:start_date)
   end
+
 end

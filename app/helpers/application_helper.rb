@@ -107,4 +107,8 @@ module ApplicationHelper
   def date_time_formatted(date)
     date.try(:strftime, '%d/%m/%Y %I:%M %p')
   end
+
+  def time_formatted(date)
+    date.try(:strftime, '%I:%M %p')
+  end
 end
