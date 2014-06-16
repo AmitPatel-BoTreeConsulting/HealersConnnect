@@ -13,17 +13,29 @@
               %tr
                 %th.text-center #{t('common.caption.start_date')}
                 %th.text-center #{t('common.caption.end_date')}
-                -#%th #{t('common.caption.instructor')}
-                %th.text-center #{t('common.caption.center')}
-                -#%th.text-center #{t('common.caption.register')}
-              %tr.info
-                %td.text-center<
-                  = date_formatted(@event_schedule.start_date) rescue nil
-                %td.text-center<
-                  = date_formatted(@event_schedule.end_date) rescue nil
-                %td<
-                  = @event_schedule.center.name
-
+                -#%th.text-center #{t('common.caption.center')}
+                %th.text-center #{t('common.caption.center_location')}
+            %tr
+              %td.text-center<
+                = date_time_formatted(@event_schedule.start_date) rescue nil
+              %td.text-center<
+                = date_time_formatted(@event_schedule.end_date) rescue nil
+              -#%td<
+                = @event_schedule.center.name
+              %td<
+                = @event_schedule.location
+            %thead
+              %tr
+                %th.text-center #{t('course.caption.eligibility')}
+                %th.text-center #{t('donation.caption.donation')} (₹)
+                %th.text-center #{t('common.caption.contact')}
+            %tr
+              %td.text-center<
+                = @event_schedule.event_eligibility_names.join(', ')
+              %td.text-center<
+                = @event_schedule.donation
+              %td<
+                = @event_schedule.contact
     .row
       .col-sm-8
         - if event.avatar.present?
