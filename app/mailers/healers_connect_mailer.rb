@@ -21,7 +21,15 @@ class HealersConnectMailer < ActionMailer::Base
     )
   end
 
-  def workshop_donation_notification(registration_donation)
+  def registration_donation_notification(registration_donation)
     @registration_donation = registration_donation
+    @registration = @registration_donation.registration
+    @user_profile = @registration.user_profile
+    @workshop = @registration.workshop
+    mail(
+        from:    Settings.mail.default_url_options.support_email,
+        to:      @user_profile.email,
+        subject: "₹ #{registration_donation.amount} received for #{@registration.workshop.course.name}"
+    )
   end
 end
