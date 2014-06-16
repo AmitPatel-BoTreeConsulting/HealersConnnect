@@ -11,7 +11,7 @@
       = event.event_category.name if event.event_category.present?
   %td.text-center<
     .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
-      = link_to(activity_gallery_path, class: 'warning', title: t('common.caption.title.gallery')) do
+      -#= link_to(activity_gallery_path, class: 'warning', title: t('common.caption.title.gallery')) do
         %i.icon-picture.bigger-130
       = link_to(edit_action_event_path, class: 'green', title: t('common.caption.title.edit')) do
         %i.icon-pencil.bigger-130
