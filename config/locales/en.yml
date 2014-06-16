@@ -160,7 +160,7 @@ en:
       donation: 'Donation'
       review_donation: 'Review Donation'
       course_category: 'Course Category'
-      upcoming_cources_title: 'Upcomming Courses'
+      upcoming_cources_title: 'Upcoming Courses'
       button:
         update: 'Update Course'
         new: 'Create Course'
@@ -180,7 +180,7 @@ en:
     caption:
       home_page_link: 'HOME'
       home_page_course_link: 'COURSES'
-      home_page_activity_link: 'ACVITIES'
+      home_page_activity_link: 'ACTIVITIES'
       home_page_activity_photos: 'Photos'
       serial_number: 'Sr No.'
       center_location: 'Location'
@@ -195,6 +195,7 @@ en:
       confirm_message: 'Are you sure?'
       image: 'Image'
       course: 'Course'
+      event: 'Event'
       sign_out: 'Sign Out'
       sign_in: 'Sign In'
       start_date: 'Start Date'
@@ -206,6 +207,8 @@ en:
       received_by: 'Received By'
       received_on: 'Received On'
       amount: 'Amount'
+      center: 'Center'
+      view: 'View'
       title:
         edit: 'Edit'
         gallery: 'Gallery'
@@ -367,6 +370,7 @@ en:
       events: 'Events'
       event_category: 'Event Category'
       description: 'Description'
+      upcoming_events_title: 'Upcoming Events'
       button:
         new: 'New Event'
         update: 'Save'

@@ -34,3 +34,20 @@
                 .text-center
                   %h3
                     = t('workshop.message.no_workshop_active')
+- if @event_schedules.present?
+  .container
+    .section_header
+      %h3= t('event.caption.upcoming_events_title')
+    .row
+      .col-xs-12
+        .table-responsive
+          %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
+            %thead
+              %tr
+                %th.text-center #{t('common.caption.start_date')}
+                %th.text-center #{t('common.caption.end_date')}
+                %th #{t('common.caption.event')}
+                -#%th #{t('common.caption.instructor')}
+                %th.text-center #{t('common.caption.center')}
+                %th.text-center #{t('common.caption.view')}
+              = render :partial => 'events/event_list', collection: @event_schedules, as: :event_schedule

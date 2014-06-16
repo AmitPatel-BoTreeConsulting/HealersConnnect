@@ -7,6 +7,7 @@ class Website::HomeController < ApplicationController
     else
       upcoming_event_workshop_for_slider
       @workshops = Workshop.upcoming_workshops
+      @event_schedules = EventSchedule.upcoming_events
       render layout: 'home'
     end
   end

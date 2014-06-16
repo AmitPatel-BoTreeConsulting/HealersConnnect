@@ -105,6 +105,6 @@ module ApplicationHelper
   end
 
   def date_time_formatted(date)
-    date.try(:strftime, '%d/%m/%Y %I:%M%p')
+    date.try(:strftime, '%d/%m/%Y %I:%M %p')
   end
 end

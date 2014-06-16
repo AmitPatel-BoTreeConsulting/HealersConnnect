@@ -28,4 +28,8 @@ class EventSchedule < ActiveRecord::Base
     end
     events
   end
+
+  def self.upcoming_events
+    includes(:event).where('start_date >= ?', Date.today).order(:start_date)
+  end
 end

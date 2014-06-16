@@ -1,0 +1,50 @@
+= stylesheet_link_tag "home/blueimp-gallery.min.css"
+= stylesheet_link_tag "home/bootstrap-image-gallery.css"
+- event = @event_schedule.event
+#blog_post.home_course_content_margin
+  .container
+    .section_header
+      %h3= event.name
+    .row
+      .col-xs-12
+        .table-responsive
+          %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
+            %thead
+              %tr
+                %th.text-center #{t('common.caption.start_date')}
+                %th.text-center #{t('common.caption.end_date')}
+                -#%th #{t('common.caption.instructor')}
+                %th.text-center #{t('common.caption.center')}
+                -#%th.text-center #{t('common.caption.register')}
+              %tr.info
+                %td.text-center<
+                  = date_formatted(@event_schedule.start_date) rescue nil
+                %td.text-center<
+                  = date_formatted(@event_schedule.end_date) rescue nil
+                %td<
+                  = @event_schedule.center.name
+
+    .row
+      .col-sm-8
+        - if event.avatar.present?
+          = image_tag(website_event_image_path(style: :medium, id: event.id, filename: event.avatar_file_name), class: 'post_pic img-responsive')
+        .post_content
+          %p
+            = simple_format(event.description)
+          %p
+            %b Note:
+            = simple_format(@event_schedule.notes)
+-#      .col-sm-4
+-#        .sidebar
+-#          .box
+-#            .sidebar_header
+-#              %h4= t('common.caption.home_page_activity_photos')
+-#            - if @event_scedule.event_photos.present?
+-#              %ul.recent_photos
+-#                - @event_scedule.event_photos.each do |event_photo|
+-#                  %li.activity_small_photo_height_width
+-#                    %a{"data-gallery" => "", href:  website_event_image_gallery_path(style: :original, event_id: event_photo. event_id, id: event_photo.id, filename: event_photo.photo_file_name)}
+-#                      = image_tag website_event_image_gallery_path(style: :activity_small, event_id: event_photo. event_id, id: event_photo.id, filename: event_photo.photo_file_name), class: 'event_photo_image_height_width'
+-#            - else
+-#              %h5= t('event_photo_gallery.message.no_photos_found')
+-#= render :partial => 'website/gallery_slider_content'
