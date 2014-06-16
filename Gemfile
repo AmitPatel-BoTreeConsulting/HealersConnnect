@@ -34,3 +34,7 @@ gem 'better_errors'
 gem 'html5shiv-rails'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+
+gem 'capistrano'
+gem 'rvm-capistrano'
+gem 'unicorn'

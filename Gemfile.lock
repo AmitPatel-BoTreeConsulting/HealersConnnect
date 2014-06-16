@@ -37,6 +37,12 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     builder (3.0.4)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -60,6 +66,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
+    highline (1.6.21)
     hike (1.2.3)
     html5shiv-rails (0.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -72,12 +79,20 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kgio (2.9.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
     multi_json (1.8.4)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.1)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.4)
@@ -112,9 +127,12 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
+    raindrops (0.13.0)
     rake (10.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
+    rvm-capistrano (1.5.2)
+      capistrano (~> 2.15.4)
     sass (3.2.14)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -139,6 +157,10 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicorn (4.8.3)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
     wicked_pdf (0.9.10)
@@ -151,6 +173,7 @@ PLATFORMS
 DEPENDENCIES
   ancestry
   better_errors
+  capistrano
   coffee-rails (~> 3.2.1)
   devise
   haml
@@ -163,8 +186,10 @@ DEPENDENCIES
   rails (= 3.2.17)
   rails_config (~> 0.3.3)
   rails_layout
+  rvm-capistrano
   sass-rails (~> 3.2.3)
   sextant
   uglifier (>= 1.0.3)
+  unicorn
   wicked_pdf
   wkhtmltopdf-binary
