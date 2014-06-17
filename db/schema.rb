@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140603031544) do
+ActiveRecord::Schema.define(:version => 20140617081255) do
 
   create_table "activity_photos", :force => true do |t|
     t.integer  "event_id"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20140603031544) do
 
   add_index "donations", ["center_id"], :name => "index_donations_on_center_id"
   add_index "donations", ["donation_type"], :name => "index_donations_on_donation_type"
+  add_index "donations", ["user_id"], :name => "index_donations_on_user_id"
 
   create_table "event_categories", :force => true do |t|
     t.string   "name"
@@ -168,7 +169,10 @@ ActiveRecord::Schema.define(:version => 20140603031544) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.boolean  "show_on_slider", :default => false
+    t.integer  "instructor_id"
   end
+
+  add_index "event_schedules", ["instructor_id"], :name => "index_event_schedules_on_instructor_id"
 
   create_table "events", :force => true do |t|
     t.integer  "event_category_id"
@@ -287,7 +291,6 @@ ActiveRecord::Schema.define(:version => 20140603031544) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => ""
-    t.string   "mobile"
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -299,11 +302,12 @@ ActiveRecord::Schema.define(:version => 20140603031544) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "mobile",                 :default => "", :null => false
     t.string   "member_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["mobile"], :name => "index_users_on_mobile", :unique => true
+  add_index "users", ["member_id"], :name => "index_users_on_member_id", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "workshop_sessions", :force => true do |t|

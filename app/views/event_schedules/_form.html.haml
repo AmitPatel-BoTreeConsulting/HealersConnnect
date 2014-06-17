@@ -17,9 +17,9 @@
             = f.collection_select :event_id, Event.events_without_activity.order('name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
         .space-4
         .form-group
-          %label.col-sm-3.control-label.no-padding-right= t('event_schedule.caption.center')
+          %label.col-sm-3.control-label.no-padding-right= t('workshop.caption.instructor')
           .col-sm-4
-            = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
+            = select_tag 'event_schedule[instructor_id]', options_from_collection_for_select(@instructors, :id, :name, @event_schedule.instructor.try(:id)), {:prompt => 'Select Instructor', class: 'form-control'}
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('common.caption.start_date')}
@@ -42,16 +42,16 @@
             = select_tag("event_schedule[session_end]", options_for_select(get_options_session_start_end_dropdown, end_time_dropdown), :prompt=>"--Select--", class: 'form-control')
         .space-4
         .form-group
+          %label.col-sm-3.control-label.no-padding-right= t('event_schedule.caption.center')
+          .col-sm-4
+            = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }
+        .space-4
+        .form-group
           %label.col-sm-3.control-label.no-padding-right #{t('event_schedule.caption.location')}
           .col-sm-9
             = f.text_field :location, class: 'col-xs-10 col-sm-6', placeholder: t('center.caption.placeholder.location')
             = f.hidden_field :lat
             = f.hidden_field :long
-        .space-4
-        .form-group
-          %label.col-sm-3.control-label.no-padding-right #{t('common.caption.contact')}
-          .col-sm-9
-            = f.text_field :contact, class: 'col-xs-10 col-sm-6'
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right
@@ -64,6 +64,11 @@
           %label.col-sm-3.control-label.no-padding-right= t('instructor.caption.eligibilities')
           .col-sm-7
             = f.collection_select :course_ids, Course.all(order: 'name ASC'), :id, :name, {}, multiple: true, prompt: false, id: 'form-field-select-4', class: 'instructor-chosen-select chosen-select tag-input-style', data: { placeholder: '' }
+        .form-group
+          %label.col-sm-3.control-label.no-padding-right #{t('common.caption.contact')}
+          .col-sm-9
+            = f.text_field :contact, class: 'col-xs-10 col-sm-6'
+        .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right{for: 'form-input-readonly'} #{t('event_schedule.caption.notes')}
           .col-sm-9

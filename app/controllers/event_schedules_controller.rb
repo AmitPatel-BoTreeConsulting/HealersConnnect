@@ -8,6 +8,7 @@ class EventSchedulesController < ApplicationController
 
   def new
     @event_schedule = EventSchedule.new
+    @instructors = Instructor.order(:name)
   end
 
   def create
@@ -30,6 +31,7 @@ class EventSchedulesController < ApplicationController
   end
 
   def edit
+    @instructors = Instructor.order(:name)
   end
 
   def show
