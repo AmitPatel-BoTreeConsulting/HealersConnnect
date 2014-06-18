@@ -5,7 +5,7 @@ server "107.170.144.231", :web, :app, :db, primary: true
 
 set :application, "healersconnect"
 set :user, "healer"
-set :port, 10277
+set :port, 1979
 set :deploy_to, "/home/#{user}/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
@@ -63,5 +63,4 @@ namespace :deploy do
   end
   after "deploy:finalize_update", "deploy:symlink_config"
   after "deploy", "deploy:assets:precompile"
-  
 end
