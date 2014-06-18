@@ -5,8 +5,6 @@
         .col-sm-10.col-sm-offset-1
           .login-container
             .center
-              %h1
-                %span.white= t('header.title')
             .space-6
             .position-relative
               #login-box.login-box.visible.widget-box.no-border
@@ -20,9 +18,9 @@
                       %fieldset
                         %label.block.clearfix
                           %span.block.input-icon.input-icon-right
-                            = f.password_field :password, autofocus: true, placeholder: "New Password", class: "form-control"
+                            = f.password_field :password, autofocus: true, placeholder: t('forgot_password.caption.placeholder.new'), class: 'form-control'
                         .space
                         .clearfix
                           %label.block.inline
-                            = f.password_field :password_confirmation, placeholder: "Confirm New Password", class: "form-control"
-                          = f.submit "Change my password",class: "btn btn-sm btn-primary no-radius pull-right"
+                            = f.password_field :password_confirmation, placeholder:  t('forgot_password.caption.placeholder.confirm_new_password'), class: 'form-control'
+                          = f.submit t('forgot_password.caption.button.change_password'),class: 'btn btn-sm btn-primary no-radius pull-right', title: t('forgot_password.caption.button.change_password')

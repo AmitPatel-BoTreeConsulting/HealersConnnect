@@ -1,0 +1,5 @@
+- prompt_msg = if @instructors.present?
+  - t('instructors.caption.instructor_select_tag_prompt')
+- else
+  - t('instructors.caption.no_instrctor_found')
+$('#course_instructors_part').html('#{escape_javascript render(partial: 'course_instructors_part', locals: {prompt_msg: prompt_msg})}');

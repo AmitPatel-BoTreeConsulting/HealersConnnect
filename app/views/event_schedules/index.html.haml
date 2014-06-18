@@ -1,0 +1,36 @@
+.page-header
+  %h1
+    = t('event.caption.event_schedule')
+.row
+  .col-xs-12
+    .btn-group.pull-right.margin-bottom-10
+      = link_to t('event_schedule.caption.button.new'), new_event_schedule_path, class: 'btn btn-sm btn-success', title: t('event_schedule.caption.button.new')
+.row
+  .space-6
+  .col-xs-12
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '6%'} #{t('common.caption.serial_number')}
+            %th.text-center{width: '13%'} #{t('common.caption.start_date')}
+            %th.text-center{width: '13%'} #{t('common.caption.end_date')}
+            %th{width: '25%'} #{t('event_shecdule.caption.event')}
+            %th #{t('event_shecdule.caption.center')}
+            %th.text-center{width: '7%'} #{t('common.caption.contact')}
+            %th.text-center{width: '7%'} #{t('course.caption.donation')} (&#x20B9;)
+            %th.text-center{width: '8%'} #{t('common.caption.manage')}
+        - if @event_schedules.present?
+          = render :partial => 'event_schedules', collection: @event_schedules, as: :event_schedule
+        - else
+          %tr
+            %td{colspan: 8}
+              .text-center
+                %h3
+                  = t('event_schedule.message.no_event_schedules_found')
+    .col-xs-12
+      .row
+        .col-sm-6
+        .col-sm-6
+          .dataTables_paginate.paging_bootstrap
+            = paginate @event_schedules

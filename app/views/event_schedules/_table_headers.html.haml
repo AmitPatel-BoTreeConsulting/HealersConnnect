@@ -1,0 +1,8 @@
+%th #{t('event_shecdule.caption.event')}
+%th #{t('event_shecdule.caption.center')}
+%th{width: '8%'} #{t('common.caption.start_date')}
+%th.text-center{width: '8%'} #{t('common.caption.end_date')}
+%th.text-center{width: '7%'} #{t('common.caption.contact')}
+%th.text-center{width: '7%'} #{t('course.caption.donation')} (&#x20B9;)
+- if !event_schedule.present?
+  %th.text-center{width: '8%'} #{t('common.caption.manage')}

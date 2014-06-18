@@ -8,6 +8,7 @@ class CreateCourses < ActiveRecord::Migration
       t.references :course_category
       t.integer :donation
       t.integer :review_donation
+      t.integer :course_category_id
 
       t.timestamps
     end

@@ -58,7 +58,7 @@ Devise.setup do |config|
   # It can be set to an array that will enable http authentication only for the
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication. The supported strategies are:
-  # :database      = Support basic authentication with authentication key + password
+  # :database = Support basic authentication with authentication key + password
   # config.http_authenticatable = false
 
   # If http headers should be returned for AJAX requests. True by default.
@@ -153,7 +153,7 @@ Devise.setup do |config|
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
   # :failed_attempts = Locks an account after a number of failed attempts to sign in.
-  # :none            = No lock strategy. You should handle locking by yourself.
+  # :none = No lock strategy. You should handle locking by yourself.
   # config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
@@ -161,9 +161,9 @@ Devise.setup do |config|
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
-  # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
-  # :both  = Enables both strategies
-  # :none  = No unlock strategy. You should handle unlocking by yourself.
+  # :time = Re-enables login after a certain amount of time (see :unlock_in below)
+  # :both = Enables both strategies
+  # :none = No unlock strategy. You should handle unlocking by yourself.
   # config.unlock_strategy = :both
 
   # Number of authentication tries before locking an account if lock_strategy
@@ -234,8 +234,8 @@ Devise.setup do |config|
   # change the failure app, you can configure them inside the config.warden block.
   #
   # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
+  # manager.intercept_401 = false
+  # manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
 
   # ==> Mountable engine configurations
@@ -243,7 +243,7 @@ Devise.setup do |config|
   # is mountable, there are some extra configurations to be taken into account.
   # The following options are available, assuming the engine is mounted as:
   #
-  #     mount MyEngine, at: '/my_engine'
+  # mount MyEngine, at: '/my_engine'
   #
   # The router that invoked `devise_for`, in the example above, would be:
   # config.router_name = :my_engine

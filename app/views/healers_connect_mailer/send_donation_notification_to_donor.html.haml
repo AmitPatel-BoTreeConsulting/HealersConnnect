@@ -1,0 +1,50 @@
+- donation_type = @donation.donation_type == 1 ? t('donation.caption.for_center_radio') : t('donation.caption.for_food_for_hungry_radio')
+!!!
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+  %body
+    %h
+      Hi #{@donation.donor_name.capitalize},
+    %br/
+    %br/
+    %p
+      = t('donation.mailer.paragraph_1')
+      %br/
+      = t('donation.mailer.paragraph_2')
+      %br/
+    %p
+      %b= t('donation.caption.pdf.receipt_no')
+      #{@donation.receipt_number}
+    %p
+      %b= t('donation.caption.pdf.name')
+      #{@donation.donor_name.capitalize}
+    %p
+      %b= t('donation.caption.pdf.email')
+      #{@donation.donor_email}
+    %p
+      %b= t('donation.caption.pdf.center')
+      #{@center_name}
+    %p
+      %b
+        = t('donation.caption.pdf.amount')
+        (&#x20B9;):
+      #{@donation.amount}
+    %p
+      %b= t('donation.caption.pdf.donation_type')
+      #{donation_type}
+    %p
+      %b= t('donation.caption.pdf.received_by')
+      #{@received_by}
+    %p
+    - if @donation.description.present?
+      %b= t('donation.caption.pdf.description')
+      #{@donation.description}
+    %br/
+    %br/
+    %br/
+    %p
+      = t('donation.mailer.signature_text_thnak_you')
+      %br/
+      = t('donation.mailer.signature_text_team')

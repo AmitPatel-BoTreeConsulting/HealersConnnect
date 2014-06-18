@@ -1,3 +1,9 @@
+/* ace.min override body background color */
+
+.background_color_for_inner_pages {
+  background-color: #FFFFFF !important;
+}
+
 /* ace.min overrides */
 
 .main-content{
@@ -5,8 +11,22 @@
 }
 
 .flash_msg{
-  padding: 20px;
   text-align: center;
+  margin-left: 0px;
+  width: 100%;
+}
+
+.page-content {
+  padding: 0px 20px 24px 10px !important;
+}
+
+.page-header {
+  margin: 8px 0 12px -8px !important;
+  min-width: 89.1em;
+}
+
+.page-header h1 {
+  margin: 0px 0px !important;
 }
 
 /* For footer section */
@@ -95,6 +115,22 @@ body {
 
 //Common
 .margin-right-10 { margin-right: 10px!important; }
+.margin-bottom-10 { margin-bottom: 10px!important; }
+.margin-left-5 { margin-left: 5px!important; }
+
+/* Empty block, size of icon */
+.icon-blank {
+  height: 0px; width: 25px; font-size: 0; margin: 0; padding: 0; border: 0; display: -moz-stack;
+}
+
+/* Used on rupee symbol, in registration listing */
+.font-17 {
+  font-size: 19px;
+}
+
+.text-align-r {
+  text-align: right;
+}
 
 .hc-red {
   color: #C92432
@@ -102,9 +138,121 @@ body {
 
 #mantra { margin-left: 40px!important; }
 
+.padding-top-5 {
+  padding-top: 5px;
+}
+
 // ========= Registrations
 ul#registrations_container { margin: 0!important;}
 
 .btn_registration_new_margin {
   margin-top: -34px !important;
+}
+
+.margin-top-6 {margin-top: 6px !important;}
+
+.width-36 { width: 36% !important;}
+
+.donation_search_fields{
+  margin: 1px !important;
+}
+
+.donation_export_link {
+  font-size: 18px !important;
+}
+
+// ========== Edit Course
+.common_form_lbl {
+  margin-top: 5px;
+}
+
+.course_textbox_tex_align {
+  text-align:right;
+}
+
+// ========== Popup
+
+.popup-body {
+  background-color: #FFFFFF;
+  padding: 20px;
+}
+
+.hr-2px{
+  border-width: 2px 0 0;
+}
+
+.margin-right-15 {margin-right: -15px !important;}
+.error-message-header {font-weight:bold;border-bottom: 1px solid;margin-bottom:5px}
+.border-solid-4 {border: 4px solid}
+.font-22 {font-size: 22px !important;}
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {background: none!important;}
+
+
+/* Custom container */
+.container-fixed {
+  margin: 0 auto;
+  max-width: 90.5em;
+  width: 100%;
+}
+.container-fixed > hr {
+  margin: 30px 0;
+}
+
+.container {
+  max-width: 90.5em;
+  width: 100%;
+}
+
+#form_field_select_4_chosen {
+  width: 65% !important;
+}
+
+/* Override header navigation link */
+.active > a{
+  background-color: #E7E7E7 !important;
+  color: #438EB9 !important;
+}
+
+.navbar .navbar-nav > li > a:hover {
+  color: #438EB9 !important;
+}
+
+.navbar .navbar-brand {
+  padding-top: 14px !important;
+}
+
+.add_edit_page_header_margin {
+  margin: 0 0 12px -19px !important;
+}
+
+#message-container {
+  margin-left: -10px;
+  min-width: 89.5em;
+}
+
+.alert-danger {
+  margin-left: 37px;
+}
+
+.nav_dropdown_blue_color {
+  color: #438EB9 !important;
+}
+
+.event_photo_image_height_width {
+  height: 150px;
+  width: 150px;
+}
+
+.event_photo_height_width {
+  height:250px;
+  width:500px;
+}
+
+// ========== For sign used in edit registration page
+.certificate-number-sign{
+  font-size: 35px;
+  width: 2% !important;
+  margin-right: 7px;
+  margin-top: -10px;
+  float: left;
 }

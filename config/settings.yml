@@ -1,9 +1,21 @@
 app_name: "Pranic Healing - Ahmedabad"
-
+brand_name: 'Pranic Healing'
 default_password: 'india2014'
 
 pagination:
   per_page: 10
+
+events:
+  paperclip: { path: ":rails_root/photos/events/:id/:style/:filename", url: "photos/events/:id/:style/:filename" }
+
+event_gallery:
+  paperclip: { path: ":rails_root/photos/events/:event_id/gallery/:id/:style/:filename", url: "photos/events/:event_id/gallery/:id/:style/:filename" }
+
+event_schedule_gallery:
+  paperclip: { path: ":rails_root/photos/event_schedule_gallery/:id/:style/:filename", url: "photos/event_schedule_gallery/:event_schedule_id/:id/:style/:filename" }
+
+courses:
+  paperclip: { path: ":rails_root/photos/courses/:id/:style/:filename", url: "photos/courses/:id/:style/:filename" }
 
 payment:
   net_banking:
@@ -15,3 +27,15 @@ payment:
 
 defaults:
   date_format_in_views: '%d/%m/%Y'
+
+paperclip:
+  style:
+    medium: '300x300'
+    thumb: '100x100'
+    activity:
+      small: '55x55'
+  image_path: '/system/:class/:avatars/:id/:style/:basename.:extension'
+
+mail:
+  default_url_options:
+    support_email: 'support@healersconnect.in'

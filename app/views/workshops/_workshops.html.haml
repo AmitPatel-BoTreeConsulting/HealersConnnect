@@ -1,0 +1,21 @@
+%tr.info
+  %td<
+    = serial_number(@page,workshop_counter)
+  %td.text-center<
+    = date_formatted(workshop.start_date)
+  %td.text-center<
+    = date_formatted(workshop.end_date)
+  %td<
+    = workshop.course.name
+  %td<
+    = workshop.instructor.name
+  %td
+    = workshop.center.name
+  %td.text-center<
+    .action-buttons
+      = link_to(workshop_registrations_path(workshop), class: 'blue', title: 'View Registrations')  do
+        %i.icon-eye-open.bigger-130
+      = link_to(edit_workshop_path(workshop), class: 'green', title: t('common.caption.title.edit')) do
+        %i.icon-pencil.bigger-130
+      = link_to(workshop_path(workshop), method: :delete, :confirm=>t('workshop.message.remove') , class: 'red', title: t('common.caption.delete'))  do
+        %i.icon-trash.bigger-130

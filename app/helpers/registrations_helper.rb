@@ -31,4 +31,29 @@ module RegistrationsHelper
     end
     css_class
   end
+
+  def url_for_registration_form(registration, workshop)
+    if registration.new_record?
+      workshop_registrations_path(workshop)
+    else
+      workshop_registration_path(id: registration, workshop_id: workshop)
+    end
+  end
+
+  def set_profile(registration)
+    if registration.user
+      registration.user_profile = registration.user.user_profile
+    else
+      registration.build_user_profile
+    end
+    registration
+  end
+
+  def cancel_registration_path
+    if user_signed_in?
+      workshop_registrations_path(@workshop)
+    else
+      root_path
+    end
+  end
 end

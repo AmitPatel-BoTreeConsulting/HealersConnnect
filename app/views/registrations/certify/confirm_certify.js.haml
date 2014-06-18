@@ -1,0 +1,15 @@
+- if @registration.certificate_number.blank?
+  - # cannot certify when the certificate_number is not set
+  - # thus remind user to set certificate_number in popup with link to edit registration
+  var popup_title = "#{@registration.user_profile.name} doesn't have certificate number specified. Please update registration with certificate number.";
+  $('#confirmCertifyAllBtn').addClass('hide');
+  $('#certifyAll #usersWithoutCertyListing').html('#{escape_javascript render(partial: 'registrations/certify/users_without_certy_listing.html', locals: { :@registrations_without_certy_no => [@registration] })}');
+- else
+  - # When no uncertified registrations found
+  $('#certifyAll #usersWithoutCertyListing').html('');
+  var popup_title = "#{"You are about to certify #{@registration.user_profile.name} for #{@workshop.course.name}. Are you sure you want to continue certification process?"}";
+  $('#confirmCertifyAllBtn').removeClass('hide');
+  $('#confirmCertifyAllBtn').attr('href', "#{certify_workshop_registration_path(id: @registration, workshop_id: @workshop)}");
+
+$('#certifyPopupTitle').text(popup_title);
+$('#certifyAll').popup({ autoopen: true, opacity: 0.7 });

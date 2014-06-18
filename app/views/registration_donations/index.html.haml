@@ -1,0 +1,40 @@
+.page-header
+  %h1
+    = t('registration_donation.page_content.header.index')
+    %small
+      = render partial: 'workshops/workshop_details_page_header'
+    .btn-group.pull-right
+      = link_to 'New Donation', new_workshop_registration_registration_donation_path(@workshop, @registration), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
+
+= render 'payment_statistics'
+
+.row
+  .col-xs-12
+    .spacer20
+    .table-responsive
+      %table#sample-table-2.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '5%'} #{t('common.caption.serial_number')}
+            %th.center{width: '10%'} #{t('common.caption.received_on')}
+            %th.center.text-align-r{width: '15%'} #{t('common.caption.amount')} (&#x20B9;)
+            %th= t('common.caption.received_by')
+            %th{width: '45%'}= t('common.caption.description')
+        - if @registration_donations.present?
+          %tbody
+            - @registration_donations.each_with_index do |registration_donation, index|
+              %tr
+                %td= index + 1
+                %td.center= date_formatted(registration_donation.received_on)
+                %td.text-align-r= registration_donation.amount
+                %td= registration_donation.receiver.name
+                %td= registration_donation.description
+        - else
+          %tr
+            %td{colspan: 9}
+              .text-center
+                %h3
+                  = t('registration.message.no_registration_donation_found')
+.row
+  .col-xs-12
+    = link_to 'Back to Registration', workshop_registrations_path(@workshop)

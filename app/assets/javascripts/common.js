@@ -10,7 +10,8 @@ function initGoogleLocationSearchFields(location_input_id, longitude_id, latitud
     valid_location = (input.value!='' && input.value.length>0);
 
     var options = {
-        types: location_search_fields
+        types: location_search_fields,
+        componentRestrictions: {country: "in"}
     };
 
     autocomplete = new google.maps.places.Autocomplete(input, options);

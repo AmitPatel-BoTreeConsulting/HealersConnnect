@@ -1,0 +1,54 @@
+%section#feature_slider.lol
+  - @upcoming_event_workshop_for_slider.each do |upcoming_event_workshop|
+    - background_splash = asset_path 'home/backgrounds/aqua.jpg'
+    %article#tour.slide{:style => "background: url('#{background_splash}') repeat-x top center;"}
+      - if upcoming_event_workshop[:image].present?
+        = image_tag(upcoming_event_workshop[:image], class: 'asset left-472 sp650 t90 z3', style: 'width:910px;')
+      .info
+        %h4= upcoming_event_workshop[:name]
+        %div.slider_description_width
+          %p= truncate(strip_tags(upcoming_event_workshop[:description]), length: 200, separator: ' ')
+        = link_to t('manage_home.caption.button.read_more'), upcoming_event_workshop[:url]
+.spacer20
+.container
+  .section_header
+    %h3= t('course.caption.upcoming_cources_title')
+  .row
+    .col-xs-12
+      = render partial: 'shared/flash_messages'
+      .table-responsive
+        %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
+          %thead
+            %tr
+              %th.text-center{width: '12%'} #{t('common.caption.start_date')}
+              %th.text-center{width: '12%'}  #{t('common.caption.end_date')}
+              %th{width: '25%'} #{t('common.caption.course')}
+              %th{width: '15%'} #{t('common.caption.instructor')}
+              %th.text-center #{t('common.caption.center_location')}
+              %th.text-center{width: '10%'} #{t('common.caption.register')}
+          - if @workshops.present?
+            = render :partial => 'workshops/workshop_registration_list', collection: @workshops, as: :workshop
+          - else
+            %tr
+              %td{colspan: 7}
+                .text-center
+                  %h3
+                    = t('workshop.message.no_workshop_active')
+- if @event_schedules.present?
+  .container
+    .section_header#upcoming_events
+      %h3= t('event.caption.upcoming_events_title')
+    .row
+      .col-xs-12
+        .table-responsive
+          %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
+            %thead
+              %tr
+                %th.text-center{width: '12%'}  #{t('common.caption.start_date')}
+                %th.text-center{width: '12%'}  #{t('common.caption.end_date')}
+                %th{width: '25%'} #{t('common.caption.event')}
+                -#%th #{t('common.caption.instructor')}
+                %th.text-center{width: '15%'} #{t('common.caption.instructor')}
+                %th.text-center #{t('common.caption.center_location')}
+                %th.text-center{width: '10%'} #{t('common.caption.view')}
+              = render :partial => 'events/event_list', collection: @event_schedules, as: :event_schedule

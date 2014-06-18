@@ -1,0 +1,75 @@
+- donation_type = @donation.donation_type == 1 ? t('donation.caption.for_center_radio') : t('donation.caption.for_food_for_hungry_radio')
+!!!
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', content: 'text/html; charset=utf-8'}
+    = wicked_pdf_stylesheet_link_tag 'pdf/ace.min'
+    = wicked_pdf_stylesheet_link_tag 'pdf/bootstrap'
+    = wicked_pdf_stylesheet_link_tag 'pdf/custom'
+  %body
+    #wrap
+      %header
+      %main{role: 'main'}
+        .main-container
+          .main-container-inner
+            .main-content
+              .page-content
+                %h2
+                  %b= t('donation.caption.pdf.title')
+                .space-16
+                .row
+                  .col-xs-12
+                    .form-group
+                      %label.h4
+                        %b= t('donation.caption.pdf.receipt_no')
+                      %label.h4= @donation.receipt_number
+                .row
+                  .col-xs-12
+                    .form-group
+                      %label.h4
+                        %b= t('donation.caption.pdf.name')
+                      %label.h4= @donation.donor_name.capitalize
+                .row
+                  .col-xs-12
+                    .form-group
+                      %label.h4
+                        %b= t('donation.caption.pdf.email')
+                      %label.h4= @donation.donor_email
+                .row
+                  .col-xs-12
+                    .form-group.pull-left
+                      %label.h4
+                        %b
+                          = t('donation.caption.pdf.amount')
+                          (&#x20B9;):
+                      %label.h4
+                        = @donation.amount
+                .row
+                  .col-xs-12
+                    .form-group.pull-left
+                      %label.h4
+                        %b= t('donation.caption.pdf.received_by')
+                      %label.h4
+                        = @donation.user.email
+                .row
+                  .col-xs-12
+                    .form-group.pull-left
+                      %label.h4
+                        %b= t('donation.caption.pdf.donation_type')
+                      %label.h4
+                        = donation_type
+                .row
+                  .col-xs-12
+                    .form-group.pull-left
+                      %label.h4
+                        %b= t('donation.caption.pdf.center')
+                      %label.h4
+                        = @donation.center.name
+                - if @donation.description.present?
+                  .row
+                    .col-xs-12
+                      .form-group.pull-left
+                        %label.h4
+                          %b= t('donation.caption.pdf.description')
+                        %label.h4
+                          = @donation.description

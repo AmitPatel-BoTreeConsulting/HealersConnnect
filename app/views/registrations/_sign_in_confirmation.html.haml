@@ -1,0 +1,19 @@
+- registration_controller = (controller.controller_name == 'registrations')
+#sign_in_confirmation.popup-body
+  .center
+    .spacer20
+    %h4 We found following members matching with the information you provided. If you attempting to register one of them then please click on register link against the person to make registration quicker.
+    / %h4 Already registered? Please sign in for hassle free registration.
+    - if registration_controller
+      #usersListing
+      = render partial: 'registrations/users_listing'
+    - else
+      = link_to t('common.caption.sign_in'), new_user_session_path, class: 'btn btn-md btn-success'
+    .spacer10
+    #registerWithoutLogIn
+      %hr.hr-2px
+      .spacer10
+      - unless registration_controller
+        %h4 Not registered?
+      = link_to t('registration.caption.continue_registration'), 'javascript:void(0)', class: 'btn btn-md btn-success', id: 'continueRegistrationBtn'
+      .spacer20
