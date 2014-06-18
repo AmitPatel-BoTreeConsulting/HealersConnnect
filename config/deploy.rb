@@ -3,7 +3,7 @@ require "rvm/capistrano"
 
 server "107.170.144.231", :web, :app, :db, primary: true
 
-set :application, "healers_connect"
+set :application, "healersconnect"
 set :user, "healer"
 set :port, 10277
 set :deploy_to, "/home/#{user}/#{application}"
