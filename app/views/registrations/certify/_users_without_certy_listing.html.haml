@@ -1,0 +1,19 @@
+- unless @registrations_without_certy_no.blank?
+  .spacer10
+  .row
+    .col-xs-3
+    .col-xs-6
+      .table-responsive
+        %table#sample-table-2.table.table-striped.table-bordered.table-hover
+          %thead
+            %tr
+              %th.center{width: '80%'} #{t('common.caption.name')}
+              %th
+          %tbody
+            - @registrations_without_certy_no.each do |registration|
+              %tr
+                %td= registration.get_user_profile.name
+                %td<
+                  .action-buttons
+                    = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', title: t('common.caption.title.edit')) do
+                      %i.icon-pencil.bigger-130

@@ -1,0 +1,27 @@
+.page-header
+  %h1
+    = t('user_profile.caption.members')
+.row
+  .space-6
+  .col-xs-12
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '5%'} #{t('common.caption.serial_number')}
+            %th #{t('common.caption.name')}
+            %th #{t('common.caption.member_id')}
+        - if @user_profiles.present?
+          = render :partial => 'user_profiles', collection: @user_profiles, as: :user_profile
+        - else
+          %tr
+            %td{colspan: 7}
+              .text-center
+                %h3
+                  = t('user_profile.message.no_members_found')
+    .col-xs-12
+      .row
+        .col-sm-6
+        .col-sm-6
+          .dataTables_paginate.paging_bootstrap
+            = paginate @user_profiles

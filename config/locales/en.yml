@@ -2,18 +2,469 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  permissions:
+    not_permitted: "You are not authorized to access this page."
   center:
     caption:
+      centers: 'Centers'
+      foundation: 'Foundation'
+      location: 'Location'
+      address: 'Address'
+      phone_1: 'Phone 1'
+      phone_2: 'Phone 2'
+      new_center: 'New Center'
+      edit_center: 'Edit Center'
+      button:
+        update: 'Update Center'
+        new: 'Create Center'
+      placeholder:
+        location: 'Enter a Location'
     message:
+      no_centers_found: 'No Centers Found'
       success:
         center_created: "Center '%{center}' created successfully."
         center_updated: "Center '%{center}' updated successfully."
+  registration_donation:
+    page_content:
+      header:
+        index: 'Registration Donation'
+        new: 'New Registration Donation'
+    caption:
+      amount: 'Amount'
+      description: 'Description'
+      received_on: 'Received On'
+      receivable: 'Receivable'
+      received: 'Received'
+      pending: 'Pending'
+      button:
+        create: 'Create Donation'
+    message:
+      success:
+        creation: 'Registration Donation created auccessfully'
   registration:
     caption:
+      date_of_birth: 'Date of Birth'
+      gender: 'Gender'
+      male: 'Male'
+      female: 'Female'
+      certificate_number: 'Certificate Number'
+      marital_status: 'Marital Status'
+      marital_status_married: 'Married'
+      marital_status_unmarried: 'Unmarried'
+      education: 'Education'
+      occupation: 'Occupation'
+      residential_address: 'Residential Address'
+      telephone: 'Telephone'
+      payment_by: 'Payment By'
+      cheque_details: 'Cheque Details'
+      course_attempt: 'Course Attempt'
+      course_attempt_fresher: 'Fresher'
+      course_attempt_review: 'Review'
+      basic_pranic_healing: 'Basic Pranic Healing'
+      net_banking_details: 'Net Banking Details'
+      registered_on: 'Registered On'
+      checkbox_accept_vow: 'accept_vow'
+      checkbox: 'I accept VOW OF SECRECY'
+      payment_type: 'Payment Type'
+      confirm_registration_cancel: 'Are you sure you want to cancel the registration?'
+      confirm_registration_confirm: 'Are you sure you want to confirm the registration?'
+      confirm_registration_remove: 'Are you sure you want to remove this registration?'
+      continue_registration: 'No, Continue Registration'
+      certify: 'Certify'
+      donation_receivable: 'Donation Receivable'
+      donation_received: 'Donation Received'
+      pdf:
+        title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
+        name_of_course: 'Name of Course :'
+        course_title: 'ARCHIEVING ONENESS WITH THE HIGHER SOUL'
+        trainer: 'Trainer :'
+        certificate_number: 'Certificate No. :'
+        name: 'Name :'
+        date_of_birth: 'Date Of Birth :'
+        gender: 'Gender :'
+        marital_status: 'Marital Status :'
+        education_qualification: 'Education Qualification :'
+        occupation: 'Occupation :'
+        resident_address: 'Residential Address / Postal Address :'
+        mobile: 'Mobile :'
+        res_or_office_tel: 'Res/Office Tel. :'
+        email: 'E-mail :'
+        details_of_course: 'Details of Pranic Healing Courses you have taken (as applicable):'
+        course: 'Course'
+        place_conducted: 'Place Conducted'
+        year_and_date: 'Year & Date'
+        basic_pranic_healing: 'Basic Pranic Healing'
+        declaration: 'DECLARATION'
+        date: 'Date :'
+        vanue: 'Vanue :'
+        vanue_name: 'Ahmedabad'
+        signature: 'Signature :'
+        address_line_1: 'Flat 2, Sunny Side, Prof. U. U. Bhat Road, Matunga C. R.'
+        address_line_2: 'Mumbai 400 019'
+        address_line_3: 'Helpline: 93209 07358 Office Telephone: 24160008/24163137, 65084061 / 24160008'
+        address_line_4: 'Email: pranicmaharashtra@gmail.com Website: www.pranicmaharashtra.com'
+        text_paragraph_1: 'I am participating in this Pranic Healing Seminar at my own risk and my own will. I take full responsibility for participating in this program.'
+        text_paragraph_2: 'I release all instructors, organizers ans assistants of this seminar and Pranic Healing Gyan Prachar Kendra and World Pranic Healing Foundation and from all damages whatsoever and waive all rights to compensation on care of injury.'
+        text_paragraph_3: 'I declare that i am physically, emotionally and mentally able to participate in this seminar and will keep confidential the proceedings. I alse confirm that the information contained in this may be made available to World Pranic Healing Foundation.'
+      text:
+        text_paragraph_1: "I, hereby state that, having had the privilege of being accepted as a student in GRAND MASTER CHOA KOK SUI'S above-named course, do solemnly swear to keep Secret and Confidential, all the sacred teachings taught therein."
+        text_paragraph_2: 'On my Honour, I sincerely promise to preserve these sacred teachings in their purest form, and practice them in the proper and correct manner, guided by the golden rules and the Five Arhatic Virtues taught by Grand Master Choa Kok Sui. I also promise to prevent misuse or incorrect practice of these teachings by persons who have not been adequately instructed.'
+        text_paragraph_3: 'With the Lord God as my witness, and my Higher Self as my guide, I shall uphold this Vow of Secrecy and I will not divulge to anybody, under any circumstances, verbally or through the reproduction of written material, or through some other form, in whole or in part, any of the teachings, principles and techniques from the course.'
+        text_paragraph_4: 'I make this solemn vow freely and voluntarily, with no mental reservation or purpose of evasion.'
+      placeholder:
+        first_name: 'First Name'
+        middle_name: 'Middle Name'
+        surname: 'Surname'
+        date_of_birth_format: 'dd/mm/yyyy'
+        cheque_no: 'Cheque no'
+        bank_name: 'Bank name'
+        instructor: 'Instructor'
+        date_or_year: 'Date OR Year'
+        place: 'Place'
+      button:
+        status_confirmed: 'confirmed'
+        status_cancelled: 'Cancelled'
+        status_all: 'All'
+        update: 'Update Registration'
+        new: 'Register'
+    page_content:
+      header:
+        index: 'Registrations'
+        new: 'New Registration'
+        edit: 'Edit Registration'
+        breadcrumb: 'Hinduism Revealed'
     message:
       success:
         registration_success: 'Registration complete. Thank you.'
         registration_edit_success: "Registration of '%{name}' updated successfully."
         removed: "Registration of '%{name}' removed successfully."
         activated: "Registration of '%{name}' activated successfully."
-        deactivated: "Registration of '%{name}' de-activated successfully."
+        deactivated: "Registration of '%{name}' deactivated successfully."
+        accept_order_to_proceed: 'You must accept to in order to proceed'
+        certify_all: "%{number_of_confirmed_registration} attendee(s) certified successfully for %{workshop_name}."
+        certify: "%{name} has been certified successfully for %{workshop_name}"
+      failure:
+        certify_all: 'Error while certifying registrations, Please try again later'
+        certify: 'Error while certifying registration, Please try again later'
+      no_registration_found: 'No Registration Found'
+      no_registration_donation_found: 'No Registration Donation Found'
+    placeholders:
+      certificate_number_month: 'XX'
+      certificate_number_year: 'XX'
+      certificate_number_id: 'X...'
+  course:
+    caption:
+      courses: 'Courses'
+      new_course: 'New Course'
+      edit_course: 'Edit Course'
+      donation: 'Donation'
+      review_donation: 'Review Donation'
+      course_category: 'Course Category'
+      upcoming_cources_title: 'Upcoming Courses'
+      button:
+        update: 'Update Course'
+        new: 'Create Course'
+      eligibility: 'Eligibility'
+    message:
+      course_created: "Course '%{course}' created successfully."
+      course_updated: "Course '%{course}' updated successfully."
+      course_destroy: "Course '%{course}' deleted successfully."
+      course_deactivate: "Course '%{course}' deactivated successfully."
+      course_activate: "Course '%{course}' activated successfully."
+      no_courses_found: 'No Courses Found'
+      activate_confirm_message: 'Are you sure, You want to activate this course'
+      deactivate_confirm_message: 'Are you sure, You want to deactivate this course'
+
+  common:
+    app_name: 'Pranic Healing'
+    caption:
+      home_page_link: 'HOME'
+      home_page_course_link: 'COURSES'
+      home_page_activity_link: 'ACTIVITIES'
+      home_page_events_link: 'EVENTS'
+      home_page_activity_photos: 'Photos'
+      serial_number: 'Sr No.'
+      center_location: 'Location'
+      name: 'Name'
+      description: 'Description'
+      manage: 'Manage'
+      mobile: 'Mobile'
+      email: 'Email'
+      delete: 'Delete'
+      deactivate: 'Deactivate'
+      activate: 'Activate'
+      confirm_message: 'Are you sure?'
+      image: 'Image'
+      course: 'Course'
+      event: 'Event'
+      sign_out: 'Sign Out'
+      sign_in: 'Sign In'
+      start_date: 'Start Date'
+      end_date: 'End Date'
+      register: 'Register'
+      view_registrations: 'View Registrations'
+      contact: 'Contact'
+      member_id: 'Member ID'
+      received_by: 'Received By'
+      received_on: 'Received On'
+      amount: 'Amount'
+      center: 'Center'
+      view: 'View'
+      donation: 'Donation'
+      title:
+        edit: 'Edit'
+        gallery: 'Gallery'
+      button:
+        reset: 'Reset'
+        cancel: 'Cancel'
+        delete: 'Delete'
+        save: 'Save'
+        back: 'Back'
+        continue: 'Continue'
+      link:
+        forgot_my_password: 'I forgot my password'
+        confirmation_instructions: "Didn't receive confirmation instructions?"
+        unlock_instructions: "Didn't receive unlock instructions?"
+    10_digit_mobile_number: '10 digit mobile number'
+  instructor:
+    caption:
+      eligibilities: 'Eligibilities'
+      button:
+        update: 'Update Instructor'
+        new: 'Create Instructor'
+    message:
+      remove: 'Are you sure you want to remove this instructor?'
+      success:
+        created: 'Instructor created successfully.'
+        updated: "Instructor updated successfully."
+        removed: "Instructor removed successfully."
+        no_instructor_found: 'No Instructor Found'
+    page_content:
+      header:
+        index: 'Instructors'
+        new: 'New Instructor'
+        edit: 'Edit Instructor'
+  workshop:
+    caption:
+      instructor: 'Instructor'
+      assistant_instructor: 'Assistant instructor'
+      workshops: 'Workshops'
+      fees: 'Fees'
+      fees_after_session: 'After'
+      fees_before_session: 'Before'
+      fees_on_spot: 'Spot'
+      fees_for_fresher: 'For Fresher'
+      fees_for_review: 'For Review'
+      start_date: ' Workshop Start date'
+      end_date: ' Workshop End date'
+      session_start: 'Session Start'
+      session_end: 'Session End'
+      session: 'Session'
+      button:
+        new: 'Create Workshop'
+    message:
+      workshop_created: "Workshop '%{workshop}' created successfully."
+      workshop_updated: "Workshop '%{workshop}' updated successfully."
+      workshop_destroy: "Workshop '%{workshop}' deleted successfully."
+      workshop_deactivate: "Workshop '%{workshop}' deactivated successfully."
+      workshop_activate: "Workshop '%{workshop}' activated successfully."
+      no_workshops_found: 'No Workshops Found'
+      no_workshop_active: 'No workshops scheduled, Please check again later'
+      remove: 'Are you sure you want to remove this workshop?'
+    page_content:
+      header:
+        index: 'Workshops'
+        new: 'New Workshop'
+        edit: 'Edit Workshop'
+  donation:
+    caption:
+      receipt_no: 'Receipt No.'
+      donations: 'Donations'
+      name: 'Donar Name'
+      email: 'Donar Email'
+      donation_type: 'Donation Type'
+      center: 'Center'
+      for_center_radio: 'For Center'
+      for_food_for_hungry_radio: 'For Food for Hungry'
+      add_donation_btn: "Add Donation"
+      center_select_tag: 'center'
+      center_select_tag_prompt: '--Please select--'
+      received_by: 'Received By'
+      received_on: 'Received on'
+      amount: 'Amount'
+      new_donation: 'New Donation'
+      placeholder_date: 'dd/mm/yyyy'
+      pdf:
+        title: 'Donation Receipt'
+        receipt_no: 'Receipt Number:'
+        name: 'Name:'
+        amount: 'Amount'
+        received_by: 'Received By:'
+        donation_type: 'Donation Type:'
+        center: 'Center:'
+        description: 'Description:'
+        email: 'Email:'
+        report_title: 'Report'
+      button:
+        new: 'New Donation'
+        search: 'Search'
+        save: 'Save'
+      title:
+        save_as_pdf: 'Save as PDF'
+        export: 'Export Report'
+    message:
+      no_donations_found: 'No donations found'
+      success:
+        donor_notification: 'Donation created successfully.'
+    mailer:
+      paragraph_1: 'Thank you for the donation.'
+      paragraph_2: 'Please find donation details are as below.'
+      signature_text_thnak_you: 'Thank you,'
+      signature_text_team: 'Pranic Healing Team'
+
+  instructors:
+    caption:
+      instructor_select_tag_prompt: '--Please select instructor--'
+      no_instrctor_found: '--Instructor not available--'
+
+  mailer:
+    send_donation_notification_to_donor:
+      subject: 'Donation Notification'
+    course_complete_notification:
+      subject: "Congratulations!! You have completed %{course_name}"
+      paragraph_1: "You have successfully completed %{course_name} workshop. Here is the workshop details:"
+      aatma_namaste_text: "Aatma Namaste!!!"
+      signature_thnak_you: 'Thanking You,'
+  navbar:
+   menu:
+    title:
+      donations: 'Donations'
+      registrations: 'Registrations'
+      courses: 'Courses'
+      instructors: 'Instructors'
+      centers: 'Centers'
+      workshops: 'Workshops'
+      events: 'Events'
+      settings: 'Settings'
+      event_schedules: 'Event Schedules'
+      activities: 'Activities'
+      manage_homes: 'Manage Home'
+  sign_in:
+    caption:
+      remember_me: 'Remember Me'
+    button:
+      login: 'Login'
+    placeholder:
+      username: 'Member ID or Email'
+      password: 'Password'
+  forgot_password:
+    caption:
+      placeholder:
+        new: 'New Password'
+        confirm_new_password: 'Confirm New Password'
+      button:
+        send_me: Send Me
+        change_password: 'Change my password'
+      link:
+        back_to_signin: 'Back To Signin'
+  event:
+    caption:
+      events: 'Events'
+      event_category: 'Event Category'
+      description: 'Description'
+      upcoming_events_title: 'Upcoming Events'
+      all_events_title: 'All Events'
+      button:
+        new: 'New Event'
+        update: 'Save'
+        create: 'Create Event'
+    message:
+      event_created: "Event '%{event}' created successfully"
+      event_updated: "Event '%{event}' updated successfully"
+      event_destroy: "Event '%{event}' deleted successfully"
+      no_events_found: 'No Events Found'
+      no_upcoming_event: 'No upcoming event scheduled, Please check again later'
+      remove: 'Are you sure you want to remove this event?'
+    page_content:
+      header:
+        index: 'Instructors'
+        new: 'New Event'
+        edit: 'Edit Event'
+  event_schedule:
+    caption:
+      event: 'Event'
+      center: 'Center'
+      location: 'Location'
+      notes: 'Notes'
+      button:
+        new: 'New Event Schedule'
+        create: 'Create Event Schedule'
+        update: 'Save'
+    page_content:
+      header:
+        new: 'New Event Schedule'
+        edit: 'Edit Event Schedule'
+    message:
+      event_schedule_created: "Event Schedule of '%{event_schedule}' created successfully"
+      event_schedule_updated: "Event Schedule of '%{event_schedule}' updated successfully"
+      event_schedule_destroy: "Event Schedule of '%{event_schedule}' deleted successfully"
+      no_events_found: 'No Events Found'
+      remove: 'Are you sure you want to remove this event schedule?'
+      no_event_schedules_found: 'No Event Schedules Found'
+  activities:
+    caption:
+      activities: 'Activities'
+      button:
+        new: 'New Activity'
+        create: 'Create Activity'
+    message:
+      activities_created: "Activity '%{event}' created successfully"
+      activities_updated: "Activity '%{event}' updated successfully"
+      activities_destroy: "Activity '%{event}' deleted successfully"
+      no_activities_found: 'No Activities Found'
+      remove: 'Are you sure you want to remove this activity?'
+    page_content:
+      header:
+        new: 'New Activity'
+        edit: 'Edit Activity'
+  event_photo_gallery:
+    caption:
+      remove: 'Remove'
+      upload_photos: 'Upload Photos'
+    message:
+      event_photo_destroy: "Event photo '%{event_photo}' deleted successfully"
+      no_photos_found: 'No Photos Found'
+      remove: 'Are you sure you want to remove this photo?'
+  activity_photo_gallery:
+    caption:
+      remove: 'Remove'
+      upload_photos: 'Upload Photos'
+    message:
+      activity_photo_destroy: "Activity photo '%{activity_photo}' deleted successfully"
+      no_photos_found: 'No Photos Found'
+      remove: 'Are you sure you want to remove this photo?'
+  home_courses:
+    caption:
+      date: 'Date'
+      location: 'Location'
+      upcomming_workshops: 'UPCOMING WORKSHOPS'
+      eligibilities: 'ELIGIBILITIES'
+    message:
+      no_eligibilities_found: 'No Eligibilities Found'
+      no_upcoming_workshops_found: 'No Upcoming Workshops Found'
+  home_activities:
+    caption:
+      read_more: 'Read More'
+  manage_home:
+    caption:
+      button:
+        read_more: 'Read More'
+    page_content:
+      header:
+        upcoming_workshops: 'Upcoming Workshops'
+        upcoming_events: 'Upcoming Events'
+  user_profile:
+    caption:
+      members: 'Members'
+    message:
+      no_members_found: 'No members found'

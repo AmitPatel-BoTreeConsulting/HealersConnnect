@@ -12,10 +12,14 @@
  *= require font-awesome
  *= require jquery-ui-1.10.3.custom.min
  *= require datepicker
+ *= require bootstrap-timepicker
  *= require ace-fonts
  *= require ace.min
  *= require ace-rtl.min
  *= require ace-skins.min
+ *= require chosen.min
  *= require custom
+ *= require instructors
+ *= require event_photos
  *= require_self
  */

@@ -1,0 +1,37 @@
+.page-header
+  %h1
+    = t('instructor.page_content.header.index')
+.row
+  .col-xs-12
+    .btn-group.pull-right.margin-bottom-10
+      = link_to t('instructor.caption.button.new'), new_instructor_path, class: 'btn btn-sm btn-success', title: t('instructor.caption.button.new')
+.row
+  .col-xs-12
+    .table-responsive
+      %table#sample-table-2.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '5%'} #{t('common.caption.serial_number')}
+            %th{width: '27%'} #{t('common.caption.name')}
+            %th{width: '10%'} #{t('common.caption.email')}
+            %th.text-center{width: '10%'} #{t('common.caption.mobile')}
+            %th.text-center{width: '10%'} #{t('common.caption.manage')}
+        - if @instructors.present?
+          - @instructors.each_with_index do |instructor, index|
+            %tr
+              %td= index + 1
+              %td= instructor.name
+              %td= instructor.email
+              %td.text-center= instructor.mobile
+              %td.text-center<
+                .action-buttons
+                  = link_to(edit_instructor_path(instructor), class: 'green', title: t('common.caption.title.edit')) do
+                    %i.icon-pencil.bigger-130
+                  = link_to(instructor_path(instructor), method: :delete, :confirm=>t('instructor.message.remove') , class: 'red', title: t('common.caption.delete'))  do
+                    %i.icon-trash.bigger-130
+        - else
+          %tr
+            %td{colspan: 6}
+              .text-center
+                %h3
+                  = t('course.message.no_instructor_found')

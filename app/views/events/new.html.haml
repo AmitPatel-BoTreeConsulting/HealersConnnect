@@ -1,0 +1,8 @@
+.page-content
+  .page-header
+    %h1
+      - if params[:manage_page]
+        = t('activities.page_content.header.new')
+      - else
+        = t('event.page_content.header.new')
+  = render partial: 'form', locals: {action_event: params[:manage_page]}

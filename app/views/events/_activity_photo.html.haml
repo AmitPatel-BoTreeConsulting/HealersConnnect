@@ -1,0 +1,12 @@
+.row
+  .col-xs-12
+    .row-fluid
+      %ul.ace-thumbnails
+        - @activity_photo_gallery.each do |activity_gallery|
+          - remove_activity_gallery_path =  action_event ? remove_activity_photo_path(activity_gallery, manage_page: action_event) : remove_activity_photo_path(activity_gallery)
+          %li
+            = image_tag event_image_gallery_path(style: :medium, event_id: activity_gallery.event_id, id: activity_gallery.id, filename: activity_gallery.photo_file_name), class: 'event_photo_image_height_width'
+            .center
+              .name= truncate(activity_gallery.photo_file_name, length: 17)
+              .name
+                = link_to t('event_photo_gallery.caption.remove'), remove_activity_gallery_path, confirm: t('event_photo_gallery.message.remove'), method: 'delete'

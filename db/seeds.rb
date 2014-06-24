@@ -22,33 +22,35 @@ def create_or_update_by_alias(class_name, row)
 end
 
 
+
 # Roles
-roles = [ {name: 'Super Admin', alias: Role::SUPER_ADMIN},
-          {name: 'Center Admin', alias: Role::CENTER_ADMIN},
-          {name: 'Teacher', alias: Role::TEACHER},
-          {name: 'Healer', alias: Role::HEALER} ]
+roles = [ { name: 'Super Admin', alias: Role::SUPER_ADMIN },
+          { name: 'Center Admin', alias: Role::CENTER_ADMIN },
+          { name: 'Instructor', alias: Role::INSTRUCTOR },
+          { name: 'Healer', alias: Role::HEALER },
+          { name: 'Accountant', alias: Role::ACCOUNTANT },
+          { name: 'Foundation Admin', alias: Role::FOUNDATION_ADMIN } ]
 
 puts '------------Seeding Roles------------'
 roles.each { |role| create_or_update_by_alias(Role, role)}
 puts '-------------------------------------'
 
 # CourseCategory
-course_categories = [ {name: 'Healing & Protection', alias: 'healing_protection'},
-                      {name: 'Prosperity & Abundance', alias: 'prosperity_abundance'},
-                      {name: 'Spirituality', alias: 'spirituality'} ]
+healing_protection_alias = 'healing_protection'
+prosperity_abundance_alias = 'prosperity_abundance'
+spirituality_alias = 'spirituality'
+
+course_categories = [
+  { name: 'Healing & Protection', alias: healing_protection_alias },
+  { name: 'Prosperity & Abundance', alias: prosperity_abundance_alias },
+  { name: 'Spirituality', alias: spirituality_alias }
+]
 
 puts '--------Seeding CourseCategory-------'
 course_categories.each { |category| create_or_update_by_alias(CourseCategory, category)}
 puts '-------------------------------------'
 
 #================================================Create Default Users===================================================
-
-def admin_user_attrs
-  {
-      email: 'admin@healersconnect.com',
-      password: Settings.default_password,
-  }
-end
 
 def find_or_create_user(user_attrs)
   email = user_attrs[:email]
@@ -63,7 +65,13 @@ def find_or_create_user(user_attrs)
   user
 end
 
-admin_user = find_or_create_user(admin_user_attrs)
+admin_user = find_or_create_user({ email: 'admin@healersconnect.com', password: Settings.default_password })
+accountant = find_or_create_user({ email: 'accountant@healersconnect.com', password: Settings.default_password })
+foundation_admin = find_or_create_user({ email: 'foundation@healersconnect.com', password: Settings.default_password })
+center_admin = find_or_create_user({ email: 'center@healersconnect.com', password: Settings.default_password })
+instructor = find_or_create_user({ email: 'instructor@healersconnect.com', password: Settings.default_password })
+healer = find_or_create_user({ email: 'healer@healersconnect.com', password: Settings.default_password })
+
 puts '-------------------------------------'
 
 #==================================================Create Foundations===================================================
@@ -113,3 +121,93 @@ def find_or_create_payment_type(payment_type_attrs)
 end
 
 payment_types.each { |payment_type| find_or_create_payment_type(payment_type)}
+
+def find_or_create_user_role(user, role)
+  unless user.roles.present?
+    UserRole.create(role_id: role.id, user_id: user.id)
+    puts "Created user roles for #{user.email}"
+  else
+    puts "User roles for #{user.email} already exists, thus not created"
+  end
+end
+
+# Set role for Super Admin, Accountant, Foundation Admin, Center Admin
+application_admin_role = Role.super_admin
+account_role = Role.accountant
+foundation_admin_role = Role.foundation_admin
+center_admin_role = Role.center_admin
+
+user_role_for_super_admin = find_or_create_user_role(admin_user, application_admin_role)
+user_role_for_accountant = find_or_create_user_role(accountant, account_role)
+user_role_for_foundation_admin = find_or_create_user_role(foundation_admin, foundation_admin_role)
+user_role_for_center_admin = find_or_create_user_role(center_admin, center_admin_role)
+
+# =========================Create cources=========================
+
+# Find course categories:
+healing_protection_id = CourseCategory.find_by_alias(healing_protection_alias).id
+prosperity_abundance_id = CourseCategory.find_by_alias(prosperity_abundance_alias).id
+spirituality_id = CourseCategory.find_by_alias(spirituality_alias).id
+
+cources_arr = [
+{ name: 'Basic Pranic Healing', alias: 'BPH',
+  eligibility: '16+', course_category_id: healing_protection_id },
+{ name: 'Advanced Pranic Healing', alias: 'APH',
+  eligibility: 'BPH', course_category_id: healing_protection_id },
+{ name: 'Pranic Psychotherapy', alias: 'PPT',
+  eligibility: 'APH', course_category_id: healing_protection_id },
+{ name: 'Pranic Crystal Healing', alias: 'PCH',
+  eligibility: 'PPT', course_category_id: healing_protection_id },
+{ name: 'Psychic Self-Defense', alias: 'PSD',
+  eligibility: 'PPT', course_category_id: healing_protection_id },
+{ name: 'Super Brain Yoga', alias: 'SBY',
+  eligibility: 'BPH', course_category_id: healing_protection_id },
+{ name: 'Pranic Facial Rejuvenation', alias: 'PFR',
+  eligibility: 'PPT,PCH', course_category_id: healing_protection_id },
+{ name: 'Pranic Face Lift and Pranic Body Sculpting', alias: 'PFL_PBS',
+  eligibility: 'PPT,PCH', course_category_id: healing_protection_id  },
+
+{ name: 'Achieving Oneness with the Higher Soul', alias: 'AOHS',
+  eligibility: '16+', course_category_id: spirituality_id },
+{ name: 'Arhatic Yoga', alias: 'AYP',
+  eligibility: 'PPT,AOHS', course_category_id: spirituality_id },
+{ name: 'Spiritual Essence of Man', alias: 'SEOM',
+  eligibility: 'BPH', course_category_id: spirituality_id },
+{ name: 'Spiritual Business Management', alias: 'SBM',
+  eligibility: 'BPH', course_category_id: spirituality_id },
+{ name: 'Universal and Kabbalistic Meditation on Lord’s Prayer', alias: 'UKMLP',
+  eligibility: 'BPH', course_category_id: spirituality_id },
+{ name: 'Inner Teachings of Buddhism Revealed', alias: 'ITBR',
+  eligibility: 'BPH', course_category_id: spirituality_id },
+{ name: 'Inner Teachings of Christianity Revealed', alias: 'ITCR',
+  eligibility: 'BPH', course_category_id: spirituality_id },
+{ name: 'Inner Teachings of Hinduism Revealed', alias: 'ITHR',
+  eligibility: 'BPH', course_category_id: spirituality_id },
+{ name: 'Om Mani Pad Me Hum', alias: 'OMPH',
+  eligibility: 'BPH', course_category_id: spirituality_id },
+
+{ name: 'Kriyashakti', alias: 'KS',
+  eligibility: 'AYP', course_category_id: prosperity_abundance_id },
+{ name: 'Pranic Feng Shui', alias: 'PFS',
+  eligibility: 'PPT', course_category_id: prosperity_abundance_id }
+]
+
+puts '------------Seeding Courses------------'
+cources_arr.each{ |cource_map|
+  create_or_update_by_alias(Course, cource_map)
+}
+puts '---------------------------------------'
+
+# Event Category
+activity = 'activity'
+special_mediation = 'special_mediation'
+nurturing_session = 'nurturing_session'
+event_categories = [
+    { name: 'Activity', alias: activity },
+    { name: 'Special Mediation', alias: special_mediation },
+    { name: 'Nurturing Session', alias: nurturing_session }
+]
+
+puts '--------Seeding EventCategory-------'
+event_categories.each { |event_category| create_or_update_by_alias(EventCategory, event_category)}
+puts '-------------------------------------'

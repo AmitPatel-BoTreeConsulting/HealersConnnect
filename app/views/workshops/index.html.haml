@@ -1,0 +1,35 @@
+.page-header
+  %h1
+    = t('workshop.page_content.header.index')
+.row
+  .col-xs-12
+    .btn-group.pull-right
+      = link_to t('workshop.caption.button.new'), new_workshop_path, class: 'btn btn-sm btn-success', title: t('workshop.caption.button.new')
+.row
+  .space-6
+  .col-xs-12
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '5%'} #{t('common.caption.serial_number')}
+            %th.text-center{width: '8%'} #{t('common.caption.start_date')}
+            %th.text-center{width: '8%'} #{t('common.caption.end_date')}
+            %th #{t('common.caption.course')}
+            %th #{t('common.caption.instructor')}
+            %th #{t('common.caption.center')}
+            %th.text-center{width: '8%'} #{t('common.caption.manage')}
+        - if @workshops.present?
+          = render :partial => 'workshops', collection: @workshops, as: :workshop
+        - else
+          %tr
+            %td{colspan: 7}
+              .text-center
+                %h3
+                  = t('workshop.message.no_workshops_found')
+    .col-xs-12
+      .row
+        .col-sm-6
+        .col-sm-6
+          .dataTables_paginate.paging_bootstrap
+            = paginate @workshops

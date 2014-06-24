@@ -1,0 +1,52 @@
+.page-header
+  %h1
+    = t('manage_home.page_content.header.upcoming_workshops')
+.row
+  .space-6
+  .col-xs-12
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '5%'}
+            %th{width: '5%'} #{t('common.caption.serial_number')}
+            %th.text-center{width: '8%'} #{t('common.caption.start_date')}
+            %th.text-center{width: '8%'} #{t('common.caption.end_date')}
+            %th #{t('common.caption.course')}
+            %th #{t('common.caption.instructor')}
+            %th #{t('common.caption.center')}
+        #upcoming_workshops
+          - if @upcoming_workshops.present?
+            = render :partial => 'manage_homes/upcoming_workshops', locals: { upcoming_workshops: @upcoming_workshops }
+          - else
+            %tr
+              %td{colspan: 7}
+                .text-center
+                  %h3
+                    = t('workshop.message.no_workshops_found')
+
+.page-header
+  %h1
+    = t('manage_home.page_content.header.upcoming_events')
+.row
+  .space-6
+  .col-xs-12
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th{width: '5%'}
+            %th{width: '6%'} #{t('common.caption.serial_number')}
+            %th.text-center{width: '13%'} #{t('common.caption.start_date')}
+            %th.text-center{width: '13%'} #{t('common.caption.end_date')}
+            %th{width: '25%'} #{t('event_shecdule.caption.event')}
+            %th #{t('event_shecdule.caption.center')}
+        #upcoming_events
+          - if @upcoming_events.present?
+            = render :partial => 'manage_homes/upcoming_events', locals: { upcoming_events: @upcoming_events }
+          - else
+            %tr
+              %td{colspan: 8}
+                .text-center
+                  %h3
+                    = t('event.message.no_events_found')

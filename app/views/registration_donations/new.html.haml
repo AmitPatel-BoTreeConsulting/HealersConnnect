@@ -1,0 +1,8 @@
+.page-content
+  .page-header
+    %h1
+      = t('registration_donation.page_content.header.new')
+      %small
+        = render partial: 'workshops/workshop_details_page_header'
+  = render 'payment_statistics'
+  = render partial: 'form'

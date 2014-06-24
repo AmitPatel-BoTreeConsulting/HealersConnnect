@@ -1,0 +1,25 @@
+- workshop_sessions.each_with_index do |workshop_session, index|
+  - workshop_session_id = workshop_session.id
+  - workshop_session_start = workshop_session.session_start
+  - workshop_session_end = workshop_session.session_end
+  = hidden_field_tag('workshop[workshop_sessions_attributes][][id]', workshop_session.id)
+
+  .col-xs-9{id: "workshop_session_edit_#{index+1}"}
+    %label.col-sm-4.control-label.no-padding-right
+      = t('workshop.caption.session') unless workshop_sessions.present?
+    #workshop-sessions-edit
+      .wrapper-class
+        .fieldCollection
+          .col-xs-2.margin-right-15
+            .input-group
+              = text_field_tag 'workshop[workshop_sessions_attributes][][date]', '', id: 'id-date-picker-1', class: 'form-control date-picker',value: workshop_session.session_start.try(:strftime, '%d/%m/%Y')
+              %span.input-group-addon
+                %i.icon-calendar.bigger-110
+          .col-xs-4
+            = session_start_dropdown(workshop_session_start)
+            = session_end_dropdown(workshop_session_end)
+      .workshop-session-remove
+        = link_to('javascript:void(0)', class: 'font-22',id: workshop_session_id, tag: "#{index+1}") do
+          %i.icon-minus-sign
+
+    .space-6

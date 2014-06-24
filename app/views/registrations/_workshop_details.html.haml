@@ -1,0 +1,31 @@
+.col-sm-9
+  - if courses_workshop_map.present? && courses_workshop_map.has_key?(course)
+    - workshop = courses_workshop_map[course]
+    = text_field_tag "workshop_place", workshop.center.location, disabled: true, class: 'col-xs-2 margin-right-10'
+    = text_field_tag "workshop_date_or_year", date_formatted(workshop.end_date), disabled: true, class: 'col-xs-2 margin-right-10'
+    = text_field_tag "workshop_instructor", workshop.instructor.name, disabled: true, class: 'col-xs-2'
+  - elsif @profile.present? && (past_workshops = @profile.past_workshops).present?
+    - place = past_workshops[course.alias]['palce'] rescue nil
+    - date = past_workshops[course.alias]['date'] rescue nil
+    - instructor = past_workshops[course.alias]['instructor'] rescue nil
+    - free_field = true
+    - if place.blank? && date.blank? && instructor.blank? && (past_workshops = @registration.past_workshops).present?
+      - place = past_workshops[course.alias]['palce'] rescue nil
+      - date = past_workshops[course.alias]['date'] rescue nil
+      - instructor = past_workshops[course.alias]['instructor'] rescue nil
+      - editable = true
+  - else
+    - place = @registration.past_workshops[course.alias]['palce'] rescue nil
+    - date = @registration.past_workshops[course.alias]['date'] rescue nil
+    - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil
+    - free_field = true
+
+  - if free_field
+    - if (place || date || instructor) && !editable
+      = text_field_tag "workshop_place", place, disabled: true, class: 'col-xs-2 margin-right-10'
+      = text_field_tag "workshop_date_or_year", date, disabled: true, class: 'col-xs-2 margin-right-10'
+      = text_field_tag "workshop_instructor", instructor, disabled: true, class: 'col-xs-2'
+    - else
+      = text_field_tag "registration[past_workshops[#{course.alias}][palce]]", place, placeholder: t('registration.caption.placeholder.place'), class: 'col-xs-2 margin-right-10'
+      = text_field_tag "registration[past_workshops[#{course.alias}][date]]", date, placeholder: t('registration.caption.placeholder.date_or_year'), class: 'col-xs-2 margin-right-10'
+      = text_field_tag "registration[past_workshops[#{course.alias}][instructor]]", instructor, placeholder: t('registration.caption.placeholder.instructor'), class: 'col-xs-2'

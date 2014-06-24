@@ -12,8 +12,26 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+//= require ckeditor-jquery
+//= require ckeditor/config
 //= require bootstrap.min
 //= require bootstrap-datepicker.min
+//= require bootstrap-timepicker.min
+//= require chosen.jquery.min
+//= require jquery.popupoverlay
 //= require common
 //= require ace-elements.min
-//= require registration
+//= require registrations
+//= require courses
+//= require instructors
+//= require jsapi
+//= require donation
+//= require workshops
+//= require nav_settings_dropdown
+//= require events
+//= require event_schedules
+//= require manage_home
+//= require jquery.blockUI
+//= require rails
