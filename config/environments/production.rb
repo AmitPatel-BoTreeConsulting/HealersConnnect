@@ -55,6 +55,12 @@ HealersConnnect::Application.configure do
   # Enable threaded mode
   # config.threadsafe!
 
+  config.before_initialize do
+    # Asset packaging library
+    # http://documentcloud.github.io/jammit/
+    config.gem "jammit"
+  end
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
