@@ -9,7 +9,7 @@ HealersConnnect::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = true
+  config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -48,7 +48,7 @@ HealersConnnect::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
   config.assets.precompile += %w( font-awesome-ie7.min.css pdf/ace.min.css pdf/bootstrap.css pdf/custom.css ace-ie.min.css excanvas.min.js html5shiv.js ckeditor/config.js.coffee)
-  
+
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
