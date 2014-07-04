@@ -48,19 +48,9 @@ HealersConnnect::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
   config.assets.precompile += %w( font-awesome-ie7.min.css pdf/ace.min.css pdf/bootstrap.css pdf/custom.css ace-ie.min.css excanvas.min.js html5shiv.js ckeditor/config.js.coffee)
-  
+
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-
-  # Enable threaded mode
-  # config.threadsafe!
-
-  config.before_initialize do
-    # Asset packaging library
-    # http://documentcloud.github.io/jammit/
-    config.gem "jammit"
-  end
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true

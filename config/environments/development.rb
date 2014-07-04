@@ -29,12 +29,6 @@ HealersConnnect::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.before_initialize do
-    # Asset packaging library
-    # http://documentcloud.github.io/jammit/
-    config.gem "jammit"
-  end
-
   # Do not compress assets
   config.assets.compress = false
 
