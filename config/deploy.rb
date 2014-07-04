@@ -63,7 +63,6 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
-  after "deploy", "deploy:assets:precompile"
 
   task :generate_assets, :roles => :web do
     run "cd #{deploy_to}/current && bundle exec jammit"
