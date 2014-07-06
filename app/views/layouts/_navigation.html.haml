@@ -19,12 +19,13 @@
               = t('navbar.menu.title.settings')
               %b.caret
             %ul.dropdown-menu
-              %li.mobile-link
-                = render_navigation_menu_option(:centers, nil)
-              %li
-                = render_navigation_menu_option(:courses, nil)
-              %li
-                = render_navigation_menu_option(:instructors, nil)
+              - if current_user.is_super_admin?
+                %li.mobile-link
+                  = render_navigation_menu_option(:centers, nil)
+                %li
+                  = render_navigation_menu_option(:courses, nil)
+                %li
+                  = render_navigation_menu_option(:instructors, nil)
               %li
                 = render_navigation_menu_option(:manage_homes, nil)
           %li

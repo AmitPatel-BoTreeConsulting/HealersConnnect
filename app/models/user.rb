@@ -61,6 +61,10 @@ class User < ActiveRecord::Base
     is_super_admin? || is_foundation_admin?
   end
 
+  def is_registrar?
+    have_role?(Role::REGISTRAR)
+  end
+
   def have_role?(role_type)
     roles.pluck(:alias).include? role_type if roles
   end
