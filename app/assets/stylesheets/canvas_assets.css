@@ -21,5 +21,7 @@
  *= require home/custom
  *= require home/blog
  *= require home/blogpost
+ *= require home/blueimp-gallery.min
+ *= require home/bootstrap-image-gallery
  *= require_self
  */
