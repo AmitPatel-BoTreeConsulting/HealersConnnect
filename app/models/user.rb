@@ -61,6 +61,10 @@ class User < ActiveRecord::Base
     is_super_admin? || is_foundation_admin?
   end
 
+  def is_super_admin_or_center_admin?
+    is_super_admin? || is_center_admin?
+  end
+
   def is_registrar?
     have_role?(Role::REGISTRAR)
   end
@@ -124,5 +128,9 @@ class User < ActiveRecord::Base
       mapping[certificate.course] = certificate.workshop
     end
     mapping
+  end
+
+  def center_ids
+    user_roles.pluck(:center_id)
   end
 end

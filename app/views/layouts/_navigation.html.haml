@@ -1,4 +1,4 @@
-- options = [:workshops, :donations, :events, :event_schedules, :activities]
+- menu_items = [:workshops, :donations, :events, :event_schedules, :activities]
 %header#top.navbar.navbar-static-top.bs-docs-nav{role: "banner"}
   .container
     .navbar-header
@@ -12,22 +12,23 @@
     %nav.collapse.navbar-collapse.navbar-ex1-collapse{role: "navigation"}
       %ul.nav.navbar-nav.navbar-right
         - if current_user.present?
-          - options.each do |option|
+          - menu_items.each do |option|
             = render_navigation_menu_option(option, @activity)
-          %li.dropdown
-            %a{"data-close-others" => "false", "data-delay" => "1000", "data-hover" => "dropdown"}
-              = t('navbar.menu.title.settings')
-              %b.caret
-            %ul.dropdown-menu
-              - if current_user.is_super_admin?
-                %li.mobile-link
-                  = render_navigation_menu_option(:centers, nil)
+          - if current_user.is_super_admin_or_center_admin?
+            %li.dropdown
+              %a{"data-close-others" => "false", "data-delay" => "1000", "data-hover" => "dropdown"}
+                = t('navbar.menu.title.settings')
+                %b.caret
+              %ul.dropdown-menu
+                - if current_user.is_super_admin?
+                  %li.mobile-link
+                    = render_navigation_menu_option(:centers, nil)
+                  %li
+                    = render_navigation_menu_option(:courses, nil)
+                  %li
+                    = render_navigation_menu_option(:instructors, nil)
                 %li
-                  = render_navigation_menu_option(:courses, nil)
-                %li
-                  = render_navigation_menu_option(:instructors, nil)
-              %li
-                = render_navigation_menu_option(:manage_homes, nil)
+                  = render_navigation_menu_option(:manage_homes, nil)
           %li
             = link_to t('common.caption.sign_out'), signout_path
         - else
