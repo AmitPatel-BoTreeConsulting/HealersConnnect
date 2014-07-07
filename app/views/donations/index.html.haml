@@ -32,9 +32,9 @@
               = hidden_field_tag 'donation[user_id][]', user_id
           - else
             = hidden_field_tag 'donation[user_id][]', ''
-
-          = link_to '#', id: 'export_donation', class: 'donation_export_link', title: t('donation.caption.title.export')  do
-            %i.icon-print.bigger-130
+          - if current_user.is_center_admin?
+            = link_to 'javascript:;', id: 'export_donation', class: 'donation_export_link', title: t('donation.caption.title.export')  do
+              %i.icon-print.bigger-130
     .space-20
 - if @timeline.present?
   .row
@@ -94,7 +94,7 @@
               .text-center
                 %h3= t('donation.message.no_donations_found')
 .space-20
-- if @donation_chart
+-#- if @donation_chart
   .row
     .col-xs-12
       #donation_chart

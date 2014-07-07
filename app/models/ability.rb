@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     if user.is_super_admin?
       can :manage, [Event, Center, Course, Instructor]
-      can :read, [Workshop, Registration]
+      can :read, [Workshop, Registration, Donation]
     elsif user.is_center_admin?
       can :manage, Workshop do |workshop|
         user.center_ids.include?(workshop.center_id)
@@ -23,6 +23,11 @@ class Ability
         user.center_ids.include?(event_schedule.center.id)
       end
       can :create, EventSchedule
+
+      can :manage, Donation do |donation|
+        user.center_ids.include?(donation.center_id)
+      end
+      can :create, Donation
 
     elsif  user.is_accountant?
       can :manage, Donation

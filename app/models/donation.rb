@@ -1,4 +1,6 @@
 class Donation < ActiveRecord::Base
+  default_scope order('created_at DESC')
+
   FOR_CENTER = 1
   FOR_FOOD_FOR_HUNGRY = 2
   attr_accessible :center_id, :description, :donation_type, :donor_name, :donor_email, :amount, :user_id
@@ -12,6 +14,8 @@ class Donation < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :center
+  scope :for_center, ->(centers) { where(center_id: centers) }
+  scope :received_by, ->(user) { where(user_id: user.id) }
 
   after_create :add_unique_donation_receipt_number
 

@@ -31,7 +31,7 @@ module ApplicationHelper
     if can?(:read, Workshop) && option == :workshops
       url = workshops_path
       link_title = t('navbar.menu.title.workshops')
-    elsif can?(:manage, Donation) && option == :donations
+    elsif can?(:read, Donation) && option == :donations
       url = donations_path
       link_title = t('navbar.menu.title.donations')
     elsif can?(:manage, Event) && option == :events

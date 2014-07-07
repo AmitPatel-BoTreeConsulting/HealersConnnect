@@ -2,17 +2,19 @@ class DonationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
   before_filter :find_donation, only: [:show, :export]
   before_filter :required_access, only: [:index, :new, :create, :export]
+
   def index
     if params[:timeline].present?
       @timeline = params[:timeline]
+      params[:user_id] = current_user.id if current_user.is_center_admin?
       if params[:donation].present?
         @donation_params = params[:donation]
         @donations = Donation.search(@donation_params)
       else
-        @donations = Donation.all
+        donation_listing()
       end
     else
-      @donations = Donation.all
+      donation_listing()
     end
 
     if @timeline.present?
@@ -72,4 +74,14 @@ class DonationsController < ApplicationController
       @donation = Donation.find(params[:id])
     end
 
+    def donation_listing
+      if current_user.is_center_admin?
+        @donations = Donation.for_center(current_user.center_ids)
+      else if current_user.is_accountant?
+         @donations = Donation.for_center(current_user.center_ids).received_by(current_user)
+       else
+         @donations = Donation.all
+       end
+      end
+    end
 end
