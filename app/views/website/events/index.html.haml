@@ -1,0 +1,19 @@
+= form_tag event_home_path, method: :get, id: 'limit_form', remote: true do
+  #contact.home_course_content_margin
+    .container
+      .section_header#upcoming_events
+        %h3= t('event.caption.upcoming_events_title')
+      - if @event_schedules.present?
+        .row
+          .col-xs-12
+            #up_events
+              = render :partial => 'events/event_list'
+
+    .container
+      .section_header
+        %h3= t('event.caption.all_events')
+      - if @events.present?
+        .row
+          .col-xs-12
+            #all_events
+              = render :partial => 'website/events/all_events'

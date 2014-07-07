@@ -1,0 +1,5 @@
+- if @event_schedules.present?
+  $('#up_events').html("#{escape_javascript(render partial: "events/event_list", locals: { event_schedule: @event_schedules })}");
+
+- if @events.present?
+  $('#all_events').html("#{escape_javascript(render partial: "website/events/all_events", locals: { all_events: @all_events })}");
