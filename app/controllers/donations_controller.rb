@@ -1,7 +1,9 @@
 class DonationsController < ApplicationController
-  before_filter :authenticate_user!, only: [:index, :edit, :update]
-  before_filter :find_donation, only: [:show, :export]
-  before_filter :required_access, only: [:index, :new, :create, :export]
+  before_filter :authenticate_user!
+  load_and_authorize_resource only: [:index, :new, :create, :export]
+
+  #before_filter :find_donation, only: [:show, :export]
+  #before_filter :required_access, only: [:index, :new, :create, :export]
 
   def index
     if params[:timeline].present?

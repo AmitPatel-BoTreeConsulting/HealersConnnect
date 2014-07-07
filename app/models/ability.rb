@@ -30,7 +30,10 @@ class Ability
       can :create, Donation
 
     elsif  user.is_accountant?
-      can :manage, Donation
+      can :manage, Donation do |donation|
+        user.center_ids.include?(donation.center_id)
+      end
+      can :create, Donation
     elsif user.is_registrar?
       can :manage, Registration
     end

@@ -2,8 +2,9 @@
 .page-header
   %h1
     = t('donation.caption.donations')
-    .btn-group.pull-right.btn_reports_export_margin
-      = link_to(t('donation.caption.button.new'), new_donation_path, class: 'btn btn-success btn-sm',title: t('donation.caption.button.new'))
+    - unless current_user.is_super_admin?
+      .btn-group.pull-right.btn_reports_export_margin
+        = link_to(t('donation.caption.button.new'), new_donation_path, class: 'btn btn-success btn-sm',title: t('donation.caption.button.new'))
 .row
   .col-xs-12
     %ul.nav.nav-pills#registrations_container
