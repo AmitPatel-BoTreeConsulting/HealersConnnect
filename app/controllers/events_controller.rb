@@ -98,8 +98,9 @@ class EventsController < ApplicationController
   end
 
   def decide_scope_for_event_and_activities
-    params[:manage_page] = 'activity' if current_user.is_super_admin?
-    params[:manage_page] ? Event.events_with_only_activity : Event.events_without_activity
+    #params[:manage_page] = 'activity' if current_user.is_super_admin? && params[:manage_page].blank?
+    current_page = params[:manage_page]
+    current_page ? Event.events_with_only_activity : Event.events_without_activity
   end
 
   def set_param_for_activities

@@ -133,4 +133,9 @@ class User < ActiveRecord::Base
   def center_ids
     user_roles.pluck(:center_id)
   end
+
+  # Need to work when one user has roles in multiple centers
+  def center
+    Center.find(center_ids.first)
+  end
 end

@@ -6,6 +6,7 @@
 .row
   .col-xs-12
     = form_for @workshop,  html: {class: 'form-horizontal', role: 'form', id: 'clientForm'} do |f|
+      = hidden_field_tag 'workshop[center_id]', current_user.center.id
       .space-4
       %form.form-horizontal#sample-form
         .form-group
@@ -14,7 +15,7 @@
             = f.collection_select :course_id, Course.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-5 col-sm-5' }
         #course_instructors_part
           = render partial: 'course_instructors_part', locals: {prompt_msg: t('instructors.caption.instructor_select_tag_prompt'), f: f}
-        .form-group
+        -#.form-group
           %label.col-sm-3.control-label.no-padding-right #{t('donation.caption.center')}
           .col-sm-9
             = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'col-xs-10 col-sm-5' }
