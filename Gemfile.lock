@@ -44,6 +44,7 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     builder (3.0.4)
+    cancan (1.6.10)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -233,6 +234,7 @@ DEPENDENCIES
   ancestry
   better_errors
   blockuijs-rails!
+  cancan
   capistrano
   ckeditor_rails
   coffee-rails (~> 3.2.1)

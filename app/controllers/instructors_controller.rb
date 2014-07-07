@@ -1,10 +1,11 @@
 class InstructorsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :required_access,  only: [:index, :new, :create, :edit, :update, :destroy]
-  before_filter :find_instructor, only: [:edit, :update, :destroy]
+  load_and_authorize_resource
+
+  #before_filter :required_access,  only: [:index, :new, :create, :edit, :update, :destroy]
+  #before_filter :find_instructor, only: [:edit, :update, :destroy]
 
   def index
-    @instructors = Instructor.all
   end
 
   def new

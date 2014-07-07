@@ -1,9 +1,22 @@
 class EventSchedulesController < ApplicationController
-  before_filter :event_schedule_from_params , only: [:show, :edit, :update, :destroy]
-  before_filter :required_access, only: [:index, :new, :create, :edit, :update, :show]
+  before_filter :authenticate_user!
+  load_and_authorize_resource only: [:show, :edit, :update, :destroy]
+
+  #before_filter :event_schedule_from_params , only: [:show, :edit, :update, :destroy]
+  #before_filter :required-_access, only: [:index, :new, :create, :edit, :update, :show]
+
   def index
     @page = params[:page] || 1
-    @event_schedules = EventSchedule.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
+
+    if current_user.is_center_admin?
+      event_schedules = EventSchedule.for_center(current_user.center_ids)
+    else
+      event_schedules = EventSchedule
+    end
+    @event_schedules =  event_schedules.page(params[:page]).per(Settings.pagination.per_page).order('start_date DESC')
+
+    #@page = params[:page] || 1
+    #@event_schedules = EventSchedule.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
   def new

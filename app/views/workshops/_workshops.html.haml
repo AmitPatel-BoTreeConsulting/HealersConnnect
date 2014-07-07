@@ -15,7 +15,8 @@
     .action-buttons
       = link_to(workshop_registrations_path(workshop), class: 'blue', title: 'View Registrations')  do
         %i.icon-eye-open.bigger-130
-      = link_to(edit_workshop_path(workshop), class: 'green', title: t('common.caption.title.edit')) do
-        %i.icon-pencil.bigger-130
-      = link_to(workshop_path(workshop), method: :delete, :confirm=>t('workshop.message.remove') , class: 'red', title: t('common.caption.delete'))  do
-        %i.icon-trash.bigger-130
+      - if can? :manage, Workshop
+        = link_to(edit_workshop_path(workshop), class: 'green', title: t('common.caption.title.edit')) do
+          %i.icon-pencil.bigger-130
+        = link_to(workshop_path(workshop), method: :delete, :confirm=>t('workshop.message.remove') , class: 'red', title: t('common.caption.delete'))  do
+          %i.icon-trash.bigger-130
