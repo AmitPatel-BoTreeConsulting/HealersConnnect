@@ -1,6 +1,6 @@
 class DonationsController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource only: [:index, :new, :create, :export]
+  load_and_authorize_resource only: [:index, :new, :create]
 
   #before_filter :find_donation, only: [:show, :export]
   #before_filter :required_access, only: [:index, :new, :create, :export]
@@ -57,6 +57,8 @@ class DonationsController < ApplicationController
   end
 
   def export
+    find_donation()
+    authorize! :export_donation, @donation
     respond_to do |format|
       format.html
       format.pdf do
