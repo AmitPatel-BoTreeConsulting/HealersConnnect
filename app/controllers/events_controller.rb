@@ -1,12 +1,15 @@
 class EventsController < ApplicationController
-  before_filter :event_from_params, only: [:edit, :update, :show, :destroy]
+  before_filter :authenticate_user!
+  load_and_authorize_resource
+
+  #before_filter :event_from_params, only: [:edit, :update, :show, :destroy]
   before_filter :set_event_category, only: [:new, :create, :edit, :update]
-  before_filter :required_access, only: [:index, :create, :show, :edit, :update, :destroy]
+  #before_filter :required_access, only: [:index, :create, :show, :edit, :update, :destroy]
   before_filter :set_param_for_activities, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   def index
     @page = params[:page] || 1
-    @events = decide_scope_for_event_and_activities(params[:manage_page]).page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
+    @events = decide_scope_for_event_and_activities.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
   def new
@@ -94,8 +97,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def decide_scope_for_event_and_activities(params)
-    params ? Event.events_with_only_activity : Event.events_without_activity
+  def decide_scope_for_event_and_activities
+    #params[:manage_page] = 'activity' if current_user.is_super_admin? && params[:manage_page].blank?
+    current_page = params[:manage_page]
+    current_page ? Event.events_with_only_activity : Event.events_without_activity
   end
 
   def set_param_for_activities

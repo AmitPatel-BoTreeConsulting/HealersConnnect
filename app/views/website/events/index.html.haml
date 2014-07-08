@@ -1,0 +1,22 @@
+#contact.home_course_content_margin
+  - if @event_schedules.present?
+    .container
+      .section_header#upcoming_events
+        %h3= t('event.caption.upcoming_events_title')
+      .row
+        .col-xs-12
+          #up_events
+            = render :partial => 'website/events/event_list'
+          #up_events_pagination
+            = paginate @event_schedules, params: {up_events: 'up_events'}, remote: true
+
+  - if @events.present?
+    .container
+      .section_header
+        %h3= t('event.caption.all_events')
+      .row
+        .col-xs-12
+          #all_events
+            = render :partial => 'website/events/all_events'
+          #all_events_pagination
+            = paginate @events, params: {all_events: 'all_events'}, remote: true

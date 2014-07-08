@@ -17,6 +17,7 @@ gem 'jquery-rails'
 
 #Authentication and Authorization
 gem 'devise'
+gem 'cancan'
 
 gem 'ancestry'
 gem "kaminari", "~> 0.14.1"
