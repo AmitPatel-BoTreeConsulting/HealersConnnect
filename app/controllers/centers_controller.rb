@@ -1,10 +1,15 @@
 class CentersController < ApplicationController
+  before_filter :authenticate_user!
+  load_and_authorize_resource
+
   before_filter :collect_foundations, only: [:new, :create, :edit, :update]
-  before_filter :find_center, only: [:edit, :update]
-  before_filter :required_access, only: [:index, :new, :create, :edit, :update]
+  #before_filter :find_center, only: [:edit, :update]
+  #before_filter :required_access, only: [:index, :new, :create, :edit, :update]
 
   def index
-  @centers = Center.page(params[:page]).per(Settings.pagination.per_page)
+    #@centers = Center.page(params[:page]).per(Settings.pagination.per_page)
+    # https://github.com/ryanb/cancan/wiki/authorizing-controller-actions#load_resource
+    @centers = @centers.page(params[:page]).per(Settings.pagination.per_page)
   end
 
   def new

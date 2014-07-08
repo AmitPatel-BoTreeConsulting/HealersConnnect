@@ -2,8 +2,9 @@
 .page-header
   %h1
     = t('donation.caption.donations')
-    .btn-group.pull-right.btn_reports_export_margin
-      = link_to(t('donation.caption.button.new'), new_donation_path, class: 'btn btn-success btn-sm',title: t('donation.caption.button.new'))
+    - unless current_user.is_super_admin?
+      .btn-group.pull-right.btn_reports_export_margin
+        = link_to(t('donation.caption.button.new'), new_donation_path, class: 'btn btn-success btn-sm',title: t('donation.caption.button.new'))
 .row
   .col-xs-12
     %ul.nav.nav-pills#registrations_container
@@ -32,9 +33,9 @@
               = hidden_field_tag 'donation[user_id][]', user_id
           - else
             = hidden_field_tag 'donation[user_id][]', ''
-
-          = link_to '#', id: 'export_donation', class: 'donation_export_link', title: t('donation.caption.title.export')  do
-            %i.icon-print.bigger-130
+          - if current_user.is_center_admin?
+            = link_to 'javascript:;', id: 'export_donation', class: 'donation_export_link', title: t('donation.caption.title.export')  do
+              %i.icon-print.bigger-130
     .space-20
 - if @timeline.present?
   .row
@@ -94,7 +95,7 @@
               .text-center
                 %h3= t('donation.message.no_donations_found')
 .space-20
-- if @donation_chart
+-#- if @donation_chart
   .row
     .col-xs-12
       #donation_chart
