@@ -373,6 +373,7 @@ en:
       event_category: 'Event Category'
       description: 'Description'
       upcoming_events_title: 'Upcoming Events'
+      all_events: 'All Events'
       button:
         new: 'New Event'
         update: 'Save'

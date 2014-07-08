@@ -66,4 +66,5 @@ HealersConnnect::Application.routes.draw do
   get 'photos/courses/:id/:style/:filename' => 'website/courses#show_course_image', as: :website_course_image
   get 'photos/events/:id/:style/:filename' => 'website/activities#show_activity_image', as: :website_activity_image
   get 'photos/events/:event_id/gallery/:id/:style/:filename' => 'website/activities#show_event_image_gallery', as: :website_event_image_gallery
+  get 'events' => 'website/events#index', as: :website_events
 end
