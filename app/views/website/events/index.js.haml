@@ -1,5 +1,7 @@
 - if @event_schedules.present?
-  $('#up_events').html("#{escape_javascript(render partial: "events/event_list", locals: { event_schedule: @event_schedules })}");
+  $('#up_events').html("#{escape_javascript(render partial: "website/events/event_list", locals: { event_schedule: @event_schedules })}");
+  $('#up_events_pagination').html("#{escape_javascript(paginate(@event_schedules, :remote => true)) }");
 
 - elsif @events.present?
-  $('#all_events').html("#{escape_javascript(render partial: "website/events/all_events", locals: { all_events: @all_events })}");
+  $('#all_events').html("#{escape_javascript(render partial: "website/events/all_events", locals: { all_events: @events })}");
+  $('#all_events_pagination').html("#{escape_javascript(paginate(@events, :remote => true)) }");

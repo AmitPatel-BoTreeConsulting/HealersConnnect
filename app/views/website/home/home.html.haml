@@ -40,4 +40,7 @@
       %h3= t('event.caption.upcoming_events_title')
     .row
       .col-xs-12
-        = render :partial => 'events/event_list'
+        #up_events
+          = render :partial => 'website/events/event_list'
+        #up_events_pagination
+          = paginate @event_schedules, params: {up_events: 'up_events'}, remote: true

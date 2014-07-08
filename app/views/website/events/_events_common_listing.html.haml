@@ -8,7 +8,7 @@
         %th.text-center{width: '15%'} #{t('common.caption.instructor')}
         %th.text-center #{t('common.caption.center_location')}
         %th.text-center{width: '10%'} #{t('common.caption.view')}
-    - @event_schedules.each do |event_schedule|
+    - event_schedules.each do |event_schedule|
       %tr.info
         %td.text-center{title: time_formatted(event_schedule.start_date)}<
           = date_formatted(event_schedule.start_date) rescue nil
@@ -24,21 +24,3 @@
           = event_schedule.location
         %td.text-center<
           = link_to(t('common.caption.view'), event_detail_path(event_schedule), class: 'green', title: t('common.caption.view'))
-- if controller.controller_name == 'events'
-  = paginate @event_schedules
-
-:javascript
-  $(function() {
-    $("#up_events nav a").on("click", function(e) {
-      e.preventDefault();
-      if ($(this).attr("href").split("page").length > 1) {
-        var pageNum = $(this).attr("href").match(/page=([0-9]+)/)[1];
-      } else { var pageNum = '1'; }
-
-      $.ajax({
-        url: "/events?up_events=upcoming_events&page="+pageNum,
-        dataType: "script"
-      });
-
-    });
-  });
