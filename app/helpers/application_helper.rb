@@ -104,4 +104,10 @@ module ApplicationHelper
   def time_formatted(date)
     date.try(:strftime, '%I:%M %p')
   end
+
+  BLANK_STRING = ''
+  ACTIVE_CLASS = 'active'
+  def active_page_class(controller, action = nil)
+    params[:controller] == controller && (action.blank? || params[:action] == action) ? ACTIVE_CLASS : BLANK_STRING
+  end
 end
