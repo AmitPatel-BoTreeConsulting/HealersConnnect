@@ -7,9 +7,7 @@
     .row
       .col-sm-8
         - if @activity.avatar.present?
-          = image_tag(website_activity_image_path(style: :medium, id: @activity.id, filename: @activity.avatar_file_name), class: 'post_pic img-responsive')
-        - else
-          = image_tag('no_image.png')
+          = image_tag(website_activity_image_path(style: :medium, id: @activity.id, filename: @activity.avatar_file_name), class: 'post_pic img-responsive activity-detail-img-height')
         .post_content
           %h2= @activity.name.capitalize
           %p
