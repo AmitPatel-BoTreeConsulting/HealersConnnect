@@ -1,4 +1,7 @@
 class CoursesController < ApplicationController
+  before_filter :authenticate_user!, except: [:show_course_image]
+  load_and_authorize_resource except: [:show_course_image]
+
   #before_filter :course_from_params, only: [:show, :edit, :update,:destroy, :deactivate, :activate]
   #before_filter :required_access, only: [:index, :create, :show, :edit, :update, :activate, :deactivate, :destroy]
 
