@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!
-  load_and_authorize_resource
+  before_filter :authenticate_user!, except: [:show_image]
+  load_and_authorize_resource except: [:show_image]
 
   #before_filter :event_from_params, only: [:edit, :update, :show, :destroy]
   before_filter :set_event_category, only: [:new, :create, :edit, :update]
