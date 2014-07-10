@@ -4,8 +4,8 @@
       %tr
         %th.text-center{width: '12%'}  #{t('common.caption.start_date')}
         %th.text-center{width: '12%'}  #{t('common.caption.end_date')}
-        %th{width: '25%'} #{t('common.caption.event')}
-        %th.text-center{width: '15%'} #{t('common.caption.instructor')}
+        %th{width: '40%'} #{t('common.caption.event')}
+        / %th.text-center{width: '15%'} #{t('common.caption.instructor')}
         %th.text-center #{t('common.caption.center_location')}
         %th.text-center{width: '10%'} #{t('common.caption.view')}
     - event_schedules.each do |event_schedule|
@@ -16,8 +16,8 @@
           = date_formatted(event_schedule.end_date) rescue nil
         %td<
           = event_schedule.event.name
-        %td
-          = event_schedule.instructor.name
+        / %td
+        /  = event_schedule.instructor.name
         %td<
           = event_schedule.location
         %td.text-center<

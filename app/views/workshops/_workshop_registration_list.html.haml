@@ -5,8 +5,8 @@
     = date_formatted(workshop.end_date) rescue nil
   %td<
     = workshop.course.name
-  %td<
-    = workshop.instructor.name
+  /%td<
+  /  = workshop.instructor.name
   %td
     = workshop.location
   %td.text-center<
