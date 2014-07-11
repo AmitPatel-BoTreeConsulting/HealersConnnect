@@ -21,9 +21,6 @@
       %b= t('donation.caption.pdf.name')
       #{@donation.donor_name.capitalize}
     %p
-      %b= t('donation.caption.pdf.email')
-      #{@donation.donor_email}
-    %p
       %b= t('donation.caption.pdf.center')
       #{@center_name}
     %p
@@ -34,9 +31,9 @@
     %p
       %b= t('donation.caption.pdf.donation_type')
       #{donation_type}
-    %p
-      %b= t('donation.caption.pdf.received_by')
-      #{@received_by}
+    / %p
+    /   %b= t('donation.caption.pdf.received_by')
+    /   #{@received_by}
     %p
     - if @donation.description.present?
       %b= t('donation.caption.pdf.description')
