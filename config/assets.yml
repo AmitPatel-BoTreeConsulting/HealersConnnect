@@ -22,6 +22,7 @@ javascripts:
     - app/assets/javascripts/home/flexslider.js
     - app/assets/javascripts/jquery.popupoverlay.js
     - app/assets/javascripts/home/courses.js
+    - app/assets/javascripts/home/rails.js
 
 stylesheets:
   canvas:

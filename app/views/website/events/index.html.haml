@@ -1,41 +1,22 @@
--#- if @events_upcoming.present?
--#  .spacer20
--#  %br/
--#  %br/
-/  %br/
-/  %br/
-/  #allevents
-/    = render :partial => 'allevents'
-/- else
-/  %tr
-/    %td{colspan: 7}
-/      .text-center
-/        %h3
-/          = t('event.message.no_upcoming_event')
-/#upcomingevents
-/  = render :partial => 'upcomingevents'
-- if @event_schedule.present?
-  .spacer20
-  %br/
-  %br/
-  %br/
-  %br/
-  .container
-    .section_header
-      %h3= t('event.caption.upcoming_events_title')
-    .row
-      .col-xs-12
-        .table-responsive
-          %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
-            %thead
-              %tr
-                %th.text-center{width: '12%'}  #{t('common.caption.start_date')}
-                %th.text-center{width: '12%'}  #{t('common.caption.end_date')}
-                %th{width: '25%'} #{t('common.caption.event')}
-                %th.text-center{width: '15%'} #{t('common.caption.instructor')}
-                %th.text-center #{t('common.caption.center_location')}
-                %th.text-center{width: '10%'} #{t('common.caption.view')}
-                #abc
-                  = render :partial => 'events/event_list', collection: @events_upcoming, as: :event_schedule
-                #paginator
-                  = paginate @events_upcoming, :remote => true, :param_name => "events_upcoming_page"
+#contact.home_course_content_margin
+  - if @event_schedules.present?
+    .container
+      .section_header#upcoming_events
+        %h3= t('event.caption.upcoming_events_title')
+      .row
+        .col-xs-12
+          #up_events
+            = render :partial => 'website/events/event_list'
+          #up_events_pagination
+            = paginate @event_schedules, params: {up_events: 'up_events'}, remote: true
+
+  - if @events.present?
+    .container
+      .section_header
+        %h3= t('event.caption.all_events')
+      .row
+        .col-xs-12
+          #all_events
+            = render :partial => 'website/events/all_events'
+          #all_events_pagination
+            = paginate @events, params: {all_events: 'all_events'}, remote: true

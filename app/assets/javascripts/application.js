@@ -34,4 +34,3 @@
 //= require event_schedules
 //= require manage_home
 //= require jquery.blockUI
-//= require rails

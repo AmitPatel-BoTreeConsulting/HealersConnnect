@@ -1,0 +1,2 @@
+$('#abc').html("#{escape_javascript render(partial: "events/event_list", locals: { event_list: @events_upcoming })}");
+$('#paginator').html("#{escape_javascript(paginate(@events_upcoming, :remote => true)) }");
