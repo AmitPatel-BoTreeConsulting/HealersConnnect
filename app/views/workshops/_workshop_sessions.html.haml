@@ -12,12 +12,13 @@
         .fieldCollection
           .col-xs-2.margin-right-15
             .input-group
-              = text_field_tag 'workshop[workshop_sessions_attributes][][date]', '', id: 'id-date-picker-1', class: 'form-control date-picker',value: workshop_session.session_start.try(:strftime, '%d/%m/%Y')
+              = text_field_tag 'workshop[workshop_sessions_attributes][][date]', '', id: 'id-date-picker-1', class: 'form-control date-picker',value: workshop_session.session_end.try(:strftime, '%d/%m/%Y')
+
               %span.input-group-addon
                 %i.icon-calendar.bigger-110
           .col-xs-4
-            = session_start_dropdown(workshop_session_start)
-            = session_end_dropdown(workshop_session_end)
+            = session_start_dropdown('')
+            = session_end_dropdown('')
       .workshop-session-remove
         = link_to('javascript:void(0)', class: 'font-22',id: workshop_session_id, tag: "#{index+1}") do
           %i.icon-minus-sign
