@@ -1,5 +1,5 @@
 class EventSchedulesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show_event_schedule_gallery]
   load_and_authorize_resource only: [:show, :edit, :update, :destroy]
 
   #before_filter :event_schedule_from_params , only: [:show, :edit, :update, :destroy]

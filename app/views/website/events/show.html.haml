@@ -11,8 +11,8 @@
           %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
             %thead
               %tr
-                %th.text-center #{t('common.caption.start_date')}
-                %th.text-center #{t('common.caption.end_date')}
+                %th.text-center{width: '33%'} #{t('common.caption.start_date')}
+                %th.text-center{width: '33%'} #{t('common.caption.end_date')}
                 -#%th.text-center #{t('common.caption.center')}
                 %th.text-center #{t('common.caption.center_location')}
             %tr
@@ -46,17 +46,17 @@
           %p
             %b Note:
             = simple_format(@event_schedule.notes)
--#      .col-sm-4
--#        .sidebar
--#          .box
--#            .sidebar_header
--#              %h4= t('common.caption.home_page_activity_photos')
--#            - if @event_scedule.event_photos.present?
--#              %ul.recent_photos
--#                - @event_scedule.event_photos.each do |event_photo|
--#                  %li.activity_small_photo_height_width
--#                    %a{"data-gallery" => "", href:  website_event_image_gallery_path(style: :original, event_id: event_photo. event_id, id: event_photo.id, filename: event_photo.photo_file_name)}
--#                      = image_tag website_event_image_gallery_path(style: :activity_small, event_id: event_photo. event_id, id: event_photo.id, filename: event_photo.photo_file_name), class: 'event_photo_image_height_width'
--#            - else
--#              %h5= t('event_photo_gallery.message.no_photos_found')
--#= render :partial => 'website/gallery_slider_content'
+      .col-sm-4
+        .sidebar
+          .box
+            .sidebar_header
+              %h4= t('common.caption.home_page_activity_photos')
+            - if @event_schedule.event_photos.present?
+              %ul.recent_photos
+                - @event_schedule.event_photos.each do |event_photo|
+                  %li.activity_small_photo_height_width
+                    %a{"data-gallery" => "", href:  event_schedule_gallery_path(style: :original, event_schedule_id: event_photo.event_schedule_id, id: event_photo.id, filename: event_photo.photo_file_name)}
+                      = image_tag event_schedule_gallery_path(style: :medium, event_schedule_id: event_photo.event_schedule_id, id: event_photo.id, filename: event_photo.photo_file_name), class: 'event_photo_image_height_width'
+            - else
+              %h5= t('event_photo_gallery.message.no_photos_found')
+= render :partial => 'website/gallery_slider_content'
