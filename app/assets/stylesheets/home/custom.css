@@ -41,11 +41,6 @@
   width: 16px;
 }
 
-.activity_small_photo_height_width {
-  height: 55px;
-  width: 55px;
-}
-
 /*============Override And Add Inline Style For Home Slider*/
 #feature_slider #tour.slide .info h2 {
   font-size: 30px !important;
@@ -80,4 +75,40 @@ article p {color: #ffffff;}
 
 .activity-div-height {
   height:370px;
+}
+
+#blog_post .sidebar ul.recent_photos li {
+  margin-right: 0px !important;
+  margin-bottom: 5px !important;
+}
+
+.activity_small_photo_height_width {
+  height: auto !important;
+  width: 122px !important;
+}
+
+#blog_post .sidebar ul.recent_photos li a img {
+  max-width: 120px !important;
+}
+
+#blog_post .sidebar {
+  padding: 30px 19px 0 28px !important;
+}
+
+#blog_post .sidebar .box {
+  border-bottom: none !important;
+  padding-bottom: 0px !important;
+}
+
+#blog_post .post_content {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+#footer {
+  min-height: 0px !important;
+}
+
+.footer-info-margin {
+  margin-top: -20px;
 }

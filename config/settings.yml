@@ -1,4 +1,4 @@
-app_name: "Pranic Healing - Ahmedabad"
+app_name: "Pranic Healing - Gujarat"
 brand_name: 'Pranic Healing'
 default_password: 'india2014'
 
@@ -28,6 +28,8 @@ payment:
 
 defaults:
   date_format_in_views: '%d/%m/%Y'
+  contact:
+    mobile: '9725766667, 9825415308'
 
 home_activities:
   paperclip:
