@@ -56,9 +56,22 @@ HealersConnnect::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
+  # mailer smtp settings
+  config.action_mailer.default_url_options = { :host => '107.170.144.231' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'gmail.com',
+      user_name: 'pranichealinggujarat@gmail.com',
+      password: 'aum@phgj1',
+      authentication: 'plain'
+  }
+
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5

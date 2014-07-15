@@ -13,7 +13,7 @@
                   = link_to(image_tag(website_activity_image_path(style: :medium, id: activity.id, filename: activity.avatar_file_name), class: 'img-responsive'), website_activity_path(activity))
             .text
               %h5
-                = link_to(truncate(activity.name, length: 30), website_activity_path(activity))
+                = link_to(activity.name, website_activity_path(activity))
               %span.date
               %p
-                = simple_format(truncate(activity.description, length: 150, omission: " ... %s") % link_to(t('home_activities.caption.read_more'), website_activity_path(activity)))
+                = simple_format(truncate(activity.description, length: 155, omission: " ... %s") % link_to(t('home_activities.caption.read_more'), website_activity_path(activity)))
