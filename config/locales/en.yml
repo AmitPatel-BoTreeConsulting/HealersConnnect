@@ -73,6 +73,20 @@ en:
       certify: 'Certify'
       donation_receivable: 'Donation Receivable'
       donation_received: 'Donation Received'
+      basic:
+        other_healing_course: 'Other Healing related courses taken'
+        other_ailments: 'Please indicate if you have any of the following ailments'
+        ailments:
+          arthritis: 'Arthritis'
+          rheumatism: 'Rheumatism'
+          hypertension: 'Hypertension'
+          heart: 'Heart ailments'
+          kidney: 'Kidney ailments'
+          liver: 'Liver ailments'
+        serious_illness: 'Have you ever had any serious physical or psychological illness?'
+        specify_illness: 'Please specify if any and indicate present status'
+        introduce_by: 'Introduced by'
+        specify_name: 'Please specify name'
       pdf:
         title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
         name_of_course: 'Name of Course :'

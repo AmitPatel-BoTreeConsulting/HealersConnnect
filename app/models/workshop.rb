@@ -66,6 +66,9 @@ class Workshop < ActiveRecord::Base
     end
   end
 
+  def is_of?(course_alias)
+    course.alias == course_alias.to_s
+  end
   private
 
   def workshop_session_presence

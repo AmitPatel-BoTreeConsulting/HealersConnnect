@@ -1,0 +1,55 @@
+- text_field_class = 'col-xs-10 col-sm-5'
+- other_details = @registration.other_details
+.space-4
+.form-group
+  %label.col-sm-3.control-label.no-padding-right
+    = t('registration.caption.basic.other_healing_course')
+  .col-sm-9
+    = text_area_tag 'registration[other_details[other_healing_course]]', other_details.other_healing_course, class: text_field_class
+.space-4
+.form-group
+  %label.col-sm-3.control-label.no-padding-right
+    = t('registration.caption.basic.other_ailments')
+  .col-sm-9
+    .checkbox
+      %label
+        = check_box_tag 'registration[other_details[arthritis]]', other_details.arthritis, other_details.arthritis == 'on'
+        = t('registration.caption.basic.ailments.arthritis')
+    .checkbox
+      %label
+        = check_box_tag 'registration[other_details[rheumatism]]', other_details.rheumatism, other_details.rheumatism == 'on'
+        = t('registration.caption.basic.ailments.rheumatism')
+    .checkbox
+      %label
+        = check_box_tag 'registration[other_details[hypertension]]', other_details.hypertension, other_details.hypertension == 'on'
+        = t('registration.caption.basic.ailments.hypertension')
+    .checkbox
+      %label
+        = check_box_tag 'registration[other_details[heart]]', other_details.heart, other_details.heart == 'on'
+        = t('registration.caption.basic.ailments.heart')
+    .checkbox
+      %label
+        = check_box_tag 'registration[other_details[kidney]]', other_details.kidney, other_details.kidney == 'on'
+        = t('registration.caption.basic.ailments.kidney')
+    .checkbox
+      %label
+        = check_box_tag 'registration[other_details[liver]]', other_details.liver, other_details.liver == 'on'
+        = t('registration.caption.basic.ailments.liver')
+.space-4
+.form-group
+  %label.col-sm-3.control-label.no-padding-right
+    = t('registration.caption.basic.serious_illness')
+  .col-sm-9
+    = text_area_tag 'registration[other_details[serious_illness]]', other_details.serious_illness, placeholder: t('registration.caption.basic.specify_illness'), class: text_field_class
+.space-4
+.form-group
+  %label.col-sm-3.control-label.no-padding-right
+    = t('registration.caption.basic.introduce_by')
+  .col-sm-9
+    = text_field_tag 'registration[other_details[introduce_by]]', other_details.introduce_by, placeholder: t('registration.caption.basic.specify_name'), class: text_field_class
+
+-#.form-group
+-#  .col-sm-3
+-#    .space-2
+-#  %label.col-sm-9.control-label.no-padding-right
+-#    = t('registration.caption.basic.other_healing_course')

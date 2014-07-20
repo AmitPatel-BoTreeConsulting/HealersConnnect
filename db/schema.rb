@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140617081255) do
+ActiveRecord::Schema.define(:version => 20140720080521) do
 
   create_table "activity_photos", :force => true do |t|
     t.integer  "event_id"
@@ -238,6 +238,7 @@ ActiveRecord::Schema.define(:version => 20140617081255) do
     t.string   "certificate_number"
     t.boolean  "certified"
     t.integer  "user_profile_id"
+    t.text     "other_details"
   end
 
   add_index "registrations", ["user_id"], :name => "index_registrations_on_user_id"

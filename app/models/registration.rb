@@ -8,6 +8,19 @@ class Registration < ActiveRecord::Base
 
   serialize(:past_workshops, Hash)
 
+  serialize(:other_details, JSON)
+  flex_column :other_details do
+    field :other_healing_course
+    field :arthritis, :boolean
+    field :rheumatism, :boolean
+    field :hypertension, :boolean
+    field :heart, :boolean
+    field :kidney, :boolean
+    field :liver, :boolean
+    field :serious_illness
+    field :introduce_by
+  end
+
   # accepts_nested_attributes_for :workshop
   # attr_accessible :workshop_attributes
 
@@ -17,7 +30,7 @@ class Registration < ActiveRecord::Base
   REGISTRATION_STATUSES = %w(confirmed cancelled)
 
   attr_accessible :payment_type_id, :fresher, :cheque_no, :workshop_id, :user_id, :user_profile_id
-  attr_accessible :bank_name, :cheque_date, :registration_date, :past_workshops
+  attr_accessible :bank_name, :cheque_date, :registration_date, :past_workshops, :other_details
   attr_accessible :certificate_number
 
   attr_accessor :certificate_number_month, :certificate_number_year, :certificate_number_id
