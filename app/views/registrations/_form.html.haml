@@ -132,7 +132,9 @@
               %span.lbl= "Branch : #{Settings.payment.net_banking.branch_name}"
               %br/
         - if @workshop.is_of?('BPH')
-          = render 'basic_advance_particulars'
+          = render 'basic_particulars'
+        - elsif @workshop.is_of?('APH')
+          = render 'advance_particulars'
         .space-4
         .form-group
           %label.col-sm-3.control-label.no-padding-right

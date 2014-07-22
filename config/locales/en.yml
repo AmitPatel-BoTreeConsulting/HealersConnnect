@@ -73,6 +73,7 @@ en:
       certify: 'Certify'
       donation_receivable: 'Donation Receivable'
       donation_received: 'Donation Received'
+      specify_any: 'Please specify if any'
       basic:
         other_healing_course: 'Other Healing related courses taken'
         other_ailments: 'Please indicate if you have any of the following ailments'
@@ -87,6 +88,11 @@ en:
         specify_illness: 'Please specify if any and indicate present status'
         introduce_by: 'Introduced by'
         specify_name: 'Please specify name'
+      advance:
+        membership: 'Membership of Pranic Healers Associations'
+        limit_to_pranic_healing: 'Will you limit your practice to Pranic Healing only?'
+        specify_techniques: 'Please specify other techniques practised'
+        ailments_treated: 'Major ailments treated'
       pdf:
         title: 'PRANIC HEALING GYAN PRACHAR KENDRA '
         name_of_course: 'Name of Course :'

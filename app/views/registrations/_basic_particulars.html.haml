@@ -1,0 +1,9 @@
+- text_field_class = 'col-xs-10 col-sm-5'
+- other_details = @registration.other_details
+= render 'basic_advance_particulars'
+.space-4
+.form-group
+  %label.col-sm-3.control-label.no-padding-right
+    = t('registration.caption.basic.introduce_by')
+  .col-sm-9
+    = text_field_tag 'registration[other_details[introduce_by]]', other_details.introduce_by, placeholder: t('registration.caption.basic.specify_name'), class: text_field_class

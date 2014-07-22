@@ -19,6 +19,9 @@ class Registration < ActiveRecord::Base
     field :liver, :boolean
     field :serious_illness
     field :introduce_by
+    field :membership
+    field :limit_to_pranic_healing
+    field :ailments_treated
   end
 
   # accepts_nested_attributes_for :workshop
