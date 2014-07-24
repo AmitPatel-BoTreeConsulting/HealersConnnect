@@ -1,6 +1,9 @@
 - gender =  @profile.gender == 'M' ? 'Male' : 'Female'
 - marital_status = @profile.marital_status ? 'Married' : 'Unmarried'
-- # workshop = @registration.workshop
+- workshop_alias = @registration.workshop.course.alias
+- @other_course = @registration.other_details.other_healing_course.present? ? 'Yes' : 'No'
+- @limit_your_practice = @registration.other_details.limit_to_pranic_healing.present? ? 'Yes' : 'No'
+- serious_illness = @registration.other_details.serious_illness.present? ? 'Yes' : 'No'
 !!!
 %html
   %head
@@ -16,12 +19,10 @@
           .main-container-inner
             .main-content
               .page-content
-                %h2.text-center
-                  %b= t('registration.caption.pdf.title')
-                  %h4.text-center= t('registration.caption.pdf.address_line_1')
-                  %h4.text-center= t('registration.caption.pdf.address_line_2')
-                  %h4.text-center= t('registration.caption.pdf.address_line_3')
-                  %h4.text-center= t('registration.caption.pdf.address_line_4')
+                - if workshop_alias == 'BPH' || workshop_alias == 'APH'
+                  = render partial: 'registrations/basic_advance_form_header.html.haml'
+                - else
+                  = render partial: 'registrations/other_form_header.html.haml'
                 .space-28
                 .row
                   .col-xs-12
@@ -98,6 +99,47 @@
                       %label.h4
                         %b= t('registration.caption.pdf.email')
                       %label.h4= @profile.email
+                - if workshop_alias == 'APH'
+                  = render partial: 'registrations/advance_form_content.html.haml'
+                - elsif workshop_alias == 'BPH'
+                  .row
+                    .col-xs-12
+                      .form-group
+                        %label.h4
+                          %b Other Healing-related Courses taken - Please give details:
+                        %label.h4= @registration.other_details.other_healing_course if @registration.other_details.other_healing_course.present?
+                - if workshop_alias == 'APH' || workshop_alias == 'BPH'
+                  .row
+                    .col-xs-12
+                      .form-group
+                        %label.h4
+                          %b Please indicate if you have any of the following
+                        %label.h4
+                          - [:arthritis, :rheumatism, :hypertension, :heart, :kidney, :liver ].each do |ailment|
+                            - flag = @registration.other_details.send(ailment).present? ? "Yes" : "No"
+                            = I18n.t("registration.caption.basic.ailments.#{ailment}") + " : #{flag}"
+                  .row
+                    .col-xs-12
+                      .form-group
+                        %label.h4
+                          %b Have you ever had any serious physical or psychological illness? :
+                        %label.h4= serious_illness
+                  - if serious_illness == 'Yes'
+                    .row
+                      .col-xs-12
+                        .form-group
+                          %label.h4
+                            %b If 'Yes',please specify and indicate present status :
+                          %label.h4= @registration.other_details.serious_illness
+                  .row
+                    .col-xs-12
+                      - if workshop_alias == 'APH'
+                        %p{style: 'font-size: 19px;'} I hereby declare thay all information I have provided in this paper is true and complete. I also declare that I am mentally and physically able to participate in this course and will keep confidentially of the proceedings. I am participating in the Pranic Healing Course and workshop at my risk and my own will, and take full responsibility for participating on this program. I release all Instructors, Organizers and Assistants of this course and Pranic Healing Gyan Prachar Kendra and World Pranic Healing Foundation/India Pvt. Ltd. from all damages whatever and waive all rights for compensation in case of injury.
+                      - elsif workshop_alias == 'BPH'
+                        %p{style: 'font-size: 19px;'} I hereby declare that all information I have given above is true and complete. I am participating in the Pranic Healing Course and workshop at my risk and my own will, and take full responsibility for participating in this programme.
+                        %p{style: 'font-size: 19px;'} I release all Instructors, Organizers/Assistants of this course, Pranic Healing Gyan Kendra and World Pranic Healing Foundation from all damages whatsoever and waive all rights for compensation in case of injury.
+                        %p{style: 'font-size: 19px;'} I declare that I am mentally and physically able to participate in this course and will keep confidentiality of the proceedings. I also confirm that information contained in this may be made available to World Pranic Healing Foundation.
+
                 - # uncomment when enabling Workshop
                 - if false
                   .row
@@ -137,12 +179,12 @@
                     %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_2')}
                     %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_3')}
                 -#.space-20
-                -#.row
+                .row
                   .col-xs-8
                     .form-group
                       %label.h4
                         %b= t('registration.caption.pdf.date')
-                -#.row
+                .row
                   .col-xs-8
                     .form-group
                       %label.h4

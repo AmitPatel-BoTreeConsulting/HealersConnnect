@@ -144,7 +144,7 @@ class RegistrationsController < ApplicationController
 
   def certify_all
     no_of_confirmed_registrations = @workshop.certify_all_confirmed_registrations
-    message_map = 
+    message_map =
       if no_of_confirmed_registrations.instance_of?(ActiveRecord::RecordInvalid)
         { error: t('registration.message.failure.certify_all') }
       else

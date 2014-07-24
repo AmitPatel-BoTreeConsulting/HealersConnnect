@@ -119,6 +119,10 @@ en:
         vanue: 'Vanue :'
         vanue_name: 'Ahmedabad'
         signature: 'Signature :'
+        headers:
+          header_line_1: "GRAND MASTER CHOA KOK SUI'S"
+          header_line_3: "Paticipant's Particulars for information of:"
+          header_line_5: "(Affiliated to World Pranic Healing Foundation Inc.,Manila,Philippines)"
         address_line_1: 'Flat 2, Sunny Side, Prof. U. U. Bhat Road, Matunga C. R.'
         address_line_2: 'Mumbai 400 019'
         address_line_3: 'Helpline: 93209 07358 Office Telephone: 24160008/24163137, 65084061 / 24160008'
