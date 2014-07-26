@@ -1,0 +1,41 @@
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b= "#{t('registration.caption.pdf.details_of_course')} : "
+      %table{border: '1', style: 'width: 100%;'}
+        %thead
+          %tr{style: 'height: 30px;'}
+            %th.h5.text-center{style: 'width:40%;'}
+              %b= t('registration.caption.pdf.course')
+            %th.h5.text-center{style: 'width:20%;'}
+              %b= t('registration.caption.pdf.place_conducted')
+            %th.h5.text-center{style: 'width:15%;'}
+              %b= t('registration.caption.pdf.year_and_date')
+            %th.h5.text-center
+              %b= t('registration.caption.pdf.trainer')
+        %tbody
+          - courses_workshop_map = @profile.courses_workshop_map if @profile.present?
+          - @eligibilities.each do |course|
+            - if courses_workshop_map.present? && courses_workshop_map.has_key?(course)
+              - workshop = courses_workshop_map[course]
+              - place = workshop.center.location rescue nil
+              - date = date_formatted(workshop.end_date) rescue nil
+              - instructor = workshop.instructor.name rescue nil
+            - elsif @profile.present? && (past_workshops = @profile.past_workshops).present?
+              - place = past_workshops[course.alias]['palce'] rescue nil
+              - date = past_workshops[course.alias]['date'] rescue nil
+              - instructor = past_workshops[course.alias]['instructor'] rescue nil
+            - else
+              - place = @registration.past_workshops[course.alias]['palce'] rescue nil
+              - date = @registration.past_workshops[course.alias]['date'] rescue nil
+              - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil
+              %tr{style: 'height: 30px;'}
+                %td.h5<
+                  = course.name
+                %td.h5.text-center<
+                  = place
+                %td.h5.text-center<
+                  = date
+                %td.h5.text-center<
+                  = instructor

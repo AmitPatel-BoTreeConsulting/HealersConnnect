@@ -1,30 +1,8 @@
 .row
-  .col-xs-5
-    .form-group
-      %label.h5
-        %b Basic Pranic Healing Course taken :
-      %label.h5
-  .col-xs-4
-    .form-group
-      %label.h5
-        %b Place :
-      %label.h5= @registration.past_workshops[:BPH][:palce] if @registration.past_workshops[:BPH][:palce].present?
-  .col-xs-3
-    .form-group
-      %label.h5
-        %b Date :
-      %label.h5= @registration.past_workshops[:BPH][:date] if @registration.past_workshops[:BPH][:date].present?
-.row
   .col-xs-12
     .form-group
       %label.h5
-        %b Name of Basic Pranic Healing Instructor :
-      %label.h5 Amit
-.row
-  .col-xs-12
-    .form-group
-      %label.h5
-        %b Have you taken any other healing related courses :
+        %b= "#{t('registration.caption.advance.healing_related_courses')} : "
       %label.h5= @other_course
 - if @other_course == 'Yes'
   .row
@@ -43,7 +21,7 @@
   .col-xs-12
     .form-group
       %label.h5
-        %b Will you limit your practice to Pranic Healing only? :
+        %b= "#{t('registration.caption.advance.limit_to_pranic_healing')} : "
       %label.h5= @limit_your_practice
 .row
   .col-xs-12
@@ -55,5 +33,5 @@
   .col-xs-12
     .form-group
       %label.h5
-        %b Major aliments treated :
+        %b= "#{t('registration.caption.advance.ailments_treated')} : "
       %label.h5= @registration.other_details.ailments_treated if @registration.other_details.ailments_treated.present?
