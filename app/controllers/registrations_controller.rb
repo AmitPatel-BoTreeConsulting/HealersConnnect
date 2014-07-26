@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
   before_filter :required_access, only: [:index, :edit, :update, :destroy, :activate, :deactivate, :export]
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export, :confirm_certify, :certify]
   before_filter :find_workshop, except: [:registration]
-  before_filter :set_eligibilities, only: [:new, :create, :edit, :update]
+  before_filter :set_eligibilities, only: [:new, :create, :edit, :update, :export]
   before_filter :check_center_admin_access, only: [:edit, :update, :destroy, :activate, :deactivate, :export]
 
   def index
@@ -16,6 +16,7 @@ class RegistrationsController < ApplicationController
 
   # Export registration list
   def export_registrations
+    check_for_profile()
     respond_to do |format|
       format.html
       format.xls { @registrations = Registration.search(params) }

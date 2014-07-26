@@ -96,5 +96,6 @@
 }
 
 .title_underline {
-  text-decoration:underline
+  text-decoration:underline;
+  margin-top: 2px;
 }

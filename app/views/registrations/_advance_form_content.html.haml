@@ -1,60 +1,59 @@
-%h2
-  .row
-    .col-xs-5
-      .form-group
-        %label.h4
-          %b Basic Pranic Healing Course taken :
-        %label.h4
-    .col-xs-4
-      .form-group
-        %label.h4
-          %b Place :
-        %label.h4= @registration.past_workshops[:BPH][:palce] if @registration.past_workshops[:BPH][:palce].present?
-    .col-xs-3
-      .form-group
-        %label.h4
-          %b Date :
-        %label.h4= @registration.past_workshops[:BPH][:date] if @registration.past_workshops[:BPH][:date].present?
-  .row
-    .col-xs-12
-      .form-group
-        %label.h4
-          %b Name of Basic Pranic Healing Instructor :
-        %label.h4 Amit
-  .row
-    .col-xs-12
-      .form-group
-        %label.h4
-          %b Have you taken any other healing related courses :
-        %label.h4= @other_course
-  - if @other_course == 'Yes'
-    .row
-      .col-xs-12
-        .form-group
-          %label.h4
-            %b If 'Yes', please give details :
-          %label.h4= @registration.other_details.other_healing_course
+.row
+  .col-xs-5
+    .form-group
+      %label.h5
+        %b Basic Pranic Healing Course taken :
+      %label.h5
+  .col-xs-4
+    .form-group
+      %label.h5
+        %b Place :
+      %label.h5= @registration.past_workshops[:BPH][:palce] if @registration.past_workshops[:BPH][:palce].present?
+  .col-xs-3
+    .form-group
+      %label.h5
+        %b Date :
+      %label.h5= @registration.past_workshops[:BPH][:date] if @registration.past_workshops[:BPH][:date].present?
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b Name of Basic Pranic Healing Instructor :
+      %label.h5 Amit
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b Have you taken any other healing related courses :
+      %label.h5= @other_course
+- if @other_course == 'Yes'
   .row
     .col-xs-12
       .form-group
-        %label.h4
-          %b Membership of Pranic Healers Association, if any :
-        %label.h4= @registration.other_details.membership if @registration.other_details.membership.present?
-  .row
-    .col-xs-12
-      .form-group
-        %label.h4
-          %b Will you limit your practice to Pranic Healing only? :
-        %label.h4= @limit_your_practice
-  .row
-    .col-xs-12
-      .form-group
-        %label.h4
-          %b If 'No', please specify other techniques practised :
-        %label.h4 This is testing record
-  .row
-    .col-xs-12
-      .form-group
-        %label.h4
-          %b Major aliments treated :
-        %label.h4= @registration.other_details.ailments_treated if @registration.other_details.ailments_treated.present?
+        %label.h5
+          %b If 'Yes', please give details :
+        %label.h5= @registration.other_details.other_healing_course
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b Membership of Pranic Healers Association, if any :
+      %label.h5= @registration.other_details.membership if @registration.other_details.membership.present?
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b Will you limit your practice to Pranic Healing only? :
+      %label.h5= @limit_your_practice
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b If 'No', please specify other techniques practised :
+      %label.h5 This is testing record
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b Major aliments treated :
+      %label.h5= @registration.other_details.ailments_treated if @registration.other_details.ailments_treated.present?

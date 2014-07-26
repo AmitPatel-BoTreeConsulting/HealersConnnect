@@ -4,6 +4,8 @@
 - @other_course = @registration.other_details.other_healing_course.present? ? 'Yes' : 'No'
 - @limit_your_practice = @registration.other_details.limit_to_pranic_healing.present? ? 'Yes' : 'No'
 - serious_illness = @registration.other_details.serious_illness.present? ? 'Yes' : 'No'
+- courses_workshop_map = @profile.courses_workshop_map if @profile.present?
+
 !!!
 %html
   %head
@@ -19,178 +21,178 @@
           .main-container-inner
             .main-content
               .page-content
-                - if workshop_alias == 'BPH' || workshop_alias == 'APH'
-                  = render partial: 'registrations/basic_advance_form_header.html.haml'
-                - else
-                  = render partial: 'registrations/other_form_header.html.haml'
-                .space-28
-                .row
-                  .col-xs-12
-                    %h3
-                      %b= t('registration.caption.pdf.name_of_course')
-                      %b= @registration.workshop.course.name
-                .space-28
+                = render partial: 'registrations/form_header.html.haml'
+                .spacer20
                 - # uncomment when enabling workshop
                 .row
                   .col-xs-8
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.trainer')
-                      %label.h4= @registration.workshop.instructor.name.capitalize
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.trainer')} : "
+                      %label.h5= @registration.workshop.instructor.name.capitalize
                   .col-xs-4
                     .form-group.pull-left
-                      %label.h4
-                        %b= t('registration.caption.pdf.certificate_number')
-                      %label.h4= @registration.certificate_number
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.certificate_number')} : "
+                      %label.h5= @registration.certificate_number
                 .row
                   .col-xs-8
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.name')
-                      %label.h4= @profile.name.titleize
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.name')} : "
+                      %label.h5= @profile.name.titleize
                   .col-xs-4
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.date_of_birth')
-                      %label.h4= @profile.birth_date.strftime(Settings.defaults.date_format_in_views)
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.date_of_birth')} : "
+                      %label.h5= @profile.birth_date.strftime(Settings.defaults.date_format_in_views)
                 .row
                   .col-xs-8
                     .form-group.text-left
-                      %label.h4
-                        %b= t('registration.caption.pdf.gender')
-                      %label.h4= gender
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.gender')} : "
+                      %label.h5= gender
                   .col-xs-4
                     .form-group.pull-left
-                      %label.h4
-                        %b= t('registration.caption.pdf.marital_status')
-                      %label.h4= marital_status
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.marital_status')} : "
+                      %label.h5= marital_status
                 .row
                   .col-xs-8
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.education_qualification')
-                      %label.h4= @profile.education
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.education_qualification')} : "
+                      %label.h5= @profile.education
                   .col-xs-4
                     .form-group.pull-left
-                      %label.h4
-                        %b= t('registration.caption.pdf.occupation')
-                      %label.h4= @profile.occupation
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.occupation')} : "
+                      %label.h5= @profile.occupation
                 .row
                   .col-xs-12
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.resident_address')
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.resident_address')} : "
                       %br/
-                      %label.h4= simple_format(@profile.address)
+                      %label.h5= @profile.address
                 .row
                   .col-xs-8
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.mobile')
-                      %label.h4= @profile.mobile
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.mobile')} : "
+                      %label.h5= @profile.mobile
                   .col-xs-4
                     .form-group.pull-left
-                      %label.h4
-                        %b= t('registration.caption.pdf.res_or_office_tel')
-                      %label.h4= @profile.telephone
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.res_or_office_tel')} : "
+                      %label.h5= @profile.telephone
                 .row
                   .col-xs-12
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.email')
-                      %label.h4= @profile.email
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.email')} : "
+                      %label.h5= @profile.email
                 - if workshop_alias == 'APH'
                   = render partial: 'registrations/advance_form_content.html.haml'
                 - elsif workshop_alias == 'BPH'
                   .row
                     .col-xs-12
                       .form-group
-                        %label.h4
+                        %label.h5
                           %b Other Healing-related Courses taken - Please give details:
-                        %label.h4= @registration.other_details.other_healing_course if @registration.other_details.other_healing_course.present?
+                        %label.h5= @registration.other_details.other_healing_course if @registration.other_details.other_healing_course.present?
                 - if workshop_alias == 'APH' || workshop_alias == 'BPH'
                   .row
                     .col-xs-12
                       .form-group
-                        %label.h4
+                        %label.h5
                           %b Please indicate if you have any of the following
-                        %label.h4
+                        %label.h5
                           - [:arthritis, :rheumatism, :hypertension, :heart, :kidney, :liver ].each do |ailment|
                             - flag = @registration.other_details.send(ailment).present? ? "Yes" : "No"
-                            = I18n.t("registration.caption.basic.ailments.#{ailment}") + " : #{flag}"
+                            %span{style:'font-weight:bold;'}= I18n.t("registration.caption.basic.ailments.#{ailment}")
+                            = " : #{flag}"
                   .row
                     .col-xs-12
                       .form-group
-                        %label.h4
+                        %label.h5
                           %b Have you ever had any serious physical or psychological illness? :
-                        %label.h4= serious_illness
+                        %label.h5= serious_illness
                   - if serious_illness == 'Yes'
                     .row
                       .col-xs-12
                         .form-group
-                          %label.h4
+                          %label.h5
                             %b If 'Yes',please specify and indicate present status :
-                          %label.h4= @registration.other_details.serious_illness
-                  .row
-                    .col-xs-12
-                      - if workshop_alias == 'APH'
-                        %p{style: 'font-size: 19px;'} I hereby declare thay all information I have provided in this paper is true and complete. I also declare that I am mentally and physically able to participate in this course and will keep confidentially of the proceedings. I am participating in the Pranic Healing Course and workshop at my risk and my own will, and take full responsibility for participating on this program. I release all Instructors, Organizers and Assistants of this course and Pranic Healing Gyan Prachar Kendra and World Pranic Healing Foundation/India Pvt. Ltd. from all damages whatever and waive all rights for compensation in case of injury.
-                      - elsif workshop_alias == 'BPH'
-                        %p{style: 'font-size: 19px;'} I hereby declare that all information I have given above is true and complete. I am participating in the Pranic Healing Course and workshop at my risk and my own will, and take full responsibility for participating in this programme.
-                        %p{style: 'font-size: 19px;'} I release all Instructors, Organizers/Assistants of this course, Pranic Healing Gyan Kendra and World Pranic Healing Foundation from all damages whatsoever and waive all rights for compensation in case of injury.
-                        %p{style: 'font-size: 19px;'} I declare that I am mentally and physically able to participate in this course and will keep confidentiality of the proceedings. I also confirm that information contained in this may be made available to World Pranic Healing Foundation.
+                          %label.h5= @registration.other_details.serious_illness
 
-                - # uncomment when enabling Workshop
-                - if false
+                - if workshop_alias != 'BPH'
                   .row
                     .col-xs-12
                       .form-group
-                        %label.h4
-                          %b= t('registration.caption.pdf.details_of_course')
+                        %label.h5
+                          %b= "#{t('registration.caption.pdf.details_of_course')} : "
                         %table{border: '1', style: 'width: 100%;'}
                           %thead
                             %tr{style: 'height: 30px;'}
-                              %th.h4.text-center
+                              %th.h5.text-center{style: 'width:40%;'}
                                 %b= t('registration.caption.pdf.course')
-                              %th.h4.text-center
+                              %th.h5.text-center{style: 'width:20%;'}
                                 %b= t('registration.caption.pdf.place_conducted')
-                              %th.h4.text-center
+                              %th.h5.text-center{style: 'width:15%;'}
                                 %b= t('registration.caption.pdf.year_and_date')
-                              %th.h4.text-center
+                              %th.h5.text-center
                                 %b= t('registration.caption.pdf.trainer')
                           %tbody
-                            %tr{style: 'height: 30px;'}
-                              %td.h4.text-center<
-                                = t('registration.caption.pdf.basic_pranic_healing')
-                              %td.h4.text-center<
-                                = workshop.workshop_place.capitalize
-                              %td.h4.text-center<
-                                = workshop.workshop_dated
-                              %td.h4.text-center<
-                                = workshop.workshop_instructor.capitalize
+                            - @eligibilities.each do |course|
+                              - if courses_workshop_map.present? && courses_workshop_map.has_key?(course)
+                                - workshop = courses_workshop_map[course]
+                                - place = workshop.center.location rescue nil
+                                - date = date_formatted(workshop.end_date) rescue nil
+                                - instructor = workshop.instructor.name rescue nil
+                              - elsif @profile.present? && (past_workshops = @profile.past_workshops).present?
+                                - place = past_workshops[course.alias]['palce'] rescue nil
+                                - date = past_workshops[course.alias]['date'] rescue nil
+                                - instructor = past_workshops[course.alias]['instructor'] rescue nil
+                              - else
+                                - place = @registration.past_workshops[course.alias]['palce'] rescue nil
+                                - date = @registration.past_workshops[course.alias]['date'] rescue nil
+                                - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil
+                                %tr{style: 'height: 30px;'}
+                                  %td.h5<
+                                    = course.name
+                                  %td.h5.text-center<
+                                    = place
+                                  %td.h5.text-center<
+                                    = date
+                                  %td.h5.text-center<
+                                    = instructor
+                .row
+                  .col-xs-12
+                    - if workshop_alias == 'APH'
+                      %p.force-justify{style: 'font-size: 15px;'}= t('registration.caption.pdf.declaration.aph.paragraph')
+                    - elsif workshop_alias == 'BPH'
+                      = render partial: 'registrations/bph_declaration.html.haml'
+                    - else
+                      = render partial: 'registrations/other_form_declaration.html.haml'
                 -#.row
                   .col-xs-12
                     %h3.text-center
                       %u
-                        %b= t('registration.caption.pdf.declaration')
-                -#.row
-                  .col-xs-12
-                    %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_1')}
-                    %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_2')}
-                    %p{style: 'font-size: 19px;'} #{t('registration.caption.pdf.text_paragraph_3')}
+                        %b= "#{t('registration.caption.pdf.declaration')} : "
                 -#.space-20
                 .row
                   .col-xs-8
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.date')
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.date')} : "
                 .row
                   .col-xs-8
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.vanue')
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.vanue')} : "
                         = t('registration.caption.pdf.vanue_name')
                   .col-xs-4
                     .form-group
-                      %label.h4
-                        %b= t('registration.caption.pdf.signature')
+                      %label.h5
+                        %b= "#{t('registration.caption.pdf.signature')} : "
