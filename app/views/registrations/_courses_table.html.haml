@@ -30,12 +30,12 @@
               - place = @registration.past_workshops[course.alias]['palce'] rescue nil
               - date = @registration.past_workshops[course.alias]['date'] rescue nil
               - instructor = @registration.past_workshops[course.alias]['instructor'] rescue nil
-              %tr{style: 'height: 30px;'}
-                %td.h5<
-                  = course.name
-                %td.h5.text-center<
-                  = place
-                %td.h5.text-center<
-                  = date
-                %td.h5.text-center<
-                  = instructor
+            %tr{style: 'height: 30px;'}
+              %td.h5<
+                = course.name
+              %td.h5.text-center<
+                = place
+              %td.h5.text-center<
+                = date
+              %td.h5.text-center<
+                = instructor
