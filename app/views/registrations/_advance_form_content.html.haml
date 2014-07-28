@@ -1,0 +1,37 @@
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b= "#{t('registration.caption.advance.healing_related_courses')} : "
+      %label.h5= @other_course
+- if @other_course == 'Yes'
+  .row
+    .col-xs-12
+      .form-group
+        %label.h5
+          %b If 'Yes', please give details :
+        %label.h5= @registration.other_details.other_healing_course
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b Membership of Pranic Healers Association, if any :
+      %label.h5= @registration.other_details.membership if @registration.other_details.membership.present?
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b= "#{t('registration.caption.advance.limit_to_pranic_healing')} : "
+      %label.h5= @limit_your_practice
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b If 'No', please specify other techniques practised :
+      %label.h5 This is testing record
+.row
+  .col-xs-12
+    .form-group
+      %label.h5
+        %b= "#{t('registration.caption.advance.ailments_treated')} : "
+      %label.h5= @registration.other_details.ailments_treated if @registration.other_details.ailments_treated.present?

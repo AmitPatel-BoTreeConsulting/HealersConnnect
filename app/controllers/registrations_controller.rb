@@ -1,10 +1,12 @@
 class RegistrationsController < ApplicationController
   before_filter :authenticate_user!, only: [:index, :edit, :update]
+  load_and_authorize_resource only: [:index, :edit, :update]
+
   before_filter :collect_payment_types
   before_filter :required_access, only: [:index, :edit, :update, :destroy, :activate, :deactivate, :export]
   before_filter :find_registration, only: [:edit, :update, :activate, :deactivate, :export, :confirm_certify, :certify]
   before_filter :find_workshop, except: [:registration]
-  before_filter :set_eligibilities, only: [:new, :create, :edit, :update]
+  before_filter :set_eligibilities, only: [:new, :create, :edit, :update, :export]
   before_filter :check_center_admin_access, only: [:edit, :update, :destroy, :activate, :deactivate, :export]
 
   def index
@@ -14,6 +16,7 @@ class RegistrationsController < ApplicationController
 
   # Export registration list
   def export_registrations
+    check_for_profile()
     respond_to do |format|
       format.html
       format.xls { @registrations = Registration.search(params) }
@@ -142,7 +145,7 @@ class RegistrationsController < ApplicationController
 
   def certify_all
     no_of_confirmed_registrations = @workshop.certify_all_confirmed_registrations
-    message_map = 
+    message_map =
       if no_of_confirmed_registrations.instance_of?(ActiveRecord::RecordInvalid)
         { error: t('registration.message.failure.certify_all') }
       else

@@ -1,0 +1,22 @@
+- text_field_class = 'col-xs-10 col-sm-5'
+- other_details = @registration.other_details
+.space-4
+.form-group
+  %label.col-sm-3.control-label.no-padding-right
+    = t('registration.caption.advance.membership')
+  .col-sm-9
+    = text_field_tag 'registration[other_details[membership]]', other_details.membership, class: text_field_class
+.space-4
+.form-group
+  %label.col-sm-3.control-label.no-padding-right
+    = t('registration.caption.advance.limit_to_pranic_healing')
+  .col-sm-9
+    = text_area_tag 'registration[other_details[limit_to_pranic_healing]]', other_details.limit_to_pranic_healing, placeholder: t('registration.caption.advance.specify_techniques'), class: text_field_class
+.space-4
+.form-group
+  %label.col-sm-3.control-label.no-padding-right
+    = t('registration.caption.advance.ailments_treated')
+  .col-sm-9
+    = text_area_tag 'registration[other_details[ailments_treated]]', other_details.ailments_treated, class: text_field_class
+
+= render 'basic_advance_particulars'

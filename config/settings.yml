@@ -1,20 +1,22 @@
-app_name: "Pranic Healing - Ahmedabad"
+app_name: "Pranic Healing - Gujarat"
 brand_name: 'Pranic Healing'
 default_password: 'india2014'
 
 pagination:
   per_page: 10
+  per_page_5: 5
+
 events:
-  paperclip: { path: ":rails_root/photos/events/:id/:style/:filename", url: "photos/events/:id/:style/:filename" }
+  paperclip: { path: "/home/healer/photos/events/:id/:style/:filename", url: "photos/events/:id/:style/:filename" }
 
 event_gallery:
-  paperclip: { path: ":rails_root/photos/events/:event_id/gallery/:id/:style/:filename", url: "photos/events/:event_id/gallery/:id/:style/:filename" }
+  paperclip: { path: "/home/healer/photos/events/:event_id/gallery/:id/:style/:filename", url: "photos/events/:event_id/gallery/:id/:style/:filename" }
 
 event_schedule_gallery:
-  paperclip: { path: ":rails_root/photos/event_schedule_gallery/:id/:style/:filename", url: "photos/event_schedule_gallery/:event_schedule_id/:id/:style/:filename" }
+  paperclip: { path: "/home/healer/photos/event_schedule_gallery/:id/:style/:filename", url: "photos/event_schedule_gallery/:event_schedule_id/:id/:style/:filename" }
 
 courses:
-  paperclip: { path: ":rails_root/photos/courses/:id/:style/:filename", url: "photos/courses/:id/:style/:filename" }
+  paperclip: { path: "/home/healer/photos/courses/:id/:style/:filename", url: "photos/courses/:id/:style/:filename" }
 
 payment:
   net_banking:
@@ -26,6 +28,15 @@ payment:
 
 defaults:
   date_format_in_views: '%d/%m/%Y'
+  contact:
+    mobile: '9725766667, 9825415308'
+
+home_activities:
+  paperclip:
+    style:
+      medium: '420x236'
+      thumb_detail: '640x360'
+    image_path: '/system/:class/:avatars/:id/:style/:basename.:extension'
 
 paperclip:
   style:

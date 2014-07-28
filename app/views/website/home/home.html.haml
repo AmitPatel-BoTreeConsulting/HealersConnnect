@@ -22,8 +22,8 @@
             %tr
               %th.text-center{width: '12%'} #{t('common.caption.start_date')}
               %th.text-center{width: '12%'}  #{t('common.caption.end_date')}
-              %th{width: '25%'} #{t('common.caption.course')}
-              %th{width: '15%'} #{t('common.caption.instructor')}
+              %th{width: '40%'} #{t('common.caption.course')}
+              / %th{width: '15%'} #{t('common.caption.instructor')}
               %th.text-center #{t('common.caption.center_location')}
               %th.text-center{width: '10%'} #{t('common.caption.register')}
           - if @workshops.present?
@@ -40,15 +40,7 @@
       %h3= t('event.caption.upcoming_events_title')
     .row
       .col-xs-12
-        .table-responsive
-          %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
-            %thead
-              %tr
-                %th.text-center{width: '12%'}  #{t('common.caption.start_date')}
-                %th.text-center{width: '12%'}  #{t('common.caption.end_date')}
-                %th{width: '25%'} #{t('common.caption.event')}
-                -#%th #{t('common.caption.instructor')}
-                %th.text-center{width: '15%'} #{t('common.caption.instructor')}
-                %th.text-center #{t('common.caption.center_location')}
-                %th.text-center{width: '10%'} #{t('common.caption.view')}
-              = render :partial => 'events/event_list', collection: @event_schedules, as: :event_schedule
+        #up_events
+          = render :partial => 'website/events/event_list'
+        #up_events_pagination
+          = paginate @event_schedules, params: {up_events: 'up_events'}, remote: true

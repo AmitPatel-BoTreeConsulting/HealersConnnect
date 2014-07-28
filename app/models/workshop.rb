@@ -16,13 +16,13 @@ class Workshop < ActiveRecord::Base
   has_many :certificates
 
   accepts_nested_attributes_for :workshop_sessions, allow_destroy: true, reject_if: proc { |att| att[:session_start].blank? || att[:session_end].blank? || !att[:session_start].instance_of?(DateTime)}
+
   validates_presence_of :center_id, :course_id, :instructor_id, :fees_date, :location, :contact
   validates_presence_of :fees_before_session, :fees_after_session, :fees_on_session, :fees_on_rejoining
   validate :workshop_session_presence
 
   # Upcoming courses for homepage
   scope :upcoming_workshops, lambda { where("start_date >= ?", Date.today).order(:start_date) }
-  #puts "-------------------------#{Workshop.upcoming_workshops.inspect}"
   scope :show_on_slider, upcoming_workshops.where(show_on_slider: true)
   scope :filter_by_center, ->(centers) { where(center_id: centers) }
 
@@ -66,6 +66,9 @@ class Workshop < ActiveRecord::Base
     end
   end
 
+  def is_of?(course_alias)
+    course.alias == course_alias.to_s
+  end
   private
 
   def workshop_session_presence

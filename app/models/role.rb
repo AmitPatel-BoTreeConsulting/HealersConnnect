@@ -5,6 +5,7 @@ class Role < ActiveRecord::Base
   HEALER = 'healer'
   ACCOUNTANT = 'accountant'
   FOUNDATION_ADMIN = 'foundation_admin'
+  REGISTRAR = 'registrar'
 
   attr_accessible :name, :alias
 

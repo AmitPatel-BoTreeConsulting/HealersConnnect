@@ -1,5 +1,5 @@
-= stylesheet_link_tag "home/blueimp-gallery.min.css"
-= stylesheet_link_tag "home/bootstrap-image-gallery.css"
+-#= stylesheet_link_tag "home/blueimp-gallery.min.css"
+-#= stylesheet_link_tag "home/bootstrap-image-gallery.css"
 - event = @event_schedule.event
 #blog_post.home_course_content_margin
   .container
@@ -11,8 +11,8 @@
           %table.table.table-striped.table-bordered.table-hover#WorkshopRegistrationTable
             %thead
               %tr
-                %th.text-center #{t('common.caption.start_date')}
-                %th.text-center #{t('common.caption.end_date')}
+                %th.text-center{width: '33%'} #{t('common.caption.start_date')}
+                %th.text-center{width: '33%'} #{t('common.caption.end_date')}
                 -#%th.text-center #{t('common.caption.center')}
                 %th.text-center #{t('common.caption.center_location')}
             %tr
@@ -22,7 +22,7 @@
                 = date_time_formatted(@event_schedule.end_date) rescue nil
               -#%td<
                 = @event_schedule.center.name
-              %td.text-center<
+              %td<
                 = @event_schedule.location
             %thead
               %tr
@@ -34,29 +34,29 @@
                 = @event_schedule.event_eligibility_names.join(', ')
               %td.text-center<
                 = @event_schedule.donation
-              %td.text-center<
+              %td<
                 = @event_schedule.contact
     .row
       .col-sm-8
         - if event.avatar.present?
-          = image_tag(event_image_path(style: :medium, id: event.id, filename: event.avatar_file_name), class: 'post_pic img-responsive')
+          = image_tag(event_image_path(style: :thumb_detail, id: event.id, filename: event.avatar_file_name), class: 'post_pic img-responsive')
         .post_content
           %p
             = simple_format(event.description)
           %p
             %b Note:
             = simple_format(@event_schedule.notes)
--#      .col-sm-4
--#        .sidebar
--#          .box
--#            .sidebar_header
--#              %h4= t('common.caption.home_page_activity_photos')
--#            - if @event_scedule.event_photos.present?
--#              %ul.recent_photos
--#                - @event_scedule.event_photos.each do |event_photo|
--#                  %li.activity_small_photo_height_width
--#                    %a{"data-gallery" => "", href:  website_event_image_gallery_path(style: :original, event_id: event_photo. event_id, id: event_photo.id, filename: event_photo.photo_file_name)}
--#                      = image_tag website_event_image_gallery_path(style: :activity_small, event_id: event_photo. event_id, id: event_photo.id, filename: event_photo.photo_file_name), class: 'event_photo_image_height_width'
--#            - else
--#              %h5= t('event_photo_gallery.message.no_photos_found')
--#= render :partial => 'website/gallery_slider_content'
+      .col-sm-4
+        .sidebar
+          .box
+            .sidebar_header
+              %h4= t('common.caption.home_page_activity_photos')
+            - if @event_schedule.event_photos.present?
+              %ul.recent_photos
+                - @event_schedule.event_photos.each do |event_photo|
+                  %li.activity_small_photo_height_width
+                    %a{"data-gallery" => "", href:  event_schedule_gallery_path(style: :original, event_schedule_id: event_photo.event_schedule_id, id: event_photo.id, filename: event_photo.photo_file_name)}
+                      = image_tag event_schedule_gallery_path(style: :medium, event_schedule_id: event_photo.event_schedule_id, id: event_photo.id, filename: event_photo.photo_file_name), class: 'event_photo_image_height_width'
+            - else
+              %h5= t('event_photo_gallery.message.no_photos_found')
+= render :partial => 'website/gallery_slider_content'

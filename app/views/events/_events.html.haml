@@ -1,11 +1,15 @@
 - edit_action_event_path = action_event ? edit_event_path(event, manage_page: action_event) : edit_event_path(event)
+- view_action_event_path = action_event ? event_path(event, manage_page: action_event) : event_path(event)
 - delete_action_event_path = action_event ? event_path(event, manage_page: action_event) : event_path(event)
 - activity_gallery_path =  action_event ? event_path(event, manage_page: action_event) : event_path(event)
 %tr.info
   %td<
     = serial_number(@page,event_counter)
   %td<
-    = link_to event.name, edit_action_event_path
+    - if action_event.present?
+      = link_to event.name, view_action_event_path
+    - else
+      = event.name
   - if !action_event
     %td<
       = event.event_category.name if event.event_category.present?

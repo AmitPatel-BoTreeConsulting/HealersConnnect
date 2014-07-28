@@ -1,7 +1,10 @@
 class WorkshopsController < ApplicationController
-  before_filter :workshop_from_params , only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  load_and_authorize_resource
+
+  #before_filter :workshop_from_params , only: [:show, :edit, :update, :destroy]
   before_filter :course_from_params, only: [:course_instructors]
-  before_filter :check_center_admin_access, only: [:edit, :update, :destroy]
+  #before_filter :check_center_admin_access, only: [:edit, :update, :destroy]
 
   def index
     @page = params[:page] || 1
@@ -22,7 +25,6 @@ class WorkshopsController < ApplicationController
     session_date_arr = []
     params[:workshop][:workshop_sessions_attributes].each do |workshop|
       if workshop[:date].present?
-        #puts ("--------------------------#{workshop[:date].inspect}")
         session_date_arr << workshop[:date]
         workshop[:session_start] = "#{workshop[:date]} #{workshop[:session_start]}".to_datetime
         workshop[:session_end] = "#{workshop[:date]} #{workshop[:session_end]}".to_datetime

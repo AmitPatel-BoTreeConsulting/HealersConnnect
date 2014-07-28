@@ -1,7 +1,8 @@
 class ManageHomesController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :upcoming_workshop_from_params, only: [ :update_upcoming_workshop ]
   before_filter :upcoming_event_from_params, only: [ :update_upcoming_event ]
-  before_filter :required_access, only: [:index, :update_upcoming_workshop, :update_upcoming_event]
+  
   def index
     @upcoming_workshops = Workshop.upcoming_workshops
     @upcoming_events = EventSchedule.upcoming_events

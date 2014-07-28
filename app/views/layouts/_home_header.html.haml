@@ -10,13 +10,13 @@
         = link_to(t('common.app_name').upcase, root_path, class: "navbar-brand", id: "logo")
     .collapse.navbar-collapse.navbar-ex1-collapse{:role => "navigation"}
       %ul.nav.navbar-nav.navbar-right
-        %li.active
+        %li{class: "#{active_page_class('website/home','home')}"}
           = link_to t('common.caption.home_page_link'), root_path
-        %li
+        %li{class: "#{active_page_class('website/courses','index')}"}
           = link_to t('common.caption.home_page_course_link'), website_courses_path
-        %li
+        %li{class: "#{active_page_class('website/activities', "#{controller.action_name}")}"}
           = link_to t('common.caption.home_page_activity_link'), website_activities_path
-        %li
+        %li{class: "#{active_page_class('website/events', "#{controller.action_name}")}"}
           = link_to t('common.caption.home_page_events_link'), website_events_path
         %li
-          = link_to t('common.caption.sign_in'), signin_path
+          = link_to t('common.caption.home_page_sign_in_link'), signin_path

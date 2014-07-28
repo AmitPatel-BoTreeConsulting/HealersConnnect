@@ -1,5 +1,24 @@
 class Website::EventsController < ApplicationController
   layout 'home'
+
+  def index
+    @page = params[:page] || 1
+    if params[:up_events]
+      upcoming_events
+    elsif params[:all_events]
+      all_events
+    else
+      upcoming_events
+      all_events
+    end
+    respond_to do |format|
+      format.html
+      format.js {
+        render file: 'website/events/index'
+      }
+    end
+  end
+
   def show
     @event_schedule = EventSchedule.find(params[:id])
   end
@@ -8,20 +27,14 @@ class Website::EventsController < ApplicationController
     render :text => open(ActivityPhoto.find(params[:id]).photo.path(params[:style].to_sym), "rb").read
   end
 
-  def index
-  	#@page = params[:page] || 1
-  	#@events  = Event.all
-    #puts ("--------------------------------------#{@events.size}")
-    #@page2 = params[:page2] || 1
-    #@events_upcoming  = Event.page(params[:page2]).per(Settings.pagination2.per_page)
-    #@events2  = Event.page(params[:page]).per(Settings.pagination.per_page)
-    @event_schedule = EventSchedule.page(params[:events_schedule_page]).per(Settings.pagination.per_page).order('start_date desc')
-    @events_upcoming = EventSchedule.upcoming_events.page(params[:events_upcoming_page]).per(Settings.pagination.per_page)
+  private
 
-    respond_to do |format|
-      format.js
-      format.html
-    end
-    #puts ("---------------------------------------#{EventSchedule.upcoming_events.size}")
+  def upcoming_events
+    @event_schedules = EventSchedule.upcoming_events.page(params[:page]).per(Settings.pagination.per_page_5).order('start_date ASC')
   end
+
+  def all_events
+    @events = EventSchedule.page(params[:page]).per(Settings.pagination.per_page).order('start_date DESC')
+  end
+
 end
