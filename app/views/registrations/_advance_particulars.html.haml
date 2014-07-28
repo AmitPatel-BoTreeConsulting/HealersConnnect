@@ -5,7 +5,7 @@
   %label.col-sm-3.control-label.no-padding-right
     = t('registration.caption.advance.membership')
   .col-sm-9
-    = text_field_tag 'registration[other_details[membership]]', other_details.membership, class: text_field_class
+    = text_field_tag 'registration[other_details[membership]]', other_details.membership, placeholder: t('registration.caption.specify_any'), class: text_field_class
 .space-4
 .form-group
   %label.col-sm-3.control-label.no-padding-right
@@ -17,6 +17,6 @@
   %label.col-sm-3.control-label.no-padding-right
     = t('registration.caption.advance.ailments_treated')
   .col-sm-9
-    = text_area_tag 'registration[other_details[ailments_treated]]', other_details.ailments_treated, class: text_field_class
+    = text_area_tag 'registration[other_details[ailments_treated]]', other_details.ailments_treated, placeholder: t('registration.caption.specify_any'), class: text_field_class
 
 = render 'basic_advance_particulars'
