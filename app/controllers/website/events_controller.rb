@@ -30,7 +30,7 @@ class Website::EventsController < ApplicationController
   private
 
   def upcoming_events
-    @event_schedules = EventSchedule.upcoming_events.page(params[:page]).per(Settings.pagination.per_page).order('start_date ASC')
+    @event_schedules = EventSchedule.upcoming_events.page(params[:page]).per(Settings.pagination.per_page_5).order('start_date ASC')
   end
 
   def all_events

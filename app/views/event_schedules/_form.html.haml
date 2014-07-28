@@ -4,6 +4,7 @@
 - start_time_dropdown = get_session_start_end_time(@event_schedule.start_date)
 - end_time_dropdown = get_session_start_end_time(@event_schedule.end_date)
 = form_for @event_schedule, html: { class: 'form-horizontal', role: 'form'} do |f|
+  = hidden_field_tag 'event_schedule[center_id]', current_user.center.id
   .row
     .col-xs-12.col-sm-12
       .center
@@ -40,8 +41,8 @@
                 %i.icon-calendar.bigger-110
           .col-xs-2
             = select_tag("event_schedule[session_end]", options_for_select(get_options_session_start_end_dropdown, end_time_dropdown), :prompt=>"--Select--", class: 'form-control')
-        .space-4
-        .form-group
+        -#.space-4
+        -#.form-group
           %label.col-sm-3.control-label.no-padding-right= t('event_schedule.caption.center')
           .col-sm-4
             = f.collection_select :center_id, Center.all(:order => 'name ASC'), :id, :name, { prompt: true }, { class: 'form-control' }

@@ -11,13 +11,13 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-fileupload-rails'
-  gem 'jammit'
 end
 
 gem 'jquery-rails'
 
 #Authentication and Authorization
 gem 'devise'
+gem 'cancan'
 
 gem 'ancestry'
 gem "kaminari", "~> 0.14.1"
@@ -58,3 +58,7 @@ gem 'daemons'
 gem 'sequenced'
 gem "google_visualr", ">= 2.1"
 gem 'blockuijs-rails',  :git => 'git://github.com/rusanu/blockuijs-rails.git'
+gem 'unicorn'
+gem 'capistrano'
+gem 'rvm-capistrano'
+gem 'net-ssh', '2.7.0'

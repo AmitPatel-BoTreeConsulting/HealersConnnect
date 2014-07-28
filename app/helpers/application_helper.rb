@@ -28,45 +28,38 @@ module ApplicationHelper
   end
 
   def render_navigation_menu_option(option, other_attr)
-    case option
-    when :donations
-      url = donations_path
-      link_title = t('navbar.menu.title.donations')
-
-    when :centers
-      url = centers_path
-      link_title = t('navbar.menu.title.centers')
-
-    when :instructors
-      url = instructors_path
-      link_title = t('navbar.menu.title.instructors')
-
-    when :courses
-      url = courses_path
-      link_title = t('navbar.menu.title.courses')
-    when :workshops
+    if can?(:read, Workshop) && option == :workshops
       url = workshops_path
       link_title = t('navbar.menu.title.workshops')
-    when :events
+    elsif can?(:read, Donation) && option == :donations
+      url = donations_path
+      link_title = t('navbar.menu.title.donations')
+    elsif can?(:manage, Event) && option == :events
       url = events_path
       link_title = t('navbar.menu.title.events')
-
-    when :event_schedules
+    elsif can?(:manage, EventSchedule) && option == :event_schedules
       url = event_schedules_path
       link_title = t('navbar.menu.title.event_schedules')
-
-    when :activities
+    elsif current_user.is_super_admin? && option == :activities
       url = events_path(manage_page: 'activity')
       link_title = t('navbar.menu.title.activities')
-
-    when :manage_homes
+    elsif can?(:manage, Center) && option == :centers
+      url = centers_path
+      link_title = t('navbar.menu.title.centers')
+    elsif can?(:manage, Course) && option == :courses
+      url = courses_path
+      link_title = t('navbar.menu.title.courses')
+    elsif can?(:manage, Instructor) && option == :instructors
+      url = instructors_path
+      link_title = t('navbar.menu.title.instructors')
+    elsif (Role::SUPER_ADMIN) && option == :manage_homes
       url = manage_homes_path
       link_title = t('navbar.menu.title.manage_homes')
-    else
     end
-    content_tag(:li, link_to(link_title, url),
-                class: active_menu(option, other_attr)) if current_user.has_permission?(option)
 
+    if url
+      content_tag(:li, link_to(link_title, url), class: active_menu(option, other_attr))
+    end
   end
 
   def render_css_class(name)
@@ -110,5 +103,11 @@ module ApplicationHelper
 
   def time_formatted(date)
     date.try(:strftime, '%I:%M %p')
+  end
+
+  BLANK_STRING = ''
+  ACTIVE_CLASS = 'active'
+  def active_page_class(controller, action = nil)
+    params[:controller] == controller && (action.blank? || params[:action] == action) ? ACTIVE_CLASS : BLANK_STRING
   end
 end

@@ -1,6 +1,7 @@
 - text_field_class = 'col-xs-10 col-sm-6'
 = form_for @donation, html: { class: 'form-horizontal', role: 'form'} do |f|
   = hidden_field_tag 'donation[user_id]', current_user.id
+  = hidden_field_tag 'donation[center_id]', current_user.center.id
   = render partial: 'shared/error_messages', locals: { target: @donation }
   .row
     .col-xs-12
@@ -25,8 +26,8 @@
                 %label
                   = f.radio_button :donation_type, 2, class: 'ace'
                   %span.lbl= t('donation.caption.for_food_for_hungry_radio')
-        .space-4
-        .form-group
+        -#.space-4
+        -#.form-group
           %label.col-sm-3.control-label.no-padding-right= t('donation.caption.center')
           .col-sm-9
             = select_tag t('donation.caption.center_select_tag'), options_from_collection_for_select(@centers, :id, :location), name: 'donation[center_id]',  prompt: t('donation.caption.center_select_tag_prompt')

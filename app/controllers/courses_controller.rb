@@ -1,10 +1,13 @@
 class CoursesController < ApplicationController
-  before_filter :course_from_params, only: [:show, :edit, :update,:destroy, :deactivate, :activate]
-  before_filter :required_access, only: [:index, :create, :show, :edit, :update, :activate, :deactivate, :destroy]
+  before_filter :authenticate_user!, except: [:show_course_image]
+  load_and_authorize_resource except: [:show_course_image]
+
+  #before_filter :course_from_params, only: [:show, :edit, :update,:destroy, :deactivate, :activate]
+  #before_filter :required_access, only: [:index, :create, :show, :edit, :update, :activate, :deactivate, :destroy]
 
   def index
     @page = params[:page] || 1
-    @courses  = Course.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
+    @courses  = @courses.page(params[:page]).per(Settings.pagination.per_page).order('created_at ASC')
   end
 
   def new

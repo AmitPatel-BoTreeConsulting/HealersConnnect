@@ -15,7 +15,8 @@
     .btn-group.pull-right.btn_registration_new_margin
       - if current_user.is_center_admin? && @workshop.any_registration_awaiting_certification? && !@registrations.blank?  && params[:status] != 'cancelled'
         = link_to t('registration.caption.certify'), confirm_certify_all_workshop_registrations_path(@workshop), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin', remote: true
-      = link_to 'New Registration', new_workshop_registration_path(@workshop), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
+      - if can? :manage, Registration
+        = link_to 'New Registration', new_workshop_registration_path(@workshop), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin'
       - if @registrations.present?
         = link_to('Export', export_registrations_path(format: 'xls', status: params[:status], workshop_id: @workshop.id), class: 'btn btn_list btn-sm btn-success no-radius dialog-btn-margin')
     .space-6
@@ -35,7 +36,8 @@
             %th.text-center{width: '10%'} #{t('registration.caption.registered_on')}
             %th.text-center= t('registration.caption.donation_receivable')
             %th.text-center= t('registration.caption.donation_received')
-            %th.text-center{width: '18%'} #{t('common.caption.manage')}
+            - if can? :manage, Registration
+              %th.text-center{width: '18%'} #{t('common.caption.manage')}
         - if @registrations.present?
           %tbody
             - @registrations.each_with_index do |registration, index|
@@ -53,29 +55,30 @@
                 %td.text-center= registration.registration_date.strftime('%d/%m/%Y')
                 %td.text-center= registration.donation_receivable
                 %td.text-center= registration.donation_received
-                %td.text-center<
-                  .action-buttons
-                    - if registration.active
-                      - if current_user.is_center_admin? && !registration.certified && registration.fresher?
-                        = link_to(confirm_certify_workshop_registration_path(id: registration, workshop_id: @workshop), title: t('registration.caption.certify'), remote: true) do
-                          %i.icon-legal.bigger-130
+                - if can? :manage, Registration
+                  %td.text-center<
+                    .action-buttons
+                      - if registration.active
+                        - if current_user.is_center_admin? && !registration.certified && registration.fresher?
+                          = link_to(confirm_certify_workshop_registration_path(id: registration, workshop_id: @workshop), title: t('registration.caption.certify'), remote: true) do
+                            %i.icon-legal.bigger-130
+                        - else
+                          .icon-blank
                       - else
                         .icon-blank
-                    - else
-                      .icon-blank
-                    = link_to('&#x20B9;'.html_safe, workshop_registration_registration_donations_path(@workshop, registration), class: reg_donations_link_class)
-                    = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', title: t('common.caption.title.edit')) do
-                      %i.icon-pencil.bigger-130
-                    = link_to(export_workshop_registration_path(id: registration, workshop_id: @workshop, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do
-                      %i.icon-print.bigger-130
-                    - if registration.active
-                      = link_to(deactivate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_cancel') }, title: t('common.caption.button.cancel')) do
-                        %i.icon-pause.bigger-130
-                    - else
-                      = link_to(activate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_confirm') }, title: 'Confirm') do
-                        %i.icon-play.bigger-130
-                    = link_to(workshop_registration_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
-                      %i.icon-trash.bigger-130
+                      = link_to('&#x20B9;'.html_safe, workshop_registration_registration_donations_path(@workshop, registration), class: reg_donations_link_class)
+                      = link_to(edit_workshop_registration_path(id: registration, workshop_id: @workshop), class: 'green', title: t('common.caption.title.edit')) do
+                        %i.icon-pencil.bigger-130
+                      = link_to(export_workshop_registration_path(id: registration, workshop_id: @workshop, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do
+                        %i.icon-print.bigger-130
+                      - if registration.active
+                        = link_to(deactivate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_cancel') }, title: t('common.caption.button.cancel')) do
+                          %i.icon-pause.bigger-130
+                      - else
+                        = link_to(activate_workshop_registration_path(id: registration, workshop_id: @workshop), method: :put, data: { confirm: t('registration.caption.confirm_registration_confirm') }, title: 'Confirm') do
+                          %i.icon-play.bigger-130
+                      = link_to(workshop_registration_path(id: registration, workshop_id: @workshop), method: :delete, :confirm=> t('registration.caption.confirm_registration_remove'), class: 'red', title: t('common.caption.button.delete'))  do
+                        %i.icon-trash.bigger-130
         - else
           %tr
             %td{colspan: 11}

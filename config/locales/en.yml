@@ -373,7 +373,7 @@ en:
       event_category: 'Event Category'
       description: 'Description'
       upcoming_events_title: 'Upcoming Events'
-      all_events_title: 'All Events'
+      all_events: 'All Events'
       button:
         new: 'New Event'
         update: 'Save'
@@ -383,7 +383,6 @@ en:
       event_updated: "Event '%{event}' updated successfully"
       event_destroy: "Event '%{event}' deleted successfully"
       no_events_found: 'No Events Found'
-      no_upcoming_event: 'No upcoming event scheduled, Please check again later'
       remove: 'Are you sure you want to remove this event?'
     page_content:
       header:

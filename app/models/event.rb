@@ -4,7 +4,8 @@ class Event < ActiveRecord::Base
 
   paperclip_options = {
       styles: {
-          medium: "#{Settings.paperclip.style.medium}>",
+          medium: "#{Settings.home_activities.paperclip.style.medium}>",
+          thumb_detail: "#{Settings.home_activities.paperclip.style.thumb_detail}>",
           thumb: "#{Settings.paperclip.style.thumb}>"
       },
       :path => Settings.events.paperclip.path,

@@ -3,7 +3,7 @@ class Website::HomeController < ApplicationController
   layout 'home'
   def home
     if current_user
-      render 'users/dashboard'
+      redirect_to workshops_path
     else
       upcoming_event_workshop_for_slider
       @workshops = Workshop.upcoming_workshops

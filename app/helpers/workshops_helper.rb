@@ -1,12 +1,14 @@
 module WorkshopsHelper
   def session_start_dropdown(session_start)
     session_start_time = get_session_start_end_time(session_start)
-    select_tag("workshop[workshop_sessions_attributes][][session_start]", options_for_select(get_options_session_start_end_dropdown, session_start_time), :prompt=> "09:00 AM" ,class: 'col-xs-10 col-sm-5')
+    session_start_time = '09:00 AM' unless session_start_time.present?
+    select_tag("workshop[workshop_sessions_attributes][][session_start]", options_for_select(get_options_session_start_end_dropdown, session_start_time), :prompt=>"--Select--", class: 'col-xs-10 col-sm-5')
   end
 
   def session_end_dropdown(session_end)
     session_end_time = get_session_start_end_time(session_end)
-    select_tag("workshop[workshop_sessions_attributes][][session_end]", options_for_select(get_options_session_start_end_dropdown, session_end_time), :prompt=> "07:00 PM" , class: 'col-xs-10 col-sm-5 margin-left-5')
+    session_end_time = '07:00 PM' unless session_end_time.present?
+    select_tag("workshop[workshop_sessions_attributes][][session_end]", options_for_select(get_options_session_start_end_dropdown, session_end_time), :prompt=>"--Select--", class: 'col-xs-10 col-sm-5 margin-left-5')
   end
 
   def get_options_session_start_end_dropdown

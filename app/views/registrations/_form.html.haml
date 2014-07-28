@@ -168,7 +168,7 @@
                 %span.input-group-addon
                   %i.icon-calendar.bigger-110
                   .space-4
-        - if current_user && current_user.is_center_admin?
+        - if current_user && current_user.is_center_admin? && !@registration.new_record?
           .space-4
           .form-group
             %label.col-sm-3.control-label.no-padding-right

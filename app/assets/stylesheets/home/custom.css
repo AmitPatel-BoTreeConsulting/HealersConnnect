@@ -69,3 +69,15 @@
 
 article h4 {color: #ffffff;}
 article p {color: #ffffff;}
+
+.activity-list-img-height {
+  height:186px;
+}
+
+.activity-detail-img-height {
+  height: 360px;
+}
+
+.activity-div-height {
+  height:370px;
+}
