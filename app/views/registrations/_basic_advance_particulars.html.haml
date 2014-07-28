@@ -40,4 +40,4 @@
   %label.col-sm-3.control-label.no-padding-right
     = t('registration.caption.basic.serious_illness')
   .col-sm-9
-    = text_field_tag 'registration[other_details[serious_illness]]', other_details.serious_illness, class: text_field_class
+    = text_field_tag 'registration[other_details[serious_illness]]', other_details.serious_illness, placeholder: t('registration.caption.specify_any'), class: text_field_class

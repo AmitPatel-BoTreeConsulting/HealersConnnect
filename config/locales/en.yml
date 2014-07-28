@@ -75,7 +75,7 @@ en:
       donation_received: 'Donation Received'
       specify_any: 'Please specify if any'
       basic:
-        other_healing_course: 'Other Healing-related Courses taken - Please give details'
+        other_healing_course: 'Other Healing-related Courses taken'
         other_ailments: 'Please indicate if you have any of the following ailments'
         course_taken: 'Basic Pranic Healing Course taken'
         ailments:
