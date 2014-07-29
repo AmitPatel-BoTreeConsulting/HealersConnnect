@@ -1,6 +1,6 @@
 - @workshop ||= Workshop.new
 - create_view = @workshop.new_record?
-- workshop_sessions = @workshop.workshop_sessions
+- workshop_sessions = @workshop.workshop_sessions.order(:session_start)
 = hidden_field_tag 'clientUrlsFound', workshop_sessions.present?
 = render partial: 'shared/error_messages', locals: { target: @workshop }
 .row
