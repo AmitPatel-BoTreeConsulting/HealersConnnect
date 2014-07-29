@@ -1,4 +1,4 @@
-- upcoming_workshops = @course.workshops.order(:start_date)
+- upcoming_workshops = @course.workshops.where("start_date >= ?", Date.today).order(:start_date)
 .row
   .col-sm-7.left_box
     .big
