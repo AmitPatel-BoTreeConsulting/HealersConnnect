@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140720080521) do
+ActiveRecord::Schema.define(:version => 20140812030625) do
 
   create_table "activity_photos", :force => true do |t|
     t.integer  "event_id"
@@ -207,6 +207,17 @@ ActiveRecord::Schema.define(:version => 20140720080521) do
     t.string   "alias"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "quotes", :force => true do |t|
+    t.text     "content"
+    t.boolean  "active",              :default => true
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "registration_donations", :force => true do |t|

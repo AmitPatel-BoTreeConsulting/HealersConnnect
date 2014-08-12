@@ -39,6 +39,7 @@ HealersConnnect::Application.routes.draw do
     end
   end
 
+  resources :quotes
   resources :courses, controller: 'website/courses', as: 'website_courses'
   resources :home, controller: 'website/home', as: 'website_home'
   resources :activities, controller: 'website/activities', as: 'website_activities'
