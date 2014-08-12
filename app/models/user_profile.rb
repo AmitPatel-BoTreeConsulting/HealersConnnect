@@ -2,7 +2,7 @@ class UserProfile < ActiveRecord::Base
   has_many :registrations
   #accepts_nested_attributes_for :registrations
 
-  belongs_to :user
+  belongs_to :user 
 
   after_create :add_unique_member_id
 
@@ -17,7 +17,7 @@ class UserProfile < ActiveRecord::Base
 
   validates_uniqueness_of :member_id
   validates_presence_of :address, :birth_date, :education, :occupation
-  validates_presence_of :first_name, :middle_name, :last_name
+  validates_presence_of :first_name, :middle_name, :last_name, :case_sensitive => false
   validates :email, :format => { :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ }
   validates :mobile, numericality: { only_integer: true },
             length: { is: 10 }, allow_blank: true,
@@ -56,5 +56,15 @@ class UserProfile < ActiveRecord::Base
       second_part = rand(RANDOM_MEMBER_ID_RANGE).to_s
     end
     first_part + second_part
+  end
+
+  def self.in_search(search)
+    if search.present?
+      # where('first_name =  ? or middle_name = ? or last_name = ? or mobile = ?', search.downcase,search.downcase,search.downcase, search)
+      
+      where("first_name ILIKE ? OR last_name ILIKE ? OR middle_name ILIKE ? ", "%#{search}%","%#{search}%","%#{search}%")
+    else
+      scoped
+    end
   end
 end
