@@ -62,7 +62,7 @@ class UserProfile < ActiveRecord::Base
     if search.present?
       # where('first_name =  ? or middle_name = ? or last_name = ? or mobile = ?', search.downcase,search.downcase,search.downcase, search)
       
-      where("first_name ILIKE ? OR last_name ILIKE ? OR middle_name ILIKE ? ", "%#{search}%","%#{search}%","%#{search}%")
+      where("first_name ILIKE ? OR last_name ILIKE ? OR middle_name ILIKE ? OR mobile ILIKE ?", "%#{search}%","%#{search}%","%#{search}%","%#{search}%")
     else
       scoped
     end
