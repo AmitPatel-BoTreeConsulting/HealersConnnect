@@ -60,9 +60,10 @@ class UserProfile < ActiveRecord::Base
 
   def self.in_search(search)
     if search.present?
-      # where('first_name =  ? or middle_name = ? or last_name = ? or mobile = ?', search.downcase,search.downcase,search.downcase, search)
-      
-      where("first_name ILIKE ? OR last_name ILIKE ? OR middle_name ILIKE ? OR mobile ILIKE ?", "%#{search}%","%#{search}%","%#{search}%","%#{search}%")
+        where do 
+          (first_name =~ "%#{search}%" ) | (last_name =~ "%#{search}%" ) | 
+          (middle_name =~ "%#{search}%" ) | (mobile =~ "%#{search}%")
+        end
     else
       scoped
     end

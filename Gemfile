@@ -5,7 +5,7 @@ gem 'pg'
 gem 'haml'
 gem 'haml-rails'
 gem "rails_config", "~> 0.3.3"
-
+gem 'squeel'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
