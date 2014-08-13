@@ -21,7 +21,7 @@
           %label.col-sm-3.control-label.no-padding-right
             = t('common.caption.name')
           .col-sm-9
-            = ff.text_field :first_name, placeholder: t('registration.caption.placeholder.first_name'), class: inline_fields_class
+            = ff.text_field :first_name, id: "member", placeholder: t('registration.caption.placeholder.first_name'), class: inline_fields_class
             = ff.text_field :middle_name, placeholder: t('registration.caption.placeholder.middle_name'), class: inline_fields_class
             = ff.text_field :last_name, placeholder: t('registration.caption.placeholder.surname'), class: 'col-xs-2'
         .space-4
@@ -214,3 +214,19 @@
   - # store the value of current user is logged in or not
   - # for determining whether sign_in_confirmation popup will appear or not
   = hidden_field_tag 'user_signed_in', !current_user.blank?
+
+- if current_user
+  :javascript
+    $(function() {
+      
+      $( "#member" ).autocomplete( {    
+        source: '/admin/user_profile/autocomplete.json',    
+        select: function( event, ui ) {
+          console.log(JSON.stringify(ui.item));
+          window.location = document.URL + '?member_id='+ui.item.value
+          return false;
+        }
+
+      });
+
+    });
