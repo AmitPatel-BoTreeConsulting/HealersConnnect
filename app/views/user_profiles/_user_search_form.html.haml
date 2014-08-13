@@ -1,4 +1,4 @@
-=form_tag({:controller => :user_profile, :action => :index}, {:method => :get, remote:'true'}) do
+=form_tag admin_user_profiles_path, :method => :get, remote:'true' do
   %input{name: "uname", type: "text", id: 'text1',placeholder: "search by name or no "}/
   = submit_tag 'Search',class: 'btn btn-primary',:name => nil,id: 'search' 
   

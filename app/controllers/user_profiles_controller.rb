@@ -1,5 +1,6 @@
-class UserProfileController < ApplicationController
+class UserProfilesController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
 
   def index    
   @page = params[:page] || 1 
