@@ -1,9 +1,9 @@
-- upcoming_workshops = @course.workshops.order(:start_date)
+- upcoming_workshops = @course.workshops.upcoming_workshops
 .row
   .col-sm-7.left_box
     .big
       %h3= @course.name
-      %p.activity-list-img-height
+      -#%p.activity-list-img-height
         - if  @course.avatar_file_name.present?
           = image_tag website_course_image_path(style: :medium, id: @course.id, filename: @course.avatar_file_name)
       %p

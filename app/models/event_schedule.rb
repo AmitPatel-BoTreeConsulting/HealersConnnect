@@ -17,6 +17,9 @@ class EventSchedule < ActiveRecord::Base
     event_eligibilities.inject([]) { |result, eligibility| result << eligibility.course.name }
   end
 
+  def timings
+    "#{start_date.strftime("%I:%M %p")} to #{end_date.strftime("%I:%M %p")}"
+  end
   private
 
   # Prepare array of upcoming events for home slider
@@ -30,13 +33,17 @@ class EventSchedule < ActiveRecord::Base
       upcoming_event_hash[:id] = event.event_id
       upcoming_event_hash[:url] = Rails.application.routes.url_helpers.website_home_path(event.event_id)
       upcoming_event_hash[:show_on_slider] = event.show_on_slider
+      upcoming_event_hash[:start_date] = event.start_date
+      upcoming_event_hash[:end_date] = event.end_date
+      upcoming_event_hash[:timings] = event.timings
+      upcoming_event_hash[:venue] = event.location
       events << upcoming_event_hash
     end
     events
   end
 
-  def self.upcoming_events
-    includes(:event).where('start_date >= ?', Date.today).order(:start_date)
-  end
+  #def self.upcoming_events
+  #  includes(:event).where('start_date >= ?', Date.today).order(:start_date)
+  #end
 
 end

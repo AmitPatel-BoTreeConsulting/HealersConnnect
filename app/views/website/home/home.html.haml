@@ -1,14 +1,21 @@
 %section#feature_slider.lol
-  - @upcoming_event_workshop_for_slider.each do |upcoming_event_workshop|
-    - background_splash = asset_path 'home/backgrounds/aqua.jpg'
-    %article#tour.slide{:style => "background: url('#{background_splash}') repeat-x top center;"}
-      - if upcoming_event_workshop[:image].present?
-        = image_tag(upcoming_event_workshop[:image], class: 'asset left-472 sp650 t90 z3', style: 'width:910px;')
-      .info
-        %h4= upcoming_event_workshop[:name]
-        %div.slider_description_width
-          %p= truncate(strip_tags(upcoming_event_workshop[:description]), length: 200, separator: ' ')
-        = link_to t('manage_home.caption.button.read_more'), upcoming_event_workshop[:url]
+  - if @upcoming_event_workshop_for_slider.size > 1
+    - @upcoming_event_workshop_for_slider.each do |upcoming_event_workshop|
+      - background_splash = asset_path 'home/backgrounds/aqua.jpg'
+      %article#tour.slide{:style => "background: url('#{background_splash}') repeat-x top center;"}
+        - if upcoming_event_workshop[:image].present?
+          = image_tag(upcoming_event_workshop[:image], class: 'asset left-472 sp650 t90 z3', style: 'width:910px;')
+        .info
+          %h4= upcoming_event_workshop[:name]
+          %div.slider_description_width
+            %p= "Start Date : #{date_formatted(upcoming_event_workshop[:start_date])}"
+            %p= "End Date : #{date_formatted(upcoming_event_workshop[:end_date])}"
+            %p= "Timings : #{upcoming_event_workshop[:timings]}"
+            %p= "Venue : #{upcoming_event_workshop[:venue]}"
+            %p= truncate(strip_tags(upcoming_event_workshop[:description]), length: 200, separator: ' ')
+          = link_to t('manage_home.caption.button.read_more'), upcoming_event_workshop[:url]
+  - else
+    = image_tag 'home/GMCKS2.png', :style => 'margin: 135px 0 0 400px'
 .spacer20
 .container
   .section_header

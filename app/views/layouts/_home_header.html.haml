@@ -7,7 +7,7 @@
         %span.icon-bar
         %span.icon-bar
       %strong
-        = link_to(t('common.app_name').upcase, root_path, class: "navbar-brand", id: "logo")
+        = link_to( image_tag('home/logo.png', height: 100), root_path, class: "navbar-brand", id: "logo")
     .collapse.navbar-collapse.navbar-ex1-collapse{:role => "navigation"}
       %ul.nav.navbar-nav.navbar-right
         %li{class: "#{active_page_class('website/home','home')}"}

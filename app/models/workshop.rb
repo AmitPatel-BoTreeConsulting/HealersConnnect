@@ -69,6 +69,14 @@ class Workshop < ActiveRecord::Base
   def is_of?(course_alias)
     course.alias == course_alias.to_s
   end
+
+  def timings
+    session = workshop_sessions.first
+    if session
+      "#{session.session_start.strftime('%l:%M %p')} to #{session.session_end.strftime('%l:%M %p')}"
+    end
+  end
+
   private
 
   def workshop_session_presence
@@ -86,6 +94,10 @@ class Workshop < ActiveRecord::Base
       upcoming_workshop_hash[:id] = workshop.course_id
       upcoming_workshop_hash[:url] = Rails.application.routes.url_helpers.website_courses_path(workshop_id: workshop.id)
       upcoming_workshop_hash[:show_on_slider] = workshop.show_on_slider
+      upcoming_workshop_hash[:start_date] = workshop.start_date
+      upcoming_workshop_hash[:end_date] = workshop.end_date
+      upcoming_workshop_hash[:timings] = workshop.timings
+      upcoming_workshop_hash[:venue] = workshop.location
       workshops << upcoming_workshop_hash
     end
     workshops

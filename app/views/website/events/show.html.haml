@@ -38,7 +38,7 @@
                 = @event_schedule.contact
     .row
       .col-sm-8
-        - if event.avatar.present?
+        -#- if event.avatar.present?
           = image_tag(event_image_path(style: :thumb_detail, id: event.id, filename: event.avatar_file_name), class: 'post_pic img-responsive')
         .post_content
           %p
