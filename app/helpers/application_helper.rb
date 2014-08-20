@@ -28,7 +28,10 @@ module ApplicationHelper
   end
 
   def render_navigation_menu_option(option, other_attr)
-    if can?(:read, Workshop) && option == :workshops
+    if can?(:read, UserProfile) && option == :user_profiles
+      url = admin_user_profiles_path
+      link_title = t('navbar.menu.title.Members')
+    elsif can?(:read, Workshop) && option == :workshops
       url = workshops_path
       link_title = t('navbar.menu.title.workshops')
     elsif can?(:read, Donation) && option == :donations
