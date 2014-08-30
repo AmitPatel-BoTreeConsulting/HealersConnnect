@@ -45,6 +45,8 @@ class RegistrationsController < ApplicationController
     Registration.transaction do
       @registration = Registration.new(params[:registration])
       if @registration.save
+        HealersConnectMailer.delay.registration_notification_to_attendee(@registration)
+        HealersConnectMailer.delay.registration_notification_to_center_contact(@registration)
         #@registration.update_attribute(:registration_date, @registration.created_at) unless current_user.present?
         #@registration.update_attribute(:user_profiles_id, @registration.user_profile.id)
 

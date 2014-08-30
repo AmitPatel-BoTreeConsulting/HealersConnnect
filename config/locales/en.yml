@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  aatma_namaste: 'Aatma Namaste!!'
   permissions:
     not_permitted: "You are not authorized to access this page."
   center:
@@ -187,6 +188,15 @@ en:
       certificate_number_month: 'XX'
       certificate_number_year: 'XX'
       certificate_number_id: 'X...'
+    mailer:
+      registration:
+        caption:
+          workshop_details: 'Workshop Details :'
+          person_details: 'Personal Details :'
+        attendee:
+          subject: 'Your Registration for %{course_name} is successful'
+        center_admin:
+          subject: 'New Registration for %{course_name}'
   course:
     caption:
       courses: 'Courses'
@@ -370,7 +380,7 @@ en:
       subject: "Congratulations!! You have completed %{course_name}"
       paragraph_1: "You have successfully completed %{course_name} workshop. Here is the workshop details:"
       aatma_namaste_text: "Aatma Namaste!!!"
-      signature_thnak_you: 'Thanking You,'
+      signature_thank_you: 'Thanking You,'
   navbar:
    menu:
     title:

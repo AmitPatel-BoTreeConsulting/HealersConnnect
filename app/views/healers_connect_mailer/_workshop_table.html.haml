@@ -1,0 +1,22 @@
+%p
+  %table{:border => "0"}
+    %tr
+      %td
+        %b Course Name:
+      %td= @course.name
+    %tr
+      %td
+        %b Start Date:
+      %td= date_formatted(@workshop.start_date)
+    %tr
+      %td
+        %b End Date:
+      %td= date_formatted(@workshop.end_date)
+    %tr
+      %td
+        %b Timing:
+      %td= @workshop.timings
+    %tr
+      %td
+        %b Venue:
+      %td= @workshop.location
