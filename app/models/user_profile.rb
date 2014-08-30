@@ -46,6 +46,11 @@ class UserProfile < ActiveRecord::Base
   def courses_workshop_map
     self.user.courses_workshop_map if user.present?
   end
+
+  def contact_number
+    mobile.presence || telephone.presence
+  end
+
   private
 
   def generate_member_id
@@ -68,4 +73,5 @@ class UserProfile < ActiveRecord::Base
       scoped
     end
   end
+
 end

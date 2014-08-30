@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+  %body
+    %p= "Dear #{@user_profile.try(:name).try(:titleize)},"
+    %p Welcome to GMCKS Pranic Healings' #{@course.name} workshop. Please find the details below:
+    %p
+      %b= t('registration.mailer.registration.caption.workshop_details')
+    = render :partial => 'workshop_table'
+    %p
+      = t('mailer.course_complete_notification.signature_thank_you')
+      %br/
+      = @workshop.center.name.try(:titleize)
+      %br/
+      = "(#{@workshop.center.mobile})"

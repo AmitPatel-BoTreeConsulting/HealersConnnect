@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+  %body
+    %p= t('aatma_namaste')
+    %p A new registration has been received for #{@course.name}. Please find the details below:
+    %p
+      %b= t('registration.mailer.registration.caption.workshop_details')
+    %p
+      %table{:border => "0"}
+        %tr
+          %td
+            %b Name:
+          %td= @user_profile.name
+        %tr
+          %td
+            %b Contact Number:
+          %td= @user_profile.contact_number
+        %tr
+          %td
+            %b Email:
+          %td= @user_profile.email
+        %tr
+          %td
+            %b Address:
+          %td= @user_profile.address.html_safe
+    %p
+      %b= t('registration.mailer.registration.caption.workshop_details')
+    = render :partial => 'workshop_table'
+
+    %p
+      = t('mailer.course_complete_notification.signature_thank_you')
+      %br/
+      = link_to 'http://pranichealinggujarat.com', 'http://pranichealinggujarat.com', target: '_blank'

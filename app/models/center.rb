@@ -8,5 +8,7 @@ class Center < ActiveRecord::Base
   validates :mobile, numericality: { only_integer: true },
             length: { is: 10 }, allow_blank: true,
             format:  {:with => /^[1-9]/}
-
+  def contact_number
+    mobile.presence || phone1.presence || phone2.presence
+  end
 end

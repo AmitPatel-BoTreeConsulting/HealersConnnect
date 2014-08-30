@@ -7,6 +7,6 @@
     %p
       = "We have received ₹ #{@registration_donation.amount} for #{@workshop.course.name} on #{@registration_donation.received_on.try(:strftime, Settings.defaults.date_format_in_views)}"
     %p
-      = t('mailer.course_complete_notification.signature_thnak_you')
+      = t('mailer.course_complete_notification.signature_thank_you')
       %br/
       = @workshop.center.name.try(:titleize)
