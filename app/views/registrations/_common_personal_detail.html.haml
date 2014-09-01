@@ -1,11 +1,11 @@
 - gender =  @profile.gender == 'M' ? 'Male' : 'Female'
-- marital_status = @profile.marital_status ? 'Married' : 'Unmarried'
+/ - marital_status = @profile.marital_status.present? ? 'Married' : 'Unmarried'
 .row
   .col-xs-8
     .form-group
       %label.h5
         %b= "#{t('registration.caption.pdf.trainer')} : "
-      %label.h5= @registration.workshop.instructor.name.capitalize
+      %label.h5= @registration.workshop.instructor.name.upcase
   .col-xs-4
     .form-group.pull-left
       %label.h5
@@ -16,7 +16,7 @@
     .form-group
       %label.h5
         %b= "#{t('registration.caption.pdf.name')} : "
-      %label.h5= @profile.name.titleize
+      %label.h5= @profile.name.upcase
   .col-xs-4
     .form-group
       %label.h5
@@ -27,30 +27,30 @@
     .form-group.text-left
       %label.h5
         %b= "#{t('registration.caption.pdf.gender')} : "
-      %label.h5= gender
+      %label.h5= gender.upcase
   .col-xs-4
     .form-group.pull-left
       %label.h5
         %b= "#{t('registration.caption.pdf.marital_status')} : "
-      %label.h5= marital_status
+      %label.h5= @profile.marital_status.upcase
 .row
   .col-xs-8
     .form-group
       %label.h5
         %b= "#{t('registration.caption.pdf.education_qualification')} : "
-      %label.h5= @profile.education
+      %label.h5= @profile.education.upcase
   .col-xs-4
     .form-group.pull-left
       %label.h5
         %b= "#{t('registration.caption.pdf.occupation')} : "
-      %label.h5= @profile.occupation
+      %label.h5= @profile.occupation.upcase
 .row
   .col-xs-12
     .form-group
       %label.h5
         %b= "#{t('registration.caption.pdf.resident_address')} : "
       %br/
-      %label.h5= @profile.address
+      %label.h5= @profile.address.upcase
 .row
   .col-xs-8
     .form-group
