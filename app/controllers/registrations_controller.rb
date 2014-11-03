@@ -36,31 +36,29 @@ class RegistrationsController < ApplicationController
   def create
     unless user_signed_in?
       params[:registration][:registration_date] = Time.now
-      check_for_profile()
-      if @profile.present?
-        params[:registration][:user_profile_id] = @profile.id
-      end
     end
 
-    Registration.transaction do
-      @registration = Registration.new(params[:registration])
-      if @registration.save
-        HealersConnectMailer.delay.registration_notification_to_attendee(@registration)
-        HealersConnectMailer.delay.registration_notification_to_center_contact(@registration)
-        #@registration.update_attribute(:registration_date, @registration.created_at) unless current_user.present?
-        #@registration.update_attribute(:user_profiles_id, @registration.user_profile.id)
+    check_for_profile()
+    if @profile.present?
+      params[:registration][:user_profile_id] = @profile.id
+    end
 
-        flash[:notice] = t('registration.message.success.registration_success')
-        if current_user
-          redirect_to workshop_registrations_path(status: 'confirmed')
-        else
-          redirect_to root_path
-        end
+    @registration = Registration.new(params[:registration])
+    if @registration.save
+      HealersConnectMailer.delay.registration_notification_to_attendee(@registration)
+      HealersConnectMailer.delay.registration_notification_to_center_contact(@registration)
+
+      flash[:notice] = t('registration.message.success.registration_success')
+      if current_user
+        redirect_to workshop_registrations_path(status: 'confirmed')
       else
-        check_for_profile()
-        render :new
+        redirect_to root_path
       end
+    else
+      check_for_profile()
+      render :new
     end
+
   end
 
   def edit
