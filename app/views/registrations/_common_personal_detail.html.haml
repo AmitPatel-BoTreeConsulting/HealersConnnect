@@ -63,8 +63,13 @@
         %b= "#{t('registration.caption.pdf.res_or_office_tel')} : "
       %label.h5= @profile.telephone
 .row
-  .col-xs-12
+  .col-xs-8
     .form-group
       %label.h5
         %b= "#{t('registration.caption.pdf.email')} : "
       %label.h5= @profile.email
+  .col-xs-4
+    .form-group.pull-left
+      %label.h5
+        %b= "#{t('registration.caption.pdf.reference')} : "
+      %label.h5= @registration.other_details[:introduce_by] rescue ''
