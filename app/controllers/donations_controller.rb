@@ -11,7 +11,7 @@ class DonationsController < ApplicationController
       params[:user_id] = current_user.id if current_user.is_center_admin?
       if params[:donation].present?
         @donation_params = params[:donation]
-        @donations = Donation.search(@donation_params)
+        @donations = Donation.page(params[:page]).per(Settings.pagination.per_page).search(@donation_params)
       else
         donation_listing()
       end
@@ -24,9 +24,10 @@ class DonationsController < ApplicationController
       @donation_chart = GoogleChartService.render_pie_chart(data_for_chart: Donation.yearly_donations(donations_by_timeline), chart_type: :bar, chart_name: 'Donations', required_formatter: true, col_x: 'Donation', col_y: 'Donations',  interactive: params[:interactive])
     end
 
-    # Export PDF
+  # Export PDF
     respond_to do |format|
       format.html
+      format.js { render 'donation.js.erb'}
       format.pdf do
         render pdf: 'report',
                template: 'donations/donation_report_pdf.html.haml',
@@ -34,7 +35,7 @@ class DonationsController < ApplicationController
                :show_as_html                   => params[:debug].present?,
                disable_internal_links: true, disable_external_links: true,
                :print_media_type => false, :no_background => false
-        return
+        return 
       end
     end
   end
@@ -80,11 +81,11 @@ class DonationsController < ApplicationController
 
     def donation_listing
       if current_user.is_center_admin?
-        @donations = Donation.for_center(current_user.center_ids)
+        @donations = Donation.page(params[:page]).per(Settings.pagination.per_page).for_center(current_user.center_ids) 
       else if current_user.is_accountant?
-         @donations = Donation.for_center(current_user.center_ids).received_by(current_user)
+        @donations = Donation.for_center(current_user.center_ids).received_by(current_user)
        else
-         @donations = Donation.all
+        @donations = Donation.all
        end
       end
     end

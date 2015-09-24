@@ -1,3 +1,4 @@
+#encoding: utf-8
 module RegistrationDonationsHelper
   def registration_donation_receivable_statistics
     @receivable = @registration.donation_receivable
