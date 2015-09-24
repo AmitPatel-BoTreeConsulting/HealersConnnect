@@ -60,7 +60,6 @@ gem "google_visualr", ">= 2.1"
 gem 'blockuijs-rails',  :git => 'git://github.com/rusanu/blockuijs-rails.git'
 gem 'unicorn'
 gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'rvm-capistrano',  require: false
 gem 'net-ssh', '2.7.0'
-
 gem 'flex_columns'

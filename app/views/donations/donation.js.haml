@@ -1,0 +1,4 @@
+$('#donation').html("#{escape_javascript(render :partial => 'donations', collection: @donations, as: :donation)}");
+
+$('#paginator').html('#{escape_javascript(paginate(@donations, :remote => true, :param_name => "page").to_s)}');
+

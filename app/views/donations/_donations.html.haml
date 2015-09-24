@@ -1,0 +1,19 @@
+- donation_type = donation.donation_type == 1 ? 'For Center' : 'For Food for Hungry'
+%tr
+  %td
+    = donation.receipt_number
+  %td
+    = donation.donor_name
+  %td
+    = donation.center.name
+  %td.text-right
+    = donation.amount
+  %td
+    = donation.donation_type
+  %td
+    = donation.user.email
+  %td
+    = date_formatted(donation.received_on)
+  %td.text-center<
+    = link_to(export_donation_pdf_path(donation, format: :pdf), target: '_blank', title: t('donation.caption.title.save_as_pdf')) do
+      %i.icon-print.bigger-130
