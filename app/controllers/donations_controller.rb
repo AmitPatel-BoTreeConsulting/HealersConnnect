@@ -11,8 +11,7 @@ class DonationsController < ApplicationController
       params[:user_id] = current_user.id if current_user.is_center_admin?
       if params[:donation].present?
         @donation_params = params[:donation]
-        @donations = Donation.page(params[:page]).per(Settings.pagination.per_page_5).search(@donation_params)
-        # call_ajax()
+        @donations = Donation.page(params[:page]).per(Settings.pagination.per_page).search(@donation_params)
       else
         donation_listing()
       end
@@ -82,20 +81,12 @@ class DonationsController < ApplicationController
 
     def donation_listing
       if current_user.is_center_admin?
-        @donations = Donation.page(params[:page]).per(Settings.pagination.per_page_5).for_center(current_user.center_ids)
-        # call_ajax   
+        @donations = Donation.page(params[:page]).per(Settings.pagination.per_page).for_center(current_user.center_ids) 
       else if current_user.is_accountant?
-         @donations = Donation.for_center(current_user.center_ids).received_by(current_user)
+        @donations = Donation.for_center(current_user.center_ids).received_by(current_user)
        else
-         @donations = Donation.all
+        @donations = Donation.all
        end
       end
     end
-
-    # def call_ajax
-    #   respond_to do |format|
-    #   format.js { render 'donation.js.erb'}
-    #   format.html
-    #   end
-    # end
 end
