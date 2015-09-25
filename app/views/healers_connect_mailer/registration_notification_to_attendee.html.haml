@@ -9,6 +9,9 @@
       %b= t('registration.mailer.registration.caption.workshop_details')
     = render :partial => 'workshop_table'
     %p
+      %b= t('registration.mailer.registration.caption.Registration Details')
+    = render :partial => 'user_registration_details'
+    %p
       = t('mailer.course_complete_notification.signature_thank_you')
       %br/
       = @workshop.center.name.try(:titleize)
