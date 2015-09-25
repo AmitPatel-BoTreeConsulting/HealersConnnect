@@ -35,17 +35,17 @@ HealersConnnect::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  # ActionMailer::Base.default from: Settings.mail.default_url_options.support_email
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.perform_deliveries = true 
   config.action_mailer.delivery_method = :smtp
+  
   config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
-      port: 587,
-      domain: 'gmail.com',
-      user_name: 'demo4582@gmail.com',
-      password: 'demo123123123',
-      authentication: 'plain'
+  	address: 'smtp.gmail.com',
+  	port:	587,
+  	domain:	'gmail.com',
+  	user_name: 'chaudharyprakash1992@gmail.com',
+  	password:	'prakash1992',
+  	authentication:	'plain',
+  	enable_starttls_auto: true
   }
 end

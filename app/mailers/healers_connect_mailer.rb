@@ -1,3 +1,4 @@
+#encoding: utf-8
 class HealersConnectMailer < ActionMailer::Base
   add_template_helper(ApplicationHelper)
 

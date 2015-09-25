@@ -1,0 +1,18 @@
+%p
+  %table{:border => "0"}
+    %tr
+      %td
+        %b Name:
+      %td= @user_profile.name
+    %tr
+      %td
+        %b Contact Number:
+      %td= @user_profile.contact_number
+    %tr
+      %td
+        %b Email:
+      %td= @user_profile.email
+    %tr
+      %td
+        %b Address:
+      %td= @user_profile.address.html_safe

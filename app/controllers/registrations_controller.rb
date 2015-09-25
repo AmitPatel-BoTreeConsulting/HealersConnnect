@@ -45,9 +45,8 @@ class RegistrationsController < ApplicationController
 
     @registration = Registration.new(params[:registration])
     if @registration.save
-      HealersConnectMailer.delay.registration_notification_to_attendee(@registration)
-      HealersConnectMailer.delay.registration_notification_to_center_contact(@registration)
-
+      HealersConnectMailer.registration_notification_to_attendee(@registration).deliver
+      HealersConnectMailer.registration_notification_to_center_contact(@registration).deliver
       flash[:notice] = t('registration.message.success.registration_success')
       if current_user
         redirect_to workshop_registrations_path(status: 'confirmed')
